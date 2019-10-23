@@ -1,0 +1,16 @@
+@media (max-width: $screen-sm) {
+
+	.btn {
+
+		&-lg {
+			min-width: 220px;
+		}
+
+		&-sm {
+			height: 35px;
+		    line-height: 35px;
+		    padding: 0 20px;
+		}
+	}
+	
+}

@@ -1,0 +1,81 @@
+@mixin font-face($font-name, $file-name, $weight: normal, $style: normal) {
+    @font-face {
+        font-family: quote($font-name);
+        src: url($file-name + '.eot');
+        src: url($file-name + '.eot?#iefix') format('embedded-opentype'),
+        url($file-name + '.woff') format('woff'),
+        url($file-name + '.ttf') format('truetype'),
+        url($file-name + '.svg##{$font-name}') format('svg');
+        font-weight: $weight;
+        font-style: $style;
+    }
+}
+
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content
+    }
+    &:-moz-placeholder {
+        @content
+    }
+    &::-moz-placeholder {
+        @content
+    }
+    &:-ms-input-placeholder {
+        @content
+    }
+}
+
+@mixin ellipsis($width) {
+    max-width: $width;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin clearfix {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin center($position) {
+    position: absolute;
+    @if $position=='vertical' {
+        top: 50%;
+        @include translate($y: -50%);
+    }
+    @else if $position=='horizontal' {
+        left: 50%;
+        @include translate($x: -50%);
+    }
+    @else if $position=='both' {
+        top: 50%;
+        left: 50%;
+        @include translate($x: -50%, $y: -50%);
+    }
+}
+
+@mixin position($type: absolute, $left: null, $right: null, $top: null, $bottom: null) {
+    position: $type;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin bg-img($img: null, $bg-color: null, $repeat: null, $position: null, $bg-size: null, $bg-attachment: null) {
+    @if ($img) {
+        background-image: url($images-folder + $img);
+    }
+    background-color: $bg-color;
+    background-size: $bg-size;
+    background-repeat: $repeat;
+    background-position: $position;
+    background-attachment: $bg-attachment;
+}

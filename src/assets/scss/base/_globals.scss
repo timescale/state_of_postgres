@@ -1,0 +1,67 @@
+// Headings
+h1 {
+	font-size: 109px;
+	line-height: 112px;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-family: $font-primary;
+}
+
+// Paragraph
+p {
+	line-height: 1.275;
+}
+
+// Colors
+.color-primary {
+	color: $color-primary;
+}
+
+.color-secondary {
+	color: $color-secondary;
+}
+
+.color-text {
+	color: $color-text;
+}
+
+.color-highlight {
+	color: $color-highlight;
+}
+
+.color-white {
+	color: #fff;
+}
+
+// Text
+.text-center {
+	text-align: center;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-lowercase {
+	text-transform: lowercase;
+}
+
+.text-uppercase {
+	text-transform: uppercase;
+}
+
+.text-capitalize {
+	text-transform: capitalize;
+}
+
+.no-transform {
+	text-transform: none;
+}
+
+.font-italic {
+	font-style: italic;
+}

@@ -1,0 +1,51 @@
+.header {
+	padding: 35px 50px;
+	background: $bg-gray;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 10;
+	transition: .3s;
+
+	&-hidden {
+		transform: translateY(-100%);
+	}
+
+	&-visible {
+		transform: translateY(0);
+	}
+
+	&-small {
+		padding-top: 15px;
+		padding-bottom: 15px;
+		box-shadow: 0 0 10px rgba(#000, .2);
+	}
+
+	.menu {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+
+		li {
+			margin-left: 28px;
+
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+
+		a {
+			text-transform: capitalize;
+
+			&:not(.btn) {
+				font-size: $font-size-xs;
+				color: $color-primary;
+
+				&:hover {
+					color: $color-secondary;
+				}
+			} 
+		}
+	}
+} 

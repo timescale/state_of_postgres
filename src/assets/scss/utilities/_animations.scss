@@ -1,0 +1,77 @@
+// .animated {
+//  opacity: 0;
+//  background: #fff;
+//  transition-property: background, opacity;
+
+//  &.animateBg {
+//      opacity: 1;
+//      background: #080808;
+//  }
+// }
+
+// [data-aos="animateText"] {
+//  opacity: 0 !important;
+
+//  &.aos-animate {
+//      opacity: 1 !important;
+//  }
+// }
+
+// @-webkit-keyframes animateBgIn {
+// 	from {
+// 		opacity: 0;
+// 		background: #fff;
+// 	}
+
+// 	to {
+// 		opacity: 1;
+// 		background: #080808;
+// 	}
+// }
+
+// @keyframes animateBgIn {
+// 	from {
+// 		opacity: 0;
+// 		background: #fff;
+// 	}
+
+// 	to {
+// 		opacity: 1;
+// 		background: #080808;
+// 	}
+// }
+
+// .animateBgIn {
+// 	-webkit-animation-name: animateBgIn;
+// 	animation-name: animateBgIn;
+// }
+
+
+// @-webkit-keyframes animateBgOut {
+// 	from {
+// 		opacity: 1;
+// 		background: #080808;
+// 	}
+
+// 	to {
+// 		opacity: 0;
+// 		background: #fff;
+// 	}
+// }
+
+// @keyframes animateBgOut {
+// 	from {
+// 		opacity: 1;
+// 		background: #080808;
+// 	}
+
+// 	to {
+// 		opacity: 0;
+// 		background: #fff;
+// 	}
+// }
+
+// .animateBgOut {
+// 	-webkit-animation-name: animateBgOut;
+// 	animation-name: animateBgOut;
+// }

@@ -1,0 +1,33 @@
+body {
+	color: $color-text;
+	font-family: $font-primary;
+	font-weight: normal;
+	background: $bg-gray;
+	position: relative;
+	word-wrap: break-word;
+	transition: .6s;
+
+	&.bg-dark {
+		background: #080808;
+	}
+}
+
+.container {
+	width: 100%;
+	max-width: 1440px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.main-content {
+	overflow: hidden;
+}
+
+.section {
+	min-height: 750px;
+	padding-top: 60px;
+	padding-bottom: 60px;
+	position: relative;
+	display: flex;
+	align-items: center;
+}

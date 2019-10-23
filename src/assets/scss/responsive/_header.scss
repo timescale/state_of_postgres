@@ -1,0 +1,23 @@
+@media (max-width: $screen-md) {
+
+	.header {
+		padding: 25px 40px;
+	}
+	
+}
+
+
+@media (max-width: $screen-sm) {
+
+	.header {
+		padding: 15px;
+
+		.menu {
+
+			li {
+				margin-left: 18px;
+			}
+		}
+	}
+	
+}
