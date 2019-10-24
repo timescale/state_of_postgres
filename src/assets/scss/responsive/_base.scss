@@ -1,8 +1,13 @@
 @media (max-width: $screen-md) {
 
+	.main-content {
+		padding-top: 90px;
+	}
+
 	.section {
 		min-height: 600px;
 	}
+
 }
 
 
@@ -11,6 +16,10 @@
 	.container {
 		max-width: 598px;
 		padding: 0 15px;
+	}
+
+	.main-content {
+		padding-top: 65px;
 	}
 
 	.section {

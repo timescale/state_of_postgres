@@ -1,6 +1,7 @@
 import React, { Component, Fragment, useEffect } from 'react';
 import KeyFindings from './components/KeyFindings';
 import Materials from './components/Materials';
+import FullResults from './components/FullResults';
 import { BrowserRouter as Router, Switch, Route, Link, useLocation } from "react-router-dom";
 
 import './assets/scss/style.scss';
@@ -89,20 +90,29 @@ class App extends Component {
 							<Link to="/">Key findings</Link>
 						</li>
 						<li>
-							<Link to="/" className="btn btn-secondary btn-sm">Full Results</Link>
+							<Link to="/full_results" className="btn btn-secondary btn-sm">Full Results</Link>
 						</li>
 					</ul>
 				</header>
 
-				<Switch>
-					<Route path="/materials">
-						<Materials />
-					</Route>
-					<Route path="/" exact>
-						<KeyFindings />
-					</Route>
-				</Switch>
-				
+				{/* Main content - Start  */}
+				<main className="main-content">
+
+					<Switch>
+						<Route path="/materials">
+							<Materials />
+						</Route>
+						<Route path="/full_results">
+							<FullResults />
+						</Route>
+						<Route path="/" exact>
+							<KeyFindings />
+						</Route>
+					</Switch>
+					
+				</main>
+				{/* Main content - End  */}
+
 			</Router>
 		);
 	}
