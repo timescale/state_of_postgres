@@ -9,83 +9,83 @@ class KeyFindings extends Component {
 		this.questions = [
 			{
 				id: 1,
-				question: "Question"
+				question: "What is your primary geographical location?"
 			},
 			{
 				id: 2,
-				question: "Question"
+				question: "How many years have you been working as a developer?"
 			},
 			{
 				id: 3,
-				question: "Question"
+				question: "What is your current job title (or most accurately fits your job description)?"
 			},
 			{
 				id: 4,
-				question: "Question"
+				question: "Do you use Postgres for personal projects?"
 			},
 			{
 				id: 5,
-				question: "Question"
+				question: "Do you use Postgres at work?"
 			},
 			{
 				id: 6,
-				question: "Question"
+				question: "Which best describes the industry your organization is in?"
 			},
 			{
 				id: 7,
-				question: "Question"
+				question: "How many total employees are in your organization?"
 			},
 			{
 				id: 8,
-				question: "Question"
+				question: "How big is your team?"
 			},
 			{
 				id: 9,
-				question: "Question"
+				question: "How would you classify your use case?"
 			},
 			{
 				id: 10,
-				question: "Question"
+				question: "Compared to two years ago, is Postgres being used more or less in your organization?"
 			},
 			{
 				id: 11,
-				question: "Question"
+				question: "How did you first find out about Postgres?"
 			},
 			{
 				id: 12,
-				question: "Question"
+				question: "How long have you been using Postgres?"
 			},
 			{
 				id: 13,
-				question: "Question"
+				question: "Have you ever contributed code to Postgres?"
 			},
 			{
 				id: 14,
-				question: "Question"
+				question: "What Postgres events do you go to?"
 			},
 			{
 				id: 15,
-				question: "Question"
+				question: "How would you rate your first experience with Postgres?"
 			},
 			{
 				id: 16,
-				question: "Question"
+				question: "What is the main reason you choose to use Postgres over other options?"
 			},
 			{
 				id: 17,
-				question: "Question"
+				question: "How do you deploy Postgres?"
 			},
 			{
 				id: 18,
-				question: "Question"
+				question: "What cloud provider(s) do you currently use?"
 			},
 			{
 				id: 19,
-				question: "Question"
+				question: "Do you currently use or have you used any of the following NoSQL databases?"
 			},
 			{
 				id: 20,
-				question: "Question"
+				question: "What language(s) and/or tool(s) do you most frequently use to query Postgres?"
 			},
 		];
 	}
