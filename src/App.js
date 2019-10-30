@@ -3,7 +3,7 @@ import KeyFindings from './components/KeyFindings';
 import Materials from './components/Materials';
 import FullResults from './components/FullResults';
 import { BrowserRouter as Router, Switch, Route, Link, useLocation } from "react-router-dom";
-
+import SmoothScroll from './components/Scroll'
 import './assets/scss/style.scss';
 
 function ScrollToTop() {
@@ -33,6 +33,10 @@ class App extends Component {
 
 	componentDidMount() {
 		window.addEventListener("scroll", this.toggleHeader, false);
+		new SmoothScroll({
+		  target: document.querySelector("#root"), // element container to scroll
+		  scrollEase: 0.05,
+		});
 	}
 
 	componentWillUnmount() {
@@ -41,7 +45,7 @@ class App extends Component {
 
 	toggleHeader(e) {
 
-		let smallHeader = false; 
+		let smallHeader = false;
 
 		if(window.pageYOffset > this.header.current.clientHeight) {
 
@@ -109,7 +113,7 @@ class App extends Component {
 							<KeyFindings />
 						</Route>
 					</Switch>
-					
+
 				</main>
 				{/* Main content - End  */}
 
