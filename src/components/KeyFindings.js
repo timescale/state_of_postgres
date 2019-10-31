@@ -1,7 +1,6 @@
 import React, { Component, Fragment} from 'react';
 import Fade  from 'react-reveal/Fade';
 // import Reveal from 'react-reveal/Reveal';
-// import AOS from 'aos';
 import LazyLoad from 'react-lazyload';
 import anime from "animejs";
 import { Link, Scroll } from 'react-scroll'
@@ -22,8 +21,6 @@ class KeyFindings extends Component {
 	}
 
 	componentDidMount() {
-
-		// AOS.init({});
 
 		this.animatedSectionList.push(document.querySelectorAll(".anim-sect"));
 		this.animatedTextList.push(document.querySelectorAll(".animate-text"));

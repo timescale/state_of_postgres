@@ -1,5 +1,6 @@
 import React, { Component, Fragment} from 'react';
 import Fade  from 'react-reveal/Fade';
+import ScrollAnimation from 'react-animate-on-scroll';
 
 class KeyFindings extends Component {
 
@@ -634,11 +635,13 @@ class KeyFindings extends Component {
 							<section className={"question-section" + (index === this.questions.length - 1 ? " no-border" : "")} key={question.id}>
 
 								<div className="container">
-						
-									<div className="text-wrap">
-										<p className="question">{question.question}</p>
-										<p className="info-text">{question.info}</p>
-									</div>
+
+									<Fade bottom cascade>
+										<div className="text-wrap">
+											<p className="question">{question.question}</p>
+											<p className="info-text">{question.info}</p>
+										</div>
+									</Fade>
 
 									{question.type === "bar_chart" ? (
 
@@ -650,7 +653,14 @@ class KeyFindings extends Component {
 															<li key={option.id}>
 																<p className="answer">{option.title}</p>
 																<div className="bar-row">
-																	<div className="bar" style={{width: 600*option.percentage/100}}></div>
+																	<div className="bar" style={{width: 600*option.percentage/100}}>
+																		<ScrollAnimation
+																			animateIn="animateWidth"
+																			animateOnce={true}
+																			duration={1}
+																			offset={0}>
+																		</ScrollAnimation>
+																	</div>
 																	<span className="percentage">{option.percentage}%</span>
 																</div>
 															</li>

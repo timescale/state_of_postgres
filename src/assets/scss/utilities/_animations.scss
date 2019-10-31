@@ -75,3 +75,19 @@
 // 	-webkit-animation-name: animateBgOut;
 // 	animation-name: animateBgOut;
 // }
+
+
+.animateWidth {
+	animation: animateWidth ease-in-out both;
+}
+
+
+@keyframes animateWidth {
+	from {
+		width: 0;
+	}
+
+	to {
+		width: 100%;
+	}
+}

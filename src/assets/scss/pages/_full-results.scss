@@ -63,10 +63,16 @@
 
 		.bar {
 			height: 36px;
-			background: #4e8bea;
-			border-radius: 2px;
 			margin-right: 25px;
-			border-left: 1px solid #4e8bea;
+			border-left: 1px solid $color-secondary;
+			border-radius: 2px;
+			overflow: hidden;
+
+			div {
+				background: $color-secondary;
+				width: 0;
+				height: 100%;
+			}
 		}
 
 		.percentage {
@@ -78,12 +84,14 @@
 		text-align: center;
 
 		.map-img-wrap {
-			max-width: 950px;
-			margin: 0 auto 40px;
+			max-height: 568px;
+			height: 30vw;
+			margin-bottom: 40px;
 
 			img {
-				width: 100%;
-				height: auto;
+				height: 100%;
+				width: auto;
+				margin: 0 auto;
 			}
 		}
 
