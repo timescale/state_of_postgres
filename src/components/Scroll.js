@@ -45,7 +45,16 @@ let SmoothScroll = /** @class */ (function () {
             var scrollY = window.pageYOffset;
             if (resized) {
                 var height = _this.target.clientHeight;
-                document.body.style.height = height + "px";
+                
+
+
+                // document.body.style.height = height + "px";
+                document.body.style.height = window.innerHeight + _this.currentScroll + "px";
+                document.querySelector("#root").style.height = window.innerHeight + _this.currentScroll + "px";
+                // console.log(1,    _this.currentScroll);
+                
+
+
                 _this.scrollHeight = height;
                 _this.viewHeight = window.innerHeight;
                 _this.halfViewHeight = _this.viewHeight / 2;
@@ -55,13 +64,22 @@ let SmoothScroll = /** @class */ (function () {
             _this.endScroll = scrollY;
             // this.currentScroll += (scrollY - this.currentScroll) * this.scrollEase;
             _this.currentScroll += (scrollY - _this.currentScroll) * dt;
+            document.body.style.height = window.innerHeight + _this.currentScroll + "px";
+            document.querySelector("#root").style.height = window.innerHeight + _this.currentScroll + "px";
+            // console.log(2,     _this.currentScroll);
             if (Math.abs(scrollY - _this.currentScroll) < _this.endThreshold || resized) {
                 _this.currentScroll = scrollY;
+                document.body.style.height = window.innerHeight + _this.currentScroll + "px";
+                document.querySelector("#root").style.height = window.innerHeight + _this.currentScroll + "px";
+                // console.log(3,     _this.currentScroll);
                 _this.scrollRequest = 0;
             }
             // const scrollOrigin = scrollY + this.halfViewHeight;
             var scrollOrigin = _this.currentScroll + _this.halfViewHeight;
             _this.target.style.transform = "translate3d(0px,-" + _this.currentScroll + "px,0px)";
+            document.body.style.height = window.innerHeight + _this.currentScroll + "px";
+            document.querySelector("#root").style.height = window.innerHeight + _this.currentScroll + "px";
+            // console.log(2,     _this.currentScroll);
             for (var i = 0; i < _this.scrollItems.length; i++) {
                 var item = _this.scrollItems[i];
                 var distance = scrollOrigin - item.top;

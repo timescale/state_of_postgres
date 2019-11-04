@@ -1,6 +1,6 @@
 import React, { Component, Fragment} from 'react';
 import Fade  from 'react-reveal/Fade';
-import ScrollAnimation from 'react-animate-on-scroll';
+import Reveal from 'react-reveal/Reveal';
 
 class KeyFindings extends Component {
 
@@ -636,7 +636,7 @@ class KeyFindings extends Component {
 
 								<div className="container">
 
-									<Fade bottom cascade>
+									<Fade>
 										<div className="text-wrap">
 											<p className="question">{question.question}</p>
 											<p className="info-text">{question.info}</p>
@@ -654,12 +654,9 @@ class KeyFindings extends Component {
 																<p className="answer">{option.title}</p>
 																<div className="bar-row">
 																	<div className="bar" style={{width: 600*option.percentage/100}}>
-																		<ScrollAnimation
-																			animateIn="animateWidth"
-																			animateOnce={true}
-																			duration={1}
-																			offset={0}>
-																		</ScrollAnimation>
+																		<Reveal effect="animateWidth">
+																			<div />
+																		</Reveal>
 																	</div>
 																	<span className="percentage">{option.percentage}%</span>
 																</div>

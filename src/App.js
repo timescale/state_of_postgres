@@ -34,7 +34,7 @@ class App extends Component {
 	componentDidMount() {
 		window.addEventListener("scroll", this.toggleHeader, false);
 		new SmoothScroll({
-		  target: document.querySelector("#root"), // element container to scroll
+		  target: document.querySelector("#main"), // element container to scroll
 		  scrollEase: 0.05,
 		});
 	}
@@ -100,7 +100,7 @@ class App extends Component {
 				</header>
 
 				{/* Main content - Start  */}
-				<main className="main-content">
+				<main className="main-content" id="main">
 
 					<Switch>
 						<Route path="/materials">

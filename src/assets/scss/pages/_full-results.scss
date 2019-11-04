@@ -28,7 +28,7 @@
 		font-size: 38px;
     	line-height: 52px;
 		margin-bottom: 10px;
-		font-weight: bold;	
+		font-weight: 600;	
 	}
 
 	.info-text {
@@ -64,13 +64,13 @@
 		.bar {
 			height: 36px;
 			margin-right: 25px;
-			border-left: 1px solid $color-secondary;
+			// border-left: 1px solid $color-secondary;
 			border-radius: 2px;
 			overflow: hidden;
 
 			div {
 				background: $color-secondary;
-				width: 0;
+				width: 1px;
 				height: 100%;
 			}
 		}
