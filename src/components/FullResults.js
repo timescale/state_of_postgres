@@ -624,6 +624,18 @@ class KeyFindings extends Component {
 				]
 			},
 		];
+
+		this.state = {
+			otherOptionsOpened: false
+		};
+
+		this.showOtherOptions = this.showOtherOptions.bind(this);
+	}
+
+	showOtherOptions() {
+		this.setState((prevState) => ({
+			otherOptionsOpened: !prevState.otherOptionsOpened
+		}));
 	}
 
 	render() {
@@ -639,7 +651,9 @@ class KeyFindings extends Component {
 									<Fade>
 										<div className="text-wrap">
 											<p className="question">{question.question}</p>
-											<p className="info-text">{question.info}</p>
+											{question.info && 
+												<p className="info-text">{question.info}</p>
+											}
 										</div>
 									</Fade>
 
@@ -696,6 +710,57 @@ class KeyFindings extends Component {
 						)
 					})
 				}
+
+				<section className="question-section no-border">
+
+					<div className="container">
+
+						<Fade>
+							<div className="text-wrap">
+								<p className="question">What is the biggest advantage to working with Postgres?</p>
+								<p className="info-text">This was an open-ended question</p>
+							</div>
+						</Fade>
+
+						<div className="circles-wrap">
+
+							<div className="circle circle-1 pattern-left">
+								<span className="percentage">62%</span> 
+								<span className="text">Open Source</span> 
+							</div>
+
+							<div className="circle circle-2 pattern-left">
+								<span className="percentage">53%</span> 
+								<span className="text">Active Community</span> 
+							</div>
+
+							<div className="circle circle-3 pattern-left">
+								<span className="percentage">45%</span> 
+								<span className="text">SQL</span> 
+							</div>
+
+							<div className="circle circle-4 pattern-right">
+								<span className="percentage">49%</span> 
+								<span className="text">Flexibility</span> 
+							</div>
+
+							<div className={"circle circle-5 pattern-right other" + (this.state.otherOptionsOpened ? " opened" : "")} onClick={this.showOtherOptions}>
+								<div>
+									<span className="percentage">18%</span> 
+									<span className="text">Other</span> 
+								</div>
+								<ul>
+									<li><span>Option 1</span> <span>10%</span></li>
+									<li><span>Option 2</span> <span>5%</span></li>
+									<li><span>Option 3</span> <span>3%</span></li>
+								</ul>
+							</div>
+						
+						</div>
+	
+					</div>
+
+				</section>
 			</Fragment>
 		);
 	}
