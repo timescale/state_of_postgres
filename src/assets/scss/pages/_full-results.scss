@@ -228,7 +228,6 @@
 					align-items: center;
 					justify-content: center;
 					flex-direction: column;
-					// transition: .5s ease-in-out;
 
 					li {
 						display: flex;
@@ -238,7 +237,7 @@
 
 						span {
 							font-size: 23px;
-							font-weight: 700;
+							font-weight: 600;
 							color: $color-secondary;
 
 							&:first-child {
@@ -293,7 +292,7 @@
 								color: $color-text;
 
 								&:first-child {
-									margin-right: 50px;
+									margin-right: 40px;
 								}
 
 								&:last-child {
@@ -309,14 +308,14 @@
 		.percentage {
 			color: $color-secondary;
 			font-size: 90px;
-			font-weight: 700;
+			font-weight: 600;
 			margin-bottom: 30px;
 		}
 
 		.text {
 			color: $color-secondary;
 			font-size: 30px;
-			font-weight: 700;
+			font-weight: 600;
 		}
 	}
 }
