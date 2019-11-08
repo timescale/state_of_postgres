@@ -33,11 +33,11 @@
 
 @font-face {
     font-family: 'IBM Plex Sans';
-    src: url('/fonts/IBMPlexSans-SemiBold.eot');
-    src: url('/fonts/IBMPlexSans-SemiBold.eot?#iefix') format('embedded-opentype'),
-        url('/fonts/IBMPlexSans-SemiBold.woff2') format('woff2'),
-        url('/fonts/IBMPlexSans-SemiBold.woff') format('woff'),
-        url('/fonts/IBMPlexSans-SemiBold.ttf') format('truetype');
+    src: url('/fonts/IBMPlexSans/IBMPlexSans-SemiBold.eot');
+    src: url('/fonts/IBMPlexSans/IBMPlexSans-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/IBMPlexSans/IBMPlexSans-SemiBold.woff2') format('woff2'),
+        url('/fonts/IBMPlexSans/IBMPlexSans-SemiBold.woff') format('woff'),
+        url('/fonts/IBMPlexSans/IBMPlexSans-SemiBold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
 }
