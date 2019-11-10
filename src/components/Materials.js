@@ -4,36 +4,58 @@ import ElephantAnimation from './ElephantAnimation';
 import HeadAnimation from './HeadAnimation';
 import CircleAnimation from './CircleAnimation';
 import Circle2Animation from './Circle2Animation';
+import VisibilitySensor from 'react-visibility-sensor'
 
 class Materials extends Component {
 
-	constructor(props) {
-		super(props);
-	}
+    constructor(props) {
+        super(props);
+    }
 
-	render() {
-		return (
-			<Fragment>
+    render() {
+        this.style = {marginBottom: '50px'};
 
-				<div style={{marginBottom: '50px'}}>
-					<CircleAnimation />
-				</div>
-	
-				<div style={{marginBottom: '50px'}}>
-					<Circle2Animation />
-				</div>
+        return (
+            <Fragment>
+                <VisibilitySensor partialVisibility={true}>
+                    {
+                        ({isVisible}) =>
+                            <div style={{marginBottom: '50px', visibility: isVisible ? "visible": "hidden" }} >
+                                <CircleAnimation />
+                            </div>
+                    }
+                </VisibilitySensor>
 
-				<div style={{marginBottom: '50px'}}>
-					<HeadAnimation />
-				</div>
+                <VisibilitySensor partialVisibility={true}>
+                    {
+                        ({isVisible}) =>
+                            <div style={{marginBottom: '50px', visibility: isVisible ? "visible": "hidden" }} >
+                                <Circle2Animation />
+                            </div>
+                    }
+                </VisibilitySensor>
 
-				<div style={{marginBottom: '50px'}}>
-					<ElephantAnimation />
-				</div>
+                <VisibilitySensor>
+                    {
+                        ({isVisible}) =>
+                            <div style={{marginBottom: '50px', visibility: isVisible ? "visible" : "hidden"}}>
+                                <HeadAnimation/>
+                            </div>
+                    }
+                </VisibilitySensor>
 
-			</Fragment>
-		);
-	}
+                <VisibilitySensor>
+                    {
+                        ({isVisible}) =>
+                            <div style={{marginBottom: '50px', visibility: isVisible ? "visible" : "hidden"}}>
+                                <ElephantAnimation/>
+                            </div>
+                    }
+                </VisibilitySensor>
+
+            </Fragment>
+        );
+    }
 }
 
 export default Materials;

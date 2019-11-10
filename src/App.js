@@ -4,7 +4,10 @@ import Materials from './components/Materials';
 import FullResults from './components/FullResults';
 import { BrowserRouter as Router, Switch, Route, Link, useLocation } from "react-router-dom";
 import SmoothScroll from './components/Scroll'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'animate.css';
 import './assets/scss/style.scss';
+
 
 function ScrollToTop() {
 	const { pathname } = useLocation();
