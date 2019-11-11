@@ -307,7 +307,7 @@ class KeyFindings extends Component {
 				id: "11",
 				type: "bar_chart",
 				question: "How did you first find out about Postgres?",
-				info: "Respondents could pick as many answers as they wanted",
+				info: "(Respondents could pick as many answers as they wanted)",
 				options: [
 					{
 						id: "11_1",
@@ -495,7 +495,7 @@ class KeyFindings extends Component {
 				id: "17",
 				type: "bar_chart",
 				question: "How do you deploy Postgres?",
-				info: "Respondents could pick as many answers as they wanted",
+				info: "(Respondents could pick as many answers as they wanted)",
 				options: [
 					{
 						id: "17_1",
@@ -594,7 +594,7 @@ class KeyFindings extends Component {
 				id: "20",
 				type: "bar_chart",
 				question: "What language(s) and/or tool(s) do you most frequently use to query Postgres?",
-				info: "Respondents could pick as many answers as they wanted",
+				info: "(Respondents could pick as many answers as they wanted)",
 				options: [
 					{
 						id: "20_1",
@@ -650,7 +650,10 @@ class KeyFindings extends Component {
 
 									<Fade>
 										<div className="text-wrap">
-											<p className="question">{question.question}</p>
+											<p className="question">
+												<span className="question-number">Question {index + 1}</span>
+												{question.question}
+											</p>
 											{question.info && 
 												<p className="info-text">{question.info}</p>
 											}
@@ -717,8 +720,12 @@ class KeyFindings extends Component {
 
 						<Fade>
 							<div className="text-wrap">
-								<p className="question">What is the biggest advantage to working with Postgres?</p>
-								<p className="info-text">This was an open-ended question</p>
+
+								<p className="question">
+									<span className="question-number">Question {this.questions.length + 1}</span>
+									What is the biggest advantage to working with Postgres?
+								</p>
+								<p className="info-text">(This was an open-ended question)</p>
 							</div>
 						</Fade>
 
