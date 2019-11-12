@@ -91,7 +91,6 @@ class KeyFindings extends Component {
 	render() {
 		return (
 			<Fragment>
-
 				{/* Intro - Start */}
 				<section className="section intro">
 					<div className="container">
@@ -135,7 +134,18 @@ class KeyFindings extends Component {
 				{/*model={elephant_model}/>*/}
 
 				<Section number={4} info={'About 70% of all respondents use Postgres for app development.'}
-						 description={'And 30% report using it for real-time analytics, dashboarding, and monitoring'} reverse={false}
+						 description={'And 30% report using it for real-time analytics, dashboarding, and monitoring'} reverse={true}
+				model="Phone"/>
+				<Section number={2} info={'66% said they’re using Postgres more than they have in the past.'}
+						 description={'Postgres is more popular than ever!'} reverse={false}
+						model="Drone"/>
+
+				{/*<Section number={3} info={'Postgres isn’t just for work. Over 80% of respondents use it for personal projects.'}*/}
+				{/*		 description={'Like Raspberry Pi.'} reverse={true}*/}
+				{/*model={elephant_model}/>*/}
+
+				<Section number={4} info={'About 70% of all respondents use Postgres for app development.'}
+						 description={'And 30% report using it for real-time analytics, dashboarding, and monitoring'} reverse={true}
 				model="Phone"/>
 
 				{/*<Section number={'5a'} info={'Only 9% have contributed code to Postgres...'}*/}
