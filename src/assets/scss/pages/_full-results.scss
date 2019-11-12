@@ -27,7 +27,20 @@
 	.question {
 		font-size: 38px;
     	line-height: 52px;
-		font-weight: 600;	
+		font-weight: 600;
+		display: inline;
+		position: relative;
+		padding-top: 20px;
+	}
+
+	.question-number {
+		display: block;
+		color: $color-secondary;
+		font-size: 16px;
+		line-height: 20px;
+		font-weight: 400;
+		text-align: left;
+		@include position($top: 0, $left: 0);
 	}
 
 	.info-text {
@@ -316,6 +329,7 @@
 			color: $color-secondary;
 			font-size: 30px;
 			font-weight: 600;
+			padding: 0;
 		}
 	}
 }
