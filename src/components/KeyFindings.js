@@ -5,6 +5,7 @@ import LazyLoad from 'react-lazyload';
 import anime from "animejs";
 import { Link, Scroll } from 'react-scroll'
 import ScrollAnimation from 'react-animate-on-scroll';
+import {Container, Row, Col} from 'react-bootstrap'
 
 import ElephantAnimation from './ElephantAnimation';
 import FlowerVideo from './FlowerVideo';
@@ -93,11 +94,9 @@ class KeyFindings extends Component {
 			<Fragment>
 				{/* Intro - Start */}
 				<section className="section intro">
-					<div className="container">
-						<div className="intro-content">
-							<Fade bottom>
-								<p className="year">2019</p>
-							</Fade>
+					<Container>
+						<Row className="intro-content justify-content-center align-items-center align-content-center">
+							<div className="d-flex">
 							<Fade bottom delay={200} duration={1300}>
 								<h1>
 									state
@@ -105,19 +104,14 @@ class KeyFindings extends Component {
 									postgres
 								</h1>
 							</Fade>
+							</div>
+							<div className="d-flex">
 							<Fade bottom delay={1000}>
-								<p className="subtitle" style={{width:600}}>We put out an open call for Postgres community members to tell us about their experiences -- and here are the results. </p>
+								<p className="subtitle" style={{"max-width": 600}}>We put out an open call for Postgres community members to tell us about their experiences -- and here are the results. </p>
 							</Fade>
-							<Fade bottom delay={1000}>
-								<p className="scroll-text">
-									Scroll to continue or <br /> view the raw data
-									<Link className="link color-highlight scroll-down-btn" to="dev-profiles-1" smooth={true} duration={600}>&nbsp;here</Link>
-									<br />
-									<Link className="btn-icon scroll-down-btn" to="dev-profiles-1" smooth={true} duration={600}><i className="icon-arrow-down"></i></Link>
-								</p>
-							</Fade>
-						</div>
-					</div>
+							</div>
+						</Row>
+					</Container>
 				</section>
 				{/* Intro - End */}
 
