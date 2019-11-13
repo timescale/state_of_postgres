@@ -1,6 +1,7 @@
 import React, { Component, Fragment} from 'react';
 import Fade  from 'react-reveal/Fade';
 import Reveal from 'react-reveal/Reveal';
+import { Link, Scroll } from 'react-scroll'
 
 class KeyFindings extends Component {
 
@@ -11,8 +12,9 @@ class KeyFindings extends Component {
 			{
 				id: "1",
 				type: "map",
+				name: "Geography",
 				question: "What is your primary geographic location?",
-				info: "",
+				info: null,
 				options: [
 					{
 						id: "1_1",
@@ -39,8 +41,9 @@ class KeyFindings extends Component {
 			{
 				id: "2",
 				type: "bar_chart",
+				name: "Career",
 				question: "How many years have you been working as a developer?",
-				info: "",
+				info: null,
 				options: [
 					{
 						id: "2_1",
@@ -72,8 +75,9 @@ class KeyFindings extends Component {
 			{
 				id: "3",
 				type: "bar_chart",
+				name: "Job titles",
 				question: "What is your current job title?",
-				info: "",
+				info: null,
 				options: [
 					{
 						id: "3_1",
@@ -105,8 +109,9 @@ class KeyFindings extends Component {
 			{
 				id: "4",
 				type: "bar_chart",
+				name: "Personal projects",
 				question: "Do you use Postgres for personal projects?",
-				info: "",
+				info: null,
 				options: [
 					{
 						id: "4_1",
@@ -123,8 +128,9 @@ class KeyFindings extends Component {
 			{
 				id: "5",
 				type: "bar_chart",
+				name: "Work",
 				question: "Do you use Postgres at work?",
-				info: "",
+				info: null,
 				options: [
 					{
 						id: "5_1",
@@ -141,8 +147,9 @@ class KeyFindings extends Component {
 			{
 				id: "6",
 				type: "bar_chart",
+				name: "Industries",
 				question: "Which best describes the industry your organization is in?",
-				info: "",
+				info: null,
 				options: [
 					{
 						id: "6_1",
@@ -174,8 +181,9 @@ class KeyFindings extends Component {
 			{
 				id: "7",
 				type: "bar_chart",
+				name: "Motivation",
 				question: "What is the main reason you choose to use Postgres over other options?",
-				info: "",
+				info: null,
 				options: [
 					{
 						id: "7_1",
@@ -207,8 +215,9 @@ class KeyFindings extends Component {
 			{
 				id: "8",
 				type: "bar_chart",
+				name: "Organizations",
 				question: "How many total employees are in your organization?",
-				info: "",
+				info: null,
 				options: [
 					{
 						id: "8_1",
@@ -240,8 +249,9 @@ class KeyFindings extends Component {
 			{
 				id: "9",
 				type: "bar_chart",
+				name: "Teams",
 				question: "How many people work in your team?",
-				info: "",
+				info: null,
 				options: [
 					{
 						id: "9_1",
@@ -273,8 +283,9 @@ class KeyFindings extends Component {
 			{
 				id: "10",
 				type: "bar_chart",
+				name: "Use cases",
 				question: "How would you classify your use case?",
-				info: "",
+				info: null,
 				options: [
 					{
 						id: "10_1",
@@ -306,6 +317,7 @@ class KeyFindings extends Component {
 			{
 				id: "11",
 				type: "bar_chart",
+				name: "Discovery",
 				question: "How did you first find out about Postgres?",
 				info: "(Respondents could pick as many answers as they wanted)",
 				options: [
@@ -339,8 +351,9 @@ class KeyFindings extends Component {
 			{
 				id: "12",
 				type: "bar_chart",
+				name: "Usage",
 				question: "Compared to two years ago, is Postgres being used more or less in your organization?",
-				info: "",
+				info: null,
 				options: [
 					{
 						id: "12_1",
@@ -372,8 +385,9 @@ class KeyFindings extends Component {
 			{
 				id: "13",
 				type: "bar_chart",
+				name: "How long",
 				question: "How long have you been using Postgres?",
-				info: "",
+				info: null,
 				options: [
 					{
 						id: "13_1",
@@ -405,8 +419,9 @@ class KeyFindings extends Component {
 			{
 				id: "14",
 				type: "bar_chart",
+				name: "Contributions",
 				question: "Have you ever contributed code to Postgres?",
-				info: "",
+				info: null,
 				options: [
 					{
 						id: "14_1",
@@ -428,8 +443,9 @@ class KeyFindings extends Component {
 			{
 				id: "15",
 				type: "bar_chart",
+				name: "Events",
 				question: "What Postgres events do you go to?",
-				info: "",
+				info: null,
 				options: [
 					{
 						id: "15_1",
@@ -461,8 +477,9 @@ class KeyFindings extends Component {
 			{
 				id: "16",
 				type: "bar_chart",
+				name: "First time",
 				question: "How would you rate your first experience with Postgres?",
-				info: "",
+				info: null,
 				options: [
 					{
 						id: "16_1",
@@ -494,6 +511,7 @@ class KeyFindings extends Component {
 			{
 				id: "17",
 				type: "bar_chart",
+				name: "Deploy",
 				question: "How do you deploy Postgres?",
 				info: "(Respondents could pick as many answers as they wanted)",
 				options: [
@@ -527,8 +545,9 @@ class KeyFindings extends Component {
 			{
 				id: "18",
 				type: "bar_chart",
+				name: "Cloud",
 				question: "What cloud provider(s) do you currently use?",
-				info: "",
+				info: null,
 				options: [
 					{
 						id: "18_1",
@@ -560,8 +579,9 @@ class KeyFindings extends Component {
 			{
 				id: "19",
 				type: "bar_chart",
+				name: "NoSQL",
 				question: "Do you currently use or have you used any of the following NoSQL databases?",
-				info: "",
+				info: null,
 				options: [
 					{
 						id: "19_1",
@@ -593,6 +613,7 @@ class KeyFindings extends Component {
 			{
 				id: "20",
 				type: "bar_chart",
+				name: "Other tools",
 				question: "What language(s) and/or tool(s) do you most frequently use to query Postgres?",
 				info: "(Respondents could pick as many answers as they wanted)",
 				options: [
@@ -623,16 +644,77 @@ class KeyFindings extends Component {
 					}
 				]
 			},
+			{
+				id: "21",
+				type: "circle_chart",
+				name: "Advantages",
+				question: "What is the biggest advantage to working with Postgres?",
+				info: "(This was an open-ended question)",
+				options: [
+					{
+						id: "21_1",
+						title: "Open Source",
+						type: "single_option",
+						backgroundPattern: "pattern-left",
+						percentage: 62
+					},
+					{
+						id: "21_2",
+						title: "Active Community",
+						type: "single_option",
+						backgroundPattern: "pattern-left",
+						percentage: 53
+					},
+					{
+						id: "21_3",
+						title: "SQL",
+						type: "single_option",
+						backgroundPattern: "pattern-left",
+						percentage: 45
+					},
+					{
+						id: "21_4",
+						title: "Flexibility",
+						type: "single_option",
+						backgroundPattern: "pattern-right",
+						percentage: 49
+					},
+					{
+						id: "21_5",
+						title: "Other",
+						type: "multiple_options",
+						backgroundPattern: "pattern-right",
+						percentage: 18,
+						options: [
+							{	
+								id: "21_5_1",
+								title: "Option 1",
+								percentage: 10
+							},
+							{
+								id: "21_5_2",
+								title: "Option 2",
+								percentage: 5
+							},
+							{
+								id: "21_5_3",
+								title: "Option 3",
+								percentage: 3
+							}
+						]
+					}
+				]
+			},
 		];
 
 		this.state = {
 			otherOptionsOpened: false
 		};
 
-		this.showOtherOptions = this.showOtherOptions.bind(this);
+		this.toggleOtherOptions = this.toggleOtherOptions.bind(this);
 	}
 
-	showOtherOptions() {
+	toggleOtherOptions() {
 		this.setState((prevState) => ({
 			otherOptionsOpened: !prevState.otherOptionsOpened
 		}));
@@ -644,7 +726,7 @@ class KeyFindings extends Component {
 				{
 					this.questions.map((question, index) => {
 						return (
-							<section className={"question-section" + (index === this.questions.length - 1 ? " no-border" : "")} key={question.id}>
+							<section className="question-section" key={question.id} name={'question' + question.id}>
 
 								<div className="container">
 
@@ -660,8 +742,9 @@ class KeyFindings extends Component {
 										</div>
 									</Fade>
 
-									{question.type === "bar_chart" ? (
-
+									{
+										question.type === "bar_chart" ? (
+											
 										<div className="chart-wrap">
 											<ul>
 												{
@@ -684,24 +767,60 @@ class KeyFindings extends Component {
 											</ul>
 										</div>
 
-										) : (
-
-										<div className="map-wrap">
-											<div className="map-img-wrap">
-												<img src="/img/world-map.png" alt="World map" />
+										) : question.type === "map" ? (
+											
+											<div className="map-wrap">
+												<div className="map-img-wrap">
+													<img src="/img/world-map.png" alt="World map" />
+												</div>
+												<ul>
+													{
+														question.options.map((option, index) => {
+															return (
+																<li key={option.id}>
+																	<p className="answer">{option.title}</p>
+																	<span className="percentage">{option.percentage}%</span>
+																</li>
+															)
+														})
+													}
+												</ul>
 											</div>
-											<ul>
-												{
-													question.options.map((option, index) => {
-														return (
-															<li key={option.id}>
-																<p className="answer">{option.title}</p>
-																<span className="percentage">{option.percentage}%</span>
-															</li>
+
+										) : (
+										
+										<div className="circles-wrap">
+											{
+												question.options.map((option, index) => {
+													return (
+														option.type === "multiple_options" ? (
+
+														<div key={option.id} className={"circle circle-" + (index + 1) + " " + option.backgroundPattern + (this.state.otherOptionsOpened ? " opened" : "") + (option.type ===  "multiple_options" ? " other" : "")} onClick={this.toggleOtherOptions}>
+															<div>
+																<span className="percentage">{option.percentage}%</span> 
+																<span className="text">{option.title}</span> 
+															</div>
+															<ul>
+																{
+																	option.options.map((option, index) => {
+																		return <li key={option.id}><span>{option.title}</span> <span>{option.percentage}%</span></li>
+																	})
+																}
+														
+															</ul>
+														</div>
+
+														) : (
+
+														<div key={option.id} className={"circle circle-" + (index + 1) + " " + option.backgroundPattern}>
+															<span className="percentage">{option.percentage}%</span> 
+															<span className="text">{option.title}</span> 
+														</div>
+
 														)
-													})
-												}
-											</ul>
+													)
+												})
+											}
 										</div>
 
 										)
@@ -714,60 +833,29 @@ class KeyFindings extends Component {
 					})
 				}
 
-				<section className="question-section no-border">
+				<div className="question-list">
+					<ul>
+						{
+							this.questions.map((question, index) => {
+								return (
+									<li key={question.name}>
+										<Link 
+											to={'question' + question.id}
+											activeClass="active"
+											spy={true} 
+											smooth={true} 
+											containerId="main"
+											offset={-20} 
+											duration={500}>
+												{question.name}
+										</Link>
+									</li>
+								)
+							})
+						}
+					</ul>
+				</div>
 
-					<div className="container">
-
-						<Fade>
-							<div className="text-wrap">
-
-								<p className="question">
-									<span className="question-number">Question {this.questions.length + 1}</span>
-									What is the biggest advantage to working with Postgres?
-								</p>
-								<p className="info-text">(This was an open-ended question)</p>
-							</div>
-						</Fade>
-
-						<div className="circles-wrap">
-
-							<div className="circle circle-1 pattern-left">
-								<span className="percentage">62%</span> 
-								<span className="text">Open Source</span> 
-							</div>
-
-							<div className="circle circle-2 pattern-left">
-								<span className="percentage">53%</span> 
-								<span className="text">Active Community</span> 
-							</div>
-
-							<div className="circle circle-3 pattern-left">
-								<span className="percentage">45%</span> 
-								<span className="text">SQL</span> 
-							</div>
-
-							<div className="circle circle-4 pattern-right">
-								<span className="percentage">49%</span> 
-								<span className="text">Flexibility</span> 
-							</div>
-
-							<div className={"circle circle-5 pattern-right other" + (this.state.otherOptionsOpened ? " opened" : "")} onClick={this.showOtherOptions}>
-								<div>
-									<span className="percentage">18%</span> 
-									<span className="text">Other</span> 
-								</div>
-								<ul>
-									<li><span>Option 1</span> <span>10%</span></li>
-									<li><span>Option 2</span> <span>5%</span></li>
-									<li><span>Option 3</span> <span>3%</span></li>
-								</ul>
-							</div>
-						
-						</div>
-	
-					</div>
-
-				</section>
 			</Fragment>
 		);
 	}

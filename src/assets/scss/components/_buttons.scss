@@ -1,4 +1,4 @@
-.btn {
+.button {
 	background: none;
 	border: none;
 	text-decoration: none;
@@ -7,7 +7,7 @@
 	letter-spacing: 0.25px;
 
 	&-secondary {
-		color: #fff;
+		color: #fff !important;
 		background: $color-secondary;
 		border-radius: 30px;
 
@@ -54,7 +54,7 @@
 	}
 }
 
-.btn-icon {
+.button-icon {
 	text-decoration: none;
 	padding: 5px;
 	border: none;

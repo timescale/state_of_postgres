@@ -3,7 +3,7 @@ import Fade  from 'react-reveal/Fade';
 // import Reveal from 'react-reveal/Reveal';
 import LazyLoad from 'react-lazyload';
 import anime from "animejs";
-import { Link, Scroll } from 'react-scroll'
+// import { Link, Scroll } from 'react-scroll'
 import ScrollAnimation from 'react-animate-on-scroll';
 import {Container, Row, Col} from 'react-bootstrap'
 
@@ -107,7 +107,7 @@ class KeyFindings extends Component {
 							</div>
 							<div className="d-flex">
 							<Fade bottom delay={1000}>
-								<p className="subtitle" style={{"max-width": 600}}>We put out an open call for Postgres community members to tell us about their experiences -- and here are the results. </p>
+								<p className="subtitle" style={{maxWidth: 600}}>We put out an open call for Postgres community members to tell us about their experiences -- and here are the results. </p>
 							</Fade>
 							</div>
 						</Row>
@@ -268,7 +268,7 @@ class KeyFindings extends Component {
 				{/* Footer - Start */}
 				<footer className="footer">
 					<div className="container text-center">
-						<a href="#" className="btn btn-bordered btn-lg">CTA to Raw Data</a>
+						<a href="#" className="button button-bordered button-lg">CTA to Raw Data</a>
 					</div>
 				</footer>
 				{/* Footer - End */}

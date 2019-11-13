@@ -2,8 +2,8 @@
 	padding: 35px 50px;
 	position: fixed;
 	top: 0;
-	left: 0;
-	width: 100%;
+	left: 20px;
+	width: calc(100% - 40px);
 	z-index: 10;
 	transition: .3s;
 
@@ -36,8 +36,9 @@
 
 		a {
 			text-transform: capitalize;
+			text-decoration: none;
 
-			&:not(.btn) {
+			&:not(.button) {
 				font-size: $font-size-xs;
 				color: $color-primary;
 
