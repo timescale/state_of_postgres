@@ -8,11 +8,7 @@ import ScrollAnimation from 'react-animate-on-scroll';
 import {Container, Row, Col} from 'react-bootstrap'
 
 import ElephantAnimation from './ElephantAnimation';
-import FlowerVideo from './FlowerVideo';
-import Model from "./Model";
 import Section from "./Section";
-
-import elephant_model from './models/elephant.glb'
 
 class KeyFindings extends Component {
 
@@ -107,7 +103,7 @@ class KeyFindings extends Component {
 							</div>
 							<div className="d-flex">
 							<Fade bottom delay={1000}>
-								<p className="subtitle" style={{"max-width": 600}}>We put out an open call for Postgres community members to tell us about their experiences -- and here are the results. </p>
+								<p className="subtitle" style={{maxWidth: 600}}>We put out an open call for Postgres community members to tell us about their experiences -- and here are the results. </p>
 							</Fade>
 							</div>
 						</Row>
@@ -117,7 +113,7 @@ class KeyFindings extends Component {
 
 				{/*<Section number={1} info={'26% of respondents have been using Postgres for more than 10 yrs.'}*/}
 				{/*		 description={'The postgres community is committed.'} reverse={true}*/}
-				{/*		 model={elephant_model}/>*/}
+				{/*		 model="Teamwork"/>*/}
 
 				<Section number={2} info={'66% said they’re using Postgres more than they have in the past.'}
 						 description={'Postgres is more popular than ever!'} reverse={false}
@@ -130,33 +126,10 @@ class KeyFindings extends Component {
 				<Section number={4} info={'About 70% of all respondents use Postgres for app development.'}
 						 description={'And 30% report using it for real-time analytics, dashboarding, and monitoring'} reverse={true}
 				model="Phone"/>
-				<Section number={2} info={'66% said they’re using Postgres more than they have in the past.'}
-						 description={'Postgres is more popular than ever!'} reverse={false}
-						model="Drone"/>
 
-				{/*<Section number={3} info={'Postgres isn’t just for work. Over 80% of respondents use it for personal projects.'}*/}
-				{/*		 description={'Like Raspberry Pi.'} reverse={true}*/}
-				{/*model={elephant_model}/>*/}
-
-				<Section number={4} info={'About 70% of all respondents use Postgres for app development.'}
-						 description={'And 30% report using it for real-time analytics, dashboarding, and monitoring'} reverse={true}
-				model="Phone"/>
-
-				{/*<Section number={'5a'} info={'Only 9% have contributed code to Postgres...'}*/}
-				{/*		 description={'That may not sound like much, but this is actually an impressive amount considering the hundreds of thousands of people using Postgres worldwide '} reverse={true}*/}
-				{/*model={elephant_model}/>*/}
-
-				{/*<Section number={7} info={'The most common way to deploy Postgres (46%) is in a self-managed data center.'}*/}
-				{/*		 description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit dui in nibh mattis sagittis quis pharetra diam.'} reverse={false}*/}
-				{/*model={elephant_model}/>*/}
-
-				{/*<Section number={8} info={'Among those who deploy on a cloud, over half (51%) use AWS'}*/}
-				{/*		 description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit dui in nibh mattis sagittis quis pharetra diam.'} reverse={true}*/}
-				{/*model={elephant_model}/>*/}
-
-				{/*<Section number={9} info={'The next closest cloud provider was GCP at 18%'}*/}
-				{/*		 description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit dui in nibh mattis sagittis quis pharetra diam.'} reverse={false}*/}
-				{/*model={elephant_model}/>*/}
+				<Section number={'5a'} info={'Only 9% have contributed code to Postgres...'}
+						 description={'That may not sound like much, but this is actually an impressive amount considering the hundreds of thousands of people using Postgres worldwide '} reverse={true}
+				model="Flowers"/>
 
 
 				{/* 11-13 title Technology - Start */}
@@ -170,6 +143,10 @@ class KeyFindings extends Component {
 					</div>
 				</section>
 				{/* Technology - End */}
+
+				<Section number={7} info={'The most common way to deploy Postgres (46%) is in a self-managed data center.'}
+						 description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit dui in nibh mattis sagittis quis pharetra diam.'} reverse={false}
+				model="Swimming" />
 
 				{/* 11 Competitive Landscape - Start */}
 				<section className="section quote-section">

@@ -6,39 +6,42 @@ import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import drone from './models/drone.glb'
 import phone from './models/phone.glb'
+import flowers from './models/flowers.glb'
+import teamwork from './models/flowers.glb'
+import swimming from './models/swimming_full.glb'
+import { OrbitControls } from './models/orbit.js';
 
 class Model extends Component {
     constructor(props) {
-		super(props);
-	}
+        super(props);
+    }
 
     componentDidMount() {
         const loader = new GLTFLoader();
         loader.load(this.state.file, gltf => {
+            this.delta = 0;
             this.gltf = gltf;
-            // this.geometries = [];
-            // gltf.scene.children.forEach(child => {
-            //     this.geometries.push(child.geometry)
-            // });
-            // this.geometries.push(gltf.scene.children[0].children[0].geometry)
-            this.scene = gltf.scene;
-            this.scene.background = new THREE.Color(0xfbfbfb);
-            this.material = new THREE.MeshBasicMaterial( {
-                color: 0x818181,
-                wireframe: true
-            } );
-            this.camera = this.scene.children[1];
-            this.scene.children[0].children.forEach(mesh => {
-                mesh.material = this.material;
-            })
-            this.renderer();
-            // this.camera();
-            // this.scene();
-            this.loader();
-            this.lights();
+            this.clock = new THREE.Clock();
+            this.get_scene();
+            this.get_camera();
+            this.get_mesh();
+            this.change_material();
+            this.get_render();
+            this.get_mixer();
+            // this.loader();
+            this.get_light();
             this.animate();
         })
     }
+    get_mesh() {
+        this.mesh = this.scene.children[0].children[0]
+    }
+
+    change_material() {
+        this.material = new THREE.MeshBasicMaterial( {
+            color: 0x818181
+        } );
+    };
 
     activate_animation = (isVisible) => {
         if (isVisible) {
@@ -48,12 +51,13 @@ class Model extends Component {
         }
     };
 
-    scene = () => {
+    get_scene() {
         this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color(0xfbfbfb);
+        this.scene.add(this.gltf.scene)
     };
 
-    renderer = () => {
+    get_render() {
         //RENDERER
         this.renderer = new THREE.WebGLRenderer({
             canvas: this.el,
@@ -62,26 +66,30 @@ class Model extends Component {
         this.renderer.setClearColor(0x000000);
         this.renderer.setSize(window.innerWidth/2, window.innerHeight/2, true);
         this.renderer.setPixelRatio(2)
-
     };
-
-    camera = () => {
-        this.camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    get_mixer() {
+        if (this.gltf.animations.length === 0) {
+            return
+        }
+        this.mixer = new THREE.AnimationMixer(this.scene);
+        this.action = this.mixer.clipAction(this.gltf.animations[0]);
+        this.action.play();
     };
-
-    lights = () => {
-        let light = new THREE.AmbientLight(0xffffff, 0.5);
-        this.scene.add(light);
-
-        let light2 = new THREE.PointLight(0xffffff, 0.5);
-        this.scene.add(light2);
-
-        if (this.add_lights) {
-            this.scene.add(this.add_lights);
+    get_camera() {
+        let camera = this.gltf.cameras;
+        if (camera.length > 0) {
+            this.camera = camera[0]
+        } else {
+            this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
         }
     };
 
-    loader = () => {
+    get_light() {
+        this.light = new THREE.DirectionalLight( 0xffffff, 0.8 );
+        this.scene.add( this.light );
+    }
+
+    loader() {
         this.geometries.forEach(geometry => {
             this.mesh = new THREE.Mesh( geometry, this.material );
             this.scene.add( this.mesh );
@@ -90,21 +98,15 @@ class Model extends Component {
 
     };
 
-    lines = () => {
-        let geometry = this.mesh.geometry;
-        let edges = new THREE.EdgesGeometry( geometry );
-        let line = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0x000000 } ) );
-        this.scene.add( line );
-    };
-
-    animate = () =>{
-        if (this.renderer.render === undefined) {
+    animate() {
+        if (this.renderer === undefined) {
             return
         }
         this.animation_id = requestAnimationFrame(()=>this.animate());
         this.delta++;
-        if (this.mesh) {
-            this.mesh.rotation.y += 0.01;
+        if (this.mixer) {
+            // this.mesh.rotation.y += 0.01;
+            this.mixer.update(this.clock.getDelta());
             //animation mesh
             // mesh.morphTargetInfluences[ 0 ] = Math.sin(delta) * 20.0;
         }
@@ -114,7 +116,7 @@ class Model extends Component {
         }
     };
 
-    hide_mesh = () => {
+    hide_mesh() {
         if (this.animation_id) {
             cancelAnimationFrame( this.animation_id );
             this.animation_id = null;
@@ -122,7 +124,7 @@ class Model extends Component {
 
     };
 
-    show_mesh = () => {
+    show_mesh() {
         if (!this.animation_id) {
             this.animate()
         }
@@ -141,30 +143,17 @@ class Model extends Component {
 
 class Drone extends Model {
     constructor(props) {
-		super(props);
-		this.state = {file: drone}
-	}
-    scene = () => {
-        this.scene = this.gltf.scene;
-        this.scene.background = new THREE.Color(0xfbfbfb);
-    };
-    camera = () => {
-        this.camera = this.scene.children[1];
-    };
-    lights = () => {};
-    loader = () => {
-        this.scene.children[0].children.forEach(mesh => {
-            mesh.material = this.material;
-        })
-    };
+        super(props);
+        this.state = {file: drone}
+    }
 }
 
 class Phone extends Drone {
     constructor(props) {
-		super(props);
-		this.state = {file: phone}
-	}
-	loader = () => {
+        super(props);
+        this.state = {file: phone}
+    }
+    loader = () => {
         this.scene.children[0].children.forEach(mesh => {
             mesh.material = this.material
         })
@@ -174,4 +163,55 @@ class Phone extends Drone {
     };
 }
 
-export {Model, Drone, Phone};
+class Flowers extends Model {
+    constructor(props) {
+        super(props);
+        this.state = {file: flowers}
+    }
+}
+
+class Teamwork extends Model {
+    constructor(props) {
+        super(props);
+        this.state = {file: teamwork}
+    }
+}
+
+class Swimming extends Model {
+    constructor(props) {
+        super(props);
+        this.state = {file: swimming}
+    }
+    get_render() {
+        super.get_render();
+        this.renderer.antialias = true;
+        this.renderer.autoClear = false;
+    }
+
+    get_camera() {
+        this.camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
+        this.camera.position.set( 30, -1, 600 );
+        // let controls = new OrbitControls(this.camera, this.el );
+        // controls.maxPolarAngle = Math.PI * 0.9;
+        // controls.target.set( 0, 10, 0 );
+        // controls.minDistance = 40.0;
+        // controls.maxDistance = 200.0;
+        // controls.update();
+    };
+    get_scene() {
+        this.gltf.scene.position.y = -150;
+        super.get_scene();
+        this.scene.matrixAutoUpdate = false;
+        this.add_water();
+    }
+
+    add_water() {
+
+    }
+    animate() {
+        // this.water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
+        super.animate();
+    }
+}
+
+export {Model, Drone, Phone, Flowers, Teamwork, Swimming};

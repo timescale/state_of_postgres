@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import VisibilitySensor from 'react-visibility-sensor'
 
-import {Model, Drone, Phone} from "./Model";
+import {Model, Drone, Phone, Flowers, Teamwork, Swimming} from "./Model";
 import {Container, Row, Col} from 'react-bootstrap'
 
 function GetModel(props) {
@@ -10,6 +10,12 @@ function GetModel(props) {
     return <Drone />;
   } else if (model === 'Phone') {
     return <Phone />;
+  } else if (model === 'Flowers') {
+    return <Flowers />;
+  } else if (model === 'Teamwork') {
+    return <Teamwork />;
+  } else if (model === 'Swimming') {
+    return <Swimming />;
   }
   return <Model />;
 }
@@ -48,7 +54,7 @@ class Section extends Component {
 						<Col md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
 							 className="d-flex justify-content-center align-items-center">
 							<VisibilitySensor onChange={this.fade} offset={{top:5, bottom:5}}>
-								<div ref={this.text} className="text animated" style={{"animation-duration": "1s"}}>
+								<div ref={this.text} className="text animated" style={{animationDuration: "1s"}}>
 									<p className="number">{ this.props.number }</p>
 									<p className="info">{ this.props.info }</p>
 									<p className="description">{ this.props.description }</p>
