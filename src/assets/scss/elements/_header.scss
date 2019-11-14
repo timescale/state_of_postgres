@@ -36,8 +36,9 @@
 
 		a {
 			text-transform: capitalize;
+			text-decoration: none;
 
-			&:not(.btn) {
+			&:not(.button) {
 				font-size: $font-size-xs;
 				color: $color-primary;
 

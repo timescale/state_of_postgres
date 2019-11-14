@@ -2,12 +2,11 @@ import React, { Component, Fragment, useEffect } from 'react';
 import KeyFindings from './components/KeyFindings';
 import Materials from './components/Materials';
 import FullResults from './components/FullResults';
-import { BrowserRouter as Router, Switch, Route, Link, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, useLocation, withRouter } from "react-router-dom";
 import SmoothScroll from './components/Scroll'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css';
 import './assets/scss/style.scss';
-
 
 function ScrollToTop() {
 	const { pathname } = useLocation();
@@ -26,6 +25,7 @@ class App extends Component {
 
 		this.header = React.createRef();
 		this.lastPosition = 0;
+		this.currentLocation = "";
 
 		this.state = {
 			headerIsVisible: true
@@ -36,10 +36,17 @@ class App extends Component {
 
 	componentDidMount() {
 		window.addEventListener("scroll", this.toggleHeader, false);
-		new SmoothScroll({
-		  target: document.querySelector("#main"), // element container to scroll
-		  scrollEase: 0.05,
-		});
+
+		SmoothScroll(document,80,5);
+
+		this.currentLocation = this.props.location.pathname;
+
+		this.props.history.listen((location, action) => {
+			if(this.currentLocation !== location.pathname){
+	    		window.scrollTo(0, 0)
+	    		this.currentLocation = location.pathname;
+			}
+	    });
 	}
 
 	componentWillUnmount() {
@@ -85,44 +92,46 @@ class App extends Component {
 
 	render(){
 		return (
-			<Router>
-				<ScrollToTop />
+				
+			<div className="main-wrap">
+					<ScrollToTop />
 
-				<header className={"header" + (this.state.headerIsVisible ? " header-visible" : " header-hidden")} ref={this.header}>
-					<ul className="menu">
-						<li>
-							<Link to="/materials">Materials</Link>
-						</li>
-						<li>
-							<Link to="/">Key findings</Link>
-						</li>
-						<li>
-							<Link to="/full_results" className="btn btn-secondary btn-sm">Full Results</Link>
-						</li>
-					</ul>
-				</header>
+					<header className={"header" + (this.state.headerIsVisible ? " header-visible" : " header-hidden")} ref={this.header}>
+						<ul className="menu">
+							<li>
+								<Link to="/materials">Materials</Link>
+							</li>
+							<li>
+								<Link to="/">Key findings</Link>
+							</li>
+							<li>
+								<Link to="/full_results" className="button button-secondary button-sm">Full Results</Link>
+							</li>
+						</ul>
+					</header>
 
-				{/* Main content - Start  */}
-				<main className="main-content" id="main">
+					{/* Main content - Start  */}
+					<main id="main">
 
-					<Switch>
-						<Route path="/materials">
-							<Materials />
-						</Route>
-						<Route path="/full_results">
-							<FullResults />
-						</Route>
-						<Route path="/" exact>
-							<KeyFindings />
-						</Route>
-					</Switch>
+						<Switch>
+							<Route path="/materials">
+								<Materials />
+							</Route>
+							<Route path="/full_results">
+								<FullResults />
+							</Route>
+							<Route path="/" exact>
+								<KeyFindings />
+							</Route>
+						</Switch>
 
-				</main>
-				{/* Main content - End  */}
+					</main>
+					{/* Main content - End  */}
 
-			</Router>
+			</div>
+				
 		);
 	}
 }
 
-export default App;
+export default withRouter(App);
