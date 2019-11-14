@@ -54,7 +54,7 @@ class Section extends Component {
 						<Col md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
 							 className="d-flex justify-content-center align-items-center">
 							<VisibilitySensor onChange={this.fade} offset={{top:5, bottom:5}}>
-								<div ref={this.text} className="text animated" style={{animationDuration: "1s"}}>
+								<div ref={this.text} className="text animated" style={{animationDuration: "0.3s"}}>
 									<p className="number">{ this.props.number }</p>
 									<p className="info">{ this.props.info }</p>
 									<p className="description">{ this.props.description }</p>

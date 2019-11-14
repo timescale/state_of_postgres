@@ -39,7 +39,8 @@ class Model extends Component {
 
     change_material() {
         this.material = new THREE.MeshBasicMaterial( {
-            color: 0x818181
+            color: 0x818181,
+            wireframe: true
         } );
     };
 
@@ -64,6 +65,7 @@ class Model extends Component {
             powerPreference: "low-power",
         });
         this.renderer.setClearColor(0x000000);
+        // this.renderer.setSize(window.innerWidth/2, window.innerHeight/2, true);
         this.renderer.setSize(window.innerWidth/2, window.innerHeight/2, true);
         this.renderer.setPixelRatio(2)
     };
@@ -82,10 +84,12 @@ class Model extends Component {
         } else {
             this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
         }
-        let controls = new OrbitControls(this.camera, this.el );
-        controls.maxPolarAngle = Math.PI * 0.9;
 
-        controls.update();
+
+        // let controls = new OrbitControls(this.camera, this.el );
+        // controls.maxPolarAngle = Math.PI * 0.9;
+        //
+        // controls.update();
     };
 
     get_light() {
@@ -114,6 +118,9 @@ class Model extends Component {
             //animation mesh
             // mesh.morphTargetInfluences[ 0 ] = Math.sin(delta) * 20.0;
         }
+        // this.camera.aspect = 1;
+        // this.camera.updateProjectionMatrix();
+        // this.renderer.setSize( 850, 850, 2 );
         this.renderer.render(this.scene, this.camera);
         if (this.stats) {
             this.stats.update();
