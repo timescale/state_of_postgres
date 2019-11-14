@@ -82,6 +82,10 @@ class Model extends Component {
         } else {
             this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
         }
+        let controls = new OrbitControls(this.camera, this.el );
+        controls.maxPolarAngle = Math.PI * 0.9;
+
+        controls.update();
     };
 
     get_light() {
