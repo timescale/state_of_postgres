@@ -1,14 +1,10 @@
 import React, { Component, Fragment} from 'react';
 import Fade  from 'react-reveal/Fade';
 // import Reveal from 'react-reveal/Reveal';
-import LazyLoad from 'react-lazyload';
 import anime from "animejs";
-import { Link, Scroll } from 'react-scroll'
-import ScrollAnimation from 'react-animate-on-scroll';
-import {Container, Row, Col} from 'react-bootstrap'
+import {Container, Row, } from 'react-bootstrap'
 
-import ElephantAnimation from './ElephantAnimation';
-import Section from "./Section";
+import {Section, QuoteSection, EmailForm} from "./Section";
 
 class KeyFindings extends Component {
 
@@ -163,16 +159,19 @@ class KeyFindings extends Component {
 					</div>
 				</section>
 
-				<Section number={12} info={'I never used it [NoSQL] because I was smart enough to smell the NoSQL bullsh*t early on.'}
-						 description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit dui in nibh mattis sagittis quis pharetra diam.'} reverse={true}
-						 model="Swimming" />
-				<Section number={14} info={'“If a project was using a NoSQL database, I would fire the entire team, burn the code base, and start over.” '}
-						 description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit dui in nibh mattis sagittis quis pharetra diam.'} reverse={false}
-						 model="Swimming" />
-				<Section number={15} info={'“I used to work with a guy who liked to say MySQL is a TOY database. I concur; probably throw MongoDB in there.” '}
-						 description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit dui in nibh mattis sagittis quis pharetra diam.'} reverse={true}
+				<QuoteSection number={12} text={'I never used it [NoSQL] because I was smart enough to smell the NoSQL bullsh*t early on.'}
+						 name={'- Anonymous'} reverse={true}
 						 model="Swimming" />
 
+				<QuoteSection number={14} text={'If a project was using a NoSQL database, I would fire the entire team, burn the code base, and start over.'}
+						 name={'- Anonymous'} reverse={false}
+						 model="Swimming"
+                         black={true}/>
+
+				<QuoteSection number={15} text={'I used to work with a guy who liked to say MySQL is a TOY database. I concur; probably throw MongoDB in there.'}
+						 name={'- Anonymous'} reverse={true}
+						 model="Swimming" />
+                <EmailForm/>
 			</Fragment>
 		);
 	}

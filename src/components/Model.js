@@ -54,7 +54,11 @@ class Model extends Component {
 
     get_scene() {
         this.scene = new THREE.Scene();
-        this.scene.background = new THREE.Color(0xfbfbfb);
+        if (this.props.black) {
+            this.scene.background = new THREE.Color(0x080808);
+        } else {
+            this.scene.background = new THREE.Color(0xfbfbfb);
+        }
         this.scene.add(this.gltf.scene)
     };
 

@@ -32,4 +32,101 @@
 
 .text {
 	padding: 120px;
+	.quote {
+
+	}
+}
+
+.text.quote {
+	padding: 120px 20px 120px 220px;
+	.name {
+		font-family: IBM Plex Sans;
+		font-style: italic;
+		font-weight: normal;
+		font-size: 23px;
+		line-height: 127.5%;
+		letter-spacing: 0.01em;
+		text-align: right;
+		color: #404040;
+	}
+}
+
+.curly-quotes-wrapper {
+	position: relative;
+}
+.curly-quotes:before, .curly-quotes:after {
+	position: absolute;
+	display: inline-block;
+	vertical-align: top;
+	height: 30px;
+	line-height: 48px;
+	font-size: 50px;
+	color: #404040;
+}
+
+.curly-quotes:before {
+	content: '\201C';
+	left: -25px;
+}
+
+.curly-quotes:after {
+	content: '\201D';
+	bottom: 0;
+	right: -25px;
+}
+
+.quote-by {
+	display: block;
+	padding-right: 10px;
+	text-align: right;
+	font-size: 13px;
+	font-style: italic;
+	color: #84775c;
+}
+
+.black {
+	background-color: #080808;
+	.info, .text.quote .name, .number {
+		color: white;
+	}
+}
+
+#email-form {
+	font-family: Miller Display;
+	/* or 62px */
+	letter-spacing: 0.005em;
+	color: #404040;
+	max-width: 1200px;
+
+	.text1 {
+		font-size: 40px;
+		padding-bottom: 47px;
+	}
+
+	.text2 {
+		font-size: 20px;
+		line-height: 154%;
+		padding-bottom: 50px;
+	}
+
+	label {
+		font-family: IBM Plex Sans;
+		font-weight: bold;
+		font-size: 12px;
+		padding-bottom: 10px;
+	}
+
+	input {
+		font-family: IBM Plex Sans;
+		border-radius: 0;
+	}
+	.form-control::-moz-placeholder {
+		color: #080808;
+	}
+	.form-control:-ms-input-placeholder {
+		color: #080808;
+	}
+	.form-control::-webkit-input-placeholder {
+		color: #080808;
+	}
 }
