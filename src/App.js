@@ -2,8 +2,8 @@ import React, { Component, Fragment, useEffect } from 'react';
 import KeyFindings from './components/KeyFindings';
 import Materials from './components/Materials';
 import FullResults from './components/FullResults';
-import { BrowserRouter as Router, Switch, Route, Link, useLocation } from "react-router-dom";
-import MagicScroll from './components/Scroll'
+import { BrowserRouter as Router, Switch, Route, Link, useLocation, withRouter } from "react-router-dom";
+import SmoothScroll from './components/Scroll'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css';
 import './assets/scss/style.scss';
@@ -25,6 +25,7 @@ class App extends Component {
 
 		this.header = React.createRef();
 		this.lastPosition = 0;
+		this.currentLocation = "";
 
 		this.state = {
 			headerIsVisible: true
@@ -34,30 +35,33 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		document.querySelector("#main").addEventListener("scroll", this.toggleHeader, false);
+		window.addEventListener("scroll", this.toggleHeader, false);
 
-		let magicScroll = new MagicScroll({
-			target: document.querySelector("#main"),
-			speed: 80,
-			smooth: 12,
-		});
+		SmoothScroll(document,80,5);
+
+		this.currentLocation = this.props.location.pathname;
+
+		this.props.history.listen((location, action) => {
+			if(this.currentLocation !== location.pathname){
+	    		window.scrollTo(0, 0)
+	    		this.currentLocation = location.pathname;
+			}
+	    });
 	}
 
 	componentWillUnmount() {
-		document.querySelector("#main").removeEventListener("scroll", this.toggleHeader, false);
+		window.removeEventListener("scroll", this.toggleHeader, false);
 	}
 
 	toggleHeader(e) {
 
 		let smallHeader = false;
-		let scrollPosition = document.querySelector("#main").scrollTop;
-		let headerElement = this.header.current;
 
-		if(scrollPosition > headerElement.clientHeight) {
+		if(window.pageYOffset > this.header.current.clientHeight) {
 
 			smallHeader = true;
 
-			if(scrollPosition > this.lastPosition) {
+			if(window.pageYOffset > this.lastPosition) {
 				this.setState({
 					headerIsVisible: false
 				});
@@ -67,7 +71,7 @@ class App extends Component {
 					headerIsVisible: true
 				});
 			}
-			this.lastPosition = scrollPosition;
+			this.lastPosition = window.pageYOffset;
 		}
 		else {
 
@@ -79,17 +83,17 @@ class App extends Component {
 		}
 
 		if(smallHeader){
-			headerElement.classList.add("header-small");
+			this.header.current.classList.add("header-small");
 		}
 		else {
-			headerElement.classList.remove("header-small");
+			this.header.current.classList.remove("header-small");
 		}
 	}
 
 	render(){
 		return (
+				
 			<div className="main-wrap">
-				<Router>
 					<ScrollToTop />
 
 					<header className={"header" + (this.state.headerIsVisible ? " header-visible" : " header-hidden")} ref={this.header}>
@@ -124,10 +128,10 @@ class App extends Component {
 					</main>
 					{/* Main content - End  */}
 
-				</Router>
 			</div>
+				
 		);
 	}
 }
 
-export default App;
+export default withRouter(App);

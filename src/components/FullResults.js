@@ -2,6 +2,7 @@ import React, { Component, Fragment} from 'react';
 import Fade  from 'react-reveal/Fade';
 import Reveal from 'react-reveal/Reveal';
 import { Link, Scroll } from 'react-scroll'
+import SmoothScroll from './Scroll'
 
 class KeyFindings extends Component {
 
@@ -712,12 +713,19 @@ class KeyFindings extends Component {
 		};
 
 		this.toggleOtherOptions = this.toggleOtherOptions.bind(this);
+		this.handleSetActive = this.handleSetActive.bind(this);
 	}
 
 	toggleOtherOptions() {
 		this.setState((prevState) => ({
 			otherOptionsOpened: !prevState.otherOptionsOpened
 		}));
+	}
+
+	handleSetActive() {
+		// console.log("setActive");
+		// SmoothScroll(null,120,19);
+		// SmoothScroll(document,120,19);
 	}
 
 	render() {
@@ -844,8 +852,8 @@ class KeyFindings extends Component {
 											activeClass="active"
 											spy={true} 
 											smooth={true} 
-											containerId="main"
 											offset={-20} 
+											onSetActive={this.handleSetActive}
 											duration={500}>
 												{question.name}
 										</Link>

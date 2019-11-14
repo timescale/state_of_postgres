@@ -1,121 +1,95 @@
-class MagicScroll {
-  constructor(options) {
-    Object.assign(this, options);
+function SmoothScroll(target, speed, smooth) {
 
-    if (this.target === document)
-      this.target =
-        document.scrollingElement ||
-        document.documentElement ||
-        document.body.parentNode ||
-        document.body; // cross browser support for document scrolling
+  if (target === document)
+    target = (document.scrollingElement 
+              || document.documentElement 
+              || document.body.parentNode 
+              || document.body) // cross browser support for document scrolling
+      
+  var delta, changed
+  var moving = false
+  var pos = target.scrollTop
+    var frame = target === document.body 
+              && document.documentElement 
+              ? document.documentElement 
+              : target // safari is the new IE
 
-    this.speed = this.speed || 80;
-    this.smooth = this.smooth || 12;
-    this.pos = this.current || 0;
-    this.frame =
-      this.target === document.body && document.documentElement
-        ? document.documentElement
-        : this.target; // safari is the new IE
-
-    this.min = this.min || 0;
-    this.max = this.target.scrollHeight - this.target.clientHeight;
-
-    this.moving = false;
-
-    this.target.scrollTop = this.pos;
-
-    this.target.addEventListener("mousewheel", scrolled, { passive: false });
-    this.target.addEventListener("DOMMouseScroll", scrolled, {
-      passive: false
-    });
-     let _this = this;
-    this.target.addEventListener(
-      "scroll",
-      e => {       
-        // console.log(this.pos);
-        // console.log(e.target.scrollTop);
-        if (!this.moving) {
-          this.pos = e.target.scrollTop;
-          // console.log(this.pos);
-          // console.log(e.target.scrollTop);
-        }
-      },
-      { passive: false }
-    );
-    const scope = this;
-
-    function scrolled(e) {
-      //e.preventDefault(); // disable default scrolling
-
-      var delta = scope.normalizeWheelDelta(e);
-
-      scope.pos += -delta * scope.speed;
-      scope.pos = Math.max(0, Math.min(scope.pos, scope.max)); // limit scrolling
-
-      if (!scope.moving) scope.update();
+  target.addEventListener('mousewheel', scrolled, { passive: false })
+  target.addEventListener('DOMMouseScroll', scrolled, { passive: false })
+ 
+  function scrolled(e) {
+    if(pos > target.scrollTop*6 ) {
+      pos = 0;
     }
-  }
-
-  normalizeWheelDelta(e) {
-    if (e.detail) {
-      if (e.wheelDelta)
-        return (e.wheelDelta / e.detail / 40) * (e.detail > 0 ? 1 : -1);
-      // Opera
-      else return -e.detail / 3; // Firefox
-    } else return e.wheelDelta / 120; // IE,Safari,Chrome
-  }
-
-  update() {
-    this.moving = true;
-    console.log(this.pos - this.target.scrollTop);
-    // console.log("pos", this.pos);
-    // console.log("scrolltop", this.target.scrollTop);
-
-    var delta = (this.pos - this.target.scrollTop) / this.smooth;
-
-    this.target.scrollTop += delta;
-
-    if (this.onUpdate) {
-      this.onUpdate(this.target.scrollTop);
+    if(target.scrollTop === 0) {
+      pos = 0;
     }
-    const scope = this;
-    
-    if (Math.abs(delta) > 1)
-      requestFrame(() => {
-        scope.update();
-      });
+
+    delta = normalizeWheelDelta(e)
+
+    if(Math.abs(pos - target.scrollTop) > 300){
+      pos = target.scrollTop - delta * speed;
+    }
     else {
-      this.moving = false;
-      cancelFrame(() => {
-        scope.update();
-      });
+      pos += -delta * speed
+    }
+
+    e.preventDefault(); // disable default scrolling
+
+    pos = Math.max(0, Math.min(pos, target.scrollHeight - frame.clientHeight)) // limit scrolling
+
+    if (!moving) update()
+  }
+
+  function normalizeWheelDelta(e){
+    if(e.detail){
+      if(e.wheelDelta)
+        return e.wheelDelta/e.detail/40 * (e.detail>0 ? 1 : -1) // Opera
+      else
+        return -e.detail/3 // Firefox
+    }else
+      return e.wheelDelta/120 // IE,Safari,Chrome
+  }
+
+  function update() {
+    moving = true
+  
+    var delta = (pos - target.scrollTop) / smooth
+
+    target.scrollTop += delta
+
+    if (Math.abs(delta) > 1) {
+      requestFrame(update)
+    }
+    else {
+      moving = false
+      cancelFrame(update)
     }
   }
+
+  var requestFrame = function() { // requestAnimationFrame cross browser
+    return (
+      window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.oRequestAnimationFrame ||
+      window.msRequestAnimationFrame ||
+      function(func) {
+        window.setTimeout(func, 1000 / 50);
+      }
+    );
+  }();
+
+  var cancelFrame = function() { // requestAnimationFrame cross browser
+    return (
+      window.cancelAnimationFrame  ||
+      window.mozCancelAnimationFrame ||
+      function(func) {
+        window.setTimeout(func, 1000 / 50);
+      }
+    );
+  }()
+
 }
 
-var requestFrame = (function() {
-  // requestAnimationFrame cross browser
-  return (
-    window.requestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    window.oRequestAnimationFrame ||
-    window.msRequestAnimationFrame ||
-    function(func) {
-      window.setTimeout(func, 1000);
-    }
-  );
-})();
-
-var cancelFrame = (function() {
-  // cancelAnimationFrame cross browser
-  return (
-    window.cancelAnimationFrame ||
-    window.mozCancelAnimationFrame ||
-    function(func) {
-      window.setTimeout(func, 1000);
-    }
-  );
-})();
-
-export default MagicScroll;
+export default SmoothScroll;
