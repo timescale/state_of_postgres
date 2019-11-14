@@ -37,7 +37,7 @@ class App extends Component {
 	componentDidMount() {
 		window.addEventListener("scroll", this.toggleHeader, false);
 
-		SmoothScroll(document,80,5);
+		SmoothScroll(document,120,15);
 
 		this.currentLocation = this.props.location.pathname;
 
