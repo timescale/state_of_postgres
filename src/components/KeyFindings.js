@@ -1,11 +1,11 @@
 import React, { Component, Fragment} from 'react';
 import Fade  from 'react-reveal/Fade';
-// import Reveal from 'react-reveal/Reveal';
+
 import anime from "animejs";
 import {Container, Row, } from 'react-bootstrap'
 
 import {Section, QuoteSection, EmailForm} from "./Section";
-import SmoothScroll from './SmoothScroll'
+
 class KeyFindings extends Component {
 
 	constructor(props) {
@@ -26,10 +26,7 @@ class KeyFindings extends Component {
 		});
 
 		window.addEventListener("scroll", this.animateText, false);
-		new SmoothScroll({
-		  target: document.querySelector("#key"), // element container to scroll
-		  scrollEase: 0.05,
-		});
+
 		this.animateText();
 	}
 

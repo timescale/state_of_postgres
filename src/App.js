@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Link, useLocation, withRouter }
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css';
 import './assets/scss/style.scss';
+import SmoothScroll from "./components/SmoothScroll";
 
 function ScrollToTop() {
 	const { pathname } = useLocation();
@@ -44,6 +45,10 @@ class App extends Component {
 	    		this.currentLocation = location.pathname;
 			}
 	    });
+		new SmoothScroll({
+		  target: document.querySelector("#main"), // element container to scroll
+		  scrollEase: 0.05,
+		});
 	}
 
 	componentWillUnmount() {

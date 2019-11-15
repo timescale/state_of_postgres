@@ -7,6 +7,7 @@ class KeyFindings extends Component {
 
 	constructor(props) {
 		super(props);
+		this.question_list = React.createRef();
 
 		this.questions = [
 			{
@@ -714,7 +715,10 @@ class KeyFindings extends Component {
 		this.toggleOtherOptions = this.toggleOtherOptions.bind(this);
 		this.handleSetActive = this.handleSetActive.bind(this);
 	}
-
+    componentDidMount() {
+	    // move question-list because it doesn't work with the smooth scrolling
+        document.querySelector('.main-wrap').appendChild(document.querySelector('.question-list'))
+    }
 	toggleOtherOptions() {
 		this.setState((prevState) => ({
 			otherOptionsOpened: !prevState.otherOptionsOpened
@@ -840,7 +844,7 @@ class KeyFindings extends Component {
 					})
 				}
 
-				<div className="question-list">
+				<div ref={this.question_list} className="question-list">
 					<ul>
 						{
 							this.questions.map((question, index) => {
