@@ -12,7 +12,7 @@ class KeyFindings extends Component {
 			{
 				id: "1",
 				type: "map",
-				name: "Geography",
+				name: "Location",
 				question: "What is your primary geographic location?",
 				info: null,
 				options: [
@@ -41,7 +41,7 @@ class KeyFindings extends Component {
 			{
 				id: "2",
 				type: "bar_chart",
-				name: "Career",
+				name: "Career length",
 				question: "How many years have you been working as a developer?",
 				info: null,
 				options: [
@@ -75,7 +75,7 @@ class KeyFindings extends Component {
 			{
 				id: "3",
 				type: "bar_chart",
-				name: "Job titles",
+				name: "Job title",
 				question: "What is your current job title?",
 				info: null,
 				options: [
@@ -109,7 +109,7 @@ class KeyFindings extends Component {
 			{
 				id: "4",
 				type: "bar_chart",
-				name: "Personal projects",
+				name: "Use at home",
 				question: "Do you use Postgres for personal projects?",
 				info: null,
 				options: [
@@ -128,7 +128,7 @@ class KeyFindings extends Component {
 			{
 				id: "5",
 				type: "bar_chart",
-				name: "Work",
+				name: "Use at work",
 				question: "Do you use Postgres at work?",
 				info: null,
 				options: [
@@ -147,7 +147,7 @@ class KeyFindings extends Component {
 			{
 				id: "6",
 				type: "bar_chart",
-				name: "Industries",
+				name: "Industry",
 				question: "Which best describes the industry your organization is in?",
 				info: null,
 				options: [
@@ -181,7 +181,7 @@ class KeyFindings extends Component {
 			{
 				id: "7",
 				type: "bar_chart",
-				name: "Motivation",
+				name: "Why Postgres",
 				question: "What is the main reason you choose to use Postgres over other options?",
 				info: null,
 				options: [
@@ -215,7 +215,7 @@ class KeyFindings extends Component {
 			{
 				id: "8",
 				type: "bar_chart",
-				name: "Organizations",
+				name: "Company size",
 				question: "How many total employees are in your organization?",
 				info: null,
 				options: [
@@ -249,7 +249,7 @@ class KeyFindings extends Component {
 			{
 				id: "9",
 				type: "bar_chart",
-				name: "Teams",
+				name: "Team size",
 				question: "How many people work in your team?",
 				info: null,
 				options: [
@@ -283,7 +283,7 @@ class KeyFindings extends Component {
 			{
 				id: "10",
 				type: "bar_chart",
-				name: "Use cases",
+				name: "Use case",
 				question: "How would you classify your use case?",
 				info: null,
 				options: [
@@ -317,7 +317,7 @@ class KeyFindings extends Component {
 			{
 				id: "11",
 				type: "bar_chart",
-				name: "Discovery",
+				name: "Introduction",
 				question: "How did you first find out about Postgres?",
 				info: "(Respondents could pick as many answers as they wanted)",
 				options: [
@@ -443,7 +443,7 @@ class KeyFindings extends Component {
 			{
 				id: "15",
 				type: "bar_chart",
-				name: "Events",
+				name: "Meet ups",
 				question: "What Postgres events do you go to?",
 				info: null,
 				options: [
@@ -477,7 +477,7 @@ class KeyFindings extends Component {
 			{
 				id: "16",
 				type: "bar_chart",
-				name: "First time",
+				name: "Introduction",
 				question: "How would you rate your first experience with Postgres?",
 				info: null,
 				options: [
@@ -511,7 +511,7 @@ class KeyFindings extends Component {
 			{
 				id: "17",
 				type: "bar_chart",
-				name: "Deploy",
+				name: "Deployment",
 				question: "How do you deploy Postgres?",
 				info: "(Respondents could pick as many answers as they wanted)",
 				options: [
@@ -712,7 +712,6 @@ class KeyFindings extends Component {
 		};
 
 		this.toggleOtherOptions = this.toggleOtherOptions.bind(this);
-		this.handleSetActive = this.handleSetActive.bind(this);
 	}
 
 	toggleOtherOptions() {
@@ -721,72 +720,47 @@ class KeyFindings extends Component {
 		}));
 	}
 
-	handleSetActive() {
-		// console.log("setActive");
-		// SmoothScroll(null,120,19);
-		// SmoothScroll(document,120,19);
-	}
-
 	render() {
 		return (
 			<Fragment>
-				{
-					this.questions.map((question, index) => {
-						return (
-							<section className="question-section" key={question.id} name={'question' + question.id}>
+				<div className="full-results">
+					{
+						this.questions.map((question, index) => {
+							return (
+								<section className="question-section" key={question.id} name={'question' + question.id}>
 
-								<div className="container">
+									<div className="container">
 
-									<Fade>
-										<div className="text-wrap">
-											<p className="question">
-												<span className="question-number">Question {index + 1}</span>
-												{question.question}
-											</p>
-											{question.info && 
-												<p className="info-text">{question.info}</p>
-											}
-										</div>
-									</Fade>
-
-									{
-										question.type === "bar_chart" ? (
-											
-										<div className="chart-wrap">
-											<ul>
-												{
-													question.options.map((option, index) => {
-														return (
-															<li key={option.id}>
-																<p className="answer">{option.title}</p>
-																<div className="bar-row">
-																	<div className="bar" style={{width: 600*option.percentage/100}}>
-																		<Reveal effect="animateWidth">
-																			<div />
-																		</Reveal>
-																	</div>
-																	<span className="percentage">{option.percentage}%</span>
-																</div>
-															</li>
-														)
-													})
+										<Fade>
+											<div className="text-wrap">
+												<p className="question">
+													<span className="question-number">Question {index + 1}</span>
+													{question.question}
+												</p>
+												{question.info && 
+													<p className="info-text">{question.info}</p>
 												}
-											</ul>
-										</div>
+											</div>
+										</Fade>
 
-										) : question.type === "map" ? (
-											
-											<div className="map-wrap">
-												<div className="map-img-wrap">
-													<img src="/img/world-map.png" alt="World map" />
-												</div>
+										{
+											question.type === "bar_chart" ? (
+												
+											<div className="chart-wrap">
 												<ul>
 													{
 														question.options.map((option, index) => {
 															return (
 																<li key={option.id}>
 																	<p className="answer">{option.title}</p>
-																	<span className="percentage">{option.percentage}%</span>
+																	<div className="bar-row">
+																		<div className="bar" style={{width: 600*option.percentage/100}}>
+																			<Reveal effect="animateWidth">
+																				<div />
+																			</Reveal>
+																		</div>
+																		<span className="percentage">{option.percentage}%</span>
+																	</div>
 																</li>
 															)
 														})
@@ -794,73 +768,93 @@ class KeyFindings extends Component {
 												</ul>
 											</div>
 
-										) : (
-										
-										<div className="circles-wrap">
-											{
-												question.options.map((option, index) => {
-													return (
-														option.type === "multiple_options" ? (
+											) : question.type === "map" ? (
+												
+												<div className="map-wrap">
+													<div className="map-img-wrap">
+														<img src="/img/world-map.png" alt="World map" />
+													</div>
+													<ul>
+														{
+															question.options.map((option, index) => {
+																return (
+																	<li key={option.id}>
+																		<p className="answer">{option.title}</p>
+																		<span className="percentage">{option.percentage}%</span>
+																	</li>
+																)
+															})
+														}
+													</ul>
+												</div>
 
-														<div key={option.id} className={"circle circle-" + (index + 1) + " " + option.backgroundPattern + (this.state.otherOptionsOpened ? " opened" : "") + (option.type ===  "multiple_options" ? " other" : "")} onClick={this.toggleOtherOptions}>
-															<div>
+											) : (
+											
+											<div className="circles-wrap">
+												{
+													question.options.map((option, index) => {
+														return (
+															option.type === "multiple_options" ? (
+
+															<div key={option.id} className={"circle circle-" + (index + 1) + " " + option.backgroundPattern + (this.state.otherOptionsOpened ? " opened" : "") + (option.type ===  "multiple_options" ? " other" : "")} onClick={this.toggleOtherOptions}>
+																<div>
+																	<span className="percentage">{option.percentage}%</span> 
+																	<span className="text">{option.title}</span> 
+																</div>
+																<ul>
+																	{
+																		option.options.map((option, index) => {
+																			return <li key={option.id}><span>{option.title}</span> <span>{option.percentage}%</span></li>
+																		})
+																	}
+															
+																</ul>
+															</div>
+
+															) : (
+
+															<div key={option.id} className={"circle circle-" + (index + 1) + " " + option.backgroundPattern}>
 																<span className="percentage">{option.percentage}%</span> 
 																<span className="text">{option.title}</span> 
 															</div>
-															<ul>
-																{
-																	option.options.map((option, index) => {
-																		return <li key={option.id}><span>{option.title}</span> <span>{option.percentage}%</span></li>
-																	})
-																}
-														
-															</ul>
-														</div>
 
-														) : (
-
-														<div key={option.id} className={"circle circle-" + (index + 1) + " " + option.backgroundPattern}>
-															<span className="percentage">{option.percentage}%</span> 
-															<span className="text">{option.title}</span> 
-														</div>
-
+															)
 														)
-													)
-												})
-											}
-										</div>
+													})
+												}
+											</div>
 
-										)
-									}
-				
-								</div>
+											)
+										}
+					
+									</div>
 
-							</section>
-						)
-					})
-				}
+								</section>
+							)
+						})
+					}
 
-				<div className="question-list">
-					<ul>
-						{
-							this.questions.map((question, index) => {
-								return (
-									<li key={question.name}>
-										<Link 
-											to={'question' + question.id}
-											activeClass="active"
-											spy={true} 
-											smooth={true} 
-											offset={-20} 
-											onSetActive={this.handleSetActive}
-											duration={500}>
-												{question.name}
-										</Link>
-									</li>
-								)
-							})
-						}
-					</ul>
+					<div className="question-list">
+						<ul>
+							{
+								this.questions.map((question, index) => {
+									return (
+										<li key={question.name}>
+											<Link 
+												to={'question' + question.id}
+												activeClass="active"
+												spy={true} 
+												smooth={true} 
+												offset={-20} 
+												duration={500}>
+													{question.name}
+											</Link>
+										</li>
+									)
+								})
+							}
+						</ul>
+					</div>
 				</div>
 
 			</Fragment>
