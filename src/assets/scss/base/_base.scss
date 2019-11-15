@@ -5,7 +5,6 @@ body {
 	background: $bg-gray;
 	position: relative;
 	word-wrap: break-word;
-	transition: .6s;
 
 	&.bg-dark {
 		background: #080808;
@@ -19,9 +18,16 @@ body {
 	padding: 0 20px;
 }
 
-.main-content {
-	overflow: hidden;
-}
+// .main-wrap {
+// 	height: 100vh;
+// 	overflow: hidden;	
+// 	transition: .6s;
+// }
+
+// #main {
+// 	overflow-y: auto;
+// 	height: 100vh;	
+// }
 
 .section {
 	min-height: 750px;
