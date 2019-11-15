@@ -165,7 +165,8 @@ class KeyFindings extends Component {
 
 				<QuoteSection number={12} text={'I never used it [NoSQL] because I was smart enough to smell the NoSQL bullsh*t early on.'}
 						 name={'- Anonymous'} reverse={false}
-						 model="Flame" />
+						 model="Flame"
+                         black={true}/>
 
 				<QuoteSection number={14} text={'If a project was using a NoSQL database, I would fire the entire team, burn the code base, and start over.'}
 						 name={'- Anonymous'} reverse={true}

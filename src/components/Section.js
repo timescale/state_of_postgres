@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import VisibilitySensor from 'react-visibility-sensor'
 
 import {Model, Drone, Phone, Flowers, Teamwork, Swimming, Flame, Tail} from "./Model";
-import {Container, Row, Col, Form} from 'react-bootstrap'
+import {Container, Row, Col, Form, Button, InputGroup} from 'react-bootstrap'
 
 function GetModel(props) {
 	const model = props.model;
@@ -48,7 +48,7 @@ class Section extends Component {
 					<Col md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
 						 className="d-flex justify-content-center align-items-center">
 						<VisibilitySensor partialVisibility={true} onChange={this.fade}>
-							<div ref={this.text} className="text animated" style={{animationDuration: "3s"}}>
+							<div ref={this.text} className="text animated" style={{animationDuration: "3s", opacity: 0}}>
 								<p className="number">{ this.props.number }</p>
 								<p className="info">{ this.props.info }</p>
 								<p className="description">{ this.props.description }</p>
@@ -95,21 +95,28 @@ class EmailForm extends Component {
 		return (
 			<Container id="email-form">
 				<Row style={{height: 850}} className={this.props.black ? 'black' : '' }>
-					<Col md={{ span: 4, offset: 4 }}
+					<Col md={{ span: 5, offset: 4 }}
 						 className="d-flex justify-content-center"
 						 style={{flexDirection: "column"}}>
+						<div class="footer">
 						<div className='text1'>
 							Like postgres?
 						</div>
 						<div className='text2'>
-							Sign up to get notified for survey next year. And in the meantime get helpful Postgres tips
+							Sign up to get notified for our survey next year. And in the meantime get helpful Postgres tips delivered occasionally to your inbox.
 						</div>
 						<Form>
-							<Form.Group controlId="formBasicEmail">
-								<Form.Label>Enter email</Form.Label>
-								<Form.Control type="email" placeholder="Email" />
-							</Form.Group>
+							<Form.Row>
+								<Col md="8">
+									<Form.Label>Email address</Form.Label>
+									<Form.Control type="email" placeholder="Enter email" />
+								</Col>
+								<Col className="d-flex" style={{ alignItems: "flex-end"}}>
+									<Button  type="submit" variant="primary">Submit</Button>
+								</Col>
+							</Form.Row>
 						</Form>
+						</div>
 					</Col>
 				</Row>
 			</Container>

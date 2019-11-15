@@ -5,6 +5,7 @@ body {
 	background: $bg-gray;
 	position: relative;
 	word-wrap: break-word;
+	overflow-x: hidden;
 
 	&.bg-dark {
 		background: #080808;

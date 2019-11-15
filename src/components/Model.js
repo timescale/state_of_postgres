@@ -32,7 +32,7 @@ class Model extends Component {
             this.get_mixer();
             // this.loader();
             this.get_light();
-            this.animate();
+            // this.renderer.render(this.scene, this.camera);
         })
     }
     get_mesh() {
@@ -68,12 +68,14 @@ class Model extends Component {
         //RENDERER
         this.renderer = new THREE.WebGLRenderer({
             canvas: this.el,
-            powerPreference: "low-power",
+            powerPreference: "high-performance",
         });
         this.renderer.setClearColor(0x000000);
         // this.renderer.setSize(window.innerWidth/2, window.innerHeight/2, true);
         this.renderer.setSize(window.innerWidth/2, window.innerHeight/2, true);
         this.renderer.setPixelRatio(2)
+        this.renderer.render(this.scene, this.camera);
+
     };
     get_mixer() {
         if (this.gltf.animations.length === 0) {
@@ -81,6 +83,11 @@ class Model extends Component {
         }
         this.mixer = new THREE.AnimationMixer(this.scene);
         this.action = this.mixer.clipAction(this.gltf.animations[0]);
+        if (this.state.loopOnce) {
+            this.action.setLoop( THREE.LoopOnce );
+            this.action.clampWhenFinished = true;
+        }
+
         this.action.play();
     };
     get_camera() {
@@ -113,8 +120,11 @@ class Model extends Component {
     };
 
     animate() {
+        if (this.gltf === undefined) {
+            return;
+        }
         if (this.renderer === undefined) {
-            return
+            return;
         }
         this.animation_id = requestAnimationFrame(()=>this.animate());
         this.delta++;
@@ -168,12 +178,15 @@ class Drone extends Model {
 class Phone extends Drone {
     constructor(props) {
         super(props);
-        this.state = {file: phone}
+        this.state = {
+            file: phone,
+            loopOnce: true
+        }
     }
     loader = () => {
         this.scene.children[0].children.forEach(mesh => {
             mesh.material = this.material
-        })
+        });
         this.scene.children[0].children[0].children.forEach(mesh => {
             mesh.material = this.material
         })
@@ -183,7 +196,10 @@ class Phone extends Drone {
 class Flowers extends Model {
     constructor(props) {
         super(props);
-        this.state = {file: flowers}
+        this.state = {
+            file: flowers,
+            loopOnce: true,
+        }
     }
 }
 

@@ -97,7 +97,9 @@
 	letter-spacing: 0.005em;
 	color: #404040;
 	max-width: 1200px;
-
+	.footer {
+		max-width: 375px;
+	}
 	.text1 {
 		font-size: 40px;
 		padding-bottom: 47px;
@@ -119,6 +121,7 @@
 	input {
 		font-family: IBM Plex Sans;
 		border-radius: 0;
+		height: 50px;
 	}
 	.form-control::-moz-placeholder {
 		color: #080808;
@@ -128,5 +131,10 @@
 	}
 	.form-control::-webkit-input-placeholder {
 		color: #080808;
+	}
+	button {
+		border-radius: 0;
+		width: 100%;
+		height: 50px;
 	}
 }
