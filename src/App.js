@@ -46,7 +46,7 @@ class App extends Component {
 			}
 	    });
 		new SmoothScroll({
-		  target: document.querySelector("#main"), // element container to scroll
+		  target: document.querySelector("#root"), // element container to scroll
 		  scrollEase: 0.05,
 		});
 	}
