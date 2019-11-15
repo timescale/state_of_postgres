@@ -1,4 +1,4 @@
-function SmoothScroll(target, speed, smooth) {
+function MagicScroll(target, speed, smooth) {
 
   if (target === document)
     target = (document.scrollingElement 
@@ -92,4 +92,4 @@ function SmoothScroll(target, speed, smooth) {
 
 }
 
-export default SmoothScroll;
+export default MagicScroll;

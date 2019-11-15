@@ -5,7 +5,7 @@ import anime from "animejs";
 import {Container, Row, } from 'react-bootstrap'
 
 import {Section, QuoteSection, EmailForm} from "./Section";
-
+import SmoothScroll from './SmoothScroll'
 class KeyFindings extends Component {
 
 	constructor(props) {
@@ -26,7 +26,10 @@ class KeyFindings extends Component {
 		});
 
 		window.addEventListener("scroll", this.animateText, false);
-
+		new SmoothScroll({
+		  target: document.querySelector("#key"), // element container to scroll
+		  scrollEase: 0.05,
+		});
 		this.animateText();
 	}
 
@@ -84,6 +87,7 @@ class KeyFindings extends Component {
 	render() {
 		return (
 			<Fragment>
+				<div id="key">
 				{/* Intro - Start */}
 				<section className="section intro">
 					<Container>
@@ -172,6 +176,7 @@ class KeyFindings extends Component {
 						 name={'- Anonymous'} reverse={true}
 						 model="Swimming" />
                 <EmailForm/>
+				</div>
 			</Fragment>
 		);
 	}

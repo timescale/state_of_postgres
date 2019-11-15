@@ -1,9 +1,8 @@
 import React, { Component, Fragment, useEffect } from 'react';
 import KeyFindings from './components/KeyFindings';
-import Materials from './components/Materials';
 import FullResults from './components/FullResults';
 import { BrowserRouter as Router, Switch, Route, Link, useLocation, withRouter } from "react-router-dom";
-import SmoothScroll from './components/Scroll'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css';
 import './assets/scss/style.scss';
@@ -36,8 +35,6 @@ class App extends Component {
 
 	componentDidMount() {
 		window.addEventListener("scroll", this.toggleHeader, false);
-
-		SmoothScroll(document,120,15);
 
 		this.currentLocation = this.props.location.pathname;
 
@@ -111,9 +108,6 @@ class App extends Component {
 					<main id="main">
 
 						<Switch>
-							<Route path="/materials">
-								<Materials />
-							</Route>
 							<Route path="/full_results">
 								<FullResults />
 							</Route>
