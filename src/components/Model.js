@@ -9,6 +9,8 @@ import phone from './models/phone.glb'
 import flowers from './models/flowers.glb'
 import teamwork from './models/flowers.glb'
 import swimming from './models/swimming_full.glb'
+import flame from './models/flame.glb'
+import tail from './models/tail_wag.glb'
 import { OrbitControls } from './models/orbit.js';
 
 class Model extends Component {
@@ -229,4 +231,20 @@ class Swimming extends Model {
     }
 }
 
-export {Model, Drone, Phone, Flowers, Teamwork, Swimming};
+
+class Flame extends Model {
+    constructor(props) {
+        super(props);
+        this.state = {file: flame}
+    }
+}
+
+
+class Tail extends Model {
+    constructor(props) {
+        super(props);
+        this.state = {file: tail}
+    }
+}
+
+export {Model, Drone, Phone, Flowers, Teamwork, Swimming, Flame, Tail};

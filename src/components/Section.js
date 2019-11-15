@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import VisibilitySensor from 'react-visibility-sensor'
 
-import {Model, Drone, Phone, Flowers, Teamwork, Swimming} from "./Model";
+import {Model, Drone, Phone, Flowers, Teamwork, Swimming, Flame, Tail} from "./Model";
 import {Container, Row, Col, Form} from 'react-bootstrap'
 
 function GetModel(props) {
@@ -16,6 +16,10 @@ function GetModel(props) {
 		return <Teamwork />;
 	} else if (model === 'Swimming') {
 		return <Swimming black={props.black} />;
+	} else if (model === 'Flame') {
+		return <Flame black={props.black} />;
+	} else if (model === 'Tail') {
+		return <Tail black={props.black} />;
 	}
 	return <Model />;
 }
