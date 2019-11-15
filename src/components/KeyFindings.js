@@ -99,7 +99,7 @@ class KeyFindings extends Component {
 							</div>
 							<div className="d-flex">
 								<Fade bottom delay={1000}>
-									<p className="subtitle" style={{maxWidth: 600}}>We put out an open call for Postgres community members to tell us about their experiences -- and here are the results. </p>
+									<p className="subtitle">We put out an open call for Postgres community members to tell us about their experiences -- and here are the results. </p>
 								</Fade>
 							</div>
 						</Row>

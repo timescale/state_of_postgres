@@ -28,8 +28,10 @@
 	}
 
 	.subtitle {
-		font-size: $font-size-base;
+		font-size: 38px;
 		margin: 50px 0 0;
+		line-height: 146%;
+		max-width: 715px;
 	}
 
 	.scroll-text {
@@ -71,15 +73,15 @@
 	z-index: 1;
 
 	.info {
-		font-size: $font-size-base;
-		line-height: 38px;
+		font-size: 37px;
+		line-height: 127%;
 		font-family: $font-secondary;
 		margin-bottom: 16px;
 	}
 
 	.description {
-		font-size: $font-size-sm;
-		line-height: 26px;
+		font-size: 37px;
+		line-height: 127%;
 		margin-bottom: 16px;
 		color: $color-secondary;
 	}

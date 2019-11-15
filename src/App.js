@@ -91,9 +91,6 @@ class App extends Component {
 				<header className={"header" + (this.state.headerIsVisible ? " header-visible" : " header-hidden")} ref={this.header}>
 					<ul className="menu">
 						<li>
-							<Link to="/materials">Materials</Link>
-						</li>
-						<li>
 							<Link to="/">Key findings</Link>
 						</li>
 						<li>

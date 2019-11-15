@@ -28,15 +28,9 @@ class Section extends Component {
 	}
 
 	fade = (is_visible) => {
-
 		if (is_visible) {
 			this.text.current.classList.add('fadeIn');
-			this.text.current.classList.remove('fadeOut');
-		} else {
-			this.text.current.classList.add('fadeOut');
-			this.text.current.classList.remove('fadeIn');
 		}
-
 	};
 
 	render() {
@@ -49,8 +43,8 @@ class Section extends Component {
 					</Col>
 					<Col md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
 						 className="d-flex justify-content-center align-items-center">
-						<VisibilitySensor onChange={this.fade} offset={{top:5, bottom:5}}>
-							<div ref={this.text} className="text animated" style={{animationDuration: "0.3s"}}>
+						<VisibilitySensor partialVisibility={true} onChange={this.fade}>
+							<div ref={this.text} className="text animated" style={{animationDuration: "3s"}}>
 								<p className="number">{ this.props.number }</p>
 								<p className="info">{ this.props.info }</p>
 								<p className="description">{ this.props.description }</p>
@@ -74,7 +68,7 @@ class QuoteSection extends Section {
 					</Col>
 					<Col md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
 						 className="d-flex justify-content-center align-items-center">
-						<VisibilitySensor onChange={this.fade} offset={{top:5, bottom:5}}>
+						<VisibilitySensor partialVisibility={true} onChange={this.fade}>
 							<div ref={this.text} className='text quote animated' style={{animationDuration: "0.3s"}}>
 								<p className="number">{ this.props.number }</p>
 								<div className="curly-quotes-wrapper">
