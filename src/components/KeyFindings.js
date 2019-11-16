@@ -118,7 +118,7 @@ class KeyFindings extends Component {
 
 				<Section number={3} info={'Postgres isn’t just for work. Over 80% of respondents use it for personal projects.'}
 						 description={'Like Raspberry Pi.'} reverse={true}
-						 model="Drone"/>
+						 model="Circuit"/>
 
 				<Section number={4} info={'About 70% of all respondents use Postgres for app development.'}
 						 description={'And 30% report using it for real-time analytics, dashboarding, and monitoring'} reverse={true}

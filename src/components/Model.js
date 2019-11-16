@@ -11,6 +11,7 @@ import teamwork from './models/flowers.glb'
 import swimming from './models/swimming_full.glb'
 import flame from './models/flame.glb'
 import tail from './models/tail_wag.glb'
+import circuit from './models/circuit.glb'
 import { OrbitControls } from './models/orbit.js';
 
 class Model extends Component {
@@ -106,7 +107,7 @@ class Model extends Component {
     };
 
     get_light() {
-        this.light = new THREE.DirectionalLight( 0xffffff, 0.8 );
+        this.light = new THREE.DirectionalLight( 0xffffff, 2 );
         this.scene.add( this.light );
     }
 
@@ -263,4 +264,11 @@ class Tail extends Model {
     }
 }
 
-export {Model, Drone, Phone, Flowers, Teamwork, Swimming, Flame, Tail};
+class Circuit extends Model {
+    constructor(props) {
+        super(props);
+        this.state = {file: circuit}
+    }
+}
+
+export {Model, Drone, Phone, Flowers, Teamwork, Swimming, Flame, Tail, Circuit};
