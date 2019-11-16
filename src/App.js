@@ -2,10 +2,10 @@ import React, { Component, Fragment, useEffect } from 'react';
 import KeyFindings from './components/KeyFindings';
 import FullResults from './components/FullResults';
 import { BrowserRouter as Router, Switch, Route, Link, useLocation, withRouter } from "react-router-dom";
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css';
 import './assets/scss/style.scss';
+import NavLink from "./components/NavLink";
 import SmoothScroll from "./components/SmoothScroll";
 
 function ScrollToTop() {
@@ -23,13 +23,14 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 
+
 		this.header = React.createRef();
 		this.lastPosition = 0;
 		this.currentLocation = "";
 
 		this.state = {
 			headerIsVisible: true
-		}
+		};
 
 		this.toggleHeader = this.toggleHeader.bind(this);
 	}
@@ -46,9 +47,15 @@ class App extends Component {
 			}
 	    });
 		new SmoothScroll({
-		  target: document.querySelector("#root"), // element container to scroll
+		  target: document.querySelector(".main-wrap"), // element container to scroll
 		  scrollEase: 0.05,
 		});
+
+		if (!this.header_moved) {
+			// the smooth scroll breaks fixed elements in the main div. this is a hack to move them out.
+            document.querySelector('body').appendChild(document.querySelector('header'));
+            this.header_moved = true;
+        }
 	}
 
 	componentWillUnmount() {
@@ -101,10 +108,14 @@ class App extends Component {
 					<header className={"header" + (this.state.headerIsVisible ? " header-visible" : " header-hidden")} ref={this.header}>
 						<ul className="menu">
 							<li>
-								<Link to="/">Key findings</Link>
+								<NavLink to="/">
+									Key findings
+								</NavLink>
 							</li>
 							<li>
-								<Link to="/full_results" className="button button-secondary button-sm">Full Results</Link>
+								<NavLink to="/full_results">
+									Full Results
+								</NavLink>
 							</li>
 						</ul>
 					</header>

@@ -715,15 +715,21 @@ class KeyFindings extends Component {
 	}
     componentDidMount() {
 	    // move question-list because it doesn't work with the smooth scrolling
-
-        if (!this.moved_list) {
-            document.querySelector('body').appendChild(document.querySelector('.question-list'));
-            this.moved_list = true
+		this.navBarNode = document.querySelector('.question-list');
+		let bodyNode = document.querySelector('body');
+		this.navBarNode.removeAttribute('hidden');
+		let has_node = bodyNode.childNodes.forEach(child => {
+			if (child.classList && child.classList.contains('question-list')) {
+				return true
+			}
+		});
+        if (!has_node) {
+            bodyNode.appendChild(this.navBarNode);
         }
     }
 
     componentWillUnmount() {
-	    document.querySelector('.question-list').removeAttribute('hidden')
+	    this.navBarNode.setAttribute('hidden', true)
     }
 	toggleOtherOptions() {
 		this.setState((prevState) => ({
