@@ -107,7 +107,7 @@ class Model extends Component {
     };
 
     get_light() {
-        this.light = new THREE.DirectionalLight( 0xffffff, 2 );
+        this.light = new THREE.DirectionalLight( 0xffffff, 1 );
         this.scene.add( this.light );
     }
 
