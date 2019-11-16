@@ -74,8 +74,8 @@ class QuoteSection extends Section {
 					</Col>
 					<Col md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
 						 className="d-flex justify-content-center align-items-center">
-						<VisibilitySensor partialVisibility={true} onChange={this.fade}>
-							<div ref={this.text} className='text quote animated' style={{animationDuration: "0.3s"}}>
+						<VisibilitySensor onChange={this.fade}>
+							<div ref={this.text} className='text quote animated' style={{animationDuration: "1s", opacity: 0}}>
 								<p className="number">{ this.props.number }</p>
 								<div className="curly-quotes-wrapper">
 									<div className="curly-quotes">
