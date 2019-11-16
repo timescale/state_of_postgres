@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import VisibilitySensor from 'react-visibility-sensor'
 
 import {Model, Drone, Phone, Flowers, Teamwork, Swimming, Flame, Tail, Circuit} from "./Model";
-import {Container, Row, Col, Form, Button, InputGroup} from 'react-bootstrap'
+import {Container, Row, Col, Form, Button} from 'react-bootstrap'
 
 function GetModel(props) {
 	const model = props.model;
@@ -75,7 +75,7 @@ class QuoteSection extends Section {
 					<Col md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
 						 className="d-flex justify-content-center align-items-center">
 						<VisibilitySensor onChange={this.fade}>
-							<div ref={this.text} className='text quote animated' style={{animationDuration: "1s", opacity: 0}}>
+							<div ref={this.text} className='text quote animated' style={{animationDuration: "1s", opacity: 0 }}>
 								<p className="number">{ this.props.number }</p>
 								<div className="curly-quotes-wrapper">
 									<div className="curly-quotes">
