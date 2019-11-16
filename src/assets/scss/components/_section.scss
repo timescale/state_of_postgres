@@ -10,35 +10,33 @@
 }
 
 .info {
-	font-family: IBM Plex Sans;
 	font-style: normal;
 	font-weight: 600;
-	font-size: 28px;
-	line-height: 127.5%;
+	font-size: 37px;
+	line-height: 127%;
 	letter-spacing: 0.008em;
 	color: #404040;
 	padding-bottom: 10px;
 }
 
 .description {
-	font-family: IBM Plex Sans;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 23px;
+	font-size: 30px;
 	line-height: 127.5%;
 	letter-spacing: 0.01em;
 	color: #4E8BEA;
 }
 
 .text {
-	margin: 120px;
+	margin-left: 100px;
 	.quote {
 
 	}
 }
 
 .text.quote {
-	padding: 120px 20px 120px 220px;
+	margin: 120px 20px 120px 220px;
 	.name {
 		font-family: IBM Plex Sans;
 		font-style: italic;
@@ -134,7 +132,9 @@
 	}
 	button {
 		border-radius: 0;
+		font-size: 18px;
 		width: 100%;
 		height: 50px;
+		font-family: IBM Plex Sans;
 	}
 }

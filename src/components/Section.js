@@ -43,13 +43,14 @@ class Section extends Component {
 		return (
 			<Container fluid={true}>
 				<Row style={{height: 850}}>
-					<Col md={{ span: 6, order: this.props.reverse ? 2 : 1 }}
+					<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 2 : 1 }}
 						 className="d-flex justify-content-center align-items-center">
 						<GetModel model={this.props.model}/>
 					</Col>
-					<Col md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
-						 className="d-flex justify-content-center align-items-center">
-						<VisibilitySensor onChange={this.fade}>
+					<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
+						 className="d-flex justify-content-center align-items-center pr-0">
+						<VisibilitySensor partialVisibility={this.props.partialVisibility || false}
+										  onChange={this.fade} minTopValue={this.props.minTopValue} >
 							<div ref={this.text} className="text animated" style={{animationDuration: "1s", opacity: 0}}>
 								<p className="number">{ this.props.number }</p>
 								<p className="info">{ this.props.info }</p>
@@ -68,12 +69,12 @@ class QuoteSection extends Section {
 		return (
 			<Container fluid={true}>
 				<Row style={{height: 850}} className={this.props.black ? 'black' : '' }>
-					<Col md={{ span: 6, order: this.props.reverse ? 2 : 1 }}
-						 className="d-flex justify-content-center align-items-center">
+					<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 2 : 1 }}
+						 className="d-flex justify-content-center align-items-center col-sm-push-6">
 						<GetModel model={this.props.model} black={this.props.black}/>
 					</Col>
-					<Col md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
-						 className="d-flex justify-content-center align-items-center">
+					<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
+						 className="d-flex justify-content-center align-items-center pr-0">
 						<VisibilitySensor onChange={this.fade}>
 							<div ref={this.text} className='text quote animated' style={{animationDuration: "1s", opacity: 0 }}>
 								<p className="number">{ this.props.number }</p>
@@ -97,9 +98,8 @@ class EmailForm extends Component {
 		return (
 			<Container id="email-form">
 				<Row style={{height: 850}} className={this.props.black ? 'black' : '' }>
-					<Col md={{ span: 5, offset: 4 }}
-						 className="d-flex justify-content-center"
-						 style={{flexDirection: "column"}}>
+					<Col sm={{ span: 12 }} md={{ span: 5, offset: 4 }}
+						 className="d-flex justify-content-center">
 						<div class="footer">
 						<div className='text1'>
 							Like postgres?

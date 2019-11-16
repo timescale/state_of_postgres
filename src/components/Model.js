@@ -19,6 +19,14 @@ class Model extends Component {
         super(props);
     }
 
+    onWindowResize() {
+        if (this.camera && this.renderer) {
+            this.camera.aspect = window.innerWidth / window.innerHeight;
+            this.camera.updateProjectionMatrix();
+            this.renderer.setSize( window.innerWidth, window.innerHeight );
+        }
+    }
+
     componentDidMount() {
         const loader = new GLTFLoader();
         loader.load(this.state.file, gltf => {
@@ -33,6 +41,7 @@ class Model extends Component {
             this.get_mixer();
             // this.loader();
             this.get_light();
+            window.addEventListener( 'resize', () => {this.onWindowResize()}, false );
             // this.renderer.render(this.scene, this.camera);
         })
     }
@@ -161,7 +170,7 @@ class Model extends Component {
 
     render() {
         return (
-            <VisibilitySensor partialVisibility={true} onChange={this.activate_animation}>
+            <VisibilitySensor partialVisibility={true} onChange={this.activate_animation} minTopValue={this.minTopValue || 0}>
                 <canvas ref={ref => (this.el = ref)} />
             </VisibilitySensor>
         )
@@ -197,6 +206,7 @@ class Phone extends Drone {
 class Flowers extends Model {
     constructor(props) {
         super(props);
+        this.minTopValue = 500;
         this.state = {
             file: flowers,
             loopOnce: true,

@@ -120,8 +120,8 @@ class KeyFindings extends Component {
 							 description={'And 30% report using it for real-time analytics, dashboarding, and monitoring'} reverse={true}
 							 model="Phone"/>
 
-					<Section number={'5a'} info={'Only 9% have contributed code to Postgres...'}
-							 description={'That may not sound like much, but this is actually an impressive amount considering the hundreds of thousands of people using Postgres worldwide '} reverse={true}
+					<Section number={5} info={'Only 9% have contributed code to Postgres...'}
+							 description={'That may not sound like much, but this is actually an impressive amount considering the hundreds of thousands of people using Postgres worldwide '} reverse={true} minTopValue={500} partialVisibility={true}
 							 model="Flowers"/>
 
 					{/* 11-13 title Technology - Start */}
@@ -136,32 +136,32 @@ class KeyFindings extends Component {
 					</section>
 					{/* Technology - End */}
 
-					<Section number={7} info={'The most common way to deploy Postgres (46%) is in a self-managed data center.'}
-							 description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit dui in nibh mattis sagittis quis pharetra diam.'} reverse={true}
+					<Section number={6} info={'The most common way to deploy Postgres (46%) is in a self-managed data center.'}
+							 description={''} reverse={true}
 							 model="Swimming" />
-					<Section number={8} info={'Among those who deploy on a cloud, over half (51%) use AWS'}
-							 description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit dui in nibh mattis sagittis quis pharetra diam.'} reverse={false}
+					<Section number={7} info={'Among those who deploy on a cloud, over half (51%) use AWS'}
+							 description={''} reverse={false}
 							 model="Swimming" />
-					<Section number={9} info={'The next closest cloud provider was GCP at 18%'}
-							 description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit dui in nibh mattis sagittis quis pharetra diam.'} reverse={true}
+					<Section number={8} info={'The next closest cloud provider was GCP at 18%'}
+							 description={''} reverse={true}
 							 model="Swimming" />
 
 					<section className="section text-section">
 						<div className="container">
 							<div className="text-wrap">
 								<Fade bottom>
-									<p className="info info-title">In their own words</p>
+									<p className="info info-title">What do folks think about SQL?</p>
 								</Fade>
 							</div>
 						</div>
 					</section>
 
-					<QuoteSection number={12} text={'I never used it [NoSQL] because I was smart enough to smell the NoSQL bullsh*t early on.'}
+					<QuoteSection number={12} text={'If a project was using a NoSQL database, I would fire the entire team, burn the code base, and start over.'}
 								  name={'- Anonymous'} reverse={false}
 								  model="Flame"
 								  black={true}/>
 
-					<QuoteSection number={14} text={'If a project was using a NoSQL database, I would fire the entire team, burn the code base, and start over.'}
+					<QuoteSection number={14} text={'I never used it [NoSQL] because I was smart enough to smell the NoSQL bullsh*t early on.'}
 								  name={'- Anonymous'} reverse={true}
 								  model="Tail"
 								  black={true}/>
