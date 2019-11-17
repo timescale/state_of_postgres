@@ -258,14 +258,12 @@ class Swimming extends Model {
     }
 }
 
-
 class Flame extends Model {
     constructor(props) {
         super(props);
         this.state = {file: flame}
     }
 }
-
 
 class Tail extends Model {
     constructor(props) {

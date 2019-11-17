@@ -36,10 +36,12 @@ class Section extends Component {
 	}
 
 	fade = (is_visible) => {
-		if (is_visible) {
+		if (is_visible && this.number.current) {
 			this.number.current.classList.add('fadeIn');
 			this.info.current.classList.add('fadeIn');
 			this.description.current.classList.add('fadeIn');
+		} else if (is_visible && this.text.current) {
+			this.text.current.classList.add('fadeIn');
 		}
 	};
 
@@ -52,7 +54,7 @@ class Section extends Component {
 						<GetModel model={this.props.model}/>
 					</Col>
 					<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
-						 className="d-flex justify-content-center align-items-center pr-0">
+						 className="d-flex justify-content-center align-items-center pr-0 text-section">
 						<VisibilitySensor partialVisibility={this.props.partialVisibility || false}
 										  onChange={this.fade} minTopValue={this.props.minTopValue} >
 							<div className="text">
@@ -78,6 +80,10 @@ class Section extends Component {
 }
 
 class QuoteSection extends Section {
+	constructor(props) {
+		super(props);
+		this.text = React.createRef();
+	}
 	render() {
 		return (
 			<Container fluid={true}>
