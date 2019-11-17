@@ -74,7 +74,7 @@ class QuoteSection extends Section {
 						<GetModel model={this.props.model} black={this.props.black}/>
 					</Col>
 					<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
-						 className="d-flex justify-content-center align-items-center pr-0">
+						 className="d-flex justify-content-center align-items-center pr-0 quote-text">
 						<VisibilitySensor onChange={this.fade}>
 							<div ref={this.text} className='text quote animated' style={{animationDuration: "1s", opacity: 0 }}>
 								<p className="number">{ this.props.number }</p>
