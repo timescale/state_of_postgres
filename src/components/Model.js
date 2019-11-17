@@ -66,11 +66,6 @@ class Model extends Component {
 
     get_scene() {
         this.scene = new THREE.Scene();
-        if (this.props.black) {
-            this.scene.background = new THREE.Color(0x080808);
-        } else {
-            this.scene.background = new THREE.Color(0xfbfbfb);
-        }
         this.scene.add(this.gltf.scene)
     };
 
@@ -79,13 +74,13 @@ class Model extends Component {
         this.renderer = new THREE.WebGLRenderer({
             canvas: this.el,
             powerPreference: "high-performance",
+            alpha: true
         });
-        this.renderer.setClearColor(0x000000);
+
         // this.renderer.setSize(window.innerWidth/2, window.innerHeight/2, true);
         this.renderer.setSize(window.innerWidth/2, window.innerHeight/2, true);
-        this.renderer.setPixelRatio(2)
+        this.renderer.setPixelRatio(2);
         this.renderer.render(this.scene, this.camera);
-
     };
     get_mixer() {
         if (this.gltf.animations.length === 0) {
