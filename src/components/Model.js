@@ -206,7 +206,7 @@ class Phone extends Drone {
 class Flowers extends Model {
     constructor(props) {
         super(props);
-        this.minTopValue = 500;
+        this.minTopValue = 550;
         this.state = {
             file: flowers,
             loopOnce: true,

@@ -30,12 +30,16 @@ class Section extends Component {
 
 	constructor(props) {
 		super(props);
-		this.text = React.createRef();
+		this.number = React.createRef();
+		this.info = React.createRef();
+		this.description = React.createRef();
 	}
 
 	fade = (is_visible) => {
 		if (is_visible) {
-			this.text.current.classList.add('fadeIn');
+			this.number.current.classList.add('fadeIn');
+			this.info.current.classList.add('fadeIn');
+			this.description.current.classList.add('fadeIn');
 		}
 	};
 
@@ -51,10 +55,19 @@ class Section extends Component {
 						 className="d-flex justify-content-center align-items-center pr-0">
 						<VisibilitySensor partialVisibility={this.props.partialVisibility || false}
 										  onChange={this.fade} minTopValue={this.props.minTopValue} >
-							<div ref={this.text} className="text animated" style={{animationDuration: "1s", opacity: 0}}>
-								<p className="number">{ this.props.number }</p>
-								<p className="info">{ this.props.info }</p>
-								<p className="description">{ this.props.description }</p>
+							<div className="text">
+								<p className={'number ' + (this.props.show_info ? '' : 'animated')}
+								   ref={this.number}
+								style={this.props.show_info ? {opacity: 1} : {}}>
+									{ this.props.number }
+								</p>
+								<p className={'info ' + (this.props.show_info ? '' : 'animated')} ref={this.info}
+								style={this.props.show_info ? {opacity: 1} : {}}>
+									{ this.props.info }
+								</p>
+								<p className="description animated"  ref={this.description}>
+									{ this.props.description }
+								</p>
 							</div>
 						</VisibilitySensor>
 					</Col>

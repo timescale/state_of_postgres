@@ -18,6 +18,10 @@
 	color: #404040;
 	padding-bottom: 10px;
 }
+.number, .info, .description {
+    animation-duration: "1s";
+    opacity: 0;
+}
 
 .description {
 	font-style: normal;

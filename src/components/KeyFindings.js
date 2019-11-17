@@ -121,7 +121,7 @@ class KeyFindings extends Component {
 							 model="Phone"/>
 
 					<Section number={5} info={'Only 9% have contributed code to Postgres...'}
-							 description={'That may not sound like much, but this is actually an impressive amount considering the hundreds of thousands of people using Postgres worldwide '} reverse={true} minTopValue={500} partialVisibility={true}
+							 description={'That may not sound like much, but this is actually an impressive amount considering the hundreds of thousands of people using Postgres worldwide '} reverse={true} minTopValue={550} partialVisibility={true} show_info={true}
 							 model="Flowers"/>
 
 					{/* 11-13 title Technology - Start */}
