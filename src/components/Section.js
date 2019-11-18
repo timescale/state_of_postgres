@@ -85,36 +85,30 @@ class QuoteSection extends Section {
 		this.text = React.createRef();
 		this.row = React.createRef();
 	}
-	change_background = (is_visible) => {
-		if(this.row && is_visible) {
-			this.row.current.classList.add('black')
-		}
-	}
+
 	render() {
 		return (
 			<Container fluid={true}>
-				<VisibilitySensor partialVisibility={true} offset={{top:300}} onChange={this.change_background}>
-					<Row ref={this.row} style={{height: 850}} className="transition">
-						<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 2 : 1 }}
-							 className="d-flex justify-content-center align-items-center col-sm-push-6">
-							<GetModel model={this.props.model} black={this.props.black}/>
-						</Col>
-						<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
-							 className="d-flex justify-content-center align-items-center pr-0 quote-text">
-							<VisibilitySensor onChange={this.fade}>
-								<div ref={this.text} className='text quote animated' style={{animationDuration: "1s", opacity: 0 }}>
-									<p className="number">{ this.props.number }</p>
-									<div className="curly-quotes-wrapper">
-										<div className="curly-quotes">
-											<p className="info">{ this.props.text }</p>
-										</div>
+				<Row ref={this.row} style={{height: 850}} className="transition">
+					<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 2 : 1 }}
+						 className="d-flex justify-content-center align-items-center col-sm-push-6">
+						<GetModel model={this.props.model} black={this.props.black}/>
+					</Col>
+					<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
+						 className="d-flex justify-content-center align-items-center pr-0 quote-text">
+						<VisibilitySensor onChange={this.fade}>
+							<div ref={this.text} className='text quote animated' style={{animationDuration: "1s", opacity: 0 }}>
+								<p className="number">{ this.props.number }</p>
+								<div className="curly-quotes-wrapper">
+									<div className="curly-quotes">
+										<p className="info">{ this.props.text }</p>
 									</div>
-									<p className="name">{ this.props.name }</p>
 								</div>
-							</VisibilitySensor>
-						</Col>
-					</Row>
-				</VisibilitySensor>
+								<p className="name">{ this.props.name }</p>
+							</div>
+						</VisibilitySensor>
+					</Col>
+				</Row>
 			</Container>
 		);
 	}

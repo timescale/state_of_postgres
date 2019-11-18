@@ -1,6 +1,6 @@
 import React, { Component, Fragment} from 'react';
 import Fade  from 'react-reveal/Fade';
-
+import VisibilitySensor from 'react-visibility-sensor'
 import anime from "animejs";
 import {Container, Row, } from 'react-bootstrap'
 
@@ -12,9 +12,9 @@ class KeyFindings extends Component {
 		super(props);
 		this.animatedTextList = [];
 		this.animatedSectionList = [];
+		this.black_section = React.createRef();
 
 		this.animateText = this.animateText.bind(this);
-		this.changeDocumentBackground = this.changeDocumentBackground.bind(this);
 	}
 
 	componentDidMount() {
@@ -72,14 +72,11 @@ class KeyFindings extends Component {
 		});
 	}
 
-	changeDocumentBackground(v) {
-		if(v.inViewport){
-			document.body.classList.add("bg-dark");
+	change_background = (is_visible) => {
+		if(is_visible) {
+			this.black_section.current.classList.add('black')
 		}
-		else{
-			document.body.classList.remove("bg-dark");
-		}
-	}
+	};
 
 	render() {
 		return (
@@ -145,30 +142,32 @@ class KeyFindings extends Component {
 					<Section number={8} info={'The next closest cloud provider was GCP at 18%'}
 							 description={''} reverse={true}
 							 model="Swimming" />
+					<div ref={this.black_section} className="transition">
+						<VisibilitySensor onChange={this.change_background}>
+							<section className="section text-section">
+								<div className="container">
+									<div className="text-wrap">
+										<Fade bottom>
+											<p className="info info-title">What do folks think about SQL?</p>
+										</Fade>
+									</div>
+								</div>
+							</section>
+						</VisibilitySensor>
+						<QuoteSection number={9} text={'If a project was using a NoSQL database, I would fire the entire team, burn the code base, and start over.'}
+									  name={'- Anonymous'} reverse={false}
+									  model="Flame"/>
 
-					<section className="section text-section">
-						<div className="container">
-							<div className="text-wrap">
-								<Fade bottom>
-									<p className="info info-title">What do folks think about SQL?</p>
-								</Fade>
-							</div>
-						</div>
-					</section>
+						<QuoteSection number={10} text={'I never used it [NoSQL] because I was smart enough to smell the NoSQL bullsh*t early on.'}
+									  name={'- Anonymous'} reverse={true}
+									  model="Tail"/>
 
-					<QuoteSection number={9} text={'If a project was using a NoSQL database, I would fire the entire team, burn the code base, and start over.'}
-								  name={'- Anonymous'} reverse={false}
-								  model="Flame"
-								  black={true}/>
+						<QuoteSection number={11} text={'I used to work with a guy who liked to say MySQL is a TOY database. I concur; probably throw MongoDB in there.'}
+									  name={'- Anonymous'} reverse={true}
+									  model="Swimming" />
 
-					<QuoteSection number={10} text={'I never used it [NoSQL] because I was smart enough to smell the NoSQL bullsh*t early on.'}
-								  name={'- Anonymous'} reverse={true}
-								  model="Tail"
-								  black={true}/>
+					</div>
 
-					<QuoteSection number={11} text={'I used to work with a guy who liked to say MySQL is a TOY database. I concur; probably throw MongoDB in there.'}
-								  name={'- Anonymous'} reverse={true}
-								  model="Swimming" />
 					<EmailForm/>
 				</div>
 			</Fragment>
