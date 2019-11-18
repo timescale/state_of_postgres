@@ -102,7 +102,7 @@ let SmoothScroll = /** @class */ (function () {
         this.maxOffset = options.maxOffset != null ? options.maxOffset : 500;
         this.addItems();
         window.addEventListener("resize", this._onResize);
-        window.addEventListener("scroll", this._onScroll);
+        window.addEventListener("wheel", this._onScroll);
         this._update();
     }
     SmoothScroll.prototype.addItems = function () {
