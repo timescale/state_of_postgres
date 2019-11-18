@@ -477,7 +477,7 @@ class KeyFindings extends Component {
 			{
 				id: "16",
 				type: "bar_chart",
-				name: "Introduction",
+				name: "Rating",
 				question: "How would you rate your first experience with Postgres?",
 				info: null,
 				options: [
