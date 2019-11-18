@@ -21,9 +21,7 @@ class Model extends Component {
 
     onWindowResize() {
         if (this.camera && this.renderer) {
-            this.camera.aspect = window.innerWidth / window.innerHeight;
             this.camera.updateProjectionMatrix();
-            this.renderer.setSize( window.innerWidth, window.innerHeight );
         }
     }
 
@@ -102,6 +100,7 @@ class Model extends Component {
         } else {
             this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
         }
+        this.camera.updateProjectionMatrix()
 
 
         // let controls = new OrbitControls(this.camera, this.el );
@@ -139,7 +138,6 @@ class Model extends Component {
             //animation mesh
             // mesh.morphTargetInfluences[ 0 ] = Math.sin(delta) * 20.0;
         }
-        // this.camera.aspect = 1;
         // this.camera.updateProjectionMatrix();
         // this.renderer.setSize( 850, 850, 2 );
         this.renderer.render(this.scene, this.camera);
