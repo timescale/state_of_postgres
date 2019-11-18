@@ -118,7 +118,7 @@ class KeyFindings extends Component {
 							 model="Phone"/>
 
 					<Section number={5} info={'Only 9% have contributed code to Postgres...'}
-							 description={'That may not sound like much, but this is actually an impressive amount considering the hundreds of thousands of people using Postgres worldwide '} reverse={true} minTopValue={550} partialVisibility={true} show_info={true}
+							 description={'That may not sound like much, but this is actually an impressive amount considering the hundreds of thousands of people using Postgres worldwide '} reverse={true} minTopValue={window.innerHeight*0.7} partialVisibility={true} show_info={true}
 							 model="Flowers"/>
 
 					{/* 11-13 title Technology - Start */}
@@ -142,34 +142,35 @@ class KeyFindings extends Component {
 					<Section number={8} info={'The next closest cloud provider was GCP at 18%'}
 							 description={''} reverse={true}
 							 model="Swimming" />
-					<div ref={this.black_section} className="transition">
+					<VisibilitySensor minTopValue={window.innerHeight*0.9} partialVisibility={true} onChange={this.change_background}>
+						<div ref={this.black_section} className="transition">
 
-						<section className="section text-section">
-							<div className="container">
-								<VisibilitySensor onChange={this.change_background}>
+							<section className="section text-section">
+								<div className="container">
+
 									<div className="text-wrap">
 										<Fade bottom>
 											<p className="info info-title">What do folks think about SQL?</p>
 										</Fade>
 									</div>
-								</VisibilitySensor>
-							</div>
-						</section>
 
-						<QuoteSection number={9} text={'If a project was using a NoSQL database, I would fire the entire team, burn the code base, and start over.'}
-									  name={'- Anonymous'} reverse={false}
-									  model="Flame"/>
+								</div>
+							</section>
 
-						<QuoteSection number={10} text={'I never used it [NoSQL] because I was smart enough to smell the NoSQL bullsh*t early on.'}
-									  name={'- Anonymous'} reverse={true}
-									  model="Tail"/>
+							<QuoteSection number={9} text={'If a project was using a NoSQL database, I would fire the entire team, burn the code base, and start over.'}
+										  name={'- Anonymous'} reverse={false}
+										  model="Flame"/>
 
-						<QuoteSection number={11} text={'I used to work with a guy who liked to say MySQL is a TOY database. I concur; probably throw MongoDB in there.'}
-									  name={'- Anonymous'} reverse={true}
-									  model="Swimming" />
+							<QuoteSection number={10} text={'I never used it [NoSQL] because I was smart enough to smell the NoSQL bullsh*t early on.'}
+										  name={'- Anonymous'} reverse={true}
+										  model="Tail"/>
 
-					</div>
+							<QuoteSection number={11} text={'I used to work with a guy who liked to say MySQL is a TOY database. I concur; probably throw MongoDB in there.'}
+										  name={'- Anonymous'} reverse={true}
+										  model="Swimming" />
 
+						</div>
+					</VisibilitySensor>
 					<EmailForm/>
 				</div>
 			</Fragment>

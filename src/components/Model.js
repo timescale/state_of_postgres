@@ -199,7 +199,7 @@ class Phone extends Drone {
 class Flowers extends Model {
     constructor(props) {
         super(props);
-        this.minTopValue = 550;
+        this.minTopValue = window.innerHeight*0.7;
         this.state = {
             file: flowers,
             loopOnce: true,
