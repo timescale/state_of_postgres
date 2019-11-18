@@ -143,17 +143,19 @@ class KeyFindings extends Component {
 							 description={''} reverse={true}
 							 model="Swimming" />
 					<div ref={this.black_section} className="transition">
-						<VisibilitySensor onChange={this.change_background}>
-							<section className="section text-section">
-								<div className="container">
+
+						<section className="section text-section">
+							<div className="container">
+								<VisibilitySensor onChange={this.change_background}>
 									<div className="text-wrap">
 										<Fade bottom>
 											<p className="info info-title">What do folks think about SQL?</p>
 										</Fade>
 									</div>
-								</div>
-							</section>
-						</VisibilitySensor>
+								</VisibilitySensor>
+							</div>
+						</section>
+
 						<QuoteSection number={9} text={'If a project was using a NoSQL database, I would fire the entire team, burn the code base, and start over.'}
 									  name={'- Anonymous'} reverse={false}
 									  model="Flame"/>
