@@ -30,8 +30,8 @@ class KeyFindings extends Component {
 
 		this.animateText();
 		this.SmoothScroll = new SmoothScroll({
-		  target: document.querySelector(".main-wrap"), // element container to scroll
-		  scrollEase: 0.05,
+			target: document.querySelector(".main-wrap"), // element container to scroll
+			scrollEase: 0.05,
 		});
 	}
 
@@ -79,15 +79,20 @@ class KeyFindings extends Component {
 	}
 
 	change_background = (is_visible) => {
+		if (!this.black_section.current) {
+			return
+		}
 		if(is_visible) {
 			this.black_section.current.classList.add('black')
+		} else {
+			this.black_section.current.classList.remove('black')
 		}
 	};
 
 	render() {
 		return (
 			<Fragment>
-				<div id="key">
+				<div id="key" className="transition" ref={this.black_section}>
 					{/* Intro - Start */}
 					<section className="section intro">
 						<Container>
@@ -149,8 +154,7 @@ class KeyFindings extends Component {
 							 description={''} reverse={true}
 							 model="Swimming" />
 					<VisibilitySensor minTopValue={window.innerHeight*0.9} partialVisibility={true} onChange={this.change_background}>
-						<div ref={this.black_section} className="transition">
-
+						<div>
 							<section className="section text-section">
 								<div className="container">
 
@@ -174,10 +178,10 @@ class KeyFindings extends Component {
 							<QuoteSection number={11} text={'I used to work with a guy who liked to say MySQL is a TOY database. I concur; probably throw MongoDB in there.'}
 										  name={'- Anonymous'} reverse={true}
 										  model="Swimming" />
-
+							<EmailForm/>
 						</div>
+
 					</VisibilitySensor>
-					<EmailForm/>
 				</div>
 			</Fragment>
 		);
