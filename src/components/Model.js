@@ -1,9 +1,9 @@
-import React, { Component} from 'react';
+import React, {Component} from 'react';
 // import Reveal from 'react-reveal/Reveal';
 // import AOS from 'aos';
 import VisibilitySensor from 'react-visibility-sensor'
 import * as THREE from 'three'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 import drone from './models/drone.glb'
 import phone from './models/phone.glb'
 import flowers from './models/flowers.glb'
@@ -12,6 +12,10 @@ import swimming from './models/swimming_full.glb'
 import flame from './models/flame.glb'
 import tail from './models/tail_wag.glb'
 import circuit from './models/circuit.glb'
+import {Water} from './models/Water.js';
+import {Sky} from './models/Sky.js';
+import water_texture from './models/waternormals.jpg'
+
 import { OrbitControls } from './models/orbit.js';
 
 class Model extends Component {
@@ -226,30 +230,93 @@ class Swimming extends Model {
         super.get_render();
         this.renderer.antialias = true;
         this.renderer.autoClear = false;
+        this.add_water();
     }
 
     get_camera() {
         this.camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
-        this.camera.position.set( 30, -1, 600 );
+        this.camera.position.set( 30, 90, 600 );
+        this.camera.rotation.z =  180 * Math.PI / 180;
         // let controls = new OrbitControls(this.camera, this.el );
         // controls.maxPolarAngle = Math.PI * 0.9;
-        // controls.target.set( 0, 10, 0 );
-        // controls.minDistance = 40.0;
-        // controls.maxDistance = 200.0;
+
         // controls.update();
+        this.camera.updateProjectionMatrix();
+
     };
     get_scene() {
-        this.gltf.scene.position.y = -150;
         super.get_scene();
         this.scene.matrixAutoUpdate = false;
-        this.add_water();
+    }
+
+
+    get_light() {
+        this.light = new THREE.DirectionalLight( 0x4E8BEA, 2 );
+        this.scene.add( this.light );
     }
 
     add_water() {
 
+        this.light = new THREE.DirectionalLight( 0x4E8BEA, 0.8 );
+        this.scene.add( this.light );
+        let flip = new THREE.Matrix4().makeScale(1,-1,1);
+        let mesh = this.scene.children[0].children[0];
+        mesh.applyMatrix(flip);
+        mesh.position.y = 150;
+
+        let waterGeometry = new THREE.PlaneBufferGeometry( 10000, 5000 );
+        this.water = new Water(
+            waterGeometry,
+            {
+                textureWidth: 512,
+                textureHeight: 512,
+                waterNormals: new THREE.TextureLoader().load( water_texture, function ( texture ) {
+                    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+                } ),
+                alpha: 0.9,
+                sunDirection: this.light.position.clone().normalize(),
+                sunColor: 0xffffff,
+                waterColor: 0x4E8BEA,
+                distortionScale: 3.7,
+                fog: this.scene.fog !== undefined
+            }
+        );
+        this.water.rotation.x = - Math.PI / 2;
+        this.scene.add( this.water );
+        // Skybox
+        this.sky = new Sky();
+        this.uniforms = this.sky.material.uniforms;
+        this.uniforms[ 'turbidity' ].value = 0.1;
+        this.uniforms[ 'rayleigh' ].value = 0.1;
+        this.uniforms[ 'luminance' ].value = 0.1;
+        this.uniforms[ 'mieCoefficient' ].value = 1.005;
+        this.uniforms[ 'mieDirectionalG' ].value = 0.8;
+        let parameters = {
+            distance: 400,
+            inclination: 0.49,
+            azimuth: 0.205
+        };
+        this.cubeCamera = new THREE.CubeCamera( 0.1, 1, 512 );
+        this.cubeCamera.renderTarget.texture.generateMipmaps = true;
+        this.cubeCamera.renderTarget.texture.minFilter = THREE.LinearMipmapLinearFilter;
+        this.scene.background = this.cubeCamera.renderTarget;
+        let updateSun = () => {
+            let theta = Math.PI * ( parameters.inclination - 0.5 );
+            let phi = 2 * Math.PI * ( parameters.azimuth - 0.5 );
+            this.light.position.x = parameters.distance * Math.cos( phi ) + 15;
+            this.light.position.y = parameters.distance * Math.sin( phi ) * Math.sin( theta ) - 26;
+            this.light.position.z = parameters.distance * Math.sin( phi ) * Math.cos( theta );
+            this.sky.material.uniforms[ 'sunPosition' ].value = this.light.position.copy( this.light.position );
+            this.water.material.uniforms[ 'sunDirection' ].value.copy( this.light.position ).normalize();
+            this.cubeCamera.update( this.renderer, this.sky );
+        }
+        updateSun();
     }
-    animate() {
-        // this.water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
+    animate = () => {
+        this.time = performance.now() * 0.001;
+        if (this.water) {
+            this.water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
+        }
         super.animate();
     }
 }
@@ -274,5 +341,7 @@ class Circuit extends Model {
         this.state = {file: circuit}
     }
 }
+
+
 
 export {Model, Drone, Phone, Flowers, Teamwork, Swimming, Flame, Tail, Circuit};
