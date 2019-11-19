@@ -644,67 +644,67 @@ class KeyFindings extends Component {
 					}
 				]
 			},
-			{
-				id: "21",
-				type: "circle_chart",
-				name: "Advantages",
-				question: "What is the biggest advantage to working with Postgres?",
-				info: "(This was an open-ended question)",
-				options: [
-					{
-						id: "21_1",
-						title: "Open Source",
-						type: "single_option",
-						backgroundPattern: "pattern-left",
-						percentage: 62
-					},
-					{
-						id: "21_2",
-						title: "Active Community",
-						type: "single_option",
-						backgroundPattern: "pattern-left",
-						percentage: 53
-					},
-					{
-						id: "21_3",
-						title: "SQL",
-						type: "single_option",
-						backgroundPattern: "pattern-left",
-						percentage: 45
-					},
-					{
-						id: "21_4",
-						title: "Flexibility",
-						type: "single_option",
-						backgroundPattern: "pattern-right",
-						percentage: 49
-					},
-					{
-						id: "21_5",
-						title: "Other",
-						type: "multiple_options",
-						backgroundPattern: "pattern-right",
-						percentage: 18,
-						options: [
-							{	
-								id: "21_5_1",
-								title: "Option 1",
-								percentage: 10
-							},
-							{
-								id: "21_5_2",
-								title: "Option 2",
-								percentage: 5
-							},
-							{
-								id: "21_5_3",
-								title: "Option 3",
-								percentage: 3
-							}
-						]
-					}
-				]
-			},
+			// {
+			// 	id: "21",
+			// 	type: "circle_chart",
+			// 	name: "Advantages",
+			// 	question: "What is the biggest advantage to working with Postgres?",
+			// 	info: "(This was an open-ended question)",
+			// 	options: [
+			// 		{
+			// 			id: "21_1",
+			// 			title: "Open Source",
+			// 			type: "single_option",
+			// 			backgroundPattern: "pattern-left",
+			// 			percentage: 62
+			// 		},
+			// 		{
+			// 			id: "21_2",
+			// 			title: "Active Community",
+			// 			type: "single_option",
+			// 			backgroundPattern: "pattern-left",
+			// 			percentage: 53
+			// 		},
+			// 		{
+			// 			id: "21_3",
+			// 			title: "SQL",
+			// 			type: "single_option",
+			// 			backgroundPattern: "pattern-left",
+			// 			percentage: 45
+			// 		},
+			// 		{
+			// 			id: "21_4",
+			// 			title: "Flexibility",
+			// 			type: "single_option",
+			// 			backgroundPattern: "pattern-right",
+			// 			percentage: 49
+			// 		},
+			// 		{
+			// 			id: "21_5",
+			// 			title: "Other",
+			// 			type: "multiple_options",
+			// 			backgroundPattern: "pattern-right",
+			// 			percentage: 18,
+			// 			options: [
+			// 				{
+			// 					id: "21_5_1",
+			// 					title: "Option 1",
+			// 					percentage: 10
+			// 				},
+			// 				{
+			// 					id: "21_5_2",
+			// 					title: "Option 2",
+			// 					percentage: 5
+			// 				},
+			// 				{
+			// 					id: "21_5_3",
+			// 					title: "Option 3",
+			// 					percentage: 3
+			// 				}
+			// 			]
+			// 		}
+			// 	]
+			// },
 		];
 
 		this.state = {
