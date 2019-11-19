@@ -121,7 +121,7 @@ class EmailForm extends Component {
 				<Row style={{height: 850}} className={this.props.black ? 'black' : '' }>
 					<Col sm={{ span: 12 }} md={{ span: 5, offset: 4 }}
 						 className="d-flex justify-content-center">
-						<div class="footer">
+						<div className="footer">
 							<div className='text1'>
 								Like postgres?
 							</div>

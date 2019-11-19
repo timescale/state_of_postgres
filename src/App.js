@@ -46,10 +46,7 @@ class App extends Component {
 	    		this.currentLocation = location.pathname;
 			}
 	    });
-		new SmoothScroll({
-		  target: document.querySelector(".main-wrap"), // element container to scroll
-		  scrollEase: 0.05,
-		});
+
 
 		if (!this.header_moved) {
 			// the smooth scroll breaks fixed elements in the main div. this is a hack to move them out.

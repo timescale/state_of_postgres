@@ -103,8 +103,15 @@ let SmoothScroll = /** @class */ (function () {
         this.addItems();
         window.addEventListener("resize", this._onResize);
         window.addEventListener("wheel", this._onScroll);
+
+        this.deactivate = () => {
+            window.removeEventListener("resize", this._onResize);
+            window.removeEventListener("wheel", this._onScroll);
+            cancelAnimationFrame(this.requestId)
+        };
         this._update();
     }
+
     SmoothScroll.prototype.addItems = function () {
         this.scrollItems = [];
         var elements = document.querySelectorAll("*[data-depth]");

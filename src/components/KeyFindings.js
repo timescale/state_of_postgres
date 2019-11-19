@@ -5,6 +5,7 @@ import anime from "animejs";
 import {Container, Row, } from 'react-bootstrap'
 
 import {Section, QuoteSection, EmailForm} from "./Section";
+import SmoothScroll from "./SmoothScroll";
 
 class KeyFindings extends Component {
 
@@ -28,10 +29,15 @@ class KeyFindings extends Component {
 		window.addEventListener("scroll", this.animateText, false);
 
 		this.animateText();
+		this.SmoothScroll = new SmoothScroll({
+		  target: document.querySelector(".main-wrap"), // element container to scroll
+		  scrollEase: 0.05,
+		});
 	}
 
 	componentWillUnmount() {
 		window.removeEventListener("scroll", this.animateText, false);
+		this.SmoothScroll.deactivate()
 	}
 
 	animateText() {
