@@ -76,7 +76,9 @@ class Model extends Component {
         });
 
         // this.renderer.setSize(window.innerWidth/2, window.innerHeight/2, true);
-        this.renderer.setSize(window.innerWidth/2, window.innerHeight/2, true);
+        let width = Math.max(window.innerWidth, window.innerHeight);
+        let height = Math.min(window.innerWidth, window.innerHeight);
+        this.renderer.setSize(width/2, height/2, true);
         this.renderer.setPixelRatio(2);
         this.renderer.render(this.scene, this.camera);
     };
@@ -132,6 +134,7 @@ class Model extends Component {
         }
         this.animation_id = requestAnimationFrame(()=>this.animate());
         this.delta++;
+
         if (this.mixer) {
             // this.mesh.rotation.y += 0.01;
             this.mixer.update(this.clock.getDelta());
