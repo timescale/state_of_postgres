@@ -11,8 +11,6 @@ class KeyFindings extends Component {
 
 	constructor(props) {
 		super(props);
-		this.animatedTextList = [];
-		this.animatedSectionList = [];
 		this.black_section = React.createRef();
 	}
 
