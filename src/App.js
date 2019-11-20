@@ -29,7 +29,8 @@ class App extends Component {
 		this.currentLocation = "";
 
 		this.state = {
-			headerIsVisible: true
+			headerIsVisible: true,
+			black: false
 		};
 
 		this.toggleHeader = this.toggleHeader.bind(this);
@@ -96,13 +97,22 @@ class App extends Component {
 		}
 	}
 
+	change_nav_background = (value) => {
+		this.setState({
+			black: value
+		})
+	}
+
 	render(){
 		return (
 
 			<div className="main-wrap">
 					<ScrollToTop />
 
-					<header className={"header" + (this.state.headerIsVisible ? " header-visible" : " header-hidden")} ref={this.header}>
+					<header className={"transition header" +
+					(this.state.headerIsVisible ? " header-visible" : " header-hidden") +
+					(this.state.black ? " black" : "")
+					} ref={this.header}>
 						<ul className="menu">
 							<li>
 								<NavLink to="/">
@@ -125,7 +135,7 @@ class App extends Component {
 								<FullResults />
 							</Route>
 							<Route path="/" exact>
-								<KeyFindings />
+								<KeyFindings change_nav_background={this.change_nav_background} />
 							</Route>
 						</Switch>
 

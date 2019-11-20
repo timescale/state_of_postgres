@@ -29,7 +29,7 @@ class KeyFindings extends Component {
 					{
 						id: "1_3",
 						title: "South America",
-						percentage: 9
+						percentage: 10
 					},
 					{
 						id: "1_4",
@@ -58,17 +58,17 @@ class KeyFindings extends Component {
 					{
 						id: "2_3",
 						title: "20+ years",
-						percentage: 20
+						percentage: 21
 					},
 					{
 						id: "2_4",
 						title: "15-20 years",
-						percentage: 16
+						percentage: 17
 					},
 					{
 						id: "2_5",
 						title: "0-5 years",
-						percentage: 15
+						percentage: 116
 					}
 				]
 			},
@@ -82,7 +82,7 @@ class KeyFindings extends Component {
 					{
 						id: "3_1",
 						title: "Software developer/engineer",
-						percentage: 47
+						percentage: 48
 					},
 					{
 						id: "3_2",
@@ -96,7 +96,7 @@ class KeyFindings extends Component {
 					},
 					{
 						id: "3_4",
-						title: "Information technologies / systems engineer",
+						title: "Information technologies/systems engineer",
 						percentage: 6
 					},
 					{
@@ -109,14 +109,14 @@ class KeyFindings extends Component {
 			{
 				id: "4",
 				type: "bar_chart",
-				name: "Use at home",
+				name: "Personal",
 				question: "Do you use Postgres for personal projects?",
 				info: null,
 				options: [
 					{
 						id: "4_1",
 						title: "Yes",
-						percentage: 80
+						percentage: 81
 					},
 					{
 						id: "4_2",
@@ -128,7 +128,7 @@ class KeyFindings extends Component {
 			{
 				id: "5",
 				type: "bar_chart",
-				name: "Use at work",
+				name: "Work",
 				question: "Do you use Postgres at work?",
 				info: null,
 				options: [
@@ -154,12 +154,12 @@ class KeyFindings extends Component {
 					{
 						id: "6_1",
 						title: "Software",
-						percentage: 49
+						percentage: 50
 					},
 					{
 						id: "6_2",
 						title: "Finance",
-						percentage: 8
+						percentage: 9
 					},
 					{
 						id: "6_3",
@@ -169,11 +169,16 @@ class KeyFindings extends Component {
 					{
 						id: "6_4",
 						title: "IoT",
-						percentage: 6
+						percentage: 7
 					},
 					{
 						id: "6_5",
-						title: "Healthcare/ Pharmacuticals",
+						title: "Healthcare/Pharmacuticals",
+						percentage: 5
+					},
+					{
+						id: "6_6",
+						title: "Telecommunications",
 						percentage: 5
 					}
 				]
@@ -216,7 +221,7 @@ class KeyFindings extends Component {
 				id: "8",
 				type: "bar_chart",
 				name: "Company size",
-				question: "How many total employees are in your organization?",
+				question: "How many total employees are on your organization?",
 				info: null,
 				options: [
 					{
@@ -233,6 +238,11 @@ class KeyFindings extends Component {
 						id: "8_3",
 						title: "100-500",
 						percentage: 16
+					},
+					{
+						id: "8_4",
+						title: "5,000+",
+						percentage: 10
 					},
 					{
 						id: "8_4",
@@ -256,7 +266,7 @@ class KeyFindings extends Component {
 					{
 						id: "9_1",
 						title: "2-10",
-						percentage: 72
+						percentage: 73
 					},
 					{
 						id: "9_2",
@@ -266,7 +276,7 @@ class KeyFindings extends Component {
 					{
 						id: "9_3",
 						title: "Just me",
-						percentage: 8
+						percentage: 9
 					},
 					{
 						id: "9_4",
@@ -276,7 +286,7 @@ class KeyFindings extends Component {
 					{
 						id: "9_5",
 						title: "50+",
-						percentage: 1
+						percentage: 2
 					}
 				]
 			},
@@ -284,13 +294,13 @@ class KeyFindings extends Component {
 				id: "10",
 				type: "bar_chart",
 				name: "Use case",
-				question: "How would you classify your use case?",
+				question: "How did you first hear about Postgres?",
 				info: null,
 				options: [
 					{
 						id: "10_1",
 						title: "Work or colleague",
-						percentage: 41
+						percentage: 42
 					},
 					{
 						id: "10_2",
@@ -311,20 +321,25 @@ class KeyFindings extends Component {
 						id: "10_5",
 						title: "Postgres community",
 						percentage: 10
+					},
+					{
+						id: "10_6",
+						title: "Other",
+						percentage: 5
 					}
 				]
 			},
 			{
 				id: "11",
 				type: "bar_chart",
-				name: "Introduction",
-				question: "How did you first find out about Postgres?",
+				name: "First encounter",
+				question: "How would you classify your use case?",
 				info: "(Respondents could pick as many answers as they wanted)",
 				options: [
 					{
 						id: "11_1",
 						title: "App development",
-						percentage: 69
+						percentage: 70
 					},
 					{
 						id: "11_2",
@@ -334,7 +349,7 @@ class KeyFindings extends Component {
 					{
 						id: "11_3",
 						title: "Monitoring",
-						percentage: 29
+						percentage: 30
 					},
 					{
 						id: "11_4",
@@ -358,7 +373,7 @@ class KeyFindings extends Component {
 					{
 						id: "12_1",
 						title: "More",
-						percentage: 46
+						percentage: 47
 					},
 					{
 						id: "12_2",
@@ -368,7 +383,7 @@ class KeyFindings extends Component {
 					{
 						id: "12_3",
 						title: "A lot more",
-						percentage: 19
+						percentage: 20
 					},
 					{
 						id: "12_4",
@@ -385,19 +400,19 @@ class KeyFindings extends Component {
 			{
 				id: "13",
 				type: "bar_chart",
-				name: "How long",
+				name: "Duration",
 				question: "How long have you been using Postgres?",
 				info: null,
 				options: [
 					{
 						id: "13_1",
 						title: "2-5 years",
-						percentage: 28
+						percentage: 29
 					},
 					{
 						id: "13_2",
 						title: "5-10 years",
-						percentage: 28
+						percentage: 29
 					},
 					{
 						id: "13_3",
@@ -426,7 +441,7 @@ class KeyFindings extends Component {
 					{
 						id: "14_1",
 						title: "No",
-						percentage: 90
+						percentage: 91
 					},
 					{
 						id: "14_2",
@@ -445,7 +460,7 @@ class KeyFindings extends Component {
 				type: "bar_chart",
 				name: "Meet ups",
 				question: "What Postgres events do you go to?",
-				info: null,
+				info: "A small percentage of respondents reported to attend PGConf in South Africa, Postgres Vision, PGConf in Asia, or another conference.",
 				options: [
 					{
 						id: "15_1",
@@ -455,7 +470,7 @@ class KeyFindings extends Component {
 					{
 						id: "15_2",
 						title: "Meetups involving Postgres",
-						percentage: 18
+						percentage: 19
 					},
 					{
 						id: "15_3",
@@ -477,7 +492,7 @@ class KeyFindings extends Component {
 			{
 				id: "16",
 				type: "bar_chart",
-				name: "Rating",
+				name: "Onboarding",
 				question: "How would you rate your first experience with Postgres?",
 				info: null,
 				options: [
@@ -489,12 +504,12 @@ class KeyFindings extends Component {
 					{
 						id: "16_2",
 						title: "Medium",
-						percentage: 30
+						percentage: 31
 					},
 					{
 						id: "16_3",
 						title: "Extremely easy",
-						percentage: 12
+						percentage: 13
 					},
 					{
 						id: "16_4",
@@ -504,7 +519,7 @@ class KeyFindings extends Component {
 					{
 						id: "16_5",
 						title: "Very difficult",
-						percentage: 1
+						percentage: 2
 					}
 				]
 			},
@@ -518,12 +533,12 @@ class KeyFindings extends Component {
 					{
 						id: "17_1",
 						title: "Self-managed in a private data center",
-						percentage: 45
+						percentage: 46
 					},
 					{
 						id: "17_2",
 						title: "Self-managed on-site",
-						percentage: 40
+						percentage: 41
 					},
 					{
 						id: "17_3",

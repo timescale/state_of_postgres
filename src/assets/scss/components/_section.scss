@@ -86,18 +86,18 @@
 	color: #84775c;
 }
 
-.transition {
+.transition.black {
     transition: background-color 1s ease;
 
-	.info, .text.quote .name, .number {
+	.info, .text.quote, .name, .number {
         transition: color 1s ease;
 	}
 }
 
 .black{
-    background-color: #080808;
-    .info, .text.quote .name, .number {
-        color: #FBFBFB;
+    background-color: #080808!important;
+    .info, .text.quote, .name, .number, a:not(.active) {
+        color: #FBFBFB!important;
 	}
 }
 

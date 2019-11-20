@@ -38,6 +38,7 @@ class KeyFindings extends Component {
 	componentWillUnmount() {
 		window.removeEventListener("scroll", this.animateText, false);
 		this.SmoothScroll.deactivate()
+		this.props.change_nav_background(false);
 	}
 
 	animateText() {
@@ -83,9 +84,11 @@ class KeyFindings extends Component {
 			return
 		}
 		if(is_visible) {
-			this.black_section.current.classList.add('black')
+			this.black_section.current.classList.add('black');
+			this.props.change_nav_background(true);
 		} else {
-			this.black_section.current.classList.remove('black')
+			this.black_section.current.classList.remove('black');
+			this.props.change_nav_background(false);
 		}
 	};
 
@@ -112,8 +115,8 @@ class KeyFindings extends Component {
 					</section>
 					{/* Intro - End */}
 
-					<Section number={1} info={'26% of respondents have been using Postgres for more than 10 yrs.'}
-							 description={'The postgres community is committed.'} reverse={true}
+					<Section number={1} info={'26% of respondents have been using Postgres for more than 10 years.'}
+							 description={'The Postgres community is committed.'} reverse={true}
 							 model="Drone"/>
 
 					<Section number={2} info={'66% said they’re using Postgres more than they have in the past.'}
@@ -121,15 +124,15 @@ class KeyFindings extends Component {
 							 model="Drone"/>
 
 					<Section number={3} info={'Postgres isn’t just for work. Over 80% of respondents use it for personal projects.'}
-							 description={'Like Raspberry Pi.'} reverse={true}
+							 description={'Like running a demo on a Raspberry Pi.'} reverse={true}
 							 model="Circuit"/>
 
 					<Section number={4} info={'About 70% of all respondents use Postgres for app development.'}
-							 description={'And 30% report using it for real-time analytics, dashboarding, and monitoring'} reverse={true}
+							 description={'And 30% report using it for real-time analytics, dashboarding, and monitoring.'} reverse={true}
 							 model="Phone"/>
 
 					<Section number={5} info={'Only 9% have contributed code to Postgres...'}
-							 description={'That may not sound like much, but this is actually an impressive amount considering the hundreds of thousands of people using Postgres worldwide '} reverse={true} minTopValue={window.innerHeight*0.7} partialVisibility={true} show_info={true}
+							 description={'That may not sound like much, but this is actually an impressive amount considering the hundreds of thousands of people using Postgres worldwide.'} reverse={true} minTopValue={window.innerHeight*0.7} partialVisibility={true} show_info={true}
 							 model="Flowers"/>
 
 					{/* 11-13 title Technology - Start */}
@@ -160,7 +163,7 @@ class KeyFindings extends Component {
 
 									<div className="text-wrap">
 										<Fade bottom>
-											<p className="info info-title">What do folks think about SQL?</p>
+											<p className="info info-title">What do folks think about NoSQL?</p>
 										</Fade>
 									</div>
 
