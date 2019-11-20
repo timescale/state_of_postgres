@@ -43,17 +43,20 @@ class App extends Component {
 
 		this.props.history.listen((location, action) => {
 			if(this.currentLocation !== location.pathname){
-	    		window.scrollTo(0, 0)
-	    		this.currentLocation = location.pathname;
+				window.scrollTo(0, 0)
+				this.currentLocation = location.pathname;
 			}
-	    });
+		});
 
 
 		if (!this.header_moved) {
 			// the smooth scroll breaks fixed elements in the main div. this is a hack to move them out.
-            document.querySelector('body').appendChild(document.querySelector('header'));
-            this.header_moved = true;
-        }
+			document.querySelector('body').appendChild(document.querySelector('header'));
+			this.header_moved = true;
+		}
+
+		new SmoothScroll('.scroll_container')
+		document.querySelector('.scroll_container').style.width = `100%`;
 	}
 
 	componentWillUnmount() {
@@ -105,43 +108,42 @@ class App extends Component {
 
 	render(){
 		return (
-
 			<div className="main-wrap">
-					<ScrollToTop />
-
-					<header className={"transition header" +
-					(this.state.headerIsVisible ? " header-visible" : " header-hidden") +
-					(this.state.black ? " black" : "")
-					} ref={this.header}>
-						<ul className="menu">
-							<li>
-								<NavLink to="/">
-									Key findings
-								</NavLink>
-							</li>
-							<li>
-								<NavLink to="/full_results">
-									Full Results
-								</NavLink>
-							</li>
-						</ul>
-					</header>
-
-					{/* Main content - Start  */}
-					<main id="main">
-
-						<Switch>
-							<Route path="/full_results">
-								<FullResults />
-							</Route>
-							<Route path="/" exact>
-								<KeyFindings change_nav_background={this.change_nav_background} />
-							</Route>
-						</Switch>
-
-					</main>
-					{/* Main content - End  */}
-
+				<ScrollToTop />
+				<div className="scroll_container">
+					<div className="scroll_container__body">
+						<header className={"transition header" +
+						(this.state.headerIsVisible ? " header-visible" : " header-hidden") +
+						(this.state.black ? " black" : "")
+						} ref={this.header}>
+							<ul className="menu">
+								<li>
+									<NavLink to="/">
+										Key findings
+									</NavLink>
+								</li>
+								<li>
+									<NavLink to="/full_results">
+										Full Results
+									</NavLink>
+								</li>
+							</ul>
+						</header>
+						{/* Main content - Start  */}
+						<main id="main">
+							<Switch>
+								<Route path="/full_results">
+									<FullResults />
+								</Route>
+								<Route path="/" exact>
+									<KeyFindings change_nav_background={this.change_nav_background} />
+								</Route>
+							</Switch>
+						</main>
+						{/* Main content - End  */}
+					</div>
+					<div className="scroll_container--hitbox"/>
+				</div>
 			</div>
 
 		);

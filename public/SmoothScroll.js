@@ -9,21 +9,17 @@ class SmoothScroll {
         }
 
         // Init params
-        let offsetHeight = this.$.containerBody.offsetHeight
         this.params = {
-            containerHeight: offsetHeight,
+            containerHeight: 1000,
             duration: 1000,
             timingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)',
-        };
-        this.$.containerBody.parentElement.parentElement.style.height = `${offsetHeight}px`;
-
+        }
 
         // Launch init functions
         document.addEventListener('DOMContentLoaded', () => {
             this._initStyle()
             this._initListeners()
         })
-
     }
 
     _initStyle() {
@@ -93,4 +89,9 @@ class SmoothScroll {
     }
 }
 
-export default SmoothScroll
+const params = {
+  duration: 1000,
+  timingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)'
+}
+
+new SmoothScroll('.container', params)

@@ -5,7 +5,7 @@ import anime from "animejs";
 import {Container, Row, } from 'react-bootstrap'
 
 import {Section, QuoteSection, EmailForm} from "./Section";
-import SmoothScroll from "./SmoothScroll";
+
 
 class KeyFindings extends Component {
 
@@ -14,69 +14,14 @@ class KeyFindings extends Component {
 		this.animatedTextList = [];
 		this.animatedSectionList = [];
 		this.black_section = React.createRef();
-
-		this.animateText = this.animateText.bind(this);
 	}
 
 	componentDidMount() {
-
-		this.animatedSectionList.push(document.querySelectorAll(".anim-sect"));
-		this.animatedTextList.push(document.querySelectorAll(".animate-text"));
-		this.animatedTextList[0].forEach(function(element, index) {
-			element.innerHTML = element.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-		});
-
 		window.addEventListener("scroll", this.animateText, false);
-
-		this.animateText();
-		this.SmoothScroll = new SmoothScroll({
-			target: document.querySelector(".main-wrap"), // element container to scroll
-			scrollEase: 0.05,
-		});
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener("scroll", this.animateText, false);
-		this.SmoothScroll.deactivate()
 		this.props.change_nav_background(false);
-	}
-
-	animateText() {
-
-		this.animatedSectionList[0].forEach(function(element, index) {
-
-			let elHeight = element.clientHeight;
-			let elTop = element.offsetTop;
-			let elBottom = element.offsetTop + elHeight;
-
-			let windowTop = window.pageYOffset;
-			let windowBottom = window.pageYOffset + window.outerHeight;
-
-			if(windowTop > (elTop - elHeight/2) && windowBottom < (elBottom + elHeight/2)){
-				element.classList.add("visible");
-			}
-			else{
-				element.classList.remove("visible");
-			}
-		});
-
-		this.animatedTextList[0].forEach(function(element, index) {
-			setTimeout(function(){
-				if(element.parentNode.classList.contains("animateText") && !element.parentNode.classList.contains("completed")){
-					element.parentNode.classList.add("completed");
-					anime.timeline({loop: false}).add({
-						targets: element.children,
-						opacity: [0,1],
-						translateZ: 0,
-						easing: "easeOutExpo",
-						duration: 800,
-						delay: (function (el, i) {
-							return 40 * i;
-						})
-					});
-				}
-			}, 100);
-		});
 	}
 
 	change_background = (is_visible) => {

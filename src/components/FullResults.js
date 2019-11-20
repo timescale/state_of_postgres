@@ -245,12 +245,12 @@ class KeyFindings extends Component {
 						percentage: 10
 					},
 					{
-						id: "8_4",
+						id: "8_5",
 						title: "1,000-5,000",
 						percentage: 9
 					},
 					{
-						id: "8_5",
+						id: "8_6",
 						title: "50-100",
 						percentage: 8
 					}
@@ -728,23 +728,13 @@ class KeyFindings extends Component {
 
 		this.toggleOtherOptions = this.toggleOtherOptions.bind(this);
 	}
-    componentDidMount() {
-	    // move question-list because it doesn't work with the smooth scrolling
-		this.navBarNode = document.querySelector('.question-list');
-		let bodyNode = document.querySelector('body');
-		this.navBarNode.removeAttribute('hidden');
-		let has_node = bodyNode.childNodes.forEach(child => {
-			if (child.classList && child.classList.contains('question-list')) {
-				return true
-			}
-		});
-        if (!has_node) {
-            bodyNode.appendChild(this.navBarNode);
-        }
+    componentDidUpdate() {
+		let offsetHeight = document.querySelector('#main').offsetHeight;
+		document.querySelector('.main-wrap').style.height = `${offsetHeight}px`;
     }
 
     componentWillUnmount() {
-	    this.navBarNode.setAttribute('hidden', true)
+
     }
 	toggleOtherOptions() {
 		this.setState((prevState) => ({
@@ -866,27 +856,6 @@ class KeyFindings extends Component {
 						})
 					}
 
-					<div className="question-list">
-						<ul>
-							{
-								this.questions.map((question, index) => {
-									return (
-										<li key={question.name}>
-											<Link
-												to={'question' + question.id}
-												activeClass="active"
-												spy={true}
-												smooth={true}
-												offset={-20}
-												duration={500}>
-													{question.name}
-											</Link>
-										</li>
-									)
-								})
-							}
-						</ul>
-					</div>
 				</div>
 
 			</Fragment>
