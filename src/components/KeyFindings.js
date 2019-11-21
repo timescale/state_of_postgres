@@ -83,7 +83,7 @@ class KeyFindings extends Component {
 						<div className="container">
 							<div className="text-wrap">
 								<Fade bottom>
-									<p className="info info-title">Deployment</p>
+									<p className="info info-title">How they deploy</p>
 								</Fade>
 							</div>
 						</div>

@@ -68,7 +68,7 @@ class KeyFindings extends Component {
                     {
                         id: "2_5",
                         title: "0-5 years",
-                        percentage: 116
+                        percentage: 16
                     }
                 ]
             },
@@ -149,7 +149,7 @@ class KeyFindings extends Component {
                 type: "bar_chart",
                 name: "Industry",
                 question: "Which best describes the industry your organization is in?",
-                info: null,
+                info: "Remaining respondents made up less than 5%. They were in the fields of entertainment/media, retail/food, transportation, energy, oil & gas, manufacturing, construction, aerospace and agriculture.",
                 options: [
                     {
                         id: "6_1",
@@ -293,6 +293,40 @@ class KeyFindings extends Component {
             {
                 id: "10",
                 type: "bar_chart",
+                name: "First encounter",
+                question: "How would you classify your use case?",
+                info: "(Respondents could pick as many answers as they wanted)",
+                options: [
+                    {
+                        id: "11_1",
+                        title: "App development",
+                        percentage: 70
+                    },
+                    {
+                        id: "11_2",
+                        title: "Dashboarding",
+                        percentage: 30
+                    },
+                    {
+                        id: "11_3",
+                        title: "Monitoring",
+                        percentage: 30
+                    },
+                    {
+                        id: "11_4",
+                        title: "Real-time analytics",
+                        percentage: 29
+                    },
+                    {
+                        id: "11_5",
+                        title: "DevOps",
+                        percentage: 27
+                    }
+                ]
+            },
+            {
+                id: "11",
+                type: "bar_chart",
                 name: "Use case",
                 question: "How did you first hear about Postgres?",
                 info: null,
@@ -326,40 +360,6 @@ class KeyFindings extends Component {
                         id: "10_6",
                         title: "Other",
                         percentage: 5
-                    }
-                ]
-            },
-            {
-                id: "11",
-                type: "bar_chart",
-                name: "First encounter",
-                question: "How would you classify your use case?",
-                info: "(Respondents could pick as many answers as they wanted)",
-                options: [
-                    {
-                        id: "11_1",
-                        title: "App development",
-                        percentage: 70
-                    },
-                    {
-                        id: "11_2",
-                        title: "Dashboarding",
-                        percentage: 30
-                    },
-                    {
-                        id: "11_3",
-                        title: "Monitoring",
-                        percentage: 30
-                    },
-                    {
-                        id: "11_4",
-                        title: "Real-time analytics",
-                        percentage: 29
-                    },
-                    {
-                        id: "11_5",
-                        title: "DevOps",
-                        percentage: 27
                     }
                 ]
             },
@@ -458,7 +458,7 @@ class KeyFindings extends Component {
             {
                 id: "15",
                 type: "bar_chart",
-                name: "Meet ups",
+                name: "Events",
                 question: "What Postgres events do you go to?",
                 info: "A small percentage of respondents reported to attend PGConf in South Africa, Postgres Vision, PGConf in Asia, or another conference.",
                 options: [
@@ -562,7 +562,7 @@ class KeyFindings extends Component {
                 type: "bar_chart",
                 name: "Cloud",
                 question: "What cloud provider(s) do you currently use?",
-                info: null,
+                info: "(Respondents could pick as many answers as they wanted. A small number of respondents reported using VMware, Alibaba Cloud, IBM Cloud, Oracle Cloud)",
                 options: [
                     {
                         id: "18_1",
@@ -572,7 +572,7 @@ class KeyFindings extends Component {
                     {
                         id: "18_2",
                         title: "I do not use a cloud provider",
-                        percentage: 27
+                        percentage: 28
                     },
                     {
                         id: "18_3",
@@ -595,7 +595,8 @@ class KeyFindings extends Component {
                 id: "19",
                 type: "bar_chart",
                 name: "NoSQL",
-                question: "Do you currently use or have you used any of the following NoSQL databases?",
+                question: "Do you currently use or have you used any of the following NoSQL databases? " +
+                    "(Respondents could pick as many answers as they wanted)",
                 info: null,
                 options: [
                     {
@@ -606,7 +607,7 @@ class KeyFindings extends Component {
                     {
                         id: "19_2",
                         title: "MongoDB",
-                        percentage: 40
+                        percentage: 41
                     },
                     {
                         id: "19_3",
@@ -622,6 +623,16 @@ class KeyFindings extends Component {
                         id: "19_5",
                         title: "Cassandra",
                         percentage: 12
+                    },
+                    {
+                        id: "19_6",
+                        title: "Other",
+                        percentage: 9
+                    },
+                    {
+                        id: "19_7",
+                        title: "HBase",
+                        percentage: 4
                     }
                 ]
             },
@@ -640,7 +651,7 @@ class KeyFindings extends Component {
                     {
                         id: "20_2",
                         title: "psql/command line",
-                        percentage: 62
+                        percentage: 63
                     },
                     {
                         id: "20_3",
@@ -733,23 +744,23 @@ class KeyFindings extends Component {
         document.querySelector('.main-wrap').style.height = `${offsetHeight}px`;
     }
 
-        componentDidMount() {
-	    // move question-list because it doesn't work with the smooth scrolling
-		this.navBarNode = document.querySelector('.question-list');
-		let bodyNode = document.querySelector('body');
-		this.navBarNode.removeAttribute('hidden');
-		let has_node = bodyNode.childNodes.forEach(child => {
-			if (child.classList && child.classList.contains('question-list')) {
-				return true
-			}
-		});
+    componentDidMount() {
+        // move question-list because it doesn't work with the smooth scrolling
+        this.navBarNode = document.querySelector('.question-list');
+        let bodyNode = document.querySelector('body');
+        this.navBarNode.removeAttribute('hidden');
+        let has_node = bodyNode.childNodes.forEach(child => {
+            if (child.classList && child.classList.contains('question-list')) {
+                return true
+            }
+        });
         if (!has_node) {
             bodyNode.appendChild(this.navBarNode);
         }
     }
 
     componentWillUnmount() {
-	    this.navBarNode.setAttribute('hidden', true)
+        this.navBarNode.setAttribute('hidden', true)
     }
     toggleOtherOptions() {
         this.setState((prevState) => ({
