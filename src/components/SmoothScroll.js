@@ -12,8 +12,8 @@ class SmoothScroll {
         let offsetHeight = this.$.containerBody.offsetHeight
         this.params = {
             containerHeight: offsetHeight,
-            duration: 1000,
-            timingFunction: 'cubic-bezier(0.23, 1, 0.32, 1)',
+            duration: 1200,
+            timingFunction: 'cubic-bezier(0.165, 0.84, 0.44, 1)',
         };
         this.$.containerBody.parentElement.parentElement.style.height = `${offsetHeight}px`;
 
