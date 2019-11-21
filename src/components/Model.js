@@ -5,15 +5,15 @@ import VisibilitySensor from 'react-visibility-sensor'
 import * as THREE from 'three'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
-import drone from './models/drone.glb'
-import phone from './models/phone.glb'
-import flowers from './models/flowers.glb'
-import teamwork from './models/flowers.glb'
-import swimming from './models/swimming_full.glb'
-import flame from './models/flame.glb'
-import tail from './models/tail_wag.glb'
-import circuit from './models/circuit.glb'
-import toyball from './models/toy_ball.glb'
+import drone from './models/drone_min.glb'
+import phone from './models/phone_min.glb'
+import flowers from './models/flowers_min.glb'
+import teamwork from './models/flowers_min.glb'
+import swimming from './models/swimming_full_min.glb'
+import flame from './models/flame_min.glb'
+import tail from './models/tail_wag_min.glb'
+import circuit from './models/circuit_min.glb'
+import toyball from './models/toy_ball_min.glb'
 import {Water} from './models/Water.js';
 import {Sky} from './models/Sky.js';
 import water_texture from './models/waternormals.jpg'
@@ -32,11 +32,11 @@ class Model extends Component {
     }
 
     componentDidMount() {
-        // const loader = new DRACOLoader();
-        // loader.setDecoderPath( 'http://138.197.96.251/decoder/' );
-        // loader.setDecoderConfig( { type: 'js' } );
-        // loader.load('http://138.197.96.251/decoder/drone_min.glb', gltf => {
         const loader = new GLTFLoader();
+        const dracoLoader  = new DRACOLoader();
+        dracoLoader.setDecoderPath( 'http://138.197.96.251/decoder/' );
+        dracoLoader.setDecoderConfig( { type: 'js' } );
+        loader.setDRACOLoader( dracoLoader );
         loader.load(this.state.file, gltf => {
                 this.delta = 0;
                 this.gltf = gltf;
@@ -266,7 +266,7 @@ class Swimming extends Model {
 
 
     get_light() {
-        this.light = new THREE.DirectionalLight( 0x4E8BEA, 0.5 );
+        this.light = new THREE.DirectionalLight( 0x08c0fd, 0.5 );
         this.light.position.x = 10;
         this.light.position.z = 10;
         this.scene.add( this.light );
@@ -293,7 +293,7 @@ class Swimming extends Model {
                 alpha: 0.9,
                 sunDirection: this.light.position.clone().normalize(),
                 sunColor: 0xffffff,
-                waterColor: 0x4E8BEA,
+                waterColor: 0x028bf2,
                 distortionScale: 3.7,
                 fog: this.scene.fog !== undefined
             }
