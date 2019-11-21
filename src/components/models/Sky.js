@@ -168,7 +168,7 @@ Sky.SkyShader = {
 
 		// Filmic ToneMapping http://filmicgames.com/archives/75
 		'const float A = 0.15;',
-		'const float B = 0.50;',
+		'const float B = 0.10;',
 		'const float C = 0.10;',
 		'const float D = 0.20;',
 		'const float E = 0.02;',

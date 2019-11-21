@@ -255,10 +255,7 @@ class Swimming extends Model {
         this.camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
         this.camera.position.set( 30, 90, 600 );
         this.camera.rotation.z =  180 * Math.PI / 180;
-        // let controls = new OrbitControls(this.camera, this.el );
-        // controls.maxPolarAngle = Math.PI * 0.9;
 
-        // controls.update();
         this.camera.updateProjectionMatrix();
 
     };
@@ -269,7 +266,9 @@ class Swimming extends Model {
 
 
     get_light() {
-        this.light = new THREE.DirectionalLight( 0x4E8BEA, 2 );
+        this.light = new THREE.DirectionalLight( 0x4E8BEA, 0.5 );
+        this.light.position.x = 10;
+        this.light.position.z = 10;
         this.scene.add( this.light );
     }
 
@@ -321,8 +320,8 @@ class Swimming extends Model {
         let updateSun = () => {
             let theta = Math.PI * ( parameters.inclination - 0.5 );
             let phi = 2 * Math.PI * ( parameters.azimuth - 0.5 );
-            this.light.position.x = parameters.distance * Math.cos( phi ) + 15;
-            this.light.position.y = parameters.distance * Math.sin( phi ) * Math.sin( theta ) - 26;
+            this.light.position.x = parameters.distance * Math.cos( phi );
+            this.light.position.y = parameters.distance * Math.sin( phi ) * Math.sin( theta );
             this.light.position.z = parameters.distance * Math.sin( phi ) * Math.cos( theta );
             this.sky.material.uniforms[ 'sunPosition' ].value = this.light.position.copy( this.light.position );
             this.water.material.uniforms[ 'sunDirection' ].value.copy( this.light.position ).normalize();
