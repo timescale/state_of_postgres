@@ -20,7 +20,7 @@ class SmoothScroll {
 
         // Launch init functions
         document.addEventListener('DOMContentLoaded', () => {
-            this._initStyle()
+            this._initStyle();
             this._initListeners()
         })
 
