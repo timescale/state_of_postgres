@@ -13,6 +13,7 @@ import swimming from './models/swimming_full.glb'
 import flame from './models/flame.glb'
 import tail from './models/tail_wag.glb'
 import circuit from './models/circuit.glb'
+import toyball from './models/toy_ball.glb'
 import {Water} from './models/Water.js';
 import {Sky} from './models/Sky.js';
 import water_texture from './models/waternormals.jpg'
@@ -96,10 +97,12 @@ class Model extends Component {
         });
 
         // this.renderer.setSize(window.innerWidth/2, window.innerHeight/2, true);
-        let width = Math.max(window.innerWidth, window.innerHeight);
-        let height = Math.min(window.innerWidth, window.innerHeight);
-        this.renderer.setSize(width/2, height/2, true);
+        this.width = Math.max(window.innerWidth, window.innerHeight);
+        this.height = Math.min(window.innerWidth, window.innerHeight);
+        this.renderer.setSize(this.width/2, this.height/2, true);
         this.renderer.setPixelRatio(2);
+        this.camera.aspect = this.width / this.height;
+        this.camera.updateProjectionMatrix();
         this.renderer.render(this.scene, this.camera);
     };
     get_mixer() {
@@ -122,8 +125,6 @@ class Model extends Component {
         } else {
             this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
         }
-        this.camera.updateProjectionMatrix()
-
 
         // let controls = new OrbitControls(this.camera, this.el );
         // controls.maxPolarAngle = Math.PI * 0.9;
@@ -163,6 +164,7 @@ class Model extends Component {
         }
         // this.camera.updateProjectionMatrix();
         // this.renderer.setSize( 850, 850, 2 );
+
         this.renderer.render(this.scene, this.camera);
         if (this.stats) {
             this.stats.update();
@@ -358,6 +360,14 @@ class Circuit extends Model {
     }
 }
 
+class Toyball extends Model {
+    constructor(props) {
+        super(props);
+        this.state = {file: toyball}
+    }
+}
 
 
-export {Model, Drone, Phone, Flowers, Teamwork, Swimming, Flame, Tail, Circuit};
+
+
+export {Model, Drone, Phone, Flowers, Teamwork, Swimming, Flame, Tail, Circuit, Toyball};

@@ -123,7 +123,7 @@ class KeyFindings extends Component {
 
 							<QuoteSection number={11} text={'I used to work with a guy who liked to say MySQL is a TOY database. I concur; probably throw MongoDB in there.'}
 										  name={'- Anonymous'} reverse={true}
-										  model="Swimming" />
+										  model="Toyball" />
 							<EmailForm/>
 						</div>
 
