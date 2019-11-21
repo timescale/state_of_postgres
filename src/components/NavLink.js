@@ -8,12 +8,11 @@ class NavLinkNoContext extends React.Component {
         location: PropTypes.object.isRequired,
     };
     render() {
-        const { location } = this.props;
-        let isActive = location.pathname === this.props.to;
+        let isActive = this.props.location.pathname === this.props.to;
         let className = isActive ? 'active' : '';
 
         return(
-            <Link className={className} {...this.props}>
+            <Link className={className} to={this.props.to}>
                 {this.props.children}
             </Link>
         );

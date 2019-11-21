@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import VisibilitySensor from 'react-visibility-sensor'
 import * as THREE from 'three'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import drone from './models/drone.glb'
 import phone from './models/phone.glb'
 import flowers from './models/flowers.glb'
@@ -30,22 +31,37 @@ class Model extends Component {
     }
 
     componentDidMount() {
+        // const loader = new DRACOLoader();
+        // loader.setDecoderPath( 'http://138.197.96.251/decoder/' );
+        // loader.setDecoderConfig( { type: 'js' } );
+        // loader.load('http://138.197.96.251/decoder/drone_min.glb', gltf => {
         const loader = new GLTFLoader();
         loader.load(this.state.file, gltf => {
-            this.delta = 0;
-            this.gltf = gltf;
-            this.clock = new THREE.Clock();
-            this.get_scene();
-            this.get_camera();
-            this.get_mesh();
-            this.change_material();
-            this.get_render();
-            this.get_mixer();
-            // this.loader();
-            this.get_light();
-            window.addEventListener( 'resize', () => {this.onWindowResize()}, false );
-            // this.renderer.render(this.scene, this.camera);
-        })
+                this.delta = 0;
+                this.gltf = gltf;
+                this.clock = new THREE.Clock();
+                this.get_scene();
+                this.get_camera();
+                this.get_mesh();
+                this.change_material();
+                this.get_render();
+                this.get_mixer();
+                // this.loader();
+                this.get_light();
+                window.addEventListener( 'resize', () => {this.onWindowResize()}, false );
+                // this.renderer.render(this.scene, this.camera);
+            },
+            function ( xhr ) {
+
+                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+            },
+            // called when loading has errors
+            function ( error ) {
+
+                console.log( error );
+
+            })
     }
     get_mesh() {
         this.mesh = this.scene.children[0].children[0]
