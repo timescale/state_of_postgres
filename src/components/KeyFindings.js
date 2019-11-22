@@ -1,7 +1,6 @@
 import React, { Component, Fragment} from 'react';
 import Fade  from 'react-reveal/Fade';
 import VisibilitySensor from 'react-visibility-sensor'
-import anime from "animejs";
 import {Container, Row, } from 'react-bootstrap'
 
 import {Section, QuoteSection, EmailForm} from "./Section";

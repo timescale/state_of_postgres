@@ -121,17 +121,21 @@ class EmailForm extends Component {
 		return (
 			<Container id="email-form">
 				<Row style={{height: 850}} className={this.props.black ? 'black' : '' }>
-					<Col sm={{ span: 12 }} md={{ span: 5, offset: 4 }}
+					<Col sm={{ span: 12 }} md={{ span: 6, offset: 3 }}
 						 className="d-flex justify-content-center">
 						<div className="footer">
 							<div className='text1'>
-								Like postgres?
-							</div>
-							<div className='text2'>
-								Sign up to get notified for our survey next year. And in the meantime get helpful Postgres tips delivered occasionally to your inbox.
+								Do you use Postgres? Sign up to get notified when Timescale conducts this survey next year.
 							</div>
 							<Form>
 								<Form.Row>
+									<Col md="12">
+									<div className='text2'>
+										<Form.Group controlId="formBasicCheckbox">
+										<Form.Check type="checkbox" label="Also send me new technical content, SQL tips, and more from the Timescale newsletter" />
+										</Form.Group>
+									</div>
+									</Col>
 									<Col md="8">
 										<Form.Label>Email address</Form.Label>
 										<Form.Control type="email" placeholder="Enter email" />

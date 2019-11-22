@@ -293,40 +293,6 @@ class KeyFindings extends Component {
             {
                 id: "10",
                 type: "bar_chart",
-                name: "First encounter",
-                question: "How would you classify your use case?",
-                info: "(Respondents could pick as many answers as they wanted)",
-                options: [
-                    {
-                        id: "11_1",
-                        title: "App development",
-                        percentage: 70
-                    },
-                    {
-                        id: "11_2",
-                        title: "Dashboarding",
-                        percentage: 30
-                    },
-                    {
-                        id: "11_3",
-                        title: "Monitoring",
-                        percentage: 30
-                    },
-                    {
-                        id: "11_4",
-                        title: "Real-time analytics",
-                        percentage: 29
-                    },
-                    {
-                        id: "11_5",
-                        title: "DevOps",
-                        percentage: 27
-                    }
-                ]
-            },
-            {
-                id: "11",
-                type: "bar_chart",
                 name: "Use case",
                 question: "How did you first hear about Postgres?",
                 info: null,
@@ -360,6 +326,40 @@ class KeyFindings extends Component {
                         id: "10_6",
                         title: "Other",
                         percentage: 5
+                    }
+                ]
+            },
+            {
+                id: "11",
+                type: "bar_chart",
+                name: "First encounter",
+                question: "How would you classify your use case?",
+                info: "(Respondents could pick as many answers as they wanted)",
+                options: [
+                    {
+                        id: "11_1",
+                        title: "App development",
+                        percentage: 70
+                    },
+                    {
+                        id: "11_2",
+                        title: "Dashboarding",
+                        percentage: 30
+                    },
+                    {
+                        id: "11_3",
+                        title: "Monitoring",
+                        percentage: 30
+                    },
+                    {
+                        id: "11_4",
+                        title: "Real-time analytics",
+                        percentage: 29
+                    },
+                    {
+                        id: "11_5",
+                        title: "DevOps",
+                        percentage: 27
                     }
                 ]
             },
@@ -595,9 +595,8 @@ class KeyFindings extends Component {
                 id: "19",
                 type: "bar_chart",
                 name: "NoSQL",
-                question: "Do you currently use or have you used any of the following NoSQL databases? " +
-                    "(Respondents could pick as many answers as they wanted)",
-                info: null,
+                question: "Do you currently use or have you used any of the following NoSQL databases? ",
+                info: "(Respondents could pick as many answers as they wanted)",
                 options: [
                     {
                         id: "19_1",

@@ -3083,6 +3083,11 @@ dotenv@6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
 
+draco-animation@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/draco-animation/-/draco-animation-1.0.4.tgz#2170823d99ff387d7a90518db68881922d833bc9"
+  integrity sha512-rUIvv9UaCy9GoZXCDnr2YytTDWZ0vHI9y54QQiPRJBcIMCbRmVpDief+TDOyKOobhHEVYmKHk2Mu8Qg0fcpNFA==
+
 draco3d@^1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/draco3d/-/draco3d-1.3.4.tgz#b17e4fedd4b4b946c9eb8df2e1d2f470a953cdb8"
@@ -3100,6 +3105,11 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     inherits "^2.0.1"
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
+
+easy-stack@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/easy-stack/-/easy-stack-1.0.0.tgz#12c91b3085a37f0baa336e9486eac4bf94e3e788"
+  integrity sha1-EskbMIWjfwuqM26UhurEv5Tj54g=
 
 ecc-jsbn@~0.1.1:
   version "0.1.2"
@@ -5159,6 +5169,13 @@ js-base64@^2.1.8:
 js-levenshtein@^1.1.3:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/js-levenshtein/-/js-levenshtein-1.1.6.tgz#c6cee58eb3550372df8deb85fad5ce66ce01d59d"
+
+js-queue@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/js-queue/-/js-queue-2.0.0.tgz#362213cf860f468f0125fc6c96abc1742531f948"
+  integrity sha1-NiITz4YPRo8BJfxslqvBdCUx+Ug=
+  dependencies:
+    easy-stack "^1.0.0"
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
@@ -7550,9 +7567,10 @@ react-router@5.1.2, react-router@^5.1.2:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-scripts@3.2.0:
+react-scripts@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-3.2.0.tgz#58ccd6b4ffa27f1b4d2986cbdcaa916660e9e33c"
+  integrity sha512-6LzuKbE2B4eFQG6i1FnTScn9HDcWBfXXnOwW9xKFPJ/E3rK8i1ufbOZ0ocKyRPxJAKdN7iqg3i7lt0+oxkSVOA==
   dependencies:
     "@babel/core" "7.6.0"
     "@svgr/webpack" "4.3.2"

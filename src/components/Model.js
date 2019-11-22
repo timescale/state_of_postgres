@@ -4,7 +4,8 @@ import React, {Component} from 'react';
 import VisibilitySensor from 'react-visibility-sensor'
 import * as THREE from 'three'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
+import {DRACOLoader} from 'three/examples/jsm/loaders/DRACOLoader';
+// import GLTFLoader from './models/GLTFLoader';
 import drone from './models/drone_min.glb'
 import phone from './models/phone_min.glb'
 import flowers from './models/flowers_min.glb'
@@ -17,8 +18,10 @@ import toyball from './models/toy_ball_min.glb'
 import {Water} from './models/Water.js';
 import {Sky} from './models/Sky.js';
 import water_texture from './models/waternormals.jpg'
+import Queue from 'js-queue'
 
-import { OrbitControls } from './models/orbit.js';
+THREE.Cache.enabled = true;
+let queue = new Queue();
 
 class Model extends Component {
     constructor(props) {
@@ -32,12 +35,16 @@ class Model extends Component {
     }
 
     componentDidMount() {
-        const loader = new GLTFLoader();
+        this.loader = new GLTFLoader();
         const dracoLoader  = new DRACOLoader();
         dracoLoader.setDecoderPath( 'http://138.197.96.251/decoder/' );
         dracoLoader.setDecoderConfig( { type: 'js' } );
-        loader.setDRACOLoader( dracoLoader );
-        loader.load(this.state.file, gltf => {
+        this.loader.setDRACOLoader( dracoLoader );
+        // loader.setMeshoptDecoder( MeshoptDecoder );
+
+        queue.add(() => {
+            this.loader.load(this.state.file, (gltf) => {
+                queue.next();
                 this.delta = 0;
                 this.gltf = gltf;
                 this.clock = new THREE.Clock();
@@ -50,19 +57,10 @@ class Model extends Component {
                 // this.loader();
                 this.get_light();
                 window.addEventListener( 'resize', () => {this.onWindowResize()}, false );
-                // this.renderer.render(this.scene, this.camera);
-            },
-            function ( xhr ) {
-
-                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-
-            },
-            // called when loading has errors
-            function ( error ) {
-
-                console.log( error );
-
             })
+            // success(model)
+            // this.renderer.render(this.scene, this.camera);
+        });
     }
     get_mesh() {
         this.mesh = this.scene.children[0].children[0]
@@ -137,15 +135,6 @@ class Model extends Component {
         this.scene.add( this.light );
     }
 
-    loader() {
-        this.geometries.forEach(geometry => {
-            this.mesh = new THREE.Mesh( geometry, this.material );
-            this.scene.add( this.mesh );
-            this.mesh.position.z = -10;
-        });
-
-    };
-
     animate() {
         if (this.gltf === undefined) {
             return;
@@ -166,9 +155,6 @@ class Model extends Component {
         // this.renderer.setSize( 850, 850, 2 );
 
         this.renderer.render(this.scene, this.camera);
-        if (this.stats) {
-            this.stats.update();
-        }
     };
 
     hide_mesh() {
@@ -211,14 +197,6 @@ class Phone extends Drone {
             loopOnce: true
         }
     }
-    loader = () => {
-        this.scene.children[0].children.forEach(mesh => {
-            mesh.material = this.material
-        });
-        this.scene.children[0].children[0].children.forEach(mesh => {
-            mesh.material = this.material
-        })
-    };
 }
 
 class Flowers extends Model {
