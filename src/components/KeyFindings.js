@@ -59,7 +59,7 @@ class KeyFindings extends Component {
 
 					<Section number={1} info={'26% of respondents have been using Postgres for more than 10 years.'}
 							 description={'The Postgres community is committed.'} reverse={true}
-							 model="Toyball"/>
+							 model="Teamwork"/>
 
 					<Section number={2} info={'66% said they’re using Postgres more than they have in the past.'}
 							 description={'Postgres is more popular than ever!'} reverse={false}
