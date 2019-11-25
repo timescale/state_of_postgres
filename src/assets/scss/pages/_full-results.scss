@@ -340,6 +340,7 @@
 }
 
 .question-list {
+	width: 150px;
 	position: fixed;
 	z-index: 9;
 	top: 50%;
@@ -363,7 +364,7 @@
 	a {
 		color: #333 !important;
 		font-size: 13px;
-		line-height: 33px;
+		line-height: 25px;
 		letter-spacing: 0.01em;
 		border-bottom: 1px solid #EAEAEA;
 		display: block;
