@@ -59,7 +59,7 @@ class KeyFindings extends Component {
 
 					<Section number={1} info={'26% of respondents have been using Postgres for more than 10 years.'}
 							 description={'The Postgres community is committed.'} reverse={true}
-							 model="Teamwork"/>
+							 model="Toyball"/>
 
 					<Section number={2} info={'66% said they’re using Postgres more than they have in the past.'}
 							 description={'Postgres is more popular than ever!'} reverse={false}
@@ -98,7 +98,7 @@ class KeyFindings extends Component {
 					<Section number={8} info={'The next closest cloud provider was GCP at 18%'}
 							 description={''} reverse={true}
 							 model="Swimming" />
-					<VisibilitySensor minTopValue={window.innerHeight*0.9} partialVisibility={true} onChange={this.change_background}>
+					<VisibilitySensor minTopValue={window.innerHeight*0.8} partialVisibility={true} onChange={this.change_background}>
 						<div>
 							<section className="section text-section">
 								<div className="container">
@@ -116,7 +116,7 @@ class KeyFindings extends Component {
 										  name={'- Anonymous'} reverse={false}
 										  model="Flame"/>
 
-							<QuoteSection number={10} text={'I never used it [NoSQL] because I was smart enough to smell the NoSQL bullsh*t early on.'}
+							<QuoteSection number={10} text={'I never used it because I was smart enough to smell the NoSQL bullsh*t early on.'}
 										  name={'- Anonymous'} reverse={true}
 										  model="Tail"/>
 

@@ -347,6 +347,13 @@ class Flame extends Model {
         super(props);
         this.state = {file: flame}
     }
+    get_camera() {
+        super.get_camera();
+        this.camera.position.x = -2.366560316085816;
+        this.camera.position.y = 0.46846289634704597;
+        this.camera.position.z = 1.3687902355194095;
+
+    }
 }
 
 class Tail extends Model {
@@ -370,6 +377,13 @@ class Toyball extends Model {
             file: toyball,
             loopOnce: true
         }
+    }
+
+    get_camera() {
+        super.get_camera();
+        this.camera.position.x = 1;
+        this.camera.position.y = 0;
+        this.camera.position.z = 0.5;
     }
 }
 
