@@ -45,7 +45,7 @@ class SmoothScroll {
             const splitTransform = getComputedStyle(this.$.containerBody).transform.split(regex)
             const currentTranslateY = parseInt(splitTransform[splitTransform.length-1])
 
-            if(-currentTranslateY != currentScrollY) {
+            if(-currentTranslateY !== currentScrollY) {
                 setTimeout(() => {
                     addTransition(currentTranslateY)
                 }, 10);

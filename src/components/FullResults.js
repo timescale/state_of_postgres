@@ -1,7 +1,7 @@
 import React, { Component, Fragment} from 'react';
 import Fade  from 'react-reveal/Fade';
 import Reveal from 'react-reveal/Reveal';
-import { Link, Scroll } from 'react-scroll'
+import { Link } from 'react-scroll'
 
 class KeyFindings extends Component {
 

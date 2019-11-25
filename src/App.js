@@ -1,7 +1,7 @@
-import React, { Component, Fragment, useEffect } from 'react';
+import React, { Component, useEffect } from 'react';
 import KeyFindings from './components/KeyFindings';
 import FullResults from './components/FullResults';
-import { BrowserRouter as Router, Switch, Route, Link, useLocation, withRouter } from "react-router-dom";
+import { Switch, Route, useLocation, withRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css';
 import './assets/scss/style.scss';

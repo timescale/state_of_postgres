@@ -4,29 +4,26 @@ import React, {Component} from 'react';
 import VisibilitySensor from 'react-visibility-sensor'
 import * as THREE from 'three'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
-import {DRACOLoader} from 'three/examples/jsm/loaders/DRACOLoader';
+// import {DRACOLoader} from 'three/examples/jsm/loaders/DRACOLoader';
 // import GLTFLoader from './models/GLTFLoader';
-import drone from './models/drone_min.glb'
-import phone from './models/phone_min.glb'
-import flowers from './models/flowers_min.glb'
-import teamwork from './models/flowers_min.glb'
-import swimming from './models/swimming_full_min.glb'
-import flame from './models/flame_min.glb'
-import tail from './models/tail_wag_min.glb'
-import circuit from './models/circuit_min.glb'
-import toyball from './models/toy_ball_min.glb'
+import drone from './models/drone.glb'
+import phone from './models/phone.glb'
+import flowers from './models/flowers.glb'
+import teamwork from './models/team.glb'
+import swimming from './models/swimming_full.glb'
+import flame from './models/flame.glb'
+import tail from './models/tail_wag.glb'
+import circuit from './models/circuit.glb'
+import toyball from './models/toy_ball.glb'
 import {Water} from './models/Water.js';
 import {Sky} from './models/Sky.js';
 import water_texture from './models/waternormals.jpg'
 import Queue from 'js-queue'
 
-THREE.Cache.enabled = true;
+
 let queue = new Queue();
 
 class Model extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     onWindowResize() {
         if (this.camera && this.renderer) {
@@ -36,14 +33,15 @@ class Model extends Component {
 
     componentDidMount() {
         this.loader = new GLTFLoader();
-        const dracoLoader  = new DRACOLoader();
-        dracoLoader.setDecoderPath( 'http://138.197.96.251/decoder/' );
-        dracoLoader.setDecoderConfig( { type: 'js' } );
-        this.loader.setDRACOLoader( dracoLoader );
+        // const dracoLoader  = new DRACOLoader();
+        // dracoLoader.setDecoderPath( 'http://138.197.96.251/decoder/' );
+        // dracoLoader.setDecoderConfig( { type: 'js' } );
+        // this.loader.setDRACOLoader( dracoLoader );
         // loader.setMeshoptDecoder( MeshoptDecoder );
 
         queue.add(() => {
             this.loader.load(this.state.file, (gltf) => {
+                queue.next();
                 queue.next();
                 this.delta = 0;
                 this.gltf = gltf;
@@ -52,14 +50,15 @@ class Model extends Component {
                 this.get_camera();
                 this.get_mesh();
                 this.change_material();
-                this.get_render();
+
                 this.get_mixer();
                 // this.loader();
                 this.get_light();
+                this.get_render();
+
                 window.addEventListener( 'resize', () => {this.onWindowResize()}, false );
             })
             // success(model)
-            // this.renderer.render(this.scene, this.camera);
         });
     }
     get_mesh() {
@@ -101,6 +100,7 @@ class Model extends Component {
         this.renderer.setPixelRatio(2);
         this.camera.aspect = this.width / this.height;
         this.camera.updateProjectionMatrix();
+        this.scene.visible = false;
         this.renderer.render(this.scene, this.camera);
     };
     get_mixer() {
@@ -161,12 +161,15 @@ class Model extends Component {
         if (this.animation_id) {
             cancelAnimationFrame( this.animation_id );
             this.animation_id = null;
+            this.scene.visible = false;
+            this.renderer.render(this.scene, this.camera)
         }
 
     };
 
     show_mesh() {
-        if (!this.animation_id) {
+        if (!this.animation_id && this.scene) {
+            this.scene.visible = true;
             this.animate()
         }
     };
@@ -208,12 +211,35 @@ class Flowers extends Model {
             loopOnce: true,
         }
     }
+    hide_mesh() {
+        if (this.animation_id) {
+            cancelAnimationFrame( this.animation_id );
+            this.animation_id = null;
+        }
+
+    };
+
+    show_mesh() {
+        if (!this.animation_id && this.scene) {
+            this.scene.visible = true;
+            this.animate()
+        }
+    };
+
+    get_render() {
+        super.get_render();
+        this.scene.visible = true;
+        this.renderer.render(this.scene, this.camera);
+    }
 }
 
 class Teamwork extends Model {
     constructor(props) {
         super(props);
-        this.state = {file: teamwork}
+        this.state = {
+            file: teamwork,
+            loopOnce: true
+        }
     }
 }
 
@@ -304,7 +330,7 @@ class Swimming extends Model {
             this.sky.material.uniforms[ 'sunPosition' ].value = this.light.position.copy( this.light.position );
             this.water.material.uniforms[ 'sunDirection' ].value.copy( this.light.position ).normalize();
             this.cubeCamera.update( this.renderer, this.sky );
-        }
+        };
         updateSun();
     }
     animate = () => {
@@ -340,7 +366,10 @@ class Circuit extends Model {
 class Toyball extends Model {
     constructor(props) {
         super(props);
-        this.state = {file: toyball}
+        this.state = {
+            file: toyball,
+            loopOnce: true
+        }
     }
 }
 
