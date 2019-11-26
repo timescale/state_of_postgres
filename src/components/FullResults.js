@@ -293,7 +293,7 @@ class KeyFindings extends Component {
             {
                 id: "10",
                 type: "bar_chart",
-                name: "Use case",
+                name: "First encounter",
                 question: "How did you first hear about Postgres?",
                 info: null,
                 options: [
@@ -332,7 +332,7 @@ class KeyFindings extends Component {
             {
                 id: "11",
                 type: "bar_chart",
-                name: "First encounter",
+                name: "Use case",
                 question: "How would you classify your use case?",
                 info: "(Respondents could pick as many answers as they wanted)",
                 options: [

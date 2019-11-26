@@ -188,7 +188,37 @@ class Model extends Component {
 class Drone extends Model {
     constructor(props) {
         super(props);
-        this.state = {file: drone}
+        this.state = {file: drone};
+    }
+
+    componentDidMount() {
+        super.componentDidMount();
+        window.addEventListener('scroll', this.start_fly_animation)
+    }
+
+    animate() {
+        if (this.fly_animation) {
+            if (this.camera.position.y > -6) {
+                this.camera.position.y -= 0.01;
+            } else {
+                this.fly_animation = false;
+            }
+        }
+        return super.animate();
+    }
+    start_fly_animation = (event) => {
+        if (this.el.getBoundingClientRect().y < 200 && this.scene.visible) {
+            this.fly_animation = true;
+        }
+    };
+
+    render() {
+        return (
+            <VisibilitySensor partialVisibility={true} onChange={this.activate_animation} minTopValue={this.minTopValue || 0}>
+                <canvas ref={ref => (this.el = ref)} />
+            </VisibilitySensor>
+        )
+
     }
 }
 
@@ -352,7 +382,6 @@ class Flame extends Model {
         this.camera.position.x = -2.366560316085816;
         this.camera.position.y = 0.46846289634704597;
         this.camera.position.z = 1.3687902355194095;
-
     }
 }
 
@@ -383,7 +412,7 @@ class Toyball extends Model {
         super.get_camera();
         this.camera.position.x = 1;
         this.camera.position.y = 0;
-        this.camera.position.z = 0.5;
+        this.camera.position.z = -1;
     }
 }
 

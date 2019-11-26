@@ -56,7 +56,8 @@ class Section extends Component {
 						<GetModel model={this.props.model}/>
 					</Col>
 					<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
-						 className="d-flex justify-content-center align-items-center pr-0 text-section">
+						 className="d-flex justify-content-center align-items-center text-section"
+					style={{padding: "0 150px"}}>
 						<VisibilitySensor partialVisibility={this.props.partialVisibility || false}
 										  onChange={this.fade} minTopValue={this.props.minTopValue} >
 							<div className="text">
@@ -93,11 +94,12 @@ class QuoteSection extends Section {
 			<Container fluid={true}>
 				<Row ref={this.row} style={{height: 850}} className="transition">
 					<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 2 : 1 }}
-						 className="d-flex justify-content-center align-items-center col-sm-push-6">
+						 className="d-flex justify-content-center align-items-center p-0 col-sm-push-6">
 						<GetModel model={this.props.model} black={this.props.black}/>
 					</Col>
 					<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
-						 className="d-flex justify-content-center align-items-center pr-0 quote-text">
+						 className="d-flex justify-content-center align-items-center quote-text"
+						style={{padding: this.props.reverse ? "0 150px" : "0 150px 0 0"}}>
 						<VisibilitySensor onChange={this.fade}>
 							<div ref={this.text} className='text quote animated' style={{animationDuration: "1s", opacity: 0 }}>
 								<p className="number">{ this.props.number }</p>
