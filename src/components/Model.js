@@ -385,9 +385,7 @@ class Flame extends Model {
     }
     get_camera() {
         super.get_camera();
-        this.camera.position.x = -2.366560316085816;
-        this.camera.position.y = 0.46846289634704597;
-        this.camera.position.z = 1.3687902355194095;
+        this.camera.position.z = 2.700907340049744;
     }
 }
 
