@@ -94,9 +94,27 @@
 	}
 }
 
+.white {
+	background-color: initial;
+    .info, .text.quote, .name, .number, a:not(.active) {
+        color: initial;
+	}
+}
+
 .black{
     background-color: #080808!important;
     .info, .text.quote, .name, .number, a:not(.active) {
         color: #FBFBFB!important;
+	}
+}
+
+.blue{
+    background-color: #469fcb!important;
+    .info, .text.quote, .name, .number, a:not(.active) {
+        color: #080808!important;
+	}
+	a.active {
+		color: #4cc7cb !important;
+        border-bottom: 1px solid #4cc7cb !important;
 	}
 }

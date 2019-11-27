@@ -20,7 +20,10 @@ function ScrollToTop() {
 }
 
 class App extends Component {
-
+	state = {
+		headerIsVisible: true,
+		color: "white"
+	};
 	constructor(props) {
 		super(props);
 
@@ -28,11 +31,6 @@ class App extends Component {
 		this.header = React.createRef();
 		this.lastPosition = 0;
 		this.currentLocation = "";
-
-		this.state = {
-			headerIsVisible: true,
-			black: false
-		};
 
 		this.toggleHeader = this.toggleHeader.bind(this);
 	}
@@ -56,7 +54,7 @@ class App extends Component {
 			this.header_moved = true;
 		}
 
-		new SmoothScroll('.scroll_container')
+		new SmoothScroll('.scroll_container');
 		document.querySelector('.scroll_container').style.width = `100%`;
 	}
 
@@ -103,9 +101,9 @@ class App extends Component {
 
 	change_nav_background = (value) => {
 		this.setState({
-			black: value
+			color: value
 		})
-	}
+	};
 
 	render(){
 		return (
@@ -113,9 +111,9 @@ class App extends Component {
 				<ScrollToTop />
 				<div className="scroll_container">
 					<div className="scroll_container__body">
-						<header className={"transition header" +
-						(this.state.headerIsVisible ? " header-visible" : " header-hidden") +
-						(this.state.black ? " black" : "")
+						<header id="header" className={"transition header " +
+						(this.state.headerIsVisible ? " header-visible " : " header-hidden ") +
+						(this.state.color)
 						} ref={this.header}>
 							<ul className="menu">
 								<li>

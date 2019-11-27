@@ -314,7 +314,7 @@ class Swimming extends Model {
 
     add_water() {
 
-        this.light = new THREE.DirectionalLight( 0x4E8BEA, 0.8 );
+        this.light = new THREE.DirectionalLight( 0x469fcb, 0.8 );
         this.scene.add( this.light );
         let flip = new THREE.Matrix4().makeScale(1,-1,1);
         let mesh = this.scene.children[0].children[0];

@@ -21,20 +21,31 @@ class KeyFindings extends Component {
 	}
 
 	componentWillUnmount() {
-		this.props.change_nav_background(false);
+		this.props.change_nav_background('white');
 	}
 
-	change_background = (is_visible) => {
+	change_background(is_visible, color) {
 		if (!this.black_section.current) {
 			return
 		}
 		if(is_visible) {
-			this.black_section.current.classList.add('black');
-			this.props.change_nav_background(true);
+			this.black_section.current.classList.add(color);
+			this.props.change_nav_background(color);
 		} else {
-			this.black_section.current.classList.remove('black');
-			this.props.change_nav_background(false);
+			this.black_section.current.classList.remove(color);
 		}
+	};
+
+	change_background_black = (is_visible) => {
+		this.change_background(is_visible, 'black')
+	};
+
+	change_background_blue = (is_visible) => {
+		this.change_background(is_visible, 'blue')
+	};
+
+	change_background_white = (is_visible) => {
+		this.change_background(is_visible, 'white')
 	};
 
 	render() {
@@ -43,66 +54,78 @@ class KeyFindings extends Component {
 				<div id="key">
 					<div className="transition" ref={this.black_section}>
 						{/* Intro - Start */}
-						<section className="section intro">
-							<Container>
-								<Row className="intro-content justify-content-center align-items-center align-content-center">
-									<div className="d-flex animated fadeIn">
-										<h1>
-											state
-											<span>of</span>
-											postgres
-										</h1>
-									</div>
-									<div className="d-flex animated fadeIn">
-										<p className="subtitle">We asked 500 members of the Postgres community about how they’re using the database in 2019. Here's what they said...</p>
-									</div>
-								</Row>
-							</Container>
-						</section>
-						{/* Intro - End */}
+						<VisibilitySensor minTopValue={window.innerHeight*0.85} partialVisibility={true}
+										  onChange={this.change_background_white}>
+							<div>
+								<section className="section intro">
+									<Container>
+										<Row className="intro-content justify-content-center align-items-center align-content-center">
+											<div className="d-flex animated fadeIn">
+												<h1>
+													state
+													<span>of</span>
+													postgres
+												</h1>
+											</div>
+											<div className="d-flex animated fadeIn">
+												<p className="subtitle">We asked 500 members of the Postgres community about how they’re using the database in 2019. Here's what they said...</p>
+											</div>
+										</Row>
+									</Container>
+								</section>
+								{/* Intro - End */}
 
-						<Section number={1} info={'26% of respondents have been using Postgres for more than 10 years.'}
-								 description={'The Postgres community is committed.'} reverse={true}
-								 model="Teamwork"/>
+								<Section number={1} info={'26% of respondents have been using Postgres for more than 10 years.'}
+										 description={'The Postgres community is committed.'} reverse={true}
+										 model="Teamwork"/>
 
-						<Section number={2} info={'66% said they’re using Postgres more than they have in the past.'}
-								 description={'Postgres is more popular than ever!'} reverse={false}
-								 model="Drone"/>
+								<Section number={2} info={'66% said they’re using Postgres more than they have in the past.'}
+										 description={'Postgres is more popular than ever!'} reverse={false}
+										 model="Drone"/>
 
-						<Section number={3} info={'Postgres isn’t just for work. Over 80% of respondents use it for personal projects.'}
-								 description={'Like running a demo on a Raspberry Pi.'} reverse={true}
-								 model="Circuit"/>
+								<Section number={3} info={'Postgres isn’t just for work. Over 80% of respondents use it for personal projects.'}
+										 description={'Like running a demo on a Raspberry Pi.'} reverse={true}
+										 model="Circuit"/>
 
-						<Section number={4} info={'About 70% of all respondents use Postgres for app development.'}
-								 description={'And 30% report using it for real-time analytics, dashboarding, and monitoring.'} reverse={false}
-								 model="Phone"/>
+								<Section number={4} info={'About 70% of all respondents use Postgres for app development.'}
+										 description={'And 30% report using it for real-time analytics, dashboarding, and monitoring.'} reverse={false}
+										 model="Phone"/>
 
-						<Section number={5} info={'Only 9% have contributed code to Postgres...'}
-								 description={'This is actually an impressive amount - many open source projects fail to attract enough developers to be sustainable.'} reverse={true} minTopValue={window.innerHeight*0.7} partialVisibility={true} show_info={true}
-								 model="Flowers"/>
+								<Section number={5} info={'Only 9% have contributed code to Postgres...'}
+										 description={'This is actually an impressive amount - many open source projects fail to attract enough developers to be sustainable.'} reverse={true} minTopValue={window.innerHeight*0.7} partialVisibility={true} show_info={true}
+										 model="Flowers"/>
+							</div>
+						</VisibilitySensor>
 
 						{/* 11-13 title Technology - Start */}
-						<section className="section text-section">
-							<div className="container">
-								<div className="text-wrap">
-									<Fade bottom>
-										<p className="info info-title">How they deploy</p>
-									</Fade>
-								</div>
-							</div>
-						</section>
-						{/* Technology - End */}
+						<VisibilitySensor minTopValue={window.innerHeight*0.85} partialVisibility={true}
+										  onChange={this.change_background_blue}>
+							<div id="water">
+								<section className="section text-section">
+									<div className="container">
+										<div className="text-wrap">
+											<Fade bottom>
+												<p className="info info-title">How they deploy</p>
+											</Fade>
+										</div>
+									</div>
+								</section>
+								{/* Technology - End */}
 
-						<Section number={6} info={'The most common way to deploy Postgres (46%) is in a self-managed data center.'}
-								 description={''} reverse={true}
-								 model="Swimming" />
-						<Section number={7} info={'Among those who deploy on a cloud, over half (51%) use AWS'}
-								 description={''} reverse={false}
-								 model="Swimming" />
-						<Section number={8} info={'The next closest cloud provider was GCP at 18%'}
-								 description={''} reverse={true}
-								 model="Swimming" />
-						<VisibilitySensor minTopValue={window.innerHeight*0.85} partialVisibility={true} onChange={this.change_background}>
+								<Section number={6} info={'The most common way to deploy Postgres (46%) is in a self-managed data center.'}
+										 description={''} reverse={false}
+										 model="Swimming" />
+								<Section number={7} info={'Among those who deploy on a cloud, over half (51%) use AWS'}
+										 description={''} reverse={false}
+										 model="" />
+								<Section number={8} info={'The next closest cloud provider was GCP at 18%'}
+										 description={''} reverse={false}
+										 model="" />
+
+							</div>
+						</VisibilitySensor>
+						<VisibilitySensor minTopValue={window.innerHeight*0.85} partialVisibility={true}
+										  onChange={this.change_background_black}>
 							<div>
 								<section className="section text-section">
 									<div className="container">
