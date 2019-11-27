@@ -26,7 +26,10 @@
     "gltf-pipeline": "^2.1.4",
     "draco-animation": "^1.0.4",
     "js-queue": "^2.0.0",
-    "react-share": "^3.0.1"
+    "react-share": "^3.0.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.7"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -139,8 +139,7 @@ class EmailForm extends Component {
 									</div>
 									</Col>
 									<Col md="8">
-										<Form.Label>Email address</Form.Label>
-										<Form.Control type="email" placeholder="Enter email" />
+										<Form.Control type="email" placeholder="Email" />
 									</Col>
 									<Col className="d-flex" style={{ alignItems: "flex-end"}}>
 										<Button  type="submit" variant="primary">Submit</Button>

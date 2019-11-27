@@ -1,0 +1,108 @@
+#timescale {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	margin: 15px;
+
+	.trigger {
+		justify-content: space-between;
+		align-items: center;
+		width: 225px;
+		background: #FFFFFF;
+		padding: 20px;
+		cursor: pointer;
+		box-shadow: -5px 5px 9px rgba(0, 0, 0, 0.06);
+		svg {
+			color: #508ce9;
+		}
+	}
+
+	.content {
+		width: 430px;
+		background: #FFFFFF;
+		box-shadow: -5px 5px 9px rgba(0, 0, 0, 0.06);
+		padding: 25px;
+
+		.head {
+			font-weight: 600;
+			font-size: 22px;
+			line-height: 24px;
+			padding: 0 0 10px 0;
+		}
+		.subhead {
+			padding: 10px 0;
+			font-size: 16px;
+			line-height: 24px;
+		}
+		form {
+			padding: 10px 0 0 0;
+		}
+	}
+}
+
+
+#email-form {
+	font-family: Miller Display;
+	/* or 62px */
+	letter-spacing: 0.005em;
+	color: #404040;
+	max-width: 1200px;
+
+	.footer {
+		font-family: 'IBM Plex Sans';
+		max-width: 400px;
+	}
+	.text1 {
+		font-size: 25px;
+		padding-bottom: 20px;
+		line-height: 141%;
+	}
+
+	.text2 {
+		font-size: 14px;
+		line-height: 154%;
+		padding-bottom: 20px;
+	}
+
+}
+
+
+label {
+	font-family: IBM Plex Sans;
+	font-weight: bold;
+	font-size: 12px;
+	padding-bottom: 10px;
+}
+
+input[type="email"] {
+	font-family: IBM Plex Sans;
+	border-radius: 0;
+	height: 50px;
+}
+input[type="checkbox"] {
+	border-radius: 0;
+	width: 20px;
+	height: 20px;
+}
+.form-check-label {
+	margin-left: 20px;
+	font-size: 14px;
+	font-weight: 400;
+}
+.form-control::-moz-placeholder {
+	color: #080808;
+}
+.form-control:-ms-input-placeholder {
+	color: #080808;
+}
+.form-control::-webkit-input-placeholder {
+	color: #080808;
+}
+
+button {
+	border-radius: 0 !important;
+	font-size: 18px !important;
+	width: 100%;
+	height: 50px;
+	font-family: IBM Plex Sans;
+}

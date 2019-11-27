@@ -189,11 +189,16 @@ class Drone extends Model {
     constructor(props) {
         super(props);
         this.state = {file: drone};
+        this.start_fly_animation = this.start_fly_animation.bind(this);
     }
 
     componentDidMount() {
         super.componentDidMount();
         window.addEventListener('scroll', this.start_fly_animation)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.start_fly_animation)
     }
 
     animate() {
@@ -202,12 +207,13 @@ class Drone extends Model {
                 this.camera.position.y -= 0.01;
             } else {
                 this.fly_animation = false;
+                window.removeEventListener('scroll', this.start_fly_animation)
             }
         }
         return super.animate();
     }
-    start_fly_animation = (event) => {
-        if (this.el.getBoundingClientRect().y < 200 && this.scene.visible) {
+    start_fly_animation() {
+        if (this.el && this.el.getBoundingClientRect().y < 200 && this.scene && this.scene.visible) {
             this.fly_animation = true;
         }
     };
@@ -222,7 +228,7 @@ class Drone extends Model {
     }
 }
 
-class Phone extends Drone {
+class Phone extends Model {
     constructor(props) {
         super(props);
         this.state = {
