@@ -127,14 +127,14 @@ class EmailForm extends Component {
 						 className="d-flex justify-content-center">
 						<div className="footer">
 							<div className='text1'>
-								Do you use Postgres? Sign up to get notified when Timescale conducts this survey next year.
+								Sign up to get notified about the next State of Postgres survey.
 							</div>
 							<Form>
 								<Form.Row>
 									<Col md="12">
 									<div className='text2'>
 										<Form.Group controlId="formBasicCheckbox">
-										<Form.Check type="checkbox" label="Also send me new technical content, SQL tips, and more from the Timescale newsletter" />
+										<Form.Check type="checkbox" label="Also sign me up for the Timescale newsletter to get the latest technical content, SQL tips, and more." />
 										</Form.Group>
 									</div>
 									</Col>
