@@ -1,16 +1,41 @@
 import React from 'react';
-import {Container, Row, Col, Form, Button} from 'react-bootstrap'
+import submitForm from '../utils/submit';
+import { Col, Form, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 
 class TimescaleEmail extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {clicked: false}
+        this.state = {clicked: false, buttonText: 'Submit', fields: {email: ''}}
+        this.onClick = this.onClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
+
     changeState = () => {
         this.setState({clicked: !this.state.clicked});
     };
+
+    onSuccess = () => {
+      this.setState({buttonText: 'Thanks!'});
+    }
+
+    onFailure = () => {
+      this.setState({buttonText: 'Error!'});
+    }
+
+    handleChange = (e) => {
+      this.setState({ fields: { email: e.target.value }});
+    }
+
+    onClick = async (e) => {
+      e.preventDefault();
+      const submitBody = Object.entries(this.state.fields).map(([name, value]) => {
+        return {name, value};
+      });
+      await submitForm({submitBody, onSuccess: this.onSuccess, onFailure: this.onFailure});
+    }
+
     render() {
         return(
             <div id="timescale">
@@ -23,10 +48,10 @@ class TimescaleEmail extends React.Component {
                     <Form>
                         <Form.Row>
                             <Col md="8">
-                                <Form.Control type="email" placeholder="Email" />
+                                <Form.Control onChange={this.handleChange} value={this.state.email} type="email" placeholder="Email" />
                             </Col>
                             <Col className="d-flex btn-col">
-                                <Button  type="submit" variant="primary">Submit</Button>
+                                <Button onClick={this.onClick} type="submit" variant="primary">{this.state.buttonText}</Button>
                             </Col>
                         </Form.Row>
                     </Form>
