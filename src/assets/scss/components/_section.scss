@@ -1,3 +1,7 @@
+.row_section {
+	height: 850px;
+}
+
 .number {
 	font-family: Miller Display;
 	font-style: normal;
@@ -19,12 +23,16 @@
 	padding-bottom: 10px;
 }
 .text-section {
+	padding: 0 7%;
+
 	.number, .info, .description {
 		animation-duration: "1s";
 		opacity: 0;
 	}
+	.text {
+		width: 650px;
+	}
 }
-
 
 .description {
 	font-style: normal;
@@ -35,8 +43,8 @@
 	color: #4E8BEA;
 }
 
-.text {
-
+.quote-text {
+	padding: 0 7%;
 }
 
 .text.quote {
@@ -118,3 +126,4 @@
         border-bottom: 1px solid #4cc7cb !important;
 	}
 }
+

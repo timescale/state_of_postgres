@@ -49,35 +49,32 @@ class Section extends Component {
 
 	render() {
 		return (
-			<Container fluid={true}>
-				<Row style={{height: 850}}>
-					<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 2 : 1 }}
-						 className="d-flex justify-content-center align-items-center">
-						<GetModel model={this.props.model}/>
-					</Col>
-					<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
-						 className="d-flex justify-content-center align-items-center text-section"
-					style={{padding: "0 150px"}}>
-						<VisibilitySensor partialVisibility={this.props.partialVisibility || false}
-										  onChange={this.fade} minTopValue={this.props.minTopValue} >
-							<div className="text">
-								<p className={'number ' + (this.props.show_info ? '' : 'animated')}
-								   ref={this.number}
-								   style={this.props.show_info ? {opacity: 1} : {}}>
-									{ this.props.number }
-								</p>
-								<p className={'info ' + (this.props.show_info ? '' : 'animated')} ref={this.info}
-								   style={this.props.show_info ? {opacity: 1} : {}}>
-									{ this.props.info }
-								</p>
-								<p className="description animated"  ref={this.description}>
-									{ this.props.description }
-								</p>
-							</div>
-						</VisibilitySensor>
-					</Col>
-				</Row>
-			</Container>
+			<Row className="row_section" >
+				<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 2 : 1 }}
+					 className="d-flex justify-content-center align-items-center">
+					<GetModel model={this.props.model}/>
+				</Col>
+				<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
+					 className="d-flex justify-content-center align-items-center text-section">
+					<VisibilitySensor partialVisibility={this.props.partialVisibility || false}
+									  onChange={this.fade} minTopValue={this.props.minTopValue} >
+						<div className="text">
+							<p className={'number ' + (this.props.show_info ? '' : 'animated')}
+							   ref={this.number}
+							   style={this.props.show_info ? {opacity: 1} : {}}>
+								{ this.props.number }
+							</p>
+							<p className={'info ' + (this.props.show_info ? '' : 'animated')} ref={this.info}
+							   style={this.props.show_info ? {opacity: 1} : {}}>
+								{ this.props.info }
+							</p>
+							<p className="description animated"  ref={this.description}>
+								{ this.props.description }
+							</p>
+						</div>
+					</VisibilitySensor>
+				</Col>
+			</Row>
 		);
 	}
 }
@@ -91,15 +88,14 @@ class QuoteSection extends Section {
 
 	render() {
 		return (
-			<Container fluid={true}>
-				<Row ref={this.row} style={{height: 850}} className="transition">
+			<Container className="section" fluid={true}>
+				<Row ref={this.row} className="transition">
 					<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 2 : 1 }}
 						 className="d-flex justify-content-center align-items-center p-0 col-sm-push-6">
 						<GetModel model={this.props.model} black={this.props.black}/>
 					</Col>
 					<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
-						 className="d-flex justify-content-center align-items-center quote-text"
-						style={{padding: this.props.reverse ? "0 150px" : "0 150px 0 0"}}>
+						 className="d-flex justify-content-center align-items-center quote-text">
 						<VisibilitySensor onChange={this.fade}>
 							<div ref={this.text} className='text quote animated' style={{animationDuration: "1s", opacity: 0 }}>
 								<p className="number">{ this.props.number }</p>
@@ -132,16 +128,16 @@ class EmailForm extends Component {
 							<Form>
 								<Form.Row>
 									<Col md="12">
-									<div className='text2'>
-										<Form.Group controlId="formBasicCheckbox">
-										<Form.Check type="checkbox" label="Also sign me up for the Timescale newsletter to get the latest technical content, SQL tips, and more." />
-										</Form.Group>
-									</div>
+										<div className='text2'>
+											<Form.Group controlId="formBasicCheckbox">
+												<Form.Check type="checkbox" label="Also sign me up for the Timescale newsletter to get the latest technical content, SQL tips, and more." />
+											</Form.Group>
+										</div>
 									</Col>
 									<Col md="8">
 										<Form.Control type="email" placeholder="Email" />
 									</Col>
-									<Col className="d-flex" style={{ alignItems: "flex-end"}}>
+									<Col className="d-flex">
 										<Button  type="submit" variant="primary">Submit</Button>
 									</Col>
 								</Form.Row>

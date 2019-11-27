@@ -25,7 +25,7 @@ class TimescaleEmail extends React.Component {
                             <Col md="8">
                                 <Form.Control type="email" placeholder="Email" />
                             </Col>
-                            <Col className="d-flex" style={{ alignItems: "flex-end"}}>
+                            <Col className="d-flex btn-col">
                                 <Button  type="submit" variant="primary">Submit</Button>
                             </Col>
                         </Form.Row>
