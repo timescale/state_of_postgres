@@ -781,7 +781,7 @@ class KeyFindings extends Component {
                                         <Fade>
                                             <div className="text-wrap">
                                                 <p className="question">
-                                                    <span className="question-number">Question {index + 1}</span>
+
                                                     {question.question}
                                                 </p>
                                                 {question.info &&
