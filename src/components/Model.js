@@ -17,7 +17,12 @@ let queue = new Queue();
 class Model extends Component {
 
     onWindowResize() {
+        if (!this.scene.visible) {
+            return
+        }
+
         if (this.camera && this.renderer) {
+            this.camera.aspect = this.el.width / this.el.height;
             this.camera.updateProjectionMatrix();
         }
     }

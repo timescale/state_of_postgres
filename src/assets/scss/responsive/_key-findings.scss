@@ -252,7 +252,16 @@
 		}
 	}
 
+	.info {
+		font-size: 27px;
+	}
+
+	.description {
+		font-size: 22px;
+	}
+
 }
+
 
 @media (max-width: $screen-sm) {
 
@@ -427,12 +436,34 @@
 			}
 		}
 	}
+	.row_section {
+		flex-direction: column;
+		height: 600px;
+	}
+
+	canvas {
+		height: 506px;
+	}
 
 	.text-section {
-		min-height: 350px;
+		max-height: 256px;
+	}
+	.model {
+		max-height: 312px;
 	}
 
 	.quote-text {
 		position: absolute;
+	}
+
+	.info {
+		font-size: 27px;
+	}
+
+	.description {
+		font-size: 22px;
+	}
+	.quote-section > div:first-child {
+		padding-bottom: 100px;
 	}
 }

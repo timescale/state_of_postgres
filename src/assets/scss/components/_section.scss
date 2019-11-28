@@ -2,6 +2,10 @@
 	height: 850px;
 }
 
+canvas {
+	width: 100% !important;
+}
+
 .number {
 	font-family: Miller Display;
 	font-style: normal;
@@ -13,6 +17,15 @@
 	padding-bottom: 10px;
 }
 
+.text-section {
+	padding: 0 5%;
+
+	.number, .info, .description {
+		animation-duration: "1s";
+		opacity: 0;
+	}
+}
+
 .info {
 	font-style: normal;
 	font-weight: 600;
@@ -22,14 +35,7 @@
 	color: #404040;
 	padding-bottom: 10px;
 }
-.text-section {
-	padding: 0 7%;
 
-	.number, .info, .description {
-		animation-duration: "1s";
-		opacity: 0;
-	}
-}
 
 .description {
 	font-style: normal;
@@ -41,7 +47,7 @@
 }
 
 .quote-text {
-	padding: 0 7%;
+	padding: 0 5%;
 }
 
 .text.quote {
