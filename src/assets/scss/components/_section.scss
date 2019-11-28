@@ -29,9 +29,6 @@
 		animation-duration: "1s";
 		opacity: 0;
 	}
-	.text {
-
-	}
 }
 
 .description {
@@ -50,39 +47,38 @@
 .text.quote {
 	margin: 120px 20px 20px 10px;
 	.name {
-		font-family: IBM Plex Sans;
-		font-style: italic;
 		font-weight: normal;
-		font-size: 23px;
-		line-height: 127.5%;
+		font-size: 22px;
+		line-height: 29px;
 		letter-spacing: 0.01em;
-		text-align: right;
 		color: #404040;
+        padding-top: 40px;
 	}
+    .info {
+        line-height: 48px;
+        font-style: italic;
+        font-weight: 200;
+    }
+
 }
 
 .curly-quotes-wrapper {
 	position: relative;
 }
-.curly-quotes:before, .curly-quotes:after {
+.curly-quotes:before {
 	position: absolute;
 	display: inline-block;
 	vertical-align: top;
 	height: 30px;
 	line-height: 48px;
-	font-size: 50px;
-	color: #FBFBFB;
+	font-size: 110px;
+	color: #4E8BEA;
 }
 
 .curly-quotes:before {
 	content: '\201C';
-	left: -25px;
-}
-
-.curly-quotes:after {
-	content: '\201D';
-	bottom: 0;
-	right: -25px;
+	top: -50px;
+    left: -5px;
 }
 
 .quote-by {
@@ -115,14 +111,14 @@
         color: #080808!important;
 	}
 	a.active {
-		color: #4cc7cb !important;
-        border-bottom: 1px solid #4cc7cb !important;
+		color: #FBFBFB !important;
+        border-bottom: 1px solid #FBFBFB !important;
 	}
 }
 
 .black {
     background-color: #080808!important;
-    .info, .text.quote, .name, .number, a:not(.active) {
+    .info, .text.quote, .name, a:not(.active) {
         color: #FBFBFB!important;
 	}
 }

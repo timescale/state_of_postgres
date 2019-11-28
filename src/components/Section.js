@@ -99,7 +99,6 @@ class QuoteSection extends Section {
 						 className="d-flex justify-content-center align-items-center quote-text">
 						<VisibilitySensor onChange={this.fade}>
 							<div ref={this.text} className='text quote animated' style={{animationDuration: "1s", opacity: 0 }}>
-								<p className="number">{ this.props.number }</p>
 								<div className="curly-quotes-wrapper">
 									<div className="curly-quotes">
 										<p className="info">{ this.props.text }</p>
