@@ -770,6 +770,10 @@ class KeyFindings extends Component {
     render() {
         return (
             <Fragment>
+                <div id="full_page_header">
+                    <div>The full results from our survey are below.</div>
+                    <div>You can also <a href="#">download</a> the raw data or read about our <a href="#">methodology</a>.</div>
+                </div>
                 <div className="full-results">
                     {
                         this.questions.map((question, index) => {
