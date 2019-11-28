@@ -144,7 +144,7 @@ const EmailForm = ({black}) => {
 								<Col md="12">
 									<div className='text2'>
 										<Form.Group controlId="formBasicCheckbox">
-											<Form.Check type="checkbox" checked={newsletter} onClick={() => { setNewsletter(!newsletter); }} label="Also sign me up for the Timescale newsletter to get the latest technical content, SQL tips, and more." />
+											<Form.Check type="checkbox" checked={newsletter} onClick={() => { setNewsletter(!newsletter); }} label="I'd like to get the Timescale Newsletter (new technical content, SQL tips, and more)." />
 										</Form.Group>
 									</div>
 								</Col>

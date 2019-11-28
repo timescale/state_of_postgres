@@ -91,10 +91,9 @@
 }
 
 .transition {
-    transition: background-color 1s ease;
-
+    transition: background-color .3s ease-in-out;
 	.info, .text.quote, .name, .number {
-        transition: color 1s ease;
+        transition: color .3s ease-in-out;
 	}
 }
 
