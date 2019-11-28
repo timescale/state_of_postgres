@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import VisibilitySensor from 'react-visibility-sensor'
+import submitForm from '../utils/submit';
 
 import {Model, Drone, Phone, Flowers, Teamwork, Swimming, Flame, Tail, Circuit, Toyball} from "./Model";
 import {Container, Row, Col, Form, Button} from 'react-bootstrap'
@@ -114,40 +115,53 @@ class QuoteSection extends Section {
 	}
 }
 
-class EmailForm extends Component {
-	render() {
-		return (
-			<Container id="email-form">
-				<Row style={{height: 850}} className={this.props.black ? 'black' : '' }>
-					<Col sm={{ span: 12 }} md={{ span: 6, offset: 3 }}
-						 className="d-flex justify-content-center">
-						<div className="footer">
-							<div className='text1'>
-								Sign up to get notified about the next State of Postgres survey.
-							</div>
-							<Form>
-								<Form.Row>
-									<Col md="12">
-										<div className='text2'>
-											<Form.Group controlId="formBasicCheckbox">
-												<Form.Check type="checkbox" label="Also sign me up for the Timescale newsletter to get the latest technical content, SQL tips, and more." />
-											</Form.Group>
-										</div>
-									</Col>
-									<Col md="8">
-										<Form.Control type="email" placeholder="Email" />
-									</Col>
-									<Col className="d-flex">
-										<Button  type="submit" variant="primary">Submit</Button>
-									</Col>
-								</Form.Row>
-							</Form>
-						</div>
-					</Col>
-				</Row>
-			</Container>
-		);
+const EmailForm = ({black}) => {
+	const [newsletter, setNewsletter] = useState(false);
+	const [email, setEmail] = useState('');
+	const [isSubmitting, setIsSubmitting] = useState(false);
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		setIsSubmitting(true);
+		const submitBody = [
+			{ name: 'newsletter', value: newsletter },
+			{ name: 'email', value: email },
+		];
+		await submitForm({submitBody});
+		setIsSubmitting(false);
 	}
+
+	return (
+		<Container id="email-form">
+			<Row style={{height: 850}} className={black ? 'black' : '' }>
+				<Col sm={{ span: 12 }} md={{ span: 6, offset: 3 }}
+					 className="d-flex justify-content-center">
+					<div className="footer">
+						<div className='text1'>
+							Sign up to get notified about the next State of Postgres survey.
+						</div>
+						<Form>
+							<Form.Row>
+								<Col md="12">
+									<div className='text2'>
+										<Form.Group controlId="formBasicCheckbox">
+											<Form.Check type="checkbox" checked={newsletter} onClick={() => { setNewsletter(!newsletter); }} label="Also sign me up for the Timescale newsletter to get the latest technical content, SQL tips, and more." />
+										</Form.Group>
+									</div>
+								</Col>
+								<Col md="8">
+									<Form.Control type="email" placeholder="Email" value={email} onChange={(e) => { setEmail(e.target.value); }}/>
+								</Col>
+								<Col className="d-flex">
+									<Button type="submit" onClick={handleSubmit} variant="primary">Submit</Button>
+								</Col>
+							</Form.Row>
+						</Form>
+					</div>
+				</Col>
+			</Row>
+		</Container>
+	);
 }
 
 export {Section, QuoteSection, EmailForm};
