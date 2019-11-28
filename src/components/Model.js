@@ -63,8 +63,8 @@ class Model extends Component {
 
                 window.addEventListener( 'resize', () => {this.onWindowResize()}, false );
             }, xhr => {
-                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-                this.setState({now: ( xhr.loaded / (xhr.total || xhr.loaded) * 100 )});
+                let percentage = Math.round(xhr.loaded / (xhr.total || xhr.loaded) * 100);
+                this.setState({now: percentage});
             }, error => {
                 queue.next();
                 console.log( 'An error happened' );
@@ -251,7 +251,14 @@ class Drone extends Model {
     render() {
         return (
             <VisibilitySensor partialVisibility={true} onChange={this.activate_animation} minTopValue={this.minTopValue || 0}>
-                <canvas ref={ref => (this.el = ref)} />
+                <div>
+                    <div>
+                        <div className="progress-bar-div" hidden={this.state.now === 100} >
+                            <ProgressBar now={this.state.now}/>
+                        </div >
+                        <canvas ref={ref => (this.el = ref)} hidden={this.state.now !== 100} />
+                    </div>
+                </div>
             </VisibilitySensor>
         )
 
