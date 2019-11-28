@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
 import VisibilitySensor from 'react-visibility-sensor'
-import submitForm from '../utils/submit';
+
 
 import {Model, Drone, Phone, Flowers, Teamwork, Swimming, Flame, Tail, Circuit, Toyball} from "./Model";
 import {Container, Row, Col, Form, Button} from 'react-bootstrap'
@@ -89,76 +89,27 @@ class QuoteSection extends Section {
 
 	render() {
 		return (
-			<Container className="section" fluid={true}>
-				<Row ref={this.row} className="transition">
-					<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 2 : 1 }}
-						 className="d-flex justify-content-center align-items-center p-0 col-sm-push-6">
-						<GetModel model={this.props.model} black={this.props.black}/>
-					</Col>
-					<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
-						 className="d-flex justify-content-center align-items-center quote-text">
-						<VisibilitySensor onChange={this.fade}>
-							<div ref={this.text} className='text quote animated' style={{animationDuration: "1s", opacity: 0 }}>
-								<div className="curly-quotes-wrapper">
-									<div className="curly-quotes">
-										<p className="info">{ this.props.text }</p>
-									</div>
+			<Row className="section" ref={this.row} className="transition">
+				<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 2 : 1 }}
+					 className="d-flex justify-content-center align-items-center p-0 col-sm-push-6">
+					<GetModel model={this.props.model} black={this.props.black}/>
+				</Col>
+				<Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
+					 className="d-flex justify-content-center align-items-center quote-text">
+					<VisibilitySensor onChange={this.fade}>
+						<div ref={this.text} className='text quote animated' style={{animationDuration: "1s", opacity: 0 }}>
+							<div className="curly-quotes-wrapper">
+								<div className="curly-quotes">
+									<p className="info">{ this.props.text }</p>
 								</div>
-								<p className="name">{ this.props.name }</p>
 							</div>
-						</VisibilitySensor>
-					</Col>
-				</Row>
-			</Container>
+							<p className="name">{ this.props.name }</p>
+						</div>
+					</VisibilitySensor>
+				</Col>
+			</Row>
 		);
 	}
 }
 
-const EmailForm = ({black}) => {
-	const [newsletter, setNewsletter] = useState(false);
-	const [email, setEmail] = useState('');
-	const [isSubmitting, setIsSubmitting] = useState(false);
-
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		setIsSubmitting(true);
-		const submitBody = [
-			{ name: 'newsletter', value: newsletter },
-			{ name: 'email', value: email },
-		];
-		await submitForm({submitBody});
-		setIsSubmitting(false);
-	}
-
-	return (
-		<Row id="email-form" className={black ? 'black' : '' }>
-			<Col sm={{ span: 12 }} md={{ span: 6, offset: 3 }}
-				 className="d-flex justify-content-center">
-				<div className="footer">
-					<div className='text1'>
-						Sign up to get notified about the next State of Postgres survey.
-					</div>
-					<Form>
-						<Form.Row>
-							<Col md="12">
-								<div className='text2'>
-									<Form.Group controlId="formBasicCheckbox">
-										<Form.Check type="checkbox" checked={newsletter} onClick={() => { setNewsletter(!newsletter); }} label="I'd like to get the Timescale Newsletter (new technical content, SQL tips, and more)." />
-									</Form.Group>
-								</div>
-							</Col>
-							<Col md="8">
-								<Form.Control type="email" placeholder="Email" value={email} onChange={(e) => { setEmail(e.target.value); }}/>
-							</Col>
-							<Col className="d-flex">
-								<Button type="submit" onClick={handleSubmit} variant="primary">Submit</Button>
-							</Col>
-						</Form.Row>
-					</Form>
-				</div>
-			</Col>
-		</Row>
-	);
-}
-
-export {Section, QuoteSection, EmailForm};
+export {Section, QuoteSection};

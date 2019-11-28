@@ -7,7 +7,7 @@ import 'animate.css';
 import './assets/scss/style.scss';
 import NavLink from "./components/NavLink";
 import SmoothScroll from "./components/SmoothScroll";
-import TimescaleEmail from "./components/Forms";
+import { TimescaleEmail } from "./components/Forms";
 
 function ScrollToTop() {
 	const { pathname } = useLocation();

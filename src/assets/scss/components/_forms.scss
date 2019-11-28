@@ -42,10 +42,12 @@
 
 
 #email-form {
-	font-family: Miller Display;
 	/* or 62px */
 	letter-spacing: 0.005em;
 	color: #404040;
+	padding-top: 100px;
+	max-width: 400px;
+
 
 	.footer {
 		font-family: 'IBM Plex Sans';
