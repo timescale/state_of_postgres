@@ -131,35 +131,33 @@ const EmailForm = ({black}) => {
 	}
 
 	return (
-		<Container id="email-form">
-			<Row style={{height: 850}} className={black ? 'black' : '' }>
-				<Col sm={{ span: 12 }} md={{ span: 6, offset: 3 }}
-					 className="d-flex justify-content-center">
-					<div className="footer">
-						<div className='text1'>
-							Sign up to get notified about the next State of Postgres survey.
-						</div>
-						<Form>
-							<Form.Row>
-								<Col md="12">
-									<div className='text2'>
-										<Form.Group controlId="formBasicCheckbox">
-											<Form.Check type="checkbox" checked={newsletter} onClick={() => { setNewsletter(!newsletter); }} label="I'd like to get the Timescale Newsletter (new technical content, SQL tips, and more)." />
-										</Form.Group>
-									</div>
-								</Col>
-								<Col md="8">
-									<Form.Control type="email" placeholder="Email" value={email} onChange={(e) => { setEmail(e.target.value); }}/>
-								</Col>
-								<Col className="d-flex">
-									<Button type="submit" onClick={handleSubmit} variant="primary">Submit</Button>
-								</Col>
-							</Form.Row>
-						</Form>
+		<Row id="email-form" className={black ? 'black' : '' }>
+			<Col sm={{ span: 12 }} md={{ span: 6, offset: 3 }}
+				 className="d-flex justify-content-center">
+				<div className="footer">
+					<div className='text1'>
+						Sign up to get notified about the next State of Postgres survey.
 					</div>
-				</Col>
-			</Row>
-		</Container>
+					<Form>
+						<Form.Row>
+							<Col md="12">
+								<div className='text2'>
+									<Form.Group controlId="formBasicCheckbox">
+										<Form.Check type="checkbox" checked={newsletter} onClick={() => { setNewsletter(!newsletter); }} label="I'd like to get the Timescale Newsletter (new technical content, SQL tips, and more)." />
+									</Form.Group>
+								</div>
+							</Col>
+							<Col md="8">
+								<Form.Control type="email" placeholder="Email" value={email} onChange={(e) => { setEmail(e.target.value); }}/>
+							</Col>
+							<Col className="d-flex">
+								<Button type="submit" onClick={handleSubmit} variant="primary">Submit</Button>
+							</Col>
+						</Form.Row>
+					</Form>
+				</div>
+			</Col>
+		</Row>
 	);
 }
 

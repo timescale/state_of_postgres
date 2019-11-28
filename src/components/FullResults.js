@@ -739,8 +739,8 @@ class KeyFindings extends Component {
         this.toggleOtherOptions = this.toggleOtherOptions.bind(this);
     }
     componentDidUpdate() {
-        let offsetHeight = document.querySelector('#main').offsetHeight;
-        document.querySelector('.main-wrap').style.height = `${offsetHeight}px`;
+        let offsetHeight = document.querySelector('.scroll_container__body').offsetHeight;
+        document.querySelector('.main-wrap').style.height = `${offsetHeight + 200}px`;
     }
 
     componentDidMount() {

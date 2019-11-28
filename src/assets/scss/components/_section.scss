@@ -121,3 +121,18 @@
         color: #FBFBFB!important;
 	}
 }
+
+#share {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	padding: 50px;
+	div {
+		padding-left: 10px;
+		padding-right: 10px;
+		cursor: pointer;
+	}
+	circle {
+		fill: #E1E1E1;
+	}
+}
