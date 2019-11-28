@@ -109,14 +109,7 @@
 	}
 }
 
-.black{
-    background-color: #080808!important;
-    .info, .text.quote, .name, .number, a:not(.active) {
-        color: #FBFBFB!important;
-	}
-}
-
-.blue{
+.blue {
     background-color: #469fcb!important;
     .info, .text.quote, .name, .number, a:not(.active) {
         color: #080808!important;
@@ -127,3 +120,9 @@
 	}
 }
 
+.black {
+    background-color: #080808!important;
+    .info, .text.quote, .name, .number, a:not(.active) {
+        color: #FBFBFB!important;
+	}
+}

@@ -98,7 +98,7 @@ class KeyFindings extends Component {
 							</VisibilitySensor>
 
 							{/* 11-13 title Technology - Start */}
-							<VisibilitySensor minTopValue={window.innerHeight*0.85} partialVisibility={true}
+							<VisibilitySensor minTopValue={window.innerHeight*0.7} partialVisibility={true}
 											  onChange={this.change_background_blue}>
 								<div id="water">
 									<section className="section text-section">
@@ -124,7 +124,7 @@ class KeyFindings extends Component {
 
 								</div>
 							</VisibilitySensor>
-							<VisibilitySensor minTopValue={window.innerHeight*0.85} partialVisibility={true}
+							<VisibilitySensor minTopValue={window.innerHeight*0.7} partialVisibility={true}
 											  onChange={this.change_background_black}>
 								<div>
 									<section className="section text-section">
