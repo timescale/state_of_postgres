@@ -26,6 +26,17 @@ canvas {
 	}
 }
 
+.progress-bar-div {
+    .progress {
+        background-color: #F2EFEF;
+    }
+    width: 150px;
+    height: 9px;
+    .progress-bar {
+        background-color: #469FCB;
+    }
+}
+
 .info {
 	font-style: normal;
 	font-weight: 600;

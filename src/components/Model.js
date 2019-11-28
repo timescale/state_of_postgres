@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 // import Reveal from 'react-reveal/Reveal';
 // import AOS from 'aos';
+import {ProgressBar} from 'react-bootstrap'
 import VisibilitySensor from 'react-visibility-sensor'
 import * as THREE from 'three'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
@@ -15,6 +16,9 @@ import Queue from 'js-queue'
 let queue = new Queue();
 
 class Model extends Component {
+    state = {
+        now: 50
+    };
 
     onWindowResize() {
         if (!this.scene.visible) {
@@ -38,8 +42,11 @@ class Model extends Component {
             return
         }
         queue.add(() => {
-            this.loader.load(this.state.file, (gltf) => {
+            if (!this.state.file) {
                 queue.next();
+                return
+            }
+            this.loader.load(this.state.file, (gltf) => {
                 queue.next();
                 this.delta = 0;
                 this.gltf = gltf;
@@ -55,6 +62,12 @@ class Model extends Component {
                 this.get_render();
 
                 window.addEventListener( 'resize', () => {this.onWindowResize()}, false );
+            }, xhr => {
+                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+                this.setState({now: ( xhr.loaded / (xhr.total || xhr.loaded) * 100 )});
+            }, error => {
+                queue.next();
+                console.log( 'An error happened' );
             })
             // success(model)
         });
@@ -83,6 +96,20 @@ class Model extends Component {
         this.scene.add(this.gltf.scene)
     };
 
+    is_in_viewport() {
+        let bounding = this.el.getBoundingClientRect();
+        if (
+            bounding.top >= 0 &&
+            bounding.left >= 0 &&
+            bounding.right <= (window.innerWidth || document.documentElement.clientWidth) &&
+            bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+        ) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     get_render() {
         //RENDERER
         this.renderer = new THREE.WebGLRenderer({
@@ -98,7 +125,7 @@ class Model extends Component {
         this.renderer.setPixelRatio(2);
         this.camera.aspect = this.width / this.height;
         this.camera.updateProjectionMatrix();
-        this.scene.visible = false;
+        this.scene.visible = this.is_in_viewport();
         this.renderer.render(this.scene, this.camera);
     };
     get_mixer() {
@@ -176,7 +203,12 @@ class Model extends Component {
     render() {
         return (
             <VisibilitySensor partialVisibility={true} onChange={this.activate_animation} minTopValue={this.minTopValue || 0}>
-                <canvas ref={ref => (this.el = ref)} />
+                <div>
+                    <div className="progress-bar-div" hidden={this.state.now === 100} >
+                        <ProgressBar now={this.state.now}/>
+                    </div >
+                    <canvas ref={ref => (this.el = ref)} hidden={this.state.now !== 100} />
+                </div>
             </VisibilitySensor>
         )
 

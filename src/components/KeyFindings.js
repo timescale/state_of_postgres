@@ -135,11 +135,9 @@ class KeyFindings extends Component {
                                          description={''} reverse={false}
                                          model="Swimming" />
                                 <Section number={7} info={'Among those who deploy on a cloud, over half (51%) use AWS'}
-                                         description={''} reverse={false}
-                                         model="" />
+                                         description={''} reverse={false}/>
                                 <Section number={8} info={'The next closest cloud provider was GCP at 18%'}
-                                         description={''} reverse={false}
-                                         model="" />
+                                         description={''} reverse={false}/>
 
                             </div>
                         </VisibilitySensor>
