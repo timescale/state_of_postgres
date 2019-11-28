@@ -5,16 +5,7 @@ import VisibilitySensor from 'react-visibility-sensor'
 import * as THREE from 'three'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 // import {DRACOLoader} from 'three/examples/jsm/loaders/DRACOLoader';
-// import GLTFLoader from './models/GLTFLoader';
-import drone from './models/drone.glb'
-import phone from './models/phone.glb'
-import flowers from './models/flowers.glb'
-import teamwork from './models/team.glb'
-import swimming from './models/swimming_full.glb'
-import flame from './models/flame.glb'
-import tail from './models/tail_wag.glb'
-import circuit from './models/circuit.glb'
-import toyball from './models/toy_ball.glb'
+
 import {Water} from './models/Water.js';
 import {Sky} from './models/Sky.js';
 import water_texture from './models/waternormals.jpg'
@@ -38,7 +29,9 @@ class Model extends Component {
         // dracoLoader.setDecoderConfig( { type: 'js' } );
         // this.loader.setDRACOLoader( dracoLoader );
         // loader.setMeshoptDecoder( MeshoptDecoder );
-
+        if (!this.state) {
+            return
+        }
         queue.add(() => {
             this.loader.load(this.state.file, (gltf) => {
                 queue.next();
@@ -188,7 +181,7 @@ class Model extends Component {
 class Drone extends Model {
     constructor(props) {
         super(props);
-        this.state = {file: drone};
+        this.state = {file: '/objects/drone.glb'};
         this.start_fly_animation = this.start_fly_animation.bind(this);
     }
 
@@ -232,7 +225,7 @@ class Phone extends Model {
     constructor(props) {
         super(props);
         this.state = {
-            file: phone,
+            file: '/objects/phone.glb',
             loopOnce: true
         }
     }
@@ -243,7 +236,7 @@ class Flowers extends Model {
         super(props);
         this.minTopValue = window.innerHeight*0.7;
         this.state = {
-            file: flowers,
+            file: '/objects/flowers.glb',
             loopOnce: true,
         }
     }
@@ -273,7 +266,7 @@ class Teamwork extends Model {
     constructor(props) {
         super(props);
         this.state = {
-            file: teamwork,
+            file: '/objects/teamwork.glb',
             loopOnce: true
         }
     }
@@ -282,7 +275,7 @@ class Teamwork extends Model {
 class Swimming extends Model {
     constructor(props) {
         super(props);
-        this.state = {file: swimming}
+        this.state = {file: '/objects/swimming_full.glb'}
     }
     get_render() {
         super.get_render();
@@ -381,7 +374,7 @@ class Swimming extends Model {
 class Flame extends Model {
     constructor(props) {
         super(props);
-        this.state = {file: flame}
+        this.state = {file: '/objects/flame.glb'}
     }
     get_camera() {
         super.get_camera();
@@ -392,14 +385,14 @@ class Flame extends Model {
 class Tail extends Model {
     constructor(props) {
         super(props);
-        this.state = {file: tail}
+        this.state = {file: '/objects/tail_wag.glb'}
     }
 }
 
 class Circuit extends Model {
     constructor(props) {
         super(props);
-        this.state = {file: circuit}
+        this.state = {file: '/objects/circuit.glb'}
     }
 }
 
@@ -407,7 +400,7 @@ class Toyball extends Model {
     constructor(props) {
         super(props);
         this.state = {
-            file: toyball,
+            file: '/objects/toy_ball.glb',
             loopOnce: true
         }
     }
