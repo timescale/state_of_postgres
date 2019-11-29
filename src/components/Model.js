@@ -17,7 +17,7 @@ let queue = new Queue();
 
 class Model extends Component {
     state = {
-        now: 50
+        now: 0
     };
 
     onWindowResize() {
@@ -73,7 +73,7 @@ class Model extends Component {
         });
     }
     get_mesh() {
-        this.mesh = this.scene.children[0].children[0]
+        this.mesh = this.scene.children[0].children[0];
     }
 
     change_material() {
@@ -157,6 +157,13 @@ class Model extends Component {
 
     get_light() {
         this.light = new THREE.DirectionalLight( 0xffffff, 1 );
+        // this.hemispheric = new THREE.HemisphereLight( 0xffffff, 0x222222, 1.0 );
+        // this.scene.add(this.hemispheric);
+        // this.ambient = new THREE.AmbientLight( 0xffffff, 0.3 );
+        // this.scene.add(this.ambient);
+        // this.directionalLight = new THREE.DirectionalLight( 0xffffff, 0.8 );
+        // this.directionalLight.position.set( 0.5, 0, 0.866 );
+        // this.scene.add( this.directionalLight );
         this.scene.add( this.light );
     }
 
@@ -204,7 +211,7 @@ class Model extends Component {
         return (
             <VisibilitySensor partialVisibility={true} onChange={this.activate_animation} minTopValue={this.minTopValue || 0}>
                 <div>
-                    <div className="progress-bar-div" hidden={this.state.now === 100} >
+                    <div className="progress-bar-div" hidden={!this.state.file || this.state.now === 100} >
                         <ProgressBar now={this.state.now}/>
                     </div >
                     <canvas ref={ref => (this.el = ref)} hidden={this.state.now !== 100} />
@@ -220,6 +227,13 @@ class Drone extends Model {
         super(props);
         this.state = {file: '/objects/drone.glb'};
         this.start_fly_animation = this.start_fly_animation.bind(this);
+    }
+
+
+    get_light() {
+        // super.get_light();
+        this.hemispheric = new THREE.HemisphereLight( 0xffffff, 0x222222, 1.0 );
+        this.scene.add(this.hemispheric);
     }
 
     componentDidMount() {
@@ -255,7 +269,7 @@ class Drone extends Model {
                     <div>
                         <div className="progress-bar-div" hidden={this.state.now === 100} >
                             <ProgressBar now={this.state.now}/>
-                        </div >
+                        </div>
                         <canvas ref={ref => (this.el = ref)} hidden={this.state.now !== 100} />
                     </div>
                 </div>

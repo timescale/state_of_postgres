@@ -18,6 +18,7 @@ import {
 import {
     FacebookShareCount,
 } from 'react-share';
+import SmoothScroll from "./SmoothScroll";
 
 class KeyFindings extends Component {
 
@@ -31,12 +32,15 @@ class KeyFindings extends Component {
         // window.addEventListener('beforeunload', function () {
         // 	window.scrollTo(0,0)
         // })
-
+        new SmoothScroll('.scroll_container');
+		document.querySelector('.scroll_container').style.width = `100%`;
     }
 
-    componentWillUnmount() {
-        this.props.change_nav_background('white');
+    componentDidUpdate() {
+        let offsetHeight = document.querySelector('.scroll_container__body').offsetHeight;
+        document.querySelector('.main-wrap').style.height = `${offsetHeight}px`;
     }
+
 
     change_background(is_visible, color) {
         let colors = ['white', 'black', 'blue'];
@@ -172,9 +176,9 @@ class KeyFindings extends Component {
                         </VisibilitySensor>
                         <VisibilitySensor minTopValue={window.innerHeight*0.7} partialVisibility={true}
                                           onChange={this.change_background_white}>
-                            <div id="footer">
+                            <Container id="footer">
                                 <EmailForm/>
-                                <div id="share">
+                                <div id="share-div">
                                     <FacebookShareButton
                                         quote="Check out the State of Postgres 2019 Report - developed with ❤️ by @timescaledb:"
                                         hashtag="#stateofpostgres2019"
@@ -187,7 +191,7 @@ class KeyFindings extends Component {
                                     ><TwitterIcon round/></TwitterShareButton>
                                     <LinkedinShareButton url={share_url}><LinkedinIcon round/></LinkedinShareButton>
                                 </div>
-                            </div>
+                            </Container>
                         </VisibilitySensor>
 
                     </Container>

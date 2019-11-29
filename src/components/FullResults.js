@@ -740,7 +740,7 @@ class KeyFindings extends Component {
     }
     componentDidUpdate() {
         let offsetHeight = document.querySelector('.scroll_container__body').offsetHeight;
-        document.querySelector('.main-wrap').style.height = `${offsetHeight + 200}px`;
+        document.querySelector('.main-wrap').style.height = `${offsetHeight}px`;
     }
 
     componentDidMount() {

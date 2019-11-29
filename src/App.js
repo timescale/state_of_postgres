@@ -53,13 +53,10 @@ class App extends Component {
 			document.querySelector('body').appendChild(document.querySelector('header'));
 			this.header_moved = true;
 		}
-
-		new SmoothScroll('.scroll_container');
-		document.querySelector('.scroll_container').style.width = `100%`;
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener("scroll", this.toggleHeader, false);
+
 	}
 
 	toggleHeader(e) {
