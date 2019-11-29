@@ -2,6 +2,10 @@
 	height: 850px;
 }
 
+.scroll_container {
+	width: 100%;
+}
+
 canvas {
 	width: 100% !important;
 }
@@ -140,11 +144,12 @@ canvas {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	padding: 50px;
+	padding-top: 180px;
 	div {
-		padding-left: 10px;
-		padding-right: 10px;
-		cursor: pointer;
+		padding: 0 5px 32px 5px;
+		svg {
+			cursor: pointer;
+		}
 	}
 	circle {
 		fill: #E1E1E1;

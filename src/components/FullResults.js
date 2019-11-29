@@ -2,6 +2,7 @@ import React, { Component, Fragment} from 'react';
 import Fade  from 'react-reveal/Fade';
 import Reveal from 'react-reveal/Reveal';
 import { Link } from 'react-scroll'
+import SmoothScroll from "./SmoothScroll";
 
 class KeyFindings extends Component {
 
@@ -737,10 +738,6 @@ class KeyFindings extends Component {
         };
 
         this.toggleOtherOptions = this.toggleOtherOptions.bind(this);
-    }
-    componentDidUpdate() {
-        let offsetHeight = document.querySelector('.scroll_container__body').offsetHeight;
-        document.querySelector('.main-wrap').style.height = `${offsetHeight}px`;
     }
 
     componentDidMount() {

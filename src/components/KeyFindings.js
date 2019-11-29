@@ -15,9 +15,6 @@ import {
     LinkedinIcon,
 } from 'react-share';
 
-import {
-    FacebookShareCount,
-} from 'react-share';
 import SmoothScroll from "./SmoothScroll";
 
 class KeyFindings extends Component {
@@ -32,15 +29,7 @@ class KeyFindings extends Component {
         // window.addEventListener('beforeunload', function () {
         // 	window.scrollTo(0,0)
         // })
-        new SmoothScroll('.scroll_container');
-		document.querySelector('.scroll_container').style.width = `100%`;
     }
-
-    componentDidUpdate() {
-        let offsetHeight = document.querySelector('.scroll_container__body').offsetHeight;
-        document.querySelector('.main-wrap').style.height = `${offsetHeight}px`;
-    }
-
 
     change_background(is_visible, color) {
         let colors = ['white', 'black', 'blue'];
@@ -183,17 +172,16 @@ class KeyFindings extends Component {
                                         quote="Check out the State of Postgres 2019 Report - developed with ❤️ by @timescaledb:"
                                         hashtag="#stateofpostgres2019"
                                         url={share_url}
-                                    ><FacebookIcon round/></FacebookShareButton>
+                                    ><FacebookIcon round size={32}/></FacebookShareButton>
                                     <TwitterShareButton
                                         title="Check out the State of Postgres 2019 Report - developed with ❤️ by @timescaledb:"
                                         hashtags={['stateofpostgres2019']}
                                         url={share_url}
-                                    ><TwitterIcon round/></TwitterShareButton>
-                                    <LinkedinShareButton url={share_url}><LinkedinIcon round/></LinkedinShareButton>
+                                    ><TwitterIcon round size={32}/></TwitterShareButton>
+                                    <LinkedinShareButton url={share_url}><LinkedinIcon round size={32}/></LinkedinShareButton>
                                 </div>
                             </Container>
                         </VisibilitySensor>
-
                     </Container>
                 </div>
             </Fragment>
