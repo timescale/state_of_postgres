@@ -40,11 +40,10 @@
 			line-height: 106.5%;
 			letter-spacing: 0.02em;
 			text-transform: uppercase;
-			color: #404040;
 
 			&.active {
-				border-bottom: 1px solid #469fcb;
-                color: #469fcb;
+				border-bottom: 1px solid $color-primary;
+                color: $color-primary;
 			}
 		}
 	}
