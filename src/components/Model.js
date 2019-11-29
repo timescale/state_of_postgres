@@ -235,7 +235,7 @@ class Drone extends Model {
 
     get_dimention() {
         super.get_dimention();
-        this.height = Math.min(window.innerWidth, window.innerHeight) + 500;
+        this.height = Math.min(window.innerWidth, window.innerHeight) + 900;
     }
 
 
@@ -257,8 +257,7 @@ class Drone extends Model {
 
     get_camera() {
         super.get_camera();
-        this.camera.position.z = 11.586812496185303;
-        window.a = this.camera;
+        this.camera.position.z = 9;
     }
 
     animate() {
@@ -314,6 +313,11 @@ class Flowers extends Model {
             loopOnce: true,
         }
     }
+
+    get_dimention() {
+        super.get_dimention();
+        this.height += 100
+    }
     hide_mesh() {
         if (this.animation_id) {
             cancelAnimationFrame( this.animation_id );
@@ -343,6 +347,11 @@ class Teamwork extends Model {
             file: '/objects/teamwork.glb',
             loopOnce: true
         }
+    }
+
+    get_dimention() {
+        super.get_dimention();
+        this.height += 100
     }
 }
 
@@ -452,7 +461,13 @@ class Flame extends Model {
     }
     get_camera() {
         super.get_camera();
-        this.camera.position.z = 2.700907340049744;
+        this.camera.position.z += 0.1;
+        this.camera.position.x += 0.9;
+    }
+
+    get_dimention() {
+        super.get_dimention();
+        this.height += 400
     }
 }
 
@@ -460,6 +475,16 @@ class Tail extends Model {
     constructor(props) {
         super(props);
         this.state = {file: '/objects/tail_wag.glb'}
+    }
+
+    get_dimention() {
+        super.get_dimention();
+        this.height += 200
+    }
+
+    get_camera() {
+        super.get_camera();
+        // this.camera.position.z += 0.5;
     }
 }
 
@@ -477,6 +502,11 @@ class Toyball extends Model {
             file: '/objects/toy_ball.glb',
             loopOnce: true
         }
+    }
+
+    get_dimention() {
+        super.get_dimention();
+        this.height += 100
     }
 
     get_camera() {
