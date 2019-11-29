@@ -110,6 +110,11 @@ class Model extends Component {
         }
     }
 
+    get_dimention() {
+        this.width = Math.max(window.innerWidth, window.innerHeight);
+        this.height = Math.min(window.innerWidth, window.innerHeight);
+    }
+
     get_render() {
         //RENDERER
         this.renderer = new THREE.WebGLRenderer({
@@ -119,8 +124,7 @@ class Model extends Component {
         });
 
         // this.renderer.setSize(window.innerWidth/2, window.innerHeight/2, true);
-        this.width = Math.max(window.innerWidth, window.innerHeight);
-        this.height = Math.min(window.innerWidth, window.innerHeight);
+        this.get_dimention();
         this.renderer.setSize(this.width/2, this.height/2, true);
         this.renderer.setPixelRatio(2);
         this.camera.aspect = this.width / this.height;
@@ -229,6 +233,11 @@ class Drone extends Model {
         this.start_fly_animation = this.start_fly_animation.bind(this);
     }
 
+    get_dimention() {
+        super.get_dimention();
+        this.height = Math.min(window.innerWidth, window.innerHeight) + 500;
+    }
+
 
     get_light() {
         // super.get_light();
@@ -245,9 +254,16 @@ class Drone extends Model {
         window.removeEventListener('scroll', this.start_fly_animation)
     }
 
+
+    get_camera() {
+        super.get_camera();
+        this.camera.position.z = 11.586812496185303;
+        window.a = this.camera;
+    }
+
     animate() {
         if (this.fly_animation) {
-            if (this.camera.position.y > -6) {
+            if (this.camera.position.y > -10) {
                 this.camera.position.y -= 0.01;
             } else {
                 this.fly_animation = false;
@@ -257,7 +273,7 @@ class Drone extends Model {
         return super.animate();
     }
     start_fly_animation() {
-        if (this.el && this.el.getBoundingClientRect().y < 200 && this.scene && this.scene.visible) {
+        if (this.el && this.el.getBoundingClientRect().y < 100 && this.scene && this.scene.visible) {
             this.fly_animation = true;
         }
     };
