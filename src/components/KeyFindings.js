@@ -38,9 +38,7 @@ class KeyFindings extends Component {
         }
         if(is_visible) {
             colors.forEach(col => {
-                if (col !== color) {
-                    this.black_section.current.classList.remove(col);
-                }
+                this.black_section.current.classList.remove(col);
             });
             this.black_section.current.classList.add(color);
             this.props.change_nav_background(color);
