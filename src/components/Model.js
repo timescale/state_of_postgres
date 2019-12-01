@@ -21,13 +21,10 @@ class Model extends Component {
     };
 
     onWindowResize() {
-        if (!this.scene.visible) {
-            return
-        }
-
         if (this.camera && this.renderer) {
-            this.camera.aspect = this.el.width / this.el.height;
+            this.camera.aspect = this.el.parentElement.parentElement.offsetWidth / this.el.parentElement.parentElement.offsetHeight
             this.camera.updateProjectionMatrix();
+            this.renderer.setSize(this.el.parentElement.parentElement.offsetWidth, this.el.parentElement.parentElement.offsetHeight, true);
         }
     }
 
@@ -61,7 +58,8 @@ class Model extends Component {
                 this.get_light();
                 this.get_render();
 
-                window.addEventListener( 'resize', () => {this.onWindowResize()}, false );
+                window.addEventListener( 'resize', () => {this.onWindowResize()} );
+                window.addEventListener( 'orientationchange', () => {this.onWindowResize()} );
             }, xhr => {
                 let percentage = Math.round(xhr.loaded / (xhr.total || xhr.loaded) * 100);
                 this.setState({now: percentage});
@@ -111,8 +109,12 @@ class Model extends Component {
     }
 
     get_dimention() {
-        this.width = Math.max(window.innerWidth, window.innerHeight);
-        this.height = Math.min(window.innerWidth, window.innerHeight);
+        this.width = this.el.parentElement.parentElement.offsetWidth;
+        this.height = this.el.parentElement.parentElement.offsetHeight;
+    }
+
+    get_aspect(){
+        return this.width / this.height
     }
 
     get_render() {
@@ -125,9 +127,9 @@ class Model extends Component {
 
         // this.renderer.setSize(window.innerWidth/2, window.innerHeight/2, true);
         this.get_dimention();
-        this.renderer.setSize(this.width/2, this.height/2, true);
+        this.renderer.setSize(this.width, this.height, true);
         this.renderer.setPixelRatio(2);
-        this.camera.aspect = this.width / this.height;
+        this.camera.aspect = this.get_aspect();
         this.camera.updateProjectionMatrix();
         this.scene.visible = this.is_in_viewport();
         this.renderer.render(this.scene, this.camera);
@@ -233,16 +235,15 @@ class Drone extends Model {
         this.start_fly_animation = this.start_fly_animation.bind(this);
     }
 
-    get_dimention() {
-        super.get_dimention();
-        this.height = Math.min(window.innerWidth, window.innerHeight) + 900;
-    }
-
-
     get_light() {
         // super.get_light();
         this.hemispheric = new THREE.HemisphereLight( 0xffffff, 0x222222, 1.0 );
         this.scene.add(this.hemispheric);
+    }
+
+     get_dimention() {
+        this.width = this.el.parentElement.parentElement.parentElement.offsetWidth;
+        this.height = this.el.parentElement.parentElement.parentElement.offsetHeight;
     }
 
     componentDidMount() {
@@ -257,7 +258,7 @@ class Drone extends Model {
 
     get_camera() {
         super.get_camera();
-        this.camera.position.z = 9;
+        this.camera.position.z = 13;
     }
 
     animate() {
@@ -302,6 +303,11 @@ class Phone extends Model {
             loopOnce: true
         }
     }
+
+    get_camera() {
+        super.get_camera();
+        this.camera.position.z = 469;
+    }
 }
 
 class Flowers extends Model {
@@ -309,15 +315,12 @@ class Flowers extends Model {
         super(props);
         this.minTopValue = window.innerHeight*0.7;
         this.state = {
-            file: '/objects/flowers.glb',
+            file: '/objects/flower.glb',
             loopOnce: true,
         }
     }
 
-    get_dimention() {
-        super.get_dimention();
-        this.height += 100
-    }
+
     hide_mesh() {
         if (this.animation_id) {
             cancelAnimationFrame( this.animation_id );
@@ -338,6 +341,12 @@ class Flowers extends Model {
         this.scene.visible = true;
         this.renderer.render(this.scene, this.camera);
     }
+
+    get_camera() {
+        super.get_camera();
+        this.camera.position.x = -2.6;
+        window.c = this.camera
+    }
 }
 
 class Teamwork extends Model {
@@ -345,13 +354,15 @@ class Teamwork extends Model {
         super(props);
         this.state = {
             file: '/objects/teamwork.glb',
-            loopOnce: true
+            loopOnce: true,
         }
     }
 
-    get_dimention() {
-        super.get_dimention();
-        this.height += 100
+    get_camera() {
+        super.get_camera();
+        this.camera.position.x -= 2.5;
+        this.camera.position.y += 2.5;
+        window.c = this.camera
     }
 }
 
@@ -371,7 +382,7 @@ class Swimming extends Model {
         this.camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
         this.camera.position.set( 30, 90, 600 );
         this.camera.rotation.z =  180 * Math.PI / 180;
-
+        this.camera.aspect = this.aspect;
         this.camera.updateProjectionMatrix();
 
     };
@@ -461,8 +472,7 @@ class Flame extends Model {
     }
     get_camera() {
         super.get_camera();
-        this.camera.position.z += 0.1;
-        this.camera.position.x += 0.9;
+        this.camera.position.set(-6.573971366882324,1.3166882991790771,1.4609073400497437)
     }
 
     get_dimention() {
@@ -484,7 +494,7 @@ class Tail extends Model {
 
     get_camera() {
         super.get_camera();
-        // this.camera.position.z += 0.5;
+        this.camera.position.z = -9.5;
     }
 }
 
@@ -492,6 +502,12 @@ class Circuit extends Model {
     constructor(props) {
         super(props);
         this.state = {file: '/objects/circuit.glb'}
+    }
+    get_camera() {
+        super.get_camera();
+        this.camera = this.scene.children[0].children[1];
+        this.camera.position.z += 1.7;
+        this.camera.position.x -= 0.1;
     }
 }
 
@@ -511,9 +527,7 @@ class Toyball extends Model {
 
     get_camera() {
         super.get_camera();
-        this.camera.position.x = 1;
-        this.camera.position.y = 0;
-        this.camera.position.z = -1;
+        window.c = this.camera
     }
 }
 

@@ -208,8 +208,11 @@
 }
 
 .quote-section {
-	height: 650px;
+
 	overflow: hidden;
+	div.d-flex {
+		height: 650px;
+	}
 
 	.img-wrap {
 		left: 70px;
