@@ -41,8 +41,10 @@ class KeyFindings extends Component {
                 this.black_section.current.classList.remove(col);
             });
             this.black_section.current.classList.add(color);
-            this.props.change_nav_background(color);
+        } else {
+            this.black_section.current.classList.remove(color);
         }
+        this.props.change_nav_background(this.black_section.current.classList);
     };
 
     change_background_black = (is_visible) => {
