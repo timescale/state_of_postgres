@@ -11,7 +11,7 @@ import {Water} from './models/Water.js';
 import {Sky} from './models/Sky.js';
 import water_texture from './models/waternormals.jpg'
 import Queue from 'js-queue'
-
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 let queue = new Queue();
 
@@ -369,7 +369,7 @@ class Teamwork extends Model {
 class Swimming extends Model {
     constructor(props) {
         super(props);
-        this.state = {file: '/objects/swimming_full.glb'}
+        this.state = {file: '/objects/swim.glb'}
     }
     get_render() {
         super.get_render();
@@ -379,35 +379,24 @@ class Swimming extends Model {
     }
 
     get_camera() {
-        this.camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
-        this.camera.position.set( 30, 90, 600 );
+        this.flip = new THREE.Matrix4().makeScale(-1,-1,1);
+        this.camera = this.scene.children[0].children[0].children[0];
         this.camera.rotation.z =  180 * Math.PI / 180;
-        this.camera.aspect = this.aspect;
-        this.camera.updateProjectionMatrix();
+        this.camera.position.set(0.0023959743189625442, 0.01,0.026034149952232848);
+        this.mesh = this.scene.children[0].children[0].children[1];
+        this.mesh.applyMatrix(this.flip);
+        this.mesh.position.y = 0.0053;
+        window.a = this.camera;
+        window.b = this.mesh;
 
     };
     get_scene() {
         super.get_scene();
         this.scene.matrixAutoUpdate = false;
-    }
-
-
-    get_light() {
-        this.light = new THREE.DirectionalLight( 0x08c0fd, 0.5 );
-        this.light.position.x = 10;
-        this.light.position.z = 10;
-        this.scene.add( this.light );
+        window.a = this
     }
 
     add_water() {
-
-        this.light = new THREE.DirectionalLight( 0x469fcb, 0.8 );
-        this.scene.add( this.light );
-        let flip = new THREE.Matrix4().makeScale(1,-1,1);
-        let mesh = this.scene.children[0].children[0];
-        mesh.applyMatrix(flip);
-        mesh.position.y = 150;
-
         let waterGeometry = new THREE.PlaneBufferGeometry( 10000, 5000 );
         this.water = new Water(
             waterGeometry,
@@ -480,7 +469,7 @@ class Flame extends Model {
 class Tail extends Model {
     constructor(props) {
         super(props);
-        this.state = {file: '/objects/tail_wag.glb'}
+        this.state = {file: '/objects/tailwag/tail_wag.glb'}
     }
 
     get_dimention() {
@@ -502,9 +491,9 @@ class Circuit extends Model {
     }
     get_camera() {
         super.get_camera();
-        this.camera = this.scene.children[0].children[1];
-        this.camera.position.z += 1.7;
-        this.camera.position.x -= 0.1;
+        this.camera.position.set(0.0040,0.00021507726341951638, 0.05924616245925429);
+        this.camera.parent.children[2].rotation.y += 0.18;
+        this.camera.parent.children[1].rotation.y += 0.18;
     }
 }
 

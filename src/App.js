@@ -54,10 +54,10 @@ class App extends Component {
 			this.header_moved = true;
 		}
 		this.scroll = new SmoothScroll('.scroll_container');
-        setTimeout(() => {
-            let offsetHeight = document.querySelector('.scroll_container__body').offsetHeight;
-            document.querySelector('.main-wrap').style.height = `${offsetHeight}px`;
-        }, 500)
+		setTimeout(() => {
+			let offsetHeight = document.querySelector('.scroll_container__body').offsetHeight;
+			document.querySelector('.main-wrap').style.height = `${offsetHeight}px`;
+		}, 500)
 
 	}
 

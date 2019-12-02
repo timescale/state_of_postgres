@@ -19,27 +19,47 @@ class KeyFindings extends Component {
 
     constructor(props) {
         super(props);
-        this.black_section = React.createRef();
+        this.change_color_section = React.createRef();
     }
 
     componentDidMount() {
         window.addEventListener("scroll", this.animateText, false);
     }
 
+    componentWillUnmount() {
+        this.change_background_white(true)
+    }
+
+    scroll_direction() {
+        var lastScrollTop = 0;
+// element should be replaced with the actual target element on which you have applied scroll, use window in case of no target element.
+        window.addEventListener("scroll", function(){ // or window.addEventListener("scroll"....
+            var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+            if (st > lastScrollTop){
+                this.scroll_direction = 'down'
+            } else {
+                this.scroll_direction = 'up'
+            }
+            lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+        }, false);
+    }
+
     change_background(is_visible, color) {
         let colors = ['white', 'black', 'blue'];
-        if (!this.black_section.current) {
+        if (!this.change_color_section.current) {
             return
         }
         if(is_visible) {
             colors.forEach(col => {
-                this.black_section.current.classList.remove(col);
+                this.change_color_section.current.classList.remove(col);
             });
-            this.black_section.current.classList.add(color);
+            this.change_color_section.current.classList.add(color);
         } else {
-            this.black_section.current.classList.remove(color);
+            this.change_color_section.current.classList.remove(color);
         }
-        this.props.change_nav_background(this.black_section.current.classList);
+        console.log(color);
+        let classes = this.change_color_section.current.classList.toString().replace('container-fluid');
+        this.props.change_nav_background(classes);
     };
 
     change_background_black = (is_visible) => {
@@ -59,9 +79,9 @@ class KeyFindings extends Component {
         return (
             <Fragment>
                 <div id="key">
-                    <Container fluid={true}  className="transition" ref={this.black_section}>
+                    <Container fluid={true}  className="transition" ref={this.change_color_section}>
                         {/* Intro - Start */}
-                        <VisibilitySensor minTopValue={window.innerHeight*0.85} partialVisibility={true}
+                        <VisibilitySensor minTopValue={400} partialVisibility={true} scrollCheck={true}
                                           onChange={this.change_background_white}>
                             <div>
                                 <section className="section intro">
@@ -105,7 +125,7 @@ class KeyFindings extends Component {
                         </VisibilitySensor>
 
                         {/* 11-13 title Technology - Start */}
-                        <VisibilitySensor minTopValue={window.innerHeight*0.7} partialVisibility={true}
+                        <VisibilitySensor minTopValue={400} partialVisibility={true} scrollCheck={true}
                                           onChange={this.change_background_blue}>
                             <div id="water">
                                 <section className="section text-section">
@@ -129,7 +149,7 @@ class KeyFindings extends Component {
 
                             </div>
                         </VisibilitySensor>
-                        <VisibilitySensor minTopValue={window.innerHeight*0.7} partialVisibility={true}
+                        <VisibilitySensor minTopValue={400} partialVisibility={true} scrollCheck={true}
                                           onChange={this.change_background_black}>
                             <div>
                                 <section className="section text-section">
@@ -158,7 +178,7 @@ class KeyFindings extends Component {
 
                             </div>
                         </VisibilitySensor>
-                        <VisibilitySensor minTopValue={window.innerHeight*0.7} partialVisibility={true}
+                        <VisibilitySensor minTopValue={400} partialVisibility={true} scrollCheck={true}
                                           onChange={this.change_background_white}>
                             <Container id="footer">
                                 <EmailForm/>
