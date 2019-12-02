@@ -1,8 +1,8 @@
 import React, { Component, Fragment} from 'react';
 import Fade  from 'react-reveal/Fade';
 import VisibilitySensor from 'react-visibility-sensor'
-import {Container, Row, } from 'react-bootstrap'
-import {Section, QuoteSection} from "./Section";
+import { Container, Row } from 'react-bootstrap'
+import { Section, QuoteSection, WaterSection } from "./Section";
 import { EmailForm } from "./Forms"
 import {
     FacebookShareButton,
@@ -14,6 +14,7 @@ import {
     TwitterIcon,
     LinkedinIcon,
 } from 'react-share';
+
 
 class KeyFindings extends Component {
 
@@ -75,7 +76,7 @@ class KeyFindings extends Component {
     };
 
     render() {
-        const share_url = "https://tsdb.co/StateofPostgres2019/";
+        const share_url = "http://stateofpostgres.com/";
         return (
             <Fragment>
                 <div id="key">
@@ -115,11 +116,13 @@ class KeyFindings extends Component {
                                          model="Circuit"/>
 
                                 <Section number={4} info={'About 70% of all respondents use Postgres for app development.'}
-                                         description={'And 30% report using it for real-time analytics, dashboarding, and monitoring.'} reverse={false}
+                                         description={'And 30% report using it for ' +
+                                         'real-time analytics, dashboarding, and monitoring.'}
+                                         reverse={false}
                                          model="Phone"/>
 
                                 <Section number={5} info={'Only 9% have contributed code to Postgres...'}
-                                         description={'This is actually an impressive amount - many open source projects fail to attract enough developers to be sustainable.'} reverse={true} minTopValue={window.innerHeight*0.7} partialVisibility={true} show_info={true}
+                                         description={'This is actually an impressive amount - many open source projects fail to attract enough developers to be sustainable.'} reverse={true} minTopValue={1000} partialVisibility={true} show_info={true}
                                          model="Flowers"/>
                             </div>
                         </VisibilitySensor>
@@ -139,12 +142,12 @@ class KeyFindings extends Component {
                                 </section>
                                 {/* Technology - End */}
 
-                                <Section number={6} info={'The most common way to deploy Postgres (46%) is in a self-managed data center.'}
+                                <WaterSection number={6} info={'The most common way to deploy Postgres (46%) is in a self-managed data center.'}
                                          description={''} reverse={false}
                                          model="Swimming" />
-                                <Section number={7} info={'Among those who deploy on a cloud, over half (51%) use AWS'}
+                                <WaterSection number={7} info={'Among those who deploy on a cloud, over half (51%) use AWS'}
                                          description={''} reverse={false}/>
-                                <Section number={8} info={'The next closest cloud provider was GCP at 18%'}
+                                <WaterSection number={8} info={'The next closest cloud provider was GCP at 18%'}
                                          description={''} reverse={false}/>
 
                             </div>
@@ -193,7 +196,7 @@ class KeyFindings extends Component {
                                         hashtags={['stateofpostgres2019']}
                                         url={share_url}
                                     ><TwitterIcon round size={32}/></TwitterShareButton>
-                                    <LinkedinShareButton url={share_url}><LinkedinIcon round size={32}/></LinkedinShareButton>
+                                    <LinkedinShareButton url="https://stateofpostgres.com/"><LinkedinIcon round size={32}/></LinkedinShareButton>
                                 </div>
                             </Container>
                         </VisibilitySensor>

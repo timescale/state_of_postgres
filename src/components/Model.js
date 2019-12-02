@@ -30,11 +30,6 @@ class Model extends Component {
 
     componentDidMount() {
         this.loader = new GLTFLoader();
-        // const dracoLoader  = new DRACOLoader();
-        // dracoLoader.setDecoderPath( 'http://138.197.96.251/decoder/' );
-        // dracoLoader.setDecoderConfig( { type: 'js' } );
-        // this.loader.setDRACOLoader( dracoLoader );
-        // loader.setMeshoptDecoder( MeshoptDecoder );
         if (!this.state) {
             return
         }
@@ -52,10 +47,7 @@ class Model extends Component {
                 this.get_camera();
                 this.get_mesh();
                 this.change_material();
-
                 this.get_mixer();
-                // this.loader();
-                this.get_light();
                 this.get_render();
 
                 window.addEventListener( 'resize', () => {this.onWindowResize()} );
@@ -152,27 +144,14 @@ class Model extends Component {
         if (camera.length > 0) {
             this.camera = camera[0]
         } else {
-            this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+            this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         }
 
         // let controls = new OrbitControls(this.camera, this.el );
         // controls.maxPolarAngle = Math.PI * 0.9;
         //
         // controls.update();
-    };
-
-    get_light() {
-        this.light = new THREE.DirectionalLight( 0xffffff, 1 );
-        // this.hemispheric = new THREE.HemisphereLight( 0xffffff, 0x222222, 1.0 );
-        // this.scene.add(this.hemispheric);
-        // this.ambient = new THREE.AmbientLight( 0xffffff, 0.3 );
-        // this.scene.add(this.ambient);
-        // this.directionalLight = new THREE.DirectionalLight( 0xffffff, 0.8 );
-        // this.directionalLight.position.set( 0.5, 0, 0.866 );
-        // this.scene.add( this.directionalLight );
-        this.scene.add( this.light );
     }
-
     animate() {
         if (this.gltf === undefined) {
             return;
@@ -215,7 +194,7 @@ class Model extends Component {
 
     render() {
         return (
-            <VisibilitySensor partialVisibility={true} onChange={this.activate_animation} minTopValue={this.minTopValue || 0}>
+            <VisibilitySensor partialVisibility={true} onChange={this.activate_animation} minTopValue={this.props.minTopValue || 0}>
                 <div>
                     <div className="progress-bar-div" hidden={!this.state.file || this.state.now === 100} >
                         <ProgressBar now={this.state.now}/>
@@ -258,7 +237,7 @@ class Drone extends Model {
 
     animate() {
         if (this.fly_animation) {
-            if (this.camera.position.y > -0.012) {
+            if (this.camera.position.y > -0.02) {
                 this.camera.position.y -= 0.00002;
             } else {
                 this.fly_animation = false;
@@ -397,6 +376,8 @@ class Swimming extends Model {
     }
 
     add_water() {
+        this.light = new THREE.DirectionalLight( 0xffffff, 1 );
+        this.scene.add( this.light );
         let waterGeometry = new THREE.PlaneBufferGeometry( 10000, 5000 );
         this.water = new Water(
             waterGeometry,
@@ -416,34 +397,7 @@ class Swimming extends Model {
         );
         this.water.rotation.x = - Math.PI / 2;
         this.scene.add( this.water );
-        // Skybox
-        this.sky = new Sky();
-        this.uniforms = this.sky.material.uniforms;
-        this.uniforms[ 'turbidity' ].value = 0.1;
-        this.uniforms[ 'rayleigh' ].value = 0.1;
-        this.uniforms[ 'luminance' ].value = 0.1;
-        this.uniforms[ 'mieCoefficient' ].value = 1.005;
-        this.uniforms[ 'mieDirectionalG' ].value = 0.8;
-        let parameters = {
-            distance: 400,
-            inclination: 0.49,
-            azimuth: 0.205
-        };
-        this.cubeCamera = new THREE.CubeCamera( 0.1, 1, 512 );
-        this.cubeCamera.renderTarget.texture.generateMipmaps = true;
-        this.cubeCamera.renderTarget.texture.minFilter = THREE.LinearMipmapLinearFilter;
-        this.scene.background = this.cubeCamera.renderTarget;
-        let updateSun = () => {
-            let theta = Math.PI * ( parameters.inclination - 0.5 );
-            let phi = 2 * Math.PI * ( parameters.azimuth - 0.5 );
-            this.light.position.x = parameters.distance * Math.cos( phi );
-            this.light.position.y = parameters.distance * Math.sin( phi ) * Math.sin( theta );
-            this.light.position.z = parameters.distance * Math.sin( phi ) * Math.cos( theta );
-            this.sky.material.uniforms[ 'sunPosition' ].value = this.light.position.copy( this.light.position );
-            this.water.material.uniforms[ 'sunDirection' ].value.copy( this.light.position ).normalize();
-            this.cubeCamera.update( this.renderer, this.sky );
-        };
-        updateSun();
+
     }
     animate = () => {
         this.time = performance.now() * 0.001;

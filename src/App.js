@@ -27,7 +27,6 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 
-
 		this.header = React.createRef();
 		this.lastPosition = 0;
 		this.currentLocation = "";
@@ -42,7 +41,7 @@ class App extends Component {
 
 		this.props.history.listen((location, action) => {
 			if(this.currentLocation !== location.pathname){
-				window.scrollTo(0, 0)
+				window.scrollTo(0, 0);
 				this.currentLocation = location.pathname;
 			}
 		});
@@ -53,14 +52,18 @@ class App extends Component {
 			document.querySelector('body').appendChild(document.querySelector('header'));
 			this.header_moved = true;
 		}
+
+		setTimeout(this.fix_main_height);
+		window.addEventListener('resize', this.fix_main_height);
+		window.addEventListener('orientationchange', this.fix_main_height);
 		this.scroll = new SmoothScroll('.scroll_container');
-		setTimeout(() => {
-			let offsetHeight = document.querySelector('.scroll_container__body').offsetHeight;
-			document.querySelector('.main-wrap').style.height = `${offsetHeight}px`;
-		}, 500)
 
 	}
 
+	fix_main_height() {
+		let offsetHeight = document.querySelector('.scroll_container__body').offsetHeight;
+		document.querySelector('.main-wrap').style.height = `${offsetHeight}px`;
+	}
 
 	toggleHeader(e) {
 
