@@ -1,0 +1,31 @@
+@media (max-width: $screen-md) {
+
+    .modal-wrap {
+        padding: 50px 40px;
+    }
+}
+
+
+@media (max-width: $screen-sm) {
+
+    .modal-wrap {
+    	padding: 40px 30px;
+        
+        .modal-title {
+			font-size: 30px;
+			margin-bottom: 30px;
+        }
+    }
+}
+
+
+@media (max-width: $screen-xs) {
+
+    .modal-wrap {
+        padding: 30px 20px;
+
+        .modal-title {
+        	font-size: 26px;
+        }
+    }
+}
