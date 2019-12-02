@@ -398,3 +398,25 @@
 		}
 	}
 }
+
+.download-modal {
+	text-align: center;
+	
+	.link {
+		font-size: 20px;
+		margin: 165px 0 125px;
+	}
+}
+
+.methodology-modal {
+
+	p {
+		font-size: 22px;
+		line-height: 145.72%;
+		margin-bottom: 35px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}

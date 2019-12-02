@@ -43,14 +43,18 @@
 }
 
 .link {
-	text-decoration: none;
+	text-decoration: underline;
 	padding: 0;
-	border: none;
-	background: none;
+	border: none !important;
+	background: none !important;
 	font: inherit;
 
 	&:hover {
-		opacity: .6;
+		opacity: .7;
+	}
+
+	&-primary {
+		color: $color-primary !important;
 	}
 }
 

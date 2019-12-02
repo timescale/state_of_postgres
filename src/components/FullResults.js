@@ -3,6 +3,7 @@ import Fade  from 'react-reveal/Fade';
 import Reveal from 'react-reveal/Reveal';
 import { Link } from 'react-scroll'
 import SmoothScroll from "./SmoothScroll";
+import ModalComponent from "./shared/Modal";
 
 class KeyFindings extends Component {
 
@@ -734,10 +735,16 @@ class KeyFindings extends Component {
         ];
 
         this.state = {
-            otherOptionsOpened: false
+            otherOptionsOpened: false,
+            methodologyModalOpened: false,
+            downloadModalOpened: false
         };
 
         this.toggleOtherOptions = this.toggleOtherOptions.bind(this);
+        this.openMethodologyModal = this.openMethodologyModal.bind(this);
+        this.closeMethodologyModal = this.closeMethodologyModal.bind(this);
+        this.openDownloadModal = this.openDownloadModal.bind(this);
+        this.closeDownloadModal = this.closeDownloadModal.bind(this);
     }
 
     componentDidMount() {
@@ -758,19 +765,63 @@ class KeyFindings extends Component {
     componentWillUnmount() {
         this.navBarNode.setAttribute('hidden', true)
     }
+
     toggleOtherOptions() {
         this.setState((prevState) => ({
             otherOptionsOpened: !prevState.otherOptionsOpened
         }));
     }
 
+    openMethodologyModal() {
+        this.setState({ methodologyModalOpened: true });
+    }
+     
+    closeMethodologyModal() {
+        this.setState({ methodologyModalOpened: false });
+    }
+
+    openDownloadModal() {
+        this.setState({ downloadModalOpened: true });
+    }
+     
+    closeDownloadModal() {
+        this.setState({ downloadModalOpened: false });
+    }
+
     render() {
+        const { methodologyModalOpened, downloadModalOpened } = this.state;
+
         return (
-            <Fragment>
+            <>
+
                 <div id="full_page_header">
                     <div>The full results from our survey are below.</div>
-                    <div>You can also <a href="#">download</a> the raw data or read about our <a href="#">methodology</a>.</div>
+                    <div>You can also <a onClick={this.openDownloadModal}>download</a> the raw data or read about our <a onClick={this.openMethodologyModal}>methodology</a>.</div>
                 </div>
+
+                <ModalComponent
+                  open={downloadModalOpened}
+                  onClose={this.closeDownloadModal}
+                >
+                    <div className="download-modal">
+                        <h2 className="modal-title">2019 State of Postgres Survey Results</h2>
+                        <a href="#" download className="link link-primary">Download excel data</a>
+                    </div>
+                </ModalComponent>
+
+                <ModalComponent
+                  open={methodologyModalOpened}
+                  onClose={this.closeMethodologyModal}
+                >
+                    <div className="methodology-modal">
+                        <h2 className="modal-title">Survey Methodology</h2>
+                        <p><a href="#" className="link link-primary">Timescale</a>, the company behind the leading open-source time-series SQL database TimescaleDB, created and distributed the State of Postgres 2019 survey. The survey ran  for six weeks, between August 9, 2019 through September 20, 2019.</p>
+                        <p>During that time, 500 Postgres users provided responses, which Timescale aggregated to generate this report. Please note that some of the percentages are rounded to the nearest full number for simplicity.</p>
+                        <p>This is the inaugural State of Postgres report. The Timescale team will continue to issue the survey and report annually, as well as develop vendor-agnostic resources for the Postgres community as a whole*</p>
+                        <p>*Past projects include <a href="#" className="link link-primary">Postgres Cheatsheet</a>, a quick reference guide compilation of essential Postgres and psql commands with click-to-copy functionality.</p>
+                    </div>
+                </ModalComponent>
+
                 <div className="full-results">
                     {
                         this.questions.map((question, index) => {
@@ -881,6 +932,7 @@ class KeyFindings extends Component {
                             )
                         })
                     }
+
                     <div className="question-list">
                         <ul>
                             {
@@ -902,9 +954,10 @@ class KeyFindings extends Component {
                             }
                         </ul>
                     </div>
+
                 </div>
 
-            </Fragment>
+            </>
         );
     }
 }

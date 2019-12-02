@@ -1,0 +1,35 @@
+.modal-overlay {
+	background: rgba(#000, .7);
+}
+
+.modal-wrap {
+	background: $bg-gray;
+	max-width: 860px;
+	padding: 100px;
+	box-shadow: none;
+
+	.modal-close-btn {
+		width: 40px;
+		height: 40px;
+		background: none !important;
+		border: none !important;
+		top: 5px;
+		right: 5px;
+
+		svg {
+			margin: 0 auto;
+		}
+
+		&:hover {
+			opacity: .7;
+		}
+	}
+
+	.modal-title {
+		text-align: center;
+		font-size: 37px;
+		line-height: 127.5%;
+		font-weight: 600;
+		margin-bottom: 55px;
+	}
+}

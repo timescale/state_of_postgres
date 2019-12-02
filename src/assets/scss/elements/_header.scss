@@ -5,7 +5,7 @@
 	top: 0;
 	right: 0;
 	z-index: 10;
-	transition: .3s;
+	transition: 0.3s;
 
 	&-hidden {
 		transform: translateY(-100%);
@@ -18,7 +18,12 @@
 	&-small {
 		padding-top: 15px;
 		padding-bottom: 15px;
-		box-shadow: 0 0 10px rgba(#000, .2);
+	}
+
+	&-translated {
+		.menu-btn {
+			margin-left: 290px;
+		}
 	}
 
 	.menu {
@@ -43,8 +48,35 @@
 
 			&.active {
 				border-bottom: 1px solid $color-primary;
-                color: $color-primary;
+				color: $color-primary;
 			}
 		}
 	}
-} 
+
+	.menu-btn {
+		padding: 10px;
+		background: none !important;
+		border: none !important;
+		width: 50px;
+		justify-content: center;
+		flex-direction: column;
+		display: none;
+		transition: .3s;
+
+		&:hover {
+
+			span {
+				color: $color-primary;
+			}
+		} 
+
+		span {
+			width: 30px;
+			height: 2px;
+			display: inline-block;
+			background: #363636;
+			margin: 4px 0;
+			transition: .3s;
+		}
+	}
+}
