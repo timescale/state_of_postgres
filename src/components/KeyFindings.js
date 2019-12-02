@@ -76,7 +76,7 @@ class KeyFindings extends Component {
     };
 
     render() {
-        const share_url = "http://stateofpostgres.com/";
+        const share_url = "https://stateofpostgres.com";
         return (
             <Fragment>
                 <div id="key">
@@ -196,7 +196,7 @@ class KeyFindings extends Component {
                                         hashtags={['stateofpostgres2019']}
                                         url={share_url}
                                     ><TwitterIcon round size={32}/></TwitterShareButton>
-                                    <LinkedinShareButton url="https://stateofpostgres.com/"><LinkedinIcon round size={32}/></LinkedinShareButton>
+                                    <LinkedinShareButton url={share_url}><LinkedinIcon round size={32}/></LinkedinShareButton>
                                 </div>
                             </Container>
                         </VisibilitySensor>

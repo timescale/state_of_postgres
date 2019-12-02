@@ -5,13 +5,10 @@ import {ProgressBar} from 'react-bootstrap'
 import VisibilitySensor from 'react-visibility-sensor'
 import * as THREE from 'three'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
-// import {DRACOLoader} from 'three/examples/jsm/loaders/DRACOLoader';
 
 import {Water} from './models/Water.js';
-import {Sky} from './models/Sky.js';
 import water_texture from './models/waternormals.jpg'
 import Queue from 'js-queue'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 let queue = new Queue();
 
@@ -19,14 +16,25 @@ class Model extends Component {
     state = {
         now: 0
     };
+    constructor(props) {
+        super(props);
+        this.number = React.createRef();
+        this.info = React.createRef();
+        this.description = React.createRef();
+        this.onWindowResize = this.onWindowResize.bind(this)
+    }
 
     onWindowResize() {
-        if (this.camera && this.renderer) {
+        if (this.el && this.camera && this.renderer) {
             this.camera.aspect = this.el.parentElement.parentElement.offsetWidth / this.el.parentElement.parentElement.offsetHeight
             this.camera.updateProjectionMatrix();
             this.renderer.setSize(this.el.parentElement.parentElement.offsetWidth, this.el.parentElement.parentElement.offsetHeight, true);
         }
     }
+    // componentWillUnmount() {
+    //      window.removeEventListener( 'resize', this.onWindowResize, false);
+    //      window.removeEventListener( 'orientationchange', this.onWindowResize, false);
+    // }
 
     componentDidMount() {
         this.loader = new GLTFLoader();
@@ -46,12 +54,14 @@ class Model extends Component {
                 this.get_scene();
                 this.get_camera();
                 this.get_mesh();
+                this.get_light();
                 this.change_material();
                 this.get_mixer();
+
                 this.get_render();
 
-                window.addEventListener( 'resize', () => {this.onWindowResize()} );
-                window.addEventListener( 'orientationchange', () => {this.onWindowResize()} );
+                window.addEventListener( 'resize', this.onWindowResize, false);
+                window.addEventListener( 'orientationchange', this.onWindowResize, false);
             }, xhr => {
                 let percentage = Math.round(xhr.loaded / (xhr.total || xhr.loaded) * 100);
                 this.setState({now: percentage});
@@ -65,7 +75,9 @@ class Model extends Component {
     get_mesh() {
         this.mesh = this.scene.children[0].children[0];
     }
+    get_light() {
 
+    }
     change_material() {
         this.material = new THREE.MeshBasicMaterial( {
             color: 0x818181,
@@ -88,16 +100,10 @@ class Model extends Component {
 
     is_in_viewport() {
         let bounding = this.el.getBoundingClientRect();
-        if (
-            bounding.top >= 0 &&
+        return bounding.top >= 0 &&
             bounding.left >= 0 &&
             bounding.right <= (window.innerWidth || document.documentElement.clientWidth) &&
-            bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-        ) {
-            return true
-        } else {
-            return false
-        }
+            bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight);
     }
 
     get_dimention() {
@@ -120,7 +126,9 @@ class Model extends Component {
         // this.renderer.setSize(window.innerWidth/2, window.innerHeight/2, true);
         this.get_dimention();
         this.renderer.setSize(this.width, this.height, true);
-        this.renderer.setPixelRatio(2);
+        this.renderer.setPixelRatio(2.5);
+        this.renderer.gammaOutput = true;
+        this.renderer.gammaFactor = 2.2;
         this.camera.aspect = this.get_aspect();
         this.camera.updateProjectionMatrix();
         this.scene.visible = this.is_in_viewport();
@@ -214,11 +222,6 @@ class Drone extends Model {
         this.start_fly_animation = this.start_fly_animation.bind(this);
     }
 
-    get_light() {
-        // super.get_light();
-        this.hemispheric = new THREE.HemisphereLight( 0xffffff, 0x222222, 1.0 );
-        this.scene.add(this.hemispheric);
-    }
 
      get_dimention() {
         this.width = this.el.parentElement.parentElement.parentElement.offsetWidth;
@@ -335,6 +338,11 @@ class Teamwork extends Model {
             file: '/objects/teamwork.glb',
             loopOnce: true,
         }
+    }
+
+    get_light() {
+        this.light = new THREE.DirectionalLight( 0xffffff, 0.5);
+        this.scene.add( this.light );
     }
 
     get_camera() {
