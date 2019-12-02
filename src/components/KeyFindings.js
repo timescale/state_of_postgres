@@ -15,8 +15,6 @@ import {
     LinkedinIcon,
 } from 'react-share';
 
-import SmoothScroll from "./SmoothScroll";
-
 class KeyFindings extends Component {
 
     constructor(props) {
@@ -26,9 +24,6 @@ class KeyFindings extends Component {
 
     componentDidMount() {
         window.addEventListener("scroll", this.animateText, false);
-        // window.addEventListener('beforeunload', function () {
-        // 	window.scrollTo(0,0)
-        // })
     }
 
     change_background(is_visible, color) {

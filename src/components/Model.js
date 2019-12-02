@@ -256,15 +256,10 @@ class Drone extends Model {
     }
 
 
-    get_camera() {
-        super.get_camera();
-        this.camera.position.z = 13;
-    }
-
     animate() {
         if (this.fly_animation) {
-            if (this.camera.position.y > -10) {
-                this.camera.position.y -= 0.01;
+            if (this.camera.position.y > -0.012) {
+                this.camera.position.y -= 0.00002;
             } else {
                 this.fly_animation = false;
                 window.removeEventListener('scroll', this.start_fly_animation)
@@ -274,9 +269,15 @@ class Drone extends Model {
     }
     start_fly_animation() {
         if (this.el && this.el.getBoundingClientRect().y < 100 && this.scene && this.scene.visible) {
+            this.action.stop();
             this.fly_animation = true;
         }
     };
+
+    get_camera() {
+        super.get_camera();
+        this.camera.position.z = 0.038;
+    }
 
     render() {
         return (
@@ -306,7 +307,7 @@ class Phone extends Model {
 
     get_camera() {
         super.get_camera();
-        this.camera.position.z = 469;
+        this.camera.position.z = 4.8
     }
 }
 
@@ -344,8 +345,7 @@ class Flowers extends Model {
 
     get_camera() {
         super.get_camera();
-        this.camera.position.x = -2.6;
-        window.c = this.camera
+        this.camera.position.x = -0.02;
     }
 }
 
@@ -472,12 +472,8 @@ class Flame extends Model {
     }
     get_camera() {
         super.get_camera();
-        this.camera.position.set(-6.573971366882324,1.3166882991790771,1.4609073400497437)
-    }
-
-    get_dimention() {
-        super.get_dimention();
-        this.height += 400
+        this.camera.position.z = 0.0003;
+        this.camera.parent.children[1].rotation.y = 0.05
     }
 }
 
@@ -494,7 +490,8 @@ class Tail extends Model {
 
     get_camera() {
         super.get_camera();
-        this.camera.position.z = -9.5;
+        this.camera.position.set(-0.007, 0.007386929847300051,  -0.0838123016059399);
+        this.camera.parent.children[1].rotation.y = 0.08;
     }
 }
 
@@ -527,7 +524,6 @@ class Toyball extends Model {
 
     get_camera() {
         super.get_camera();
-        window.c = this.camera
     }
 }
 
