@@ -1,23 +1,61 @@
 @media (max-width: $screen-md) {
-
-	.header {
-		padding: 25px 40px;
-	}
-	
+    .header {
+        padding: 25px 40px;
+    }
 }
 
-
 @media (max-width: $screen-sm) {
+    .header {
+        padding: 15px;
+        left: 0;
+        right: auto;
 
-	.header {
-		padding: 15px;
+        .menu {
+            background: #fff;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 290px;
+            transform: translateX(-100%);
+            height: 100vh;
+            display: block;
+            padding: 50px 45px;
+            transition: 0.3s;
 
-		.menu {
+            &.opened {
+                transform: translateX(0);
+            }
 
-			li {
-				margin-left: 18px;
-			}
-		}
-	}
-	
+            li {
+                margin: 0 0 30px 0;
+            }
+
+            a {
+                font-size: 28px;
+            }
+        }
+
+        .menu-btn {
+            display: flex;
+        }
+    }
+}
+
+@media (max-width: $screen-xs) {
+    .header {
+        &-translated {
+            .menu-btn {
+                margin-left: 220px;
+            }
+        }
+
+        .menu {
+            width: 220px;
+            padding: 40px 20px;
+
+            a {
+                font-size: 24px;
+            }
+        }
+    }
 }

@@ -1,0 +1,13 @@
+@media (max-width: $screen-sm) {
+  #main {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: $screen-xs) {
+  .main-wrap {
+    &.translated {
+      margin-left: 220px;
+    }
+  }
+}

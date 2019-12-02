@@ -10,6 +10,10 @@ body {
 	&.bg-dark {
 		background: #080808;
 	}
+
+	&.overflow {
+		overflow: hidden;
+	}
 }
 
 .container {
@@ -19,17 +23,6 @@ body {
 	padding: 0 20px;
 }
 
-// .main-wrap {
-// 	height: 100vh;
-// 	overflow: hidden;	
-// 	transition: .6s;
-// }
-
-// #main {
-// 	overflow-y: auto;
-// 	height: 100vh;	
-// }
-
 .section {
 	min-height: 750px;
 	padding-bottom: 60px;
@@ -38,6 +31,14 @@ body {
 	align-items: center;
 }
 
-.header-small {
-	box-shadow: none !important;
+#root {
+	overflow: hidden;
+}
+
+.main-wrap {
+	transition: 0.3s;
+
+	&.translated {
+		margin-left: 290px;
+	}
 }
