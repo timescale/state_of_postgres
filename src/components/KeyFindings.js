@@ -72,10 +72,6 @@ class KeyFindings extends Component {
         this.change_background(is_visible, 'blue')
     };
 
-    change_background_white = (is_visible) => {
-        this.change_background(is_visible, 'white')
-    };
-
     render() {
         const share_url = "https://stateofpostgres.com";
         return (
@@ -187,26 +183,24 @@ class KeyFindings extends Component {
                                               name={'- Anonymous'} reverse={false}
                                               model="Toyball" />
 
+
+                                <Container id="footer">
+                                    <EmailForm/>
+                                    <div id="share-div">
+                                        <FacebookShareButton
+                                            quote="Check out the State of Postgres 2019 Report - developed with ❤️ by @timescaledb:"
+                                            hashtag="#stateofpostgres2019"
+                                            url={share_url}
+                                        ><FacebookIcon round size={32}/></FacebookShareButton>
+                                        <TwitterShareButton
+                                            title="Check out the State of Postgres 2019 Report - developed with ❤️ by @timescaledb:"
+                                            hashtags={['stateofpostgres2019']}
+                                            url={share_url}
+                                        ><TwitterIcon round size={32}/></TwitterShareButton>
+                                        <LinkedinShareButton url={share_url}><LinkedinIcon round size={32}/></LinkedinShareButton>
+                                    </div>
+                                </Container>
                             </div>
-                        </VisibilitySensor>
-                        <VisibilitySensor minTopValue={400} partialVisibility={true} scrollCheck={true}
-                                          onChange={this.change_background_white}>
-                            <Container id="footer">
-                                <EmailForm/>
-                                <div id="share-div">
-                                    <FacebookShareButton
-                                        quote="Check out the State of Postgres 2019 Report - developed with ❤️ by @timescaledb:"
-                                        hashtag="#stateofpostgres2019"
-                                        url={share_url}
-                                    ><FacebookIcon round size={32}/></FacebookShareButton>
-                                    <TwitterShareButton
-                                        title="Check out the State of Postgres 2019 Report - developed with ❤️ by @timescaledb:"
-                                        hashtags={['stateofpostgres2019']}
-                                        url={share_url}
-                                    ><TwitterIcon round size={32}/></TwitterShareButton>
-                                    <LinkedinShareButton url={share_url}><LinkedinIcon round size={32}/></LinkedinShareButton>
-                                </div>
-                            </Container>
                         </VisibilitySensor>
                     </Container>
                 </div>

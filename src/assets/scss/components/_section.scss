@@ -109,7 +109,7 @@ canvas {
 	text-align: right;
 	font-size: 13px;
 	font-style: italic;
-	color: #84775c;
+	color: #469FCB;
 }
 
 .transition {
@@ -138,9 +138,9 @@ canvas {
 }
 
 .black {
-	background-color: #080808!important;
+	background-color: #F4F0E3!important;
 	.info, .text.quote, .name, a:not(.active) {
-		color: $bg-gray!important;
+		color: $color-text!important;
 	}
 }
 
