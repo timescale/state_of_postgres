@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-// import Reveal from 'react-reveal/Reveal';
-// import AOS from 'aos';
 import {ProgressBar} from 'react-bootstrap'
 import VisibilitySensor from 'react-visibility-sensor'
 import * as THREE from 'three'
@@ -16,8 +14,10 @@ class Model extends Component {
     state = {
         now: 0
     };
+    initial_visible = false;
     constructor(props) {
         super(props);
+        this.el = React.createRef();
         this.number = React.createRef();
         this.info = React.createRef();
         this.description = React.createRef();
@@ -31,6 +31,21 @@ class Model extends Component {
             this.renderer.setSize(this.el.parentElement.parentElement.offsetWidth, this.el.parentElement.parentElement.offsetHeight, true);
         }
     }
+
+    center_of_canvas = () => {
+        let values = this.el.getBoundingClientRect();
+        let perc_100 = window.innerHeight;
+        let position = (values.height / 2) - values.y;
+        let percentage = Math.round(position/perc_100 *100) / 100;
+        if (percentage > 1) {
+            percentage = 1
+        } else if (percentage < 0) {
+            percentage = 0
+        }
+        console.log(percentage);
+        this.percentage = percentage
+    };
+
     // componentWillUnmount() {
     //      window.removeEventListener( 'resize', this.onWindowResize, false);
     //      window.removeEventListener( 'orientationchange', this.onWindowResize, false);
@@ -114,7 +129,7 @@ class Model extends Component {
         this.renderer.gammaFactor = 2.2;
         this.camera.aspect = this.get_aspect();
         this.camera.updateProjectionMatrix();
-        this.scene.visible = this.file === '/objects/teamwork.glb';
+        this.scene.visible = this.initial_visible;
         this.renderer.render(this.scene, this.camera);
     };
 
@@ -144,7 +159,7 @@ class Model extends Component {
         this.delta++;
 
         if (this.mixer) {
-            this.mixer.update(this.clock.getDelta());
+            this.mixer.update(this.percetage || this.clock.getDelta());
         }
 
         this.renderer.render(this.scene, this.camera);
@@ -167,7 +182,7 @@ class Model extends Component {
 
     render() {
         return (
-            <VisibilitySensor partialVisibility={true} onChange={this.activate_animation} minTopValue={this.props.minTopValue || 100}>
+            <VisibilitySensor partialVisibility={true} onChange={this.activate_animation} minTopValue={this.minTopValue || 100}>
                 <div>
                     <div className="progress-bar-div" hidden={!this.file || this.state.now === 100} >
                         <ProgressBar now={this.state.now}/>
@@ -273,6 +288,11 @@ class Phone extends AnimationModel {
     loop = false;
     file = '/objects/phone.glb';
 
+
+    componentDidMount() {
+        super.componentDidMount()
+        window.addEventListener('scroll', this.center_of_canvas)
+    }
     get_camera() {
         super.get_camera();
         this.camera.position.z = 4.8
@@ -314,6 +334,7 @@ class Flowers extends AnimationModel {
 class Teamwork extends AnimationModel {
     loop = false;
     file = '/objects/teamwork.glb';
+    initial_visible = true;
 
     get_light() {
         this.light = new THREE.DirectionalLight( 0xffffff, 0.5);
@@ -330,6 +351,8 @@ class Teamwork extends AnimationModel {
 
 class Swimming extends AnimationModel {
     file = '/objects/swim.glb';
+    minTopValue = 0;
+    initial_visible = true;
 
     get_render() {
         super.get_render();
@@ -346,7 +369,7 @@ class Swimming extends AnimationModel {
         this.camera.position.set(0.0003959743189625442, 0.007, 0.019);
         this.mesh = this.scene.children[0].children[0].children[1];
         this.mesh.applyMatrix(this.flip);
-        this.mesh.position.set(0.0003959743189625442,0.0115, -0.007034149952232838);
+        this.mesh.position.set(0.030,0.0115, -0.007034149952232838);
         this.mesh.scale.set(0.8, 0.8, 0.8)
 
     };
@@ -359,6 +382,7 @@ class Swimming extends AnimationModel {
         this.light = new THREE.DirectionalLight( 0xffffff, 1 );
         this.light.position.z = 3;
         this.scene.add( this.light );
+        window.c = this.camera;
         let waterGeometry = new THREE.PlaneBufferGeometry( 100, 100 );
         this.water = new Water(
             waterGeometry,
@@ -378,14 +402,20 @@ class Swimming extends AnimationModel {
         );
         this.water.rotation.x = - Math.PI / 2;
         this.scene.add(this.water);
+        this.renderer.render(this.scene, this.camera);
     }
     animate = () => {
+        this.new_mesh = this.scene.children[0].children[0].children[1];
+        if (-0.07 < this.new_mesh.position.x && this.new_mesh.position.x < 0.04) {
+            this.new_mesh.position.x -= 0.0001
+        }
         this.time = performance.now() * 0.001;
         if (this.water) {
             this.water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
         }
         super.animate();
     }
+
 }
 
 class Flame extends AnimationModel {
