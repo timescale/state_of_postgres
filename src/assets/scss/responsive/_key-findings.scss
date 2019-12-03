@@ -341,7 +341,7 @@
 	
 	.row_section {
 		flex-direction: column;
-		height: 600px;
+		height: 500px;
 	}
 
 	canvas {
@@ -366,8 +366,8 @@
 	.description {
 		font-size: 22px;
 	}
-	.quote-section > div:first-child {
-		padding-bottom: 100px;
+	.quote-section {
+		height: 600px;
 	}
 
 	.info-title {

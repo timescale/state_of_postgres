@@ -147,13 +147,13 @@ class KeyFindings extends Component {
                                     info={'The most common way to deploy Postgres (46%) is in a self-managed data center.'}
                                     model="Swimming" />
                                 <Row id="water-texts">
-                                    <Col>
+                                    <Col sm={12} md={4}>
                                         <WaterText number="46" text="deploy Postgres in a self-managed data center."/>
                                     </Col>
-                                    <Col>
+                                    <Col sm={12} md={4}>
                                         <WaterText number="51" text="deploy Postgres with AWS."/>
                                     </Col>
-                                    <Col>
+                                    <Col sm={12} md={4}>
                                         <WaterText number="18" text="deploy Postgres with GCP."/>
                                     </Col>
                                 </Row>

@@ -71,6 +71,7 @@ class App extends Component {
 	activate_smooth_scroll() {
 		setTimeout(this.fix_main_height, 500);
 		window.addEventListener('resize', this.fix_main_height);
+		window.addEventListener('scroll', this.fix_main_height);
 		window.addEventListener('orientationchange', this.fix_main_height);
 		this.scroll = new SmoothScroll('.scroll_container');
 	}
@@ -78,6 +79,7 @@ class App extends Component {
 	disable_scroll() {
 		this.scroll.disable();
 		window.removeEventListener('resize', this.fix_main_height);
+		window.removeEventListener('scroll', this.fix_main_height);
 		window.removeEventListener('orientationchange', this.fix_main_height);
 	}
 
