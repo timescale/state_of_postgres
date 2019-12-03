@@ -359,7 +359,7 @@ class Swimming extends AnimationModel {
     }
 
     add_water() {
-        this.light = new THREE.DirectionalLight( 0xffffff, 1 );
+        this.light = new THREE.DirectionalLight( 0x63a9d1, 1 );
         this.scene.add( this.light );
         let waterGeometry = new THREE.PlaneBufferGeometry( 10000, 5000 );
         this.water = new Water(
@@ -373,7 +373,7 @@ class Swimming extends AnimationModel {
                 alpha: 0.9,
                 sunDirection: this.light.position.clone().normalize(),
                 sunColor: 0xffffff,
-                waterColor: 0x028bf2,
+                waterColor: 0x72bedc,
                 distortionScale: 3.7,
                 fog: this.scene.fog !== undefined
             }
@@ -396,8 +396,8 @@ class Flame extends AnimationModel {
 
     get_camera() {
         super.get_camera();
-        this.camera.position.z = 0.0003;
-        this.camera.parent.children[1].rotation.y = 0.05
+        this.camera.position.z = 0.0005;
+        this.camera.parent.children[1].rotation.y = 0.05;
     }
 }
 

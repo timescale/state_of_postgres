@@ -59,6 +59,10 @@ canvas {
 	color: #4E8BEA;
 }
 
+.quote-section {
+	height: 650px;
+}
+
 .quote-text {
 	padding: 0 5%;
 }
@@ -139,6 +143,8 @@ canvas {
 		color: $bg-gray!important;
 	}
 }
+
+
 
 #share-div {
 	display: flex;
