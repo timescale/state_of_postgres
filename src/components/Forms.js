@@ -7,33 +7,38 @@ import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 class TimescaleEmail extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {clicked: false, buttonText: 'Submit', fields: {email: ''}}
-        this.onClick = this.onClick.bind(this);
+        this.state = { clicked: false, buttonText: 'Submit', fields: { email: '' }}
+        this.onSubmit = this.onSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
     changeState = () => {
-        this.setState({clicked: !this.state.clicked});
+        this.setState({ clicked: !this.state.clicked });
     };
 
     onSuccess = () => {
-        this.setState({buttonText: 'Thanks!'});
+        this.setState({ buttonText: 'Thanks!' });
     }
 
     onFailure = () => {
-        this.setState({buttonText: 'Error!'});
+        this.setState({ buttonText: 'Error!' });
     }
 
     handleChange = (e) => {
         this.setState({ fields: { email: e.target.value }});
     }
 
-    onClick = async (e) => {
+    onSubmit = async (e) => {
         e.preventDefault();
         const submitBody = Object.entries(this.state.fields).map(([name, value]) => {
             return {name, value};
         });
-        await submitForm({submitBody, onSuccess: this.onSuccess, onFailure: this.onFailure});
+        await submitForm({
+          submitBody,
+          route: '/v2/newsletter',
+          onSuccess: this.onSuccess,
+          onFailure: this.onFailure,
+        });
     }
 
     render() {
@@ -51,7 +56,7 @@ class TimescaleEmail extends React.Component {
                                 <Form.Control onChange={this.handleChange} value={this.state.email} type="email" placeholder="Email" />
                             </Col>
                             <Col className="d-flex btn-col">
-                                <Button onClick={this.onClick} type="submit" variant="primary">{this.state.buttonText}</Button>
+                                <Button onClick={this.onSubmit} type="submit" variant="primary">{this.state.buttonText}</Button>
                             </Col>
                         </Form.Row>
                     </Form>
@@ -87,7 +92,7 @@ const EmailForm = ({black}) => {
                     <Col md="12">
                         <div className='text2'>
                             <Form.Group controlId="formBasicCheckbox">
-                                <Form.Check type="checkbox" checked={newsletter} onClick={() => { setNewsletter(!newsletter); }} label="I'd like to get the Timescale Newsletter (new technical content, SQL tips, and more)." />
+                                <Form.Check type="checkbox" checked={newsletter} onChange={() => { setNewsletter(!newsletter); }} label="I'd like to get the Timescale Newsletter (new technical content, SQL tips, and more)." />
                             </Form.Group>
                         </div>
                     </Col>

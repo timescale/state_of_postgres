@@ -8,9 +8,9 @@ const FORM_SUBSCRIPTION_IDS = {
   events: 5634664,
 };
 
-const ENDPOINT_DOMAIN = process.env.NODE_ENV === 'development'
-  ? 'https://dev-responses.timescale.com'
-  : 'https://responses.timescale.com'
+const ENDPOINT_DOMAIN = process.env.NODE_ENV === 'production'
+  ? 'https://responses.timescale.com'
+  : 'https://dev-responses.timescale.com'
 
 async function submitForm({
   submitBody,
