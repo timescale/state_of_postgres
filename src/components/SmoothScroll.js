@@ -6,7 +6,7 @@ class SmoothScroll {
             container: document.querySelector(_containerSelector),
             containerBody: document.querySelector(_containerSelector + '__body'),
             hitbox: document.querySelector(_containerSelector + '--hitbox'),
-        }
+        };
 
         // Init params
         let offsetHeight = this.$.containerBody.offsetHeight
@@ -23,7 +23,8 @@ class SmoothScroll {
             this._initStyle();
             this._initListeners()
         })
-
+        this._handleScroll = this._handleScroll.bind(this);
+        this._handleResize = this._handleResize.bind(this);
     }
 
     _initStyle() {
@@ -64,10 +65,13 @@ class SmoothScroll {
     }
 
     _initListeners() {
+        window.addEventListener('scroll', this._handleScroll);
+        window.addEventListener('resize', this._handleResize);
+    }
 
-        window.addEventListener('scroll', (event) => { this._handleScroll(event) })
-        window.addEventListener('resize', () => { this._handleResize() })
-
+    disable() {
+        window.removeEventListener('scroll', this._handleScroll);
+        window.removeEventListener('resize', this._handleResize);
     }
 
     _handleScroll(_event) {
