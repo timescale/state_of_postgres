@@ -26,7 +26,7 @@ class Model extends Component {
 
     onWindowResize() {
         if (this.el && this.camera && this.renderer) {
-            this.camera.aspect = this.el.parentElement.parentElement.offsetWidth / this.el.parentElement.parentElement.offsetHeight
+            this.camera.aspect = this.el.parentElement.parentElement.offsetWidth / this.el.parentElement.parentElement.offsetHeight;
             this.camera.updateProjectionMatrix();
             this.renderer.setSize(this.el.parentElement.parentElement.offsetWidth, this.el.parentElement.parentElement.offsetHeight, true);
         }
@@ -38,15 +38,15 @@ class Model extends Component {
 
     componentDidMount() {
         this.loader = new GLTFLoader();
-        if (!this.state) {
+        if (!this.props) {
             return
         }
         queue.add(() => {
-            if (!this.state.file) {
+            if (!this.file) {
                 queue.next();
                 return
             }
-            this.loader.load(this.state.file, (gltf) => {
+            this.loader.load(this.file, (gltf) => {
                 queue.next();
                 this.delta = 0;
                 this.gltf = gltf;
@@ -55,7 +55,6 @@ class Model extends Component {
                 this.get_camera();
                 this.get_mesh();
                 this.get_light();
-                this.change_material();
                 this.get_mixer();
 
                 this.get_render();
@@ -69,23 +68,17 @@ class Model extends Component {
                 queue.next();
                 console.log( 'An error happened' );
             })
-            // success(model)
         });
     }
     get_mesh() {
         this.mesh = this.scene.children[0].children[0];
     }
-    get_light() {
-
-    }
-    change_material() {
-        this.material = new THREE.MeshBasicMaterial( {
-            color: 0x818181,
-            wireframe: true
-        } );
-    };
+    get_light() {}
 
     activate_animation = (isVisible) => {
+        if (!this.scene) {
+            return
+        }
         if (isVisible) {
             this.show_mesh()
         } else {
@@ -98,14 +91,6 @@ class Model extends Component {
         this.scene.add(this.gltf.scene)
     };
 
-    is_in_viewport() {
-        let bounding = this.el.getBoundingClientRect();
-        return bounding.top >= 0 &&
-            bounding.left >= 0 &&
-            bounding.right <= (window.innerWidth || document.documentElement.clientWidth) &&
-            bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight);
-    }
-
     get_dimention() {
         this.width = this.el.parentElement.parentElement.offsetWidth;
         this.height = this.el.parentElement.parentElement.offsetHeight;
@@ -116,14 +101,12 @@ class Model extends Component {
     }
 
     get_render() {
-        //RENDERER
         this.renderer = new THREE.WebGLRenderer({
             canvas: this.el,
             powerPreference: "high-performance",
             alpha: true
         });
 
-        // this.renderer.setSize(window.innerWidth/2, window.innerHeight/2, true);
         this.get_dimention();
         this.renderer.setSize(this.width, this.height, true);
         this.renderer.setPixelRatio(2.5);
@@ -131,22 +114,12 @@ class Model extends Component {
         this.renderer.gammaFactor = 2.2;
         this.camera.aspect = this.get_aspect();
         this.camera.updateProjectionMatrix();
-        this.scene.visible = this.is_in_viewport();
+        this.scene.visible = this.file === '/objects/teamwork.glb';
         this.renderer.render(this.scene, this.camera);
     };
-    get_mixer() {
-        if (this.gltf.animations.length === 0) {
-            return
-        }
-        this.mixer = new THREE.AnimationMixer(this.scene);
-        this.action = this.mixer.clipAction(this.gltf.animations[0]);
-        if (this.state.loopOnce) {
-            this.action.setLoop( THREE.LoopOnce );
-            this.action.clampWhenFinished = true;
-        }
 
-        this.action.play();
-    };
+    get_mixer() {};
+
     get_camera() {
         let camera = this.gltf.cameras;
         if (camera.length > 0) {
@@ -171,13 +144,8 @@ class Model extends Component {
         this.delta++;
 
         if (this.mixer) {
-            // this.mesh.rotation.y += 0.01;
             this.mixer.update(this.clock.getDelta());
-            //animation mesh
-            // mesh.morphTargetInfluences[ 0 ] = Math.sin(delta) * 20.0;
         }
-        // this.camera.updateProjectionMatrix();
-        // this.renderer.setSize( 850, 850, 2 );
 
         this.renderer.render(this.scene, this.camera);
     };
@@ -186,25 +154,22 @@ class Model extends Component {
         if (this.animation_id) {
             cancelAnimationFrame( this.animation_id );
             this.animation_id = null;
-            this.scene.visible = false;
-            this.renderer.render(this.scene, this.camera)
         }
-
+        this.scene.visible = false;
+        this.renderer.render(this.scene, this.camera)
     };
 
     show_mesh() {
-        if (!this.animation_id && this.scene) {
-            this.scene.visible = true;
-            this.animate()
-        }
+        this.scene.visible = true;
+        this.renderer.render(this.scene, this.camera)
     };
 
 
     render() {
         return (
-            <VisibilitySensor partialVisibility={true} onChange={this.activate_animation} minTopValue={this.props.minTopValue || 0}>
+            <VisibilitySensor partialVisibility={true} onChange={this.activate_animation} minTopValue={this.props.minTopValue || 100}>
                 <div>
-                    <div className="progress-bar-div" hidden={!this.state.file || this.state.now === 100} >
+                    <div className="progress-bar-div" hidden={!this.file || this.state.now === 100} >
                         <ProgressBar now={this.state.now}/>
                     </div >
                     <canvas ref={ref => (this.el = ref)} hidden={this.state.now !== 100} />
@@ -215,17 +180,46 @@ class Model extends Component {
     }
 }
 
-class Drone extends Model {
+class AnimationModel extends Model {
+    loop = true;
+
+    get_mixer() {
+        if (this.gltf.animations.length === 0) {
+            return
+        }
+        this.mixer = new THREE.AnimationMixer(this.scene);
+        this.action = this.mixer.clipAction(this.gltf.animations[0]);
+
+        if (!this.loop) {
+            this.action.setLoop(THREE.LoopOnce);
+        }
+
+        this.action.clampWhenFinished = true;
+        this.action.play();
+    };
+
+    show_mesh() {
+        super.show_mesh();
+        if (!this.animation_id && this.scene) {
+            this.animate()
+        }
+    };
+    hide_mesh() {
+        if (this.animation_id && this.loop) {
+            cancelAnimationFrame( this.animation_id );
+            this.animation_id = null;
+        }
+        this.scene.visible = false;
+        this.renderer.render(this.scene, this.camera)
+    };
+}
+
+class Drone extends AnimationModel {
+    file = '/objects/drone.glb';
+
     constructor(props) {
         super(props);
-        this.state = {file: '/objects/drone.glb'};
         this.start_fly_animation = this.start_fly_animation.bind(this);
-    }
-
-
-     get_dimention() {
-        this.width = this.el.parentElement.parentElement.parentElement.offsetWidth;
-        this.height = this.el.parentElement.parentElement.parentElement.offsetHeight;
     }
 
     componentDidMount() {
@@ -236,7 +230,6 @@ class Drone extends Model {
     componentWillUnmount() {
         window.removeEventListener('scroll', this.start_fly_animation)
     }
-
 
     animate() {
         if (this.fly_animation) {
@@ -265,12 +258,10 @@ class Drone extends Model {
         return (
             <VisibilitySensor partialVisibility={true} onChange={this.activate_animation} minTopValue={this.minTopValue || 0}>
                 <div>
-                    <div>
-                        <div className="progress-bar-div" hidden={this.state.now === 100} >
-                            <ProgressBar now={this.state.now}/>
-                        </div>
-                        <canvas ref={ref => (this.el = ref)} hidden={this.state.now !== 100} />
+                    <div className="progress-bar-div" hidden={this.state.now === 100} >
+                        <ProgressBar now={this.state.now}/>
                     </div>
+                    <canvas ref={ref => (this.el = ref)} hidden={this.state.now !== 100} />
                 </div>
             </VisibilitySensor>
         )
@@ -278,14 +269,9 @@ class Drone extends Model {
     }
 }
 
-class Phone extends Model {
-    constructor(props) {
-        super(props);
-        this.state = {
-            file: '/objects/phone.glb',
-            loopOnce: true
-        }
-    }
+class Phone extends AnimationModel {
+    loop = false;
+    file = '/objects/phone.glb';
 
     get_camera() {
         super.get_camera();
@@ -293,16 +279,10 @@ class Phone extends Model {
     }
 }
 
-class Flowers extends Model {
-    constructor(props) {
-        super(props);
-        this.minTopValue = window.innerHeight*0.7;
-        this.state = {
-            file: '/objects/flower.glb',
-            loopOnce: true,
-        }
-    }
-
+class Flowers extends AnimationModel {
+    loop = false;
+    file = '/objects/flower.glb';
+    minTopValue = window.innerHeight*0.7;
 
     hide_mesh() {
         if (this.animation_id) {
@@ -331,14 +311,9 @@ class Flowers extends Model {
     }
 }
 
-class Teamwork extends Model {
-    constructor(props) {
-        super(props);
-        this.state = {
-            file: '/objects/teamwork.glb',
-            loopOnce: true,
-        }
-    }
+class Teamwork extends AnimationModel {
+    loop = false;
+    file = '/objects/teamwork.glb';
 
     get_light() {
         this.light = new THREE.DirectionalLight( 0xffffff, 0.5);
@@ -353,11 +328,9 @@ class Teamwork extends Model {
     }
 }
 
-class Swimming extends Model {
-    constructor(props) {
-        super(props);
-        this.state = {file: '/objects/swim.glb'}
-    }
+class Swimming extends AnimationModel {
+    file = '/objects/swim.glb';
+
     get_render() {
         super.get_render();
         this.renderer.antialias = true;
@@ -368,11 +341,13 @@ class Swimming extends Model {
     get_camera() {
         this.flip = new THREE.Matrix4().makeScale(-1,-1,1);
         this.camera = this.scene.children[0].children[0].children[0];
-        this.camera.rotation.z =  180 * Math.PI / 180;
-        this.camera.position.set(0.0023959743189625442, 0.01,0.026034149952232848);
+        this.camera.rotation.set(-0.261, 0,3.141592653589793)
+
+        this.camera.position.set(0.0003959743189625442, 0.007, 0.019);
         this.mesh = this.scene.children[0].children[0].children[1];
         this.mesh.applyMatrix(this.flip);
-        this.mesh.position.y = 0.0053;
+        this.mesh.position.set(0.0003959743189625442,0.0115, -0.007034149952232838);
+        this.mesh.scale.set(0.8, 0.8, 0.8)
         window.a = this.camera;
         window.b = this.mesh;
 
@@ -416,11 +391,9 @@ class Swimming extends Model {
     }
 }
 
-class Flame extends Model {
-    constructor(props) {
-        super(props);
-        this.state = {file: '/objects/flame.glb'}
-    }
+class Flame extends AnimationModel {
+    file = '/objects/flame.glb';
+
     get_camera() {
         super.get_camera();
         this.camera.position.z = 0.0003;
@@ -428,11 +401,8 @@ class Flame extends Model {
     }
 }
 
-class Tail extends Model {
-    constructor(props) {
-        super(props);
-        this.state = {file: '/objects/tailwag/tail_wag.glb'}
-    }
+class Tail extends AnimationModel {
+    file = '/objects/tailwag/tail_wag.glb'
 
     get_dimention() {
         super.get_dimention();
@@ -447,9 +417,10 @@ class Tail extends Model {
 }
 
 class Circuit extends Model {
+
     constructor(props) {
         super(props);
-        this.state = {file: '/objects/circuit.glb'}
+        this.file = '/objects/circuit.glb'
     }
     get_camera() {
         super.get_camera();
@@ -459,14 +430,9 @@ class Circuit extends Model {
     }
 }
 
-class Toyball extends Model {
-    constructor(props) {
-        super(props);
-        this.state = {
-            file: '/objects/toy_ball.glb',
-            loopOnce: true
-        }
-    }
+class Toyball extends AnimationModel {
+    loop = false;
+    file = '/objects/toy_ball.glb';
 
     get_dimention() {
         super.get_dimention();
@@ -477,8 +443,6 @@ class Toyball extends Model {
         super.get_camera();
     }
 }
-
-
 
 
 export {Model, Drone, Phone, Flowers, Teamwork, Swimming, Flame, Tail, Circuit, Toyball};

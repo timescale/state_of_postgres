@@ -1,8 +1,9 @@
 import React, { Component, Fragment} from 'react';
 import Fade  from 'react-reveal/Fade';
 import VisibilitySensor from 'react-visibility-sensor'
-import { Container, Row } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import { Section, QuoteSection, WaterSection } from "./Section";
+import WaterText from "./WaterText";
 import { EmailForm } from "./Forms"
 import {
     FacebookShareButton,
@@ -142,13 +143,20 @@ class KeyFindings extends Component {
                                 </section>
                                 {/* Technology - End */}
 
-                                <WaterSection number={6} info={'The most common way to deploy Postgres (46%) is in a self-managed data center.'}
-                                         description={''} reverse={false}
-                                         model="Swimming" />
-                                <WaterSection number={7} info={'Among those who deploy on a cloud, over half (51%) use AWS'}
-                                         description={''} reverse={false}/>
-                                <WaterSection number={8} info={'The next closest cloud provider was GCP at 18%'}
-                                         description={''} reverse={false}/>
+                                <WaterSection
+                                    info={'The most common way to deploy Postgres (46%) is in a self-managed data center.'}
+                                    model="Swimming" />
+                                <Row id="water-texts">
+                                    <Col>
+                                        <WaterText number="46" text="deploy Postgres in a self-managed data center."/>
+                                    </Col>
+                                    <Col>
+                                        <WaterText number="51" text="deploy Postgres with AWS."/>
+                                    </Col>
+                                    <Col>
+                                        <WaterText number="18" text="deploy Postgres with GCP."/>
+                                    </Col>
+                                </Row>
 
                             </div>
                         </VisibilitySensor>

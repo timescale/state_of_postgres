@@ -30,14 +30,14 @@ canvas {
 }
 
 .progress-bar-div {
-    .progress {
-        background-color: #F2EFEF;
-    }
-    width: 150px;
-    height: 9px;
-    .progress-bar {
-        background-color: $color-primary;
-    }
+	.progress {
+		background-color: #F2EFEF;
+	}
+	width: 150px;
+	height: 9px;
+	.progress-bar {
+		background-color: $color-primary;
+	}
 }
 
 .info {
@@ -70,13 +70,13 @@ canvas {
 		font-size: 22px;
 		line-height: 29px;
 		letter-spacing: 0.01em;
-        padding-top: 40px;
+		padding-top: 40px;
 	}
-    .info {
-        line-height: 48px;
-        font-style: italic;
-        font-weight: 200;
-    }
+	.info {
+		line-height: 48px;
+		font-style: italic;
+		font-weight: 200;
+	}
 
 }
 
@@ -96,7 +96,7 @@ canvas {
 .curly-quotes:before {
 	content: '\201C';
 	top: -50px;
-    left: -5px;
+	left: -5px;
 }
 
 .quote-by {
@@ -109,34 +109,34 @@ canvas {
 }
 
 .transition {
-    transition: background-color .3s ease-in-out;
-	.info, .text.quote, .name, .number {
-        transition: color .3s ease-in-out;
+	transition: background-color .3s ease-in-out;
+	.info, .text.quote, .name, {
+		transition: color .3s ease-in-out;
 	}
 }
 
 .white {
 	background-color: initial;
-    .info, .text.quote, .name, .number, a:not(.active) {
-        color: initial;
+	.info, .text.quote, .name, a:not(.active) {
+		color: initial;
 	}
 }
 
 .blue {
-    background-color: $color-primary!important;
-    .info, .text.quote, .name, .number, a:not(.active) {
-        color: #080808!important;
+	background-color: $color-primary!important;
+	.info, .text.quote, .name, a:not(.active) {
+		color: #080808!important;
 	}
 	a.active {
-		color: #FBFBFB !important;
-        border-bottom: 1px solid #FBFBFB !important;
+		color: $bg-gray !important;
+		border-bottom: 1px solid $bg-gray !important;
 	}
 }
 
 .black {
-    background-color: #080808!important;
-    .info, .text.quote, .name, a:not(.active) {
-        color: #FBFBFB!important;
+	background-color: #080808!important;
+	.info, .text.quote, .name, a:not(.active) {
+		color: $bg-gray!important;
 	}
 }
 
@@ -145,7 +145,7 @@ canvas {
 	flex-direction: row;
 	justify-content: center;
 	padding-top: 360px;
-	
+
 	div {
 		padding: 0 5px 32px 5px;
 		svg {
@@ -156,3 +156,45 @@ canvas {
 		fill: #E1E1E1;
 	}
 }
+
+.water_row_section {
+	height: 500px;
+}
+
+#water-texts {
+	justify-content: center;
+	height: 750px;
+	.col {
+		max-width: 380px;
+	}
+
+	.water-text {
+		color: $bg-gray;
+		text-align: center;
+
+		.percentage {
+			display: flex;
+			justify-content: center;
+		}
+		.number {
+			color: $bg-gray;
+			font-weight: 600;
+			font-size: 170px;
+			line-height: 127.5%;
+			letter-spacing: -0.052em;
+		}
+		.percent {
+			font-size: 70px;
+			line-height: 127.5%;
+			letter-spacing: -0.052em;
+			padding: 27px 10px;
+		}
+		.text {
+			font-size: 30px;
+			line-height: 127.5%;
+			letter-spacing: 0.008em;
+		}
+	}
+}
+
+

@@ -80,30 +80,10 @@ class WaterSection extends Section {
 
     render() {
         return (
-            <Row className="row_section" >
+            <Row className="water_row_section" >
                 <Col sm={{span: 12}} md={{ span: 12 }}
                      className="d-flex justify-content-center align-items-center model p-0">
                     <GetModel model={this.props.model}/>
-                </Col>
-                <Col sm={{span: 12}} md={{ span: 6, offset: 3 }}
-                     className="d-flex justify-content-center align-items-center text-section">
-                    <VisibilitySensor partialVisibility={this.props.partialVisibility || false}
-                                      onChange={this.fade} minTopValue={this.props.minTopValue} >
-                        <div className="text">
-                            <p className={'number ' + (this.props.show_info ? '' : 'animated')}
-                               ref={this.number}
-                               style={this.props.show_info ? {opacity: 1} : {}}>
-                                { this.props.number }
-                            </p>
-                            <p className={'info ' + (this.props.show_info ? '' : 'animated')} ref={this.info}
-                               style={this.props.show_info ? {opacity: 1} : {}}>
-                                { this.props.info }
-                            </p>
-                            <p className="description animated"  ref={this.description}>
-                                { this.props.description }
-                            </p>
-                        </div>
-                    </VisibilitySensor>
                 </Col>
             </Row>
         );
