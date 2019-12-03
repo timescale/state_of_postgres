@@ -348,39 +348,36 @@ class Swimming extends AnimationModel {
         this.mesh.applyMatrix(this.flip);
         this.mesh.position.set(0.0003959743189625442,0.0115, -0.007034149952232838);
         this.mesh.scale.set(0.8, 0.8, 0.8)
-        window.a = this.camera;
-        window.b = this.mesh;
 
     };
     get_scene() {
         super.get_scene();
         this.scene.matrixAutoUpdate = false;
-        window.a = this
     }
 
     add_water() {
-        this.light = new THREE.DirectionalLight( 0x63a9d1, 1 );
+        this.light = new THREE.DirectionalLight( 0xffffff, 1 );
+        this.light.position.z = 3;
         this.scene.add( this.light );
-        let waterGeometry = new THREE.PlaneBufferGeometry( 10000, 5000 );
+        let waterGeometry = new THREE.PlaneBufferGeometry( 100, 100 );
         this.water = new Water(
             waterGeometry,
             {
-                textureWidth: 512,
-                textureHeight: 512,
+                textureWidth: 5000,
+                textureHeight: 5000,
                 waterNormals: new THREE.TextureLoader().load( water_texture, function ( texture ) {
                     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
                 } ),
-                alpha: 0.9,
+                alpha: 0.3,
                 sunDirection: this.light.position.clone().normalize(),
-                sunColor: 0xffffff,
+                sunColor: 0xfdeca6,
                 waterColor: 0x72bedc,
-                distortionScale: 3.7,
-                fog: this.scene.fog !== undefined
+                distortionScale: 20,
+                fog: false
             }
         );
         this.water.rotation.x = - Math.PI / 2;
-        this.scene.add( this.water );
-
+        this.scene.add(this.water);
     }
     animate = () => {
         this.time = performance.now() * 0.001;
