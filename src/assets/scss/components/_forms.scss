@@ -47,13 +47,17 @@
 	padding-top: 100px;
 	max-width: 400px;
 
+	.form-group {
+		margin-bottom: 0;
+	}
 
 	.footer {
 		max-width: 400px;
 	}
+
 	.text1 {
 		font-size: 25px;
-		padding-bottom: 20px;
+		padding-bottom: 25px;
 		line-height: 141%;
 		font-weight: normal;
 	}
@@ -61,13 +65,12 @@
 	.text2 {
 		font-size: 14px;
 		line-height: 154%;
-		padding-bottom: 15px;
+		padding-bottom: 50px;
 	}
 
 	button {
 		font-size: 16px !important;
 	}
-
 }
 
 
@@ -90,6 +93,10 @@ input[type="checkbox"] {
 	margin-left: 20px;
 	font-size: 14px;
 	font-weight: 400;
+	padding-bottom: 0;
+}
+.form-control {
+	color: $color-text !important;
 }
 .form-control::-moz-placeholder {
 	color: #080808;
