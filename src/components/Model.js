@@ -288,11 +288,6 @@ class Phone extends AnimationModel {
     loop = false;
     file = '/objects/phone.glb';
 
-
-    componentDidMount() {
-        super.componentDidMount()
-        window.addEventListener('scroll', this.center_of_canvas)
-    }
     get_camera() {
         super.get_camera();
         this.camera.position.z = 4.8

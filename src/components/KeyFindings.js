@@ -72,6 +72,10 @@ class KeyFindings extends Component {
         this.change_background(is_visible, 'blue')
     };
 
+    change_background_white = (is_visible) => {
+        this.change_background(is_visible, 'white')
+    };
+
     render() {
         const share_url = "https://stateofpostgres.com";
         return (
