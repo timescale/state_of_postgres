@@ -6,6 +6,7 @@ const FORM_SUBSCRIPTION_IDS = {
   product_releases: 5734448,
   tsl_info: 5713631,
   events: 5634664,
+  stateofpostgres: 7847307,
 };
 
 const ENDPOINT_DOMAIN = process.env.NODE_ENV === 'production'
