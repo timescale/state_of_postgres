@@ -805,7 +805,7 @@ class KeyFindings extends Component {
                 >
                     <div className="download-modal">
                         <h2 className="modal-title">2019 State of Postgres Survey Results</h2>
-                        <a href="#" download className="link link-primary">Download excel data</a>
+                        <a href="/files/state_of_postgres_2019.xlsx" target="_blank" download className="link link-primary">Download excel data</a>
                     </div>
                 </ModalComponent>
 
@@ -815,10 +815,10 @@ class KeyFindings extends Component {
                 >
                     <div className="methodology-modal">
                         <h2 className="modal-title">Survey Methodology</h2>
-                        <p><a href="#" className="link link-primary">Timescale</a>, the company behind the leading open-source time-series SQL database TimescaleDB, created and distributed the State of Postgres 2019 survey. The survey ran  for six weeks, between August 9, 2019 through September 20, 2019.</p>
+                        <p><a href="http://timescale.com" target="_blank" className="link link-primary">Timescale</a>, the company behind the leading open-source time-series SQL database TimescaleDB, created and distributed the State of Postgres 2019 survey. The survey ran  for six weeks, between August 9, 2019 through September 20, 2019.</p>
                         <p>During that time, 500 Postgres users provided responses, which Timescale aggregated to generate this report. Please note that some of the percentages are rounded to the nearest full number for simplicity.</p>
                         <p>This is the inaugural State of Postgres report. The Timescale team will continue to issue the survey and report annually, as well as develop vendor-agnostic resources for the Postgres community as a whole*</p>
-                        <p>*Past projects include <a href="#" className="link link-primary">Postgres Cheatsheet</a>, a quick reference guide compilation of essential Postgres and psql commands with click-to-copy functionality.</p>
+                        <p>*Past projects include <a href="https://postgrescheatsheet.com" target="_blank" className="link link-primary">Postgres Cheatsheet</a>, a quick reference guide compilation of essential Postgres and psql commands with click-to-copy functionality. And <a href="https://pgschema.com" target="_blank" className="link link-primary">PG Schema</a>, an easy-to-use tool that helps you generate a schema for PostgreSQL and TimescaleDB.</p>
                     </div>
                 </ModalComponent>
 
