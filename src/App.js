@@ -65,7 +65,7 @@ class App extends Component {
 	}
 
 	isMobileDevice() {
-		return navigator.userAgent.indexOf('IEMobile') !== -1;
+		return window.innerWidth < 800
 	};
 
 	activate_smooth_scroll() {
