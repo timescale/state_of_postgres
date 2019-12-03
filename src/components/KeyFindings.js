@@ -98,7 +98,7 @@ class KeyFindings extends Component {
                                             <div className="d-flex animated fadeIn">
                                                 <p className="subtitle">We asked 500 members of the Postgres community about how they’re using the database in 2019. Here's what they said...</p>
                                             </div>
-                                        </Row>
+                                        </Row>``
                                     </Container>
                                 </section>
                                 {/* Intro - End */}
