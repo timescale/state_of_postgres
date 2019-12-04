@@ -4,82 +4,130 @@ import { Col, Form, Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 
-class TimescaleEmail extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { clicked: false, buttonText: 'Submit', fields: { email: '' }}
-        this.onSubmit = this.onSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-    }
+const [UNFILLED, SUBMITTING, SUCCEEDED, FAILED, INVALID_EMAIL] = ['unfilled', 'submitting', 'succeeded', 'failed', 'invalid email'];
 
-    changeState = () => {
-        this.setState({ clicked: !this.state.clicked });
-    };
+const setSuccess = (setFormState) => () => {
+  setFormState(SUCCEEDED);
+};
 
-    onSuccess = () => {
-        this.setState({ buttonText: 'Thanks!' });
-    }
-
-    onFailure = () => {
-        this.setState({ buttonText: 'Error!' });
-    }
-
-    handleChange = (e) => {
-        this.setState({ fields: { email: e.target.value }});
-    }
-
-    onSubmit = async (e) => {
-        e.preventDefault();
-        const submitBody = Object.entries(this.state.fields).map(([name, value]) => {
-            return {name, value};
-        });
-        await submitForm({
-          submitBody,
-          route: '/v2/newsletter',
-          onSuccess: this.onSuccess,
-          onFailure: this.onFailure,
-        });
-    }
-
-    render() {
-        return(
-            <div id="timescale">
-                <div className="trigger d-flex" onClick={this.changeState}>
-                    <img src="img/timescale.svg"/><FontAwesomeIcon icon={this.state.clicked ? faChevronDown : faChevronUp}/>
-                </div>
-                <div className="content" style={{display: this.state.clicked ? "block" : "none"}}>
-                    <p className="head">Stay connected!</p>
-                    <p className="subhead">Sign up for the Timescale Newsletter to get new technical content, SQL tips, and more.</p>
-                    <Form>
-                        <Form.Row>
-                            <Col md="8">
-                                <Form.Control onChange={this.handleChange} value={this.state.email} type="email" placeholder="Email" />
-                            </Col>
-                            <Col className="d-flex btn-col">
-                                <Button onClick={this.onSubmit} type="submit" variant="primary">{this.state.buttonText}</Button>
-                            </Col>
-                        </Form.Row>
-                    </Form>
-                </div>
-            </div>
-        );
-    }
+const setFailure = (setFormState) => (response) => {
+  if (response.status === 510) {
+    setFormState(INVALID_EMAIL);
+  } else {
+    setFormState(FAILED);
+  }
 }
 
-const EmailForm = ({black}) => {
+const TimescaleEmail = () => {
+    const [open, setOpen] = useState(false);
+    const [formState, setFormState] = useState(UNFILLED);
+    const [fields, setFields] = useState({email: ''});
+
+    const handleChange = (e) => {
+      setFields({ email: e.target.value });
+    }
+
+    const onClick = async (e) => {
+      e.preventDefault();
+      const submitBody = Object.entries(fields).map(([name, value]) => {
+        return {name, value};
+      });
+      setFormState(SUBMITTING);
+      await submitForm({
+        submitBody,
+        onSuccess: setSuccess(setFormState),
+        onFailure: setFailure(setFormState),
+      });
+    }
+
+    return (
+        <div id="timescale">
+            <div className="trigger d-flex" onClick={() => { setOpen(!open); }}>
+                <img src="img/timescale.svg"/><FontAwesomeIcon icon={open ? faChevronDown : faChevronUp}/>
+            </div>
+            <div className="content" style={{ display: (open ? 'block' : 'none') }}>
+                <p className="head">Stay connected!</p>
+                <p className="subhead">Sign up for the Timescale Newsletter to get new technical content, SQL tips, and more.</p>
+                <Form>
+                    <Form.Row>
+                        <EmailFieldBox
+                          handleChange={handleChange}
+                          formState={formState}
+                          email={fields.email}
+                          onSubmit={onClick}
+                        />
+                    </Form.Row>
+                </Form>
+            </div>
+        </div>
+    );
+}
+
+const EmailFieldBox = ({
+  handleChange,
+  formState,
+  email,
+  onSubmit,
+  className = 'd-flex btn-col',
+}) => {
+  if ([UNFILLED, SUBMITTING].includes(formState)) {
+    return (
+      <>
+        <Col md="8">
+          <Form.Control onChange={handleChange} value={email} type="email" placeholder="Email" />
+        </Col>
+        <Col className={className}>
+            <Button onClick={onSubmit} type="submit" variant="primary">{formState === UNFILLED ? 'Submit' : 'Sending...'}</Button>
+        </Col>
+      </>
+    );
+  } else {
+    let formResponse = {}
+    switch (formState) {
+      case FAILED:
+        formResponse = {
+          main: 'Oops!',
+          subtext: 'Something went wrong.',
+        };
+        break;
+      case INVALID_EMAIL:
+        formResponse = {
+          main: 'Oops!',
+          subtext: 'That email address is not valid.'
+        };
+        break;
+      default:
+        formResponse = {
+          main: 'Thanks!',
+          subtext: 'Your response was submitted.',
+        };
+    }
+    return (
+      <p className="response">
+        <span className="head main">{formResponse.main} </span>
+        <span class="head subtext">{formResponse.subtext}</span>
+      </p>
+    )
+  }
+}
+
+const EmailForm = ({ black }) => {
     const [newsletter, setNewsletter] = useState(false);
     const [email, setEmail] = useState('');
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [formState, setFormState] = useState(UNFILLED);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsSubmitting(true);
+        setFormState(SUBMITTING);
         const submitBody = [
             { name: 'newsletter', value: newsletter },
             { name: 'email', value: email },
         ];
-        await submitForm({submitBody});
-        setIsSubmitting(false);
+        await submitForm({
+          submitBody,
+          onSuccess: setSuccess(setFormState),
+          onFailure: setFailure(setFormState),
+        });
     }
 
     return (
@@ -96,12 +144,13 @@ const EmailForm = ({black}) => {
                             </Form.Group>
                         </div>
                     </Col>
-                    <Col md="8">
-                        <Form.Control type="email" placeholder="Email" value={email} onChange={(e) => { setEmail(e.target.value); }}/>
-                    </Col>
-                    <Col className="d-flex">
-                        <Button type="submit" onClick={handleSubmit} variant="primary">Submit</Button>
-                    </Col>
+                    <EmailFieldBox
+                      handleChange={(e) => { setEmail(e.target.value); }}
+                      formState={formState}
+                      email={email}
+                      onSubmit={handleSubmit}
+                      className="d-flex"
+                    />
                 </Form.Row>
             </Form>
         </div>

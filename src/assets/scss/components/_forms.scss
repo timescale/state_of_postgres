@@ -23,17 +23,6 @@
 		box-shadow: -5px 5px 9px rgba(0, 0, 0, 0.06);
 		padding: 25px;
 
-		.head {
-			font-weight: 600;
-			font-size: 22px;
-			line-height: 24px;
-			padding: 0 0 10px 0;
-		}
-		.subhead {
-			padding: 10px 0;
-			font-size: 16px;
-			line-height: 24px;
-		}
 		form {
 			padding: 10px 0 0 0;
 		}
@@ -72,14 +61,46 @@
 	}
 
 	.form-check {
-		
+
 		input {
 			@include position($top: 50%, $left: 20px);
 			margin-top: -10px;
 		}
 	}
 }
-
+ #timescale, #email-form {
+	 .head {
+		 font-weight: 600;
+		 font-size: 22px;
+		 line-height: 24px;
+		 padding: 0 0 10px 0;
+		 &.main {
+			 font-size: 18px;
+			 margin-right: 10px;
+		 }
+		 &.subtext {
+			 font-size: 18px;
+			 @media (max-width: 768px) {
+				 font-weight: normal;
+				 font-size: 16px;
+			 }
+		 }
+	 }
+	 .subhead {
+		 padding: 10px 0;
+		 font-size: 16px;
+		 line-height: 24px;
+	 }
+	 .response {
+		 width: 100%;
+		 display: flex;
+		 justify-content: center;
+		 @media (max-width: 768px) {
+			 flex-direction: column;
+			 align-items: center;
+		 }
+	 }
+ }
 
 label {
 	font-weight: bold;
