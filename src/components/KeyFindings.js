@@ -97,9 +97,9 @@ class KeyFindings extends Component {
                                                 </h1>
                                             </div>
                                             <div className="d-flex animated fadeIn">
-                                                <p className="subtitle">We asked 500 members of the Postgres community about how they’re using the database in 2019. Here's what they said...</p>
+                                                <p className="subtitle">We asked 500 members of the Postgres community how they use the database in 2019. Here's what they said.</p>
                                             </div>
-                                        </Row>``
+                                        </Row>
                                     </Container>
                                 </section>
                                 {/* Intro - End */}
@@ -108,22 +108,22 @@ class KeyFindings extends Component {
                                          description={'The Postgres community is committed.'} reverse={true}
                                          model="Teamwork"/>
 
-                                <Section number={2} info={'66% said they’re using Postgres more than they have in the past.'}
-                                         description={'Postgres is more popular than ever!'} reverse={false}
+                                <Section number={2} info={'66% said they’re using Postgres more now than they have in the past.'}
+                                         description={"Postgres' popularity is sky-high."} reverse={false}
                                          model="Drone"/>
 
-                                <Section number={3} info={'Postgres isn’t just for work. Over 80% of respondents use it for personal projects.'}
+                                <Section number={3} info={'Postgres isn’t just for work. Over 80% of respondents use it for personal projects, too.'}
                                          description={'Like running a demo on a Raspberry Pi.'} reverse={true}
                                          model="Circuit"/>
 
-                                <Section number={4} info={'About 70% of all respondents use Postgres for app development.'}
+                                <Section number={4} info={'70% of respondents use Postgres for app development.'}
                                          description={'And 30% report using it for ' +
                                          'real-time analytics, dashboarding, and monitoring.'}
                                          reverse={false}
                                          model="Phone"/>
 
                                 <Section number={5} info={'Only 9% have contributed code to Postgres...'}
-                                         description={'This is actually an impressive amount - many open source projects fail to attract enough developers to be sustainable.'} reverse={true} minTopValue={200} partialVisibility={true} show_info={true}
+                                         description={'Which is actually an impressive number. Many open source projects fail to generate enough interest to remain sustainable.'} reverse={true} minTopValue={200} partialVisibility={true} show_info={true}
                                          model="Flowers"/>
                             </div>
                         </VisibilitySensor>

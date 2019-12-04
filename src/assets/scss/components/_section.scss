@@ -129,7 +129,7 @@ canvas {
 .blue {
 	background-color: $color-primary!important;
 	.info, .text.quote, .name, a:not(.active) {
-		color: #080808!important;
+		color: #142933 !important;
 	}
 	a.active {
 		color: $bg-gray !important;
@@ -159,7 +159,7 @@ canvas {
 		}
 	}
 	circle {
-		fill: #E1E1E1;
+		fill: $color-primary;
 	}
 }
 

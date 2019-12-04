@@ -151,7 +151,7 @@ class KeyFindings extends Component {
                 type: "bar_chart",
                 name: "Industry",
                 question: "Which best describes the industry your organization is in?",
-                info: "Remaining respondents made up less than 5%. They were in the fields of entertainment/media, retail/food, transportation, energy, oil & gas, manufacturing, construction, aerospace and agriculture.",
+                info: "(Remaining respondents made up less than 5%. They were in the fields of entertainment/media, retail/food, transportation, energy, oil & gas, manufacturing, construction, aerospace and agriculture.)",
                 options: [
                     {
                         id: "6_1",
@@ -336,7 +336,7 @@ class KeyFindings extends Component {
                 type: "bar_chart",
                 name: "Use case",
                 question: "How would you classify your use case?",
-                info: "(Respondents could pick as many answers as they wanted)",
+                info: "(Respondents could pick as many answers as they wanted.)",
                 options: [
                     {
                         id: "11_1",
@@ -462,7 +462,7 @@ class KeyFindings extends Component {
                 type: "bar_chart",
                 name: "Events",
                 question: "What Postgres events do you go to?",
-                info: "A small percentage of respondents reported to attend PGConf in South Africa, Postgres Vision, PGConf in Asia, or another conference.",
+                info: "(A small percentage of respondents reported to attend PGConf in South Africa, Postgres Vision, PGConf in Asia, or another conference.)",
                 options: [
                     {
                         id: "15_1",
@@ -530,7 +530,7 @@ class KeyFindings extends Component {
                 type: "bar_chart",
                 name: "Deployment",
                 question: "How do you deploy Postgres?",
-                info: "(Respondents could pick as many answers as they wanted)",
+                info: "(Respondents could pick as many answers as they wanted.)",
                 options: [
                     {
                         id: "17_1",
@@ -564,7 +564,7 @@ class KeyFindings extends Component {
                 type: "bar_chart",
                 name: "Cloud",
                 question: "What cloud provider(s) do you currently use?",
-                info: "(Respondents could pick as many answers as they wanted. A small number of respondents reported using VMware, Alibaba Cloud, IBM Cloud, Oracle Cloud)",
+                info: "(Respondents could pick as many answers as they wanted. A small number of respondents reported using VMware, Alibaba Cloud, IBM Cloud, Oracle Cloud.)",
                 options: [
                     {
                         id: "18_1",
@@ -598,7 +598,7 @@ class KeyFindings extends Component {
                 type: "bar_chart",
                 name: "NoSQL",
                 question: "Do you currently use or have you used any of the following NoSQL databases? ",
-                info: "(Respondents could pick as many answers as they wanted)",
+                info: "(Respondents could pick as many answers as they wanted.)",
                 options: [
                     {
                         id: "19_1",
@@ -642,7 +642,7 @@ class KeyFindings extends Component {
                 type: "bar_chart",
                 name: "Other tools",
                 question: "What language(s) and/or tool(s) do you most frequently use to query Postgres?",
-                info: "(Respondents could pick as many answers as they wanted)",
+                info: "(Respondents could pick as many answers as they wanted.)",
                 options: [
                     {
                         id: "20_1",
@@ -817,7 +817,7 @@ class KeyFindings extends Component {
                         <h2 className="modal-title">Survey Methodology</h2>
                         <p><a href="http://timescale.com" target="_blank" className="link link-primary">Timescale</a>, the company behind the leading open-source time-series SQL database TimescaleDB, created and distributed the State of Postgres 2019 survey. The survey ran  for six weeks, between August 9, 2019 through September 20, 2019.</p>
                         <p>During that time, 500 Postgres users provided responses, which Timescale aggregated to generate this report. Please note that some of the percentages are rounded to the nearest full number for simplicity.</p>
-                        <p>This is the inaugural State of Postgres report. The Timescale team will continue to issue the survey and report annually, as well as develop vendor-agnostic resources for the Postgres community as a whole*</p>
+                        <p>This is the inaugural State of Postgres report. The Timescale team will continue to issue the survey and report annually, as well as develop vendor-agnostic resources for the Postgres community as a whole*.</p>
                         <p>*Past projects include <a href="https://postgrescheatsheet.com" target="_blank" className="link link-primary">Postgres Cheatsheet</a>, a quick reference guide compilation of essential Postgres and psql commands with click-to-copy functionality. And <a href="https://pgschema.com" target="_blank" className="link link-primary">PG Schema</a>, an easy-to-use tool that helps you generate a schema for PostgreSQL and TimescaleDB.</p>
                     </div>
                 </ModalComponent>
