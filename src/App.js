@@ -62,6 +62,12 @@ class App extends Component {
 		if (!this.isMobileDevice()) {
 			this.activate_smooth_scroll();
 		}
+		window.onbeforeunload = () => {
+			if (window.location.href === "https://stateofpostgres.com/") {
+				this.disable_scroll();
+				window.scrollTo(0, 0);
+			}
+		}
 	}
 
 	isMobileDevice() {
@@ -73,14 +79,7 @@ class App extends Component {
 		window.addEventListener('resize', this.fix_main_height);
 		window.addEventListener('scroll', this.fix_main_height);
 		window.addEventListener('orientationchange', this.fix_main_height);
-		this.scroll = new SmoothScroll('.scroll_container');
-	}
-
-	disable_scroll() {
-		this.scroll.disable();
-		window.removeEventListener('resize', this.fix_main_height);
-		window.removeEventListener('scroll', this.fix_main_height);
-		window.removeEventListener('orientationchange', this.fix_main_height);
+		window.scroll = new SmoothScroll('.scroll_container');
 	}
 
 	fix_main_height() {
