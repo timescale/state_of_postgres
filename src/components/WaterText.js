@@ -15,7 +15,7 @@ class WaterText extends Component {
                 <div className="percentage">
                     <span className="number">{this.props.number}</span> <span className="percent">%</span>
                 </div>
-                <div className="text">{this.props.text}</div>
+                <div className="text">{this.props.children}</div>
             </div>
         )
     }

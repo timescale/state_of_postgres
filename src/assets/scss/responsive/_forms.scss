@@ -1,0 +1,57 @@
+@media (max-width: $screen-sm) {
+
+	#timescale {
+
+		.trigger {
+			width: 145px;
+			padding: 10px 20px 10px 16px;
+
+			img {
+				width: 73px;
+				height: auto;
+			}
+
+			svg {
+				width: 9px;
+			}
+		}
+
+		.content {
+			width: 270px;
+			padding: 10px 20px 20px;
+
+			.head {
+				font-size: 16px;
+				padding: 0;
+			}
+
+			.subhead {
+				font-size: 12px;
+				line-height: 16px;
+				letter-spacing: 0.04em;
+				padding: 8px 0 10px;
+			}
+
+			form {
+				padding: 0;
+
+				.btn-col {
+					margin-top: 17px;
+				}
+
+				.btn {
+					height: 42px;
+					font-size: 15px !important;
+				}
+			}
+		}
+	}
+
+	#email-form {
+		
+		button {
+			margin-top: 17px;
+		}
+	}
+	
+}

@@ -44,7 +44,7 @@
 	/* or 62px */
 	letter-spacing: 0.005em;
 	margin: 100px 55px 0 55px;
-	max-width: 400px;
+	max-width: 380px;
 
 	.form-group {
 		margin-bottom: 0;
@@ -69,6 +69,14 @@
 
 	button {
 		font-size: 16px !important;
+	}
+
+	.form-check {
+		
+		input {
+			@include position($top: 50%, $left: 20px);
+			margin-top: -10px;
+		}
 	}
 }
 
@@ -96,6 +104,8 @@ input[type="checkbox"] {
 }
 .form-control {
 	color: $color-text !important;
+	padding-left: 18px;
+	padding-right: 18px;
 }
 .form-control::-moz-placeholder {
 	color: #080808;

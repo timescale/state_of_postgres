@@ -104,7 +104,6 @@
 		&-content {
 			padding: 35px 0 45px;
 			min-height: calc(100vh - 91px);
-			flex-direction: row;
 		}
 
 		.year {
@@ -233,7 +232,9 @@
 		}
 
 		.subtitle {
-			font-size: 16px;
+			font-size: 22px;
+			line-height: 28px;
+			margin-top: 25px;
 		}
 
 		.scroll-text {

@@ -131,9 +131,12 @@ canvas {
 	.info, .text.quote, .name, a:not(.active) {
 		color: #142933 !important;
 	}
-	a.active {
+	.menu a {
 		color: $bg-gray !important;
-		border-bottom: 1px solid $bg-gray !important;
+
+		&.active {
+			border-bottom: 1px solid $bg-gray !important;
+		}
 	}
 }
 
@@ -185,20 +188,21 @@ canvas {
 		.number {
 			color: $bg-gray;
 			font-weight: 600;
-			font-size: 170px;
+			font-size: 130px;
 			line-height: 127.5%;
 			letter-spacing: -0.052em;
+			font-family: 'IBM Plex Serif';
 		}
 		.percent {
-			font-size: 70px;
+			font-size: 60px;
 			line-height: 127.5%;
 			letter-spacing: -0.052em;
-			padding: 27px 10px;
+			padding: 20px 10px;
 		}
 		.text {
-			font-size: 30px;
+			font-size: 27px;
 			line-height: 127.5%;
-			letter-spacing: 0.008em;
+			letter-spacing: 0.02em;
 		}
 	}
 }

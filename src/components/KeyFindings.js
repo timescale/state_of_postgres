@@ -88,7 +88,7 @@ class KeyFindings extends Component {
                             <div>
                                 <section className="section intro">
                                     <Container>
-                                        <Row className="intro-content justify-content-center align-items-center align-content-center">
+                                        <div className="intro-content justify-content-center align-items-center align-content-center">
                                             <div className="d-flex animated fadeIn">
                                                 <h1>
                                                     state
@@ -99,7 +99,7 @@ class KeyFindings extends Component {
                                             <div className="d-flex animated fadeIn">
                                                 <p className="subtitle">We asked 500 members of the Postgres community how they use the database in 2019. Here's what they said.</p>
                                             </div>
-                                        </Row>
+                                        </div>
                                     </Container>
                                 </section>
                                 {/* Intro - End */}
@@ -148,13 +148,19 @@ class KeyFindings extends Component {
                                     model="Swimming" />
                                 <Row id="water-texts">
                                     <Col sm={12} md={4}>
-                                        <WaterText number="46" text="deploy Postgres in a self-managed data center."/>
+                                        <WaterText number="46">
+                                            deploy Postgres in a <br /> self-managed data center.
+                                        </WaterText>
                                     </Col>
                                     <Col sm={12} md={4}>
-                                        <WaterText number="51" text="deploy Postgres with AWS."/>
+                                        <WaterText number="51">
+                                            deploy Postgres <br /> with AWS.
+                                        </WaterText>
                                     </Col>
                                     <Col sm={12} md={4}>
-                                        <WaterText number="18" text="deploy Postgres with GCP."/>
+                                        <WaterText number="18">
+                                            deploy Postgres <br /> with GCP.
+                                        </WaterText>
                                     </Col>
                                 </Row>
 

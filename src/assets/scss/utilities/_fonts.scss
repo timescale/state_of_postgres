@@ -11,6 +11,17 @@
 
 @font-face {
     font-family: 'IBM Plex Sans';
+    src: url('/fonts/IBMPlexSans/IBMPlexSans-Thin.eot');
+    src: url('/fonts/IBMPlexSans/IBMPlexSans-Thin.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/IBMPlexSans/IBMPlexSans-Thin.woff2') format('woff2'),
+        url('/fonts/IBMPlexSans/IBMPlexSans-Thin.woff') format('woff'),
+        url('/fonts/IBMPlexSans/IBMPlexSans-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IBM Plex Sans';
     src: url('/fonts/IBMPlexSans/IBMPlexSans.eot');
     src: url('/fonts/IBMPlexSans/IBMPlexSans.eot?#iefix') format('embedded-opentype'),
         url('/fonts/IBMPlexSans/IBMPlexSans.woff2') format('woff2'),
@@ -69,3 +80,15 @@
     src: url('/fonts/IBMPlexSans/IBMPlexSans-Light.ttf');
     font-weight: 300;
 }
+
+@font-face {
+    font-family: 'IBM Plex Serif';
+    src: url('/fonts/IBMPlexSerif/IBMPlexSerif-SemiBold.eot');
+    src: url('/fonts/IBMPlexSerif/IBMPlexSerif-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/IBMPlexSerif/IBMPlexSerif-SemiBold.woff2') format('woff2'),
+        url('/fonts/IBMPlexSerif/IBMPlexSerif-SemiBold.woff') format('woff'),
+        url('/fonts/IBMPlexSerif/IBMPlexSerif-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
