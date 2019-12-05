@@ -14,6 +14,7 @@ class Model extends Component {
     state = {
         now: 0
     };
+    in_viewport = false;
     initial_visible = false;
     constructor(props) {
         super(props);
@@ -99,6 +100,7 @@ class Model extends Component {
         } else {
             this.hide_mesh();
         }
+        this.in_viewport = isVisible
     };
 
     get_scene() {
@@ -131,6 +133,9 @@ class Model extends Component {
         this.camera.updateProjectionMatrix();
         this.scene.visible = this.initial_visible;
         this.renderer.render(this.scene, this.camera);
+        if (this.in_viewport || this.initial_visible) {
+            this.animate()
+        }
     };
 
     get_mixer() {};

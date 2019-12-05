@@ -95,7 +95,11 @@ class QuoteSection extends Section {
         this.text = React.createRef();
         this.row = React.createRef();
     }
-
+    fade = (is_visible) => {
+        if (is_visible) {
+            this.text.current.classList.add('fadeIn');
+        }
+    };
     render() {
         return (
             <Row ref={this.row} className="quote-section transition">
