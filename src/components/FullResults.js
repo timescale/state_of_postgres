@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Fade  from 'react-reveal/Fade';
 import Reveal from 'react-reveal/Reveal';
-import { Link } from 'react-scroll'
+import { Link, scrollSpy, } from 'react-scroll'
 import ModalComponent from "./shared/Modal";
 import questions from "./shared/Questions";
 
@@ -38,6 +38,16 @@ class KeyFindings extends Component {
         if (!has_node) {
             bodyNode.appendChild(this.navBarNode);
         }
+        // fix active class
+        document.querySelectorAll('.question-list a').forEach(element => {
+            element.addEventListener('click', (event) => {
+                document.querySelectorAll('.question-list a').forEach(element => {
+                    element.classList.remove('active')
+                });
+                event.target.classList.add('active');
+            });
+        })
+
     }
 
     componentWillUnmount() {
@@ -68,7 +78,6 @@ class KeyFindings extends Component {
 
     render() {
         const { methodologyModalOpened, downloadModalOpened } = this.state;
-
         return (
             <>
 
@@ -219,7 +228,6 @@ class KeyFindings extends Component {
                                             <Link
                                                 to={'question' + question.id}
                                                 activeClass="active"
-                                                spy={true}
                                                 offset={30}
                                                 duration={500}>
                                                 {question.name}
