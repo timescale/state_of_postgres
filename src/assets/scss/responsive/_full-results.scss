@@ -30,15 +30,22 @@
 		}
 	}
 	.question-section {
+		padding: 55px 25px;
 
+		.container {
+			padding: 0;
+		}
 		.chart-wrap {
 			.bar-row {
-				width: calc(50% + 150px);
+				width: 100%;
 			}
 			.answer {
 				width: 100%;
-				text-align: center;
-				padding-bottom: 5px;
+				text-align: left;
+				padding-bottom: 10px;
+			}
+			.percentage {
+				width: 50px;
 			}
 			li {
 				flex-direction: column;
