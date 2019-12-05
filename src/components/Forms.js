@@ -76,6 +76,7 @@ const EmailForm = ({black}) => {
         setIsSubmitting(true);
         const submitBody = [
             { name: 'newsletter', value: newsletter },
+            { name: 'stateofpostgres', value: true },
             { name: 'email', value: email },
         ];
         await submitForm({submitBody});
