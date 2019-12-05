@@ -68,15 +68,25 @@
 		}
 
 		.form-check {
-			padding-left: 26px;
 
-			input {
-				margin-top: 0;
-				top: 3px;
-				left: 0;
-				margin: 0;
-				width: 14px;
-				height: 14px;
+			.form-check-label {
+				padding-left: 26px;
+
+				&:after,
+				&:before {
+					top: 3px;
+					transform: translateY(0);
+				}
+
+				&:after {
+					font-size: 13px;
+					width: 14px;
+				}
+
+				&:before {
+					width: 14px;
+					height: 14px;
+				}
 			}
 		}
 	}
