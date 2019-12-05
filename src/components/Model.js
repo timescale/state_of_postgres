@@ -63,7 +63,6 @@ class Model extends Component {
             }
             this.loader.load(this.file, (gltf) => {
                 queue.next();
-                this.delta = 0;
                 this.gltf = gltf;
                 this.clock = new THREE.Clock();
                 this.get_scene();
@@ -156,10 +155,9 @@ class Model extends Component {
             return;
         }
         this.animation_id = requestAnimationFrame(()=>this.animate());
-        this.delta++;
 
         if (this.mixer) {
-            this.mixer.update(this.percetage || this.clock.getDelta());
+            this.mixer.update(this.clock.getDelta());
         }
 
         this.renderer.render(this.scene, this.camera);
@@ -236,56 +234,27 @@ class AnimationModel extends Model {
 class Drone extends AnimationModel {
     file = '/objects/drone.glb';
 
-    constructor(props) {
-        super(props);
-        this.start_fly_animation = this.start_fly_animation.bind(this);
-    }
-
-    componentDidMount() {
-        super.componentDidMount();
-        window.addEventListener('scroll', this.start_fly_animation)
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.start_fly_animation)
-    }
-
-    animate() {
-        if (this.fly_animation) {
-            if (this.camera.position.y > -0.02) {
-                this.camera.position.y -= 0.00002;
-            } else {
-                this.fly_animation = false;
-                window.removeEventListener('scroll', this.start_fly_animation)
-            }
-        }
-        return super.animate();
-    }
-    start_fly_animation() {
-        if (this.el && this.el.getBoundingClientRect().y < 100 && this.scene && this.scene.visible) {
-            this.action.stop();
-            this.fly_animation = true;
-        }
-    };
-
     get_camera() {
         super.get_camera();
         this.camera.position.z = 0.038;
     }
 
-    render() {
-        return (
-            <VisibilitySensor partialVisibility={true} onChange={this.activate_animation} minTopValue={this.minTopValue || 0}>
-                <div>
-                    <div className="progress-bar-div" hidden={this.state.now === 100} >
-                        <ProgressBar now={this.state.now}/>
-                    </div>
-                    <canvas ref={ref => (this.el = ref)} hidden={this.state.now !== 100} />
-                </div>
-            </VisibilitySensor>
-        )
+        animate() {
+        if (this.gltf === undefined) {
+            return;
+        }
+        if (this.renderer === undefined) {
+            return;
+        }
+        this.animation_id = requestAnimationFrame(()=>this.animate());
 
-    }
+        if (this.mixer) {
+            this.mixer.update(this.clock.getDelta() / 2);
+        }
+
+        this.renderer.render(this.scene, this.camera);
+    };
+
 }
 
 class Phone extends AnimationModel {
