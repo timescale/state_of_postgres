@@ -179,15 +179,15 @@ class KeyFindings extends Component {
                                 </section>
 
                                 <QuoteSection number={9} text={'If a project was using a NoSQL database, I would fire the entire team, burn the code base, and start over.'}
-                                              name={'- Anonymous'} reverse={false}
+                                              name={'— Anonymous'} reverse={false}
                                               model="Flame"/>
 
                                 <QuoteSection number={10} text={'I never used it because I was smart enough to smell the NoSQL bullsh*t early on.'}
-                                              name={'- Anonymous'} reverse={true}
+                                              name={'— Anonymous'} reverse={true}
                                               model="Tail"/>
 
                                 <QuoteSection number={11} text={'I used to work with a guy who liked to say MySQL is a TOY database. I concur; probably throw MongoDB in there.'}
-                                              name={'- Anonymous'} reverse={false}
+                                              name={'— Anonymous'} reverse={false}
                                               model="Toyball" />
 
 

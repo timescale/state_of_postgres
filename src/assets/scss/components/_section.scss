@@ -77,12 +77,16 @@ canvas {
 		letter-spacing: 0.01em;
 		padding-top: 40px;
 	}
-	.info {
-		line-height: 48px;
-		font-style: italic;
-		font-weight: 200;
-	}
 
+	.info {
+		font-family: IBM Plex Serif;
+		font-style: italic;
+		font-weight: normal;
+		font-size: 37px;
+		line-height: 48px;
+		letter-spacing: 0.008em;
+		color: $color-text;
+	}
 }
 
 .curly-quotes-wrapper {
@@ -178,6 +182,8 @@ canvas {
 #water-texts {
 	justify-content: center;
 	height: 750px;
+	padding: 0 15%;
+
 	.col {
 		max-width: 380px;
 	}
