@@ -215,8 +215,8 @@
 	.intro {
 
 		&-content {
-			padding: 0 0 35px;
-			min-height: calc(100vh);
+			padding: 40px 0 50px;
+			min-height: 100vh;
 		}
 
 		.year {
@@ -226,15 +226,16 @@
 		h1 {
 
 			span {
-				font-size: 25px;
+				font-size: 27px;
 				line-height: 38px;
 			}
 		}
 
 		.subtitle {
-			font-size: 22px;
-			line-height: 28px;
-			margin-top: 25px;
+			font-size: 20px;
+			line-height: 26px;
+			margin: 20px -5px 0;
+			font-weight: normal;
 		}
 
 		.scroll-text {
@@ -342,7 +343,8 @@
 	
 	.row_section {
 		flex-direction: column;
-		height: 700px;
+		height: auto;
+		min-height: 407px;
 	}
 
 	canvas {
@@ -350,29 +352,85 @@
 	}
 
 	.text-section {
-		max-height: 256px;
+		min-height: 1px;
+		padding: 15px 40px 110px;
 	}
 	.model {
 		max-height: 500px;
 	}
 
-	.quote-text {
-		position: absolute;
-	}
-
 	.info {
-		font-size: 27px;
+		font-size: 20px;
+		line-height: 24px;
 	}
 
 	.description {
-		font-size: 22px;
+		font-size: 16px;
+		line-height: 21px;
+		font-weight: normal;
+		letter-spacing: 0.04em;
 	}
 	.quote-section {
-		height: 600px;
+		height: auto;
+
+		.quote-text {
+			padding: 0 40px 110px;
+		}
+
+		.text.quote {
+			margin: 55px 0 0;
+
+			.info {
+				font-size: 17px;
+				line-height: 22px;
+				padding-bottom: 16px;
+			}
+
+			.name {
+				padding-top: 0;
+				font-size: 12px;
+				line-height: 16px;
+			}
+		}
+	}
+
+	.curly-quotes {
+
+		&:before {
+			top: -32px;
+			left: -2px;
+		    height: 30px;
+		    line-height: 50px;
+		    font-size: 50px;
+		    color: #4E8BEA;
+		}
 	}
 
 	.info-title {
 		font-size: 35px !important;
 		line-height: 42px !important;
 	}
+
+	#water, 
+	#quote {
+
+		.container {
+			padding: 0;
+		}
+
+		.text-wrap {
+
+			.info {
+				font-size: 30px !important;
+				line-height: 37px !important;
+				margin-bottom: 0;
+				padding-bottom: 0;
+			}
+		}
+	}
+
+	#quote {
+		padding: 55px 25px 110px;
+	}
+
 }

@@ -1,7 +1,7 @@
 @media (max-width: $screen-md) {
 
 	#water-texts {
-		
+
 		.water-text {
 
 			.text br {
@@ -12,7 +12,6 @@
 	
 }
 
-
 @media (max-width: $screen-sm) {
 
 	.text-section {
@@ -20,20 +19,31 @@
 	}
 
 	#water-texts {
+		height: auto;
+		padding: 0 25px 55px;
 		
 		.water-text {
+			padding-top: 22px;
+
+			.text br {
+				display: inline-block;
+			}
 
 			.number {
-				font-size: 90px;
-				letter-spacing: 0.008em;
+				font-size: 70px;
+				letter-spacing: -0.012em;
 			}
 
 			.percent {
 				font-size: 35px;
+				padding: 15px 10px 20px 0px;
 			}
 
 			.text {
-				font-size: 20px;
+				font-size: 16px;
+				line-height: 130.5%;
+				letter-spacing: 0.04em;
+				margin-top: -15px;
 			}
 		}
 	}
