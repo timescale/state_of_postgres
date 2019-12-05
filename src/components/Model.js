@@ -15,7 +15,7 @@ class Model extends Component {
         now: 0
     };
     in_viewport = false;
-    initial_visible = false;
+    initial_visible = true;
 
     constructor(props) {
         super(props);
@@ -90,6 +90,7 @@ class Model extends Component {
     get_light() {}
 
     activate_animation = (isVisible) => {
+        this.in_viewport = isVisible;
         if (!this.scene) {
             return
         }
@@ -98,7 +99,6 @@ class Model extends Component {
         } else {
             this.hide_mesh();
         }
-        this.in_viewport = isVisible
     };
 
     get_scene() {
@@ -126,7 +126,7 @@ class Model extends Component {
         this.renderer.setSize(this.width, this.height, true);
         this.renderer.setPixelRatio(1.8);
         this.renderer.gammaOutput = true;
-        this.renderer.gammaFactor = 2;
+        this.renderer.gammaFactor = 2.2;
         this.camera.aspect = this.get_aspect();
         this.camera.updateProjectionMatrix();
         this.scene.visible = this.initial_visible;
@@ -266,31 +266,24 @@ class Phone extends AnimationModel {
     }
 }
 
+class Circuit extends Model {
+
+    constructor(props) {
+        super(props);
+        this.file = '/objects/circuit.glb'
+    }
+    get_camera() {
+        super.get_camera();
+        this.camera.position.set(0.0040,0.00021507726341951638, 0.04924616245925429);
+        this.camera.parent.children[2].rotation.y += 0.18;
+        this.camera.parent.children[1].rotation.y += 0.18;
+    }
+}
+
 class Flowers extends AnimationModel {
     loop = false;
     file = '/objects/flower.glb';
     minTopValue = window.innerHeight*0.7;
-
-    hide_mesh() {
-        if (this.animation_id) {
-            cancelAnimationFrame( this.animation_id );
-            this.animation_id = null;
-        }
-
-    };
-
-    show_mesh() {
-        if (!this.animation_id && this.scene) {
-            this.scene.visible = true;
-            this.animate()
-        }
-    };
-
-    get_render() {
-        super.get_render();
-        this.scene.visible = true;
-        this.renderer.render(this.scene, this.camera);
-    }
 
     get_camera() {
         super.get_camera();
@@ -358,6 +351,7 @@ class Swimming extends AnimationModel {
     file = '/objects/swim.glb';
     minTopValue = 0;
     initial_visible = true;
+    start_one_time_animation = false;
 
     get_render() {
         super.get_render();
@@ -382,6 +376,17 @@ class Swimming extends AnimationModel {
     get_scene() {
         super.get_scene();
         this.scene.matrixAutoUpdate = false;
+    }
+
+    get_mesh() {
+        this.mesh = this.scene.children[0].children[0].children[1];
+    }
+
+
+    hide_mesh() {
+        if (!this.start_one_time_animation) {
+            super.hide_mesh();
+        }
     }
 
     add_water() {
@@ -409,11 +414,16 @@ class Swimming extends AnimationModel {
         this.water.rotation.x = - Math.PI / 2;
         this.scene.add(this.water);
         this.renderer.render(this.scene, this.camera);
+        this.start_one_time_animation = true;
     }
+
+    is_swimming_position() {
+        return -0.2 < this.mesh.position.x && this.mesh.position.x < 0.04
+    }
+
     animate = () => {
-        this.new_mesh = this.scene.children[0].children[0].children[1];
-        if (-0.2 < this.new_mesh.position.x && this.new_mesh.position.x < 0.04) {
-            this.new_mesh.position.x -= 0.0001
+        if (this.is_swimming_position() && this.start_one_time_animation) {
+            this.mesh.position.x -= 0.0001;
         }
         this.time = performance.now() * 0.001;
         if (this.water) {
@@ -442,20 +452,6 @@ class Tail extends AnimationModel {
         super.get_camera();
         this.camera.position.set(-0.006, 0.007386929847300051,  -0.0738123016059399);
         this.camera.parent.children[1].rotation.y = 0.08;
-    }
-}
-
-class Circuit extends Model {
-
-    constructor(props) {
-        super(props);
-        this.file = '/objects/circuit.glb'
-    }
-    get_camera() {
-        super.get_camera();
-        this.camera.position.set(0.0040,0.00021507726341951638, 0.04924616245925429);
-        this.camera.parent.children[2].rotation.y += 0.18;
-        this.camera.parent.children[1].rotation.y += 0.18;
     }
 }
 
