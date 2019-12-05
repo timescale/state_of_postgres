@@ -435,11 +435,6 @@ class Flame extends AnimationModel {
 class Tail extends AnimationModel {
     file = '/objects/tailwag/tail_wag.glb';
 
-    get_dimention() {
-        super.get_dimention();
-        this.height += 200
-    }
-
     get_camera() {
         super.get_camera();
         this.camera.position.set(-0.006, 0.007386929847300051,  -0.0738123016059399);
@@ -464,11 +459,6 @@ class Circuit extends Model {
 class Toyball extends AnimationModel {
     loop = false;
     file = '/objects/toy_ball.glb';
-
-    get_dimention() {
-        super.get_dimention();
-        this.height += 100
-    }
 
     get_camera() {
         super.get_camera();

@@ -18,8 +18,8 @@
 		padding: 0 25px;
 	}
 
-	.water_row_section row {
-		height: 440px;
+	.water_row_section {
+		height: 340px;
 	}
 
 	#water-texts {
@@ -55,4 +55,9 @@
 		    margin: 0 25px 0 25px;
 	}
 
+	.quote-section {
+		.model > div {
+			height: 300px;
+		}
+	}
 }

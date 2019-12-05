@@ -32,6 +32,9 @@ canvas {
 .model > div {
 	height: 650px;
 	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .progress-bar-div {
@@ -67,6 +70,10 @@ canvas {
 
 .quote-section {
 	height: 650px;
+
+	.model > div {
+		height: 550px;
+	}
 }
 
 .quote-text {

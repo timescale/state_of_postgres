@@ -103,19 +103,21 @@ class QuoteSection extends Section {
         return (
             <Row ref={this.row} className="quote-section transition">
                 <Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 2 : 1 }}
-                     className="d-flex justify-content-center align-items-center">
+                     className="d-flex justify-content-center model align-items-center">
                     <GetModel model={this.props.model} black={this.props.black}/>
                 </Col>
                 <Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
                      className="d-flex justify-content-center align-items-center quote-text">
                     <VisibilitySensor onChange={this.fade}>
                         <div ref={this.text} className='text quote animated' style={{animationDuration: "1s", opacity: 0 }}>
-                            <div className="curly-quotes-wrapper">
-                                <div className="curly-quotes">
-                                    <p className="info">{ this.props.text }</p>
+                            <div>
+                                <div className="curly-quotes-wrapper">
+                                    <div className="curly-quotes">
+                                        <p className="info">{ this.props.text }</p>
+                                    </div>
                                 </div>
+                                <p className="name">{ this.props.name }</p>
                             </div>
-                            <p className="name">{ this.props.name }</p>
                         </div>
                     </VisibilitySensor>
                 </Col>
