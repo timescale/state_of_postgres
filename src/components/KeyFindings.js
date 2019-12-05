@@ -104,25 +104,25 @@ class KeyFindings extends Component {
                                 </section>
                                 {/* Intro - End */}
 
-                                <Section number={1} info={'26% of respondents have been using Postgres for more than 10 years.'}
+                                <Section info={'26% of respondents have been using Postgres for more than 10 years.'}
                                          description={'The Postgres community is committed.'} reverse={true}
                                          model="Teamwork"/>
 
-                                <Section number={2} info={'66% said they’re using Postgres more now than they have in the past.'}
+                                <Section info={'66% said they’re using Postgres more now than they have in the past.'}
                                          description={"Postgres' popularity is sky-high."} reverse={false}
                                          model="Drone"/>
 
-                                <Section number={3} info={'Postgres isn’t just for work. Over 80% of respondents use it for personal projects, too.'}
+                                <Section info={'Postgres isn’t just for work. Over 80% of respondents use it for personal projects, too.'}
                                          description={'Like running a demo on a Raspberry Pi.'} reverse={true}
                                          model="Circuit"/>
 
-                                <Section number={4} info={'70% of respondents use Postgres for app development.'}
+                                <Section info={'70% of respondents use Postgres for app development.'}
                                          description={'And 30% report using it for ' +
                                          'real-time analytics, dashboarding, and monitoring.'}
                                          reverse={false}
                                          model="Phone"/>
 
-                                <Section number={5} info={'Only 9% have contributed code to Postgres...'}
+                                <Section info={'Only 9% have contributed code to Postgres...'}
                                          description={'Which is actually an impressive number. Many open source projects fail to generate enough interest to remain sustainable.'} reverse={true} minTopValue={200} partialVisibility={true} show_info={true}
                                          model="Flowers"/>
                             </div>

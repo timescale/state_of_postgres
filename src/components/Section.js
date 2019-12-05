@@ -39,11 +39,9 @@ class Section extends Component {
     }
 
     fade = (is_visible) => {
-        if (is_visible && this.number.current) {
+        if (is_visible) {
             this.info.current.classList.add('fadeIn');
             this.description.current.classList.add('fadeIn');
-        } else if (is_visible && this.text.current) {
-            this.text.current.classList.add('fadeIn');
         }
     };
 
@@ -61,7 +59,6 @@ class Section extends Component {
                     <VisibilitySensor partialVisibility={this.props.partialVisibility || false}
                                       onChange={this.fade} minTopValue={this.props.minTopValue} >
                         <div className="text">
-                            <p ref={this.number}></p>
                             <p className={'info ' + (this.props.show_info ? '' : 'animated')} ref={this.info}
                                style={this.props.show_info ? {opacity: 1} : {}}>
                                 { this.props.info }
