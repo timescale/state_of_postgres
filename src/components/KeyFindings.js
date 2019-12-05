@@ -166,7 +166,7 @@ class KeyFindings extends Component {
                         <VisibilitySensor minTopValue={400} partialVisibility={true} scrollCheck={true}
                                           onChange={this.change_background_black}>
                             <div>
-                                <section className="section text-section blue transition">
+                                <section className="section text-section blue transition" id="quote">
                                     <div className="container">
 
                                         <div className="text-wrap">

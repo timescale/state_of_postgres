@@ -1,6 +1,6 @@
 @media (max-width: $screen-md) {
 
-	.footer {
+	#footer {
 		padding: 140px 0 50px;
 	}
 	
@@ -9,8 +9,8 @@
 
 @media (max-width: $screen-sm) {
 
-	.footer {
-		padding: 80px 0 40px;
+	#footer {
+		padding: 0 25px 40px;
 	}
 	
 }

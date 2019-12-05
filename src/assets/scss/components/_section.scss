@@ -62,7 +62,7 @@ canvas {
 	font-size: 30px;
 	line-height: 127.5%;
 	letter-spacing: 0.01em;
-	color: #4E8BEA;
+	color: $color-primary;
 }
 
 .quote-section {
@@ -104,7 +104,7 @@ canvas {
 	height: 30px;
 	line-height: 48px;
 	font-size: 110px;
-	color: #4E8BEA;
+	color: $color-primary;
 }
 
 .curly-quotes:before {
@@ -219,6 +219,7 @@ canvas {
 			line-height: 127.5%;
 			letter-spacing: -0.052em;
 			padding: 20px 10px;
+			font-family: 'IBM Plex Serif';
 		}
 		.text {
 			font-size: 27px;

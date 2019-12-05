@@ -48,10 +48,65 @@
 	}
 
 	#email-form {
+		margin: 0;
 		
 		button {
-			margin-top: 17px;
+			margin-top: 12px;
+			font-size: 11px !important;
+			height: 35px;
 		}
+
+		.text1 {
+			font-size: 19px;
+			line-height: 24px;
+			letter-spacing: 0.005em;
+			padding-bottom: 10px;
+		}
+
+		.text2 {
+			padding-bottom: 15px;
+		}
+
+		.form-check {
+
+			.form-check-label {
+				padding-left: 26px;
+
+				&:after,
+				&:before {
+					top: 3px;
+					transform: translateY(0);
+				}
+
+				&:after {
+					font-size: 13px;
+					width: 14px;
+				}
+
+				&:before {
+					width: 14px;
+					height: 14px;
+				}
+			}
+		}
+	}
+
+	.form-check-label {
+		font-size: 13px;
+		line-height: 19px;
+		letter-spacing: 0.005em;
+		margin-left: 0;
+	}
+
+	input[type="email"] {
+		height: 35px;
+		font-size: 11px;
+		line-height: 14px;
+		padding: 10px 15px;
+	}
+
+	#share-div {
+		padding-top: 180px;
 	}
 	
 }
