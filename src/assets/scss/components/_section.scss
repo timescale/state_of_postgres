@@ -57,7 +57,7 @@ canvas {
 	font-size: 30px;
 	line-height: 127.5%;
 	letter-spacing: 0.01em;
-	color: #4E8BEA;
+	color: $color-primary;
 }
 
 .quote-section {
@@ -99,7 +99,7 @@ canvas {
 	height: 30px;
 	line-height: 48px;
 	font-size: 110px;
-	color: #4E8BEA;
+	color: $color-primary;
 }
 
 .curly-quotes:before {

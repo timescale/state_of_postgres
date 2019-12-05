@@ -103,7 +103,7 @@ class KeyFindings extends Component {
                     },
                     {
                         id: "3_5",
-                        title: "Database administrator",
+                        title: "Data architect",
                         percentage: 3
                     }
                 ]
@@ -190,27 +190,27 @@ class KeyFindings extends Component {
                 type: "bar_chart",
                 name: "Why Postgres",
                 question: "What is the main reason you choose to use Postgres over other options?",
-                info: null,
+                info: "(Respondents could pick as many answers as they wanted.)",
                 options: [
                     {
                         id: "7_1",
                         title: "Reliability",
-                        percentage: 62
+                        percentage: 63
                     },
                     {
                         id: "7_2",
                         title: "SQL",
-                        percentage: 53
+                        percentage: 54
                     },
                     {
                         id: "7_3",
                         title: "Usability",
-                        percentage: 49
+                        percentage: 50
                     },
                     {
                         id: "7_4",
                         title: "Ecosystem",
-                        percentage: 45
+                        percentage: 46
                     },
                     {
                         id: "7_5",
