@@ -10,6 +10,10 @@
 
 @media (max-width: $screen-sm) {
 
+	#full_page_header {
+			padding: 200px 25px;
+	}
+
 	.question-list {
 		display: none;
 	}

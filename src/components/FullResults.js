@@ -220,7 +220,7 @@ class KeyFindings extends Component {
                                                 to={'question' + question.id}
                                                 activeClass="active"
                                                 spy={true}
-                                                offset={50}
+                                                offset={30}
                                                 duration={500}>
                                                 {question.name}
                                             </Link>

@@ -9,7 +9,7 @@
 			}
 		}
 	}
-	
+
 }
 
 @media (max-width: $screen-sm) {
@@ -52,7 +52,10 @@
 		}
 	}
 	#email-form {
-		    margin: 0 25px 0 25px;
+		margin: 0 25px 0 25px;
+		button {
+			height: 60px;
+		}
 	}
 
 	.quote-section {

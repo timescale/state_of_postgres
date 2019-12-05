@@ -3,11 +3,11 @@
 	#timescale {
 
 		.trigger {
-			width: 145px;
+			width: 185px;
 			padding: 10px 20px 10px 16px;
 
 			img {
-				width: 73px;
+				width: 130px;
 				height: auto;
 			}
 
@@ -17,18 +17,16 @@
 		}
 
 		.content {
-			width: 270px;
+			width: 100%;
 			padding: 10px 20px 20px;
 
 			.head {
-				font-size: 16px;
+				font-size: 24px;
 				padding: 0;
 			}
 
 			.subhead {
-				font-size: 12px;
-				line-height: 16px;
-				letter-spacing: 0.04em;
+				font-size: 20px;
 				padding: 8px 0 10px;
 			}
 
@@ -40,7 +38,7 @@
 				}
 
 				.btn {
-					height: 42px;
+					height: 60px;
 					font-size: 15px !important;
 				}
 			}
@@ -52,8 +50,8 @@
 		
 		button {
 			margin-top: 12px;
-			font-size: 11px !important;
-			height: 35px;
+			font-size: 24px !important;
+			height: 60px;
 		}
 
 		.text1 {
@@ -99,8 +97,8 @@
 	}
 
 	input[type="email"] {
-		height: 35px;
-		font-size: 11px;
+		height: 60px;
+		font-size: 20px;
 		line-height: 14px;
 		padding: 10px 15px;
 	}
