@@ -54,10 +54,6 @@ class Model extends Component {
             return
         }
         queue.add(() => {
-            if (!this.file) {
-                queue.next();
-                return
-            }
             this.loader.load(this.file, (gltf) => {
                 document.querySelector('.scroll_container__body').style.animationPlayState = "paused";
                 this.gltf = gltf;
@@ -72,7 +68,7 @@ class Model extends Component {
 
                 window.addEventListener( 'resize', this.onWindowResize, false);
                 window.addEventListener( 'orientationchange', this.onWindowResize, false);
-                queue.next();
+                setTimeout(function () {queue.next()},1000);
                 document.querySelector('.scroll_container__body').style.animationPlayState = "running";
             }, xhr => {
                 let percentage = Math.round(xhr.loaded / (xhr.total || xhr.loaded) * 100);
@@ -118,13 +114,13 @@ class Model extends Component {
     get_render() {
         this.renderer = new THREE.WebGLRenderer({
             canvas: this.el,
-            powerPreference: "low-power",
+            powerPreference: "high-performance",
             alpha: true
         });
 
         this.get_dimention();
         this.renderer.setSize(this.width, this.height, true);
-        this.renderer.setPixelRatio(1.8);
+        this.renderer.setPixelRatio(2.3);
         this.renderer.gammaOutput = true;
         this.renderer.gammaFactor = 2.2;
         this.camera.aspect = this.get_aspect();
