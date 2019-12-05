@@ -7,7 +7,7 @@
 }
 
 canvas {
-	width: 100% !important;
+	//width: 100% !important;
 }
 
 .number {
@@ -27,6 +27,11 @@ canvas {
 		animation-duration: "1s";
 		opacity: 0;
 	}
+}
+
+.model > div {
+	height: 650px;
+	width: 100%;
 }
 
 .progress-bar-div {
@@ -176,13 +181,18 @@ canvas {
 }
 
 .water_row_section {
-	height: 500px;
+	height: 600px;
 }
 
 #water-texts {
+
 	justify-content: center;
 	height: 750px;
 	padding: 0 15%;
+
+	.model {
+		background-color: $color-primary;
+	}
 
 	.col {
 		max-width: 380px;

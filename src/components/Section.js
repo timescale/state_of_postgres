@@ -50,7 +50,11 @@ class Section extends Component {
     render() {
         return (
             <Row className="row_section" >
-                <Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
+                <Col sm={{span: 12, order: 1}} md={{ span: 6, order: this.props.reverse ? 2 : 1 }}
+                     className="d-flex justify-content-center align-items-center model">
+                    <GetModel model={this.props.model}/>
+                </Col>
+                <Col sm={{span: 12, order: 2}} md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
                      className="d-flex justify-content-center align-items-center text-section">
                     <VisibilitySensor partialVisibility={this.props.partialVisibility || false}
                                       onChange={this.fade} minTopValue={this.props.minTopValue} >
@@ -66,11 +70,6 @@ class Section extends Component {
                         </div>
                     </VisibilitySensor>
                 </Col>
-                <Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 2 : 1 }}
-                     className="d-flex justify-content-center align-items-center model">
-                    <GetModel model={this.props.model}/>
-                </Col>
-
             </Row>
         );
     }
@@ -80,9 +79,9 @@ class WaterSection extends Section {
 
     render() {
         return (
-            <Row className="water_row_section" >
+            <Row className="water_row_section">
                 <Col sm={{span: 12}} md={{ span: 12 }}
-                     className="d-flex justify-content-center align-items-center model p-0">
+                     className="d-flex model">
                     <GetModel model={this.props.model}/>
                 </Col>
             </Row>

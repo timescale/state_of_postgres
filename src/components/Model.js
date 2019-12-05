@@ -107,8 +107,8 @@ class Model extends Component {
     };
 
     get_dimention() {
-        this.width = this.el.parentElement.parentElement.offsetWidth;
-        this.height = this.el.parentElement.parentElement.offsetHeight;
+        this.width = this.el.parentElement.offsetWidth;
+        this.height = this.el.parentElement.offsetHeight;
     }
 
     get_aspect(){

@@ -1,7 +1,7 @@
 @media (max-width: $screen-md) {
 
 	#water-texts {
-		
+
 		.water-text {
 
 			.text br {
@@ -9,7 +9,7 @@
 			}
 		}
 	}
-	
+
 }
 
 
@@ -19,10 +19,14 @@
 		padding: 0 25px;
 	}
 
-	#water-texts {
-		
-		.water-text {
+	.water_row_section row {
+		height: 440px;
+	}
 
+	#water-texts {
+		height: 500px;
+
+		.water-text {
 			.number {
 				font-size: 90px;
 				letter-spacing: 0.008em;
@@ -30,6 +34,7 @@
 
 			.percent {
 				font-size: 35px;
+				padding: 15px 0;
 			}
 
 			.text {
@@ -37,5 +42,8 @@
 			}
 		}
 	}
-	
+	#email-form {
+		    margin: 0 25px 0 25px;
+	}
+
 }
