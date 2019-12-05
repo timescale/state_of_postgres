@@ -401,9 +401,10 @@ class Swimming extends AnimationModel {
     get_camera() {
         this.flip = new THREE.Matrix4().makeScale(-1,-1,1);
         this.camera = this.scene.children[0].children[0].children[0];
-        this.camera.rotation.set(-0.261, 0,3.141592653589793)
+        this.camera.rotation.set(-0.261, 0,3.141592653589793);
 
-        this.camera.position.set(0.0003959743189625442, 0.007, 0.019);
+        this.camera.position.set(0.0003959743189625442, 0.009, 0.019);
+        window.j = this.camera;
         this.mesh = this.scene.children[0].children[0].children[1];
         this.mesh.applyMatrix(this.flip);
         this.mesh.position.set(0.030,0.0115, -0.007034149952232838);
@@ -443,7 +444,7 @@ class Swimming extends AnimationModel {
     }
     animate = () => {
         this.new_mesh = this.scene.children[0].children[0].children[1];
-        if (-0.07 < this.new_mesh.position.x && this.new_mesh.position.x < 0.04) {
+        if (-0.1 < this.new_mesh.position.x && this.new_mesh.position.x < 0.04) {
             this.new_mesh.position.x -= 0.0001
         }
         this.time = performance.now() * 0.001;

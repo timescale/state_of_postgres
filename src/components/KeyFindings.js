@@ -25,7 +25,7 @@ class KeyFindings extends Component {
     }
 
     componentDidMount() {
-        window.addEventListener("scroll", this.animateText, false);
+
     }
 
     componentWillUnmount() {
@@ -129,20 +129,18 @@ class KeyFindings extends Component {
                         </VisibilitySensor>
 
                         {/* 11-13 title Technology - Start */}
-                        <VisibilitySensor minTopValue={400} partialVisibility={true} scrollCheck={true}
-                                          onChange={this.change_background_blue}>
-                            <div id="water">
-                                <section className="section text-section">
-                                    <div className="container">
-                                        <div className="text-wrap">
-                                            <Fade bottom>
-                                                <p className="info info-title">How they deploy</p>
-                                            </Fade>
-                                        </div>
+                        <div id="water">
+                            <section className="section text-section">
+                                <div className="container">
+                                    <div className="text-wrap">
+                                        <Fade bottom>
+                                            <p className="info info-title">How they deploy</p>
+                                        </Fade>
                                     </div>
-                                </section>
-                                {/* Technology - End */}
-
+                                </div>
+                            </section>
+                            {/* Technology - End */}
+                            <div className="blue">
                                 <WaterSection
                                     info={'The most common way to deploy Postgres (46%) is in a self-managed data center.'}
                                     model="Swimming" />
@@ -163,9 +161,8 @@ class KeyFindings extends Component {
                                         </WaterText>
                                     </Col>
                                 </Row>
-
                             </div>
-                        </VisibilitySensor>
+                        </div>
                         <VisibilitySensor minTopValue={400} partialVisibility={true} scrollCheck={true}
                                           onChange={this.change_background_black}>
                             <div>
