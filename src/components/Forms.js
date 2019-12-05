@@ -45,7 +45,7 @@ class TimescaleEmail extends React.Component {
         return(
             <div id="timescale">
                 <div className="trigger d-flex" onClick={this.changeState}>
-                    <img src="img/timescale.svg"/><FontAwesomeIcon icon={this.state.clicked ? faChevronDown : faChevronUp}/>
+                    <img alt="Timescale logo" src="img/timescale.svg"/><FontAwesomeIcon icon={this.state.clicked ? faChevronDown : faChevronUp}/>
                 </div>
                 <div className="content" style={{display: this.state.clicked ? "block" : "none"}}>
                     <p className="head">Stay connected!</p>

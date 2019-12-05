@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 
 class WaterText extends Component {
-    constructor(props) {
-        super(props);
-
-    }
-    componentDidMount() {
-
-    }
 
     render() {
         return (

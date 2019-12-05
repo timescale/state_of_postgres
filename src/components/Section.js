@@ -3,7 +3,7 @@ import VisibilitySensor from 'react-visibility-sensor'
 
 
 import {Model, Drone, Phone, Flowers, Teamwork, Swimming, Flame, Tail, Circuit, Toyball} from "./Model";
-import {Container, Row, Col, Form, Button} from 'react-bootstrap'
+import {Row, Col} from 'react-bootstrap'
 
 function GetModel(props) {
     const model = props.model;
