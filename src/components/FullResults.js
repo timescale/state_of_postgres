@@ -833,7 +833,6 @@ class KeyFindings extends Component {
                                         <Fade>
                                             <div className="text-wrap">
                                                 <p className="question">
-
                                                     {question.question}
                                                 </p>
                                                 {question.info &&
@@ -851,9 +850,9 @@ class KeyFindings extends Component {
                                                             question.options.map((option, index) => {
                                                                 return (
                                                                     <li key={option.id}>
-                                                                        <p className="answer">{option.title}</p>
+                                                                        <div className="answer">{option.title}</div>
                                                                         <div className="bar-row">
-                                                                            <div className="bar" style={{width: 600*option.percentage/100}}>
+                                                                            <div className="bar" style={{width: 550*option.percentage/100}}>
                                                                                 <Reveal effect="animateWidth">
                                                                                     <div />
                                                                                 </Reveal>

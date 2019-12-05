@@ -1,7 +1,7 @@
 @media (max-width: $screen-md) {
 
-    .download-modal {
-	
+	.download-modal {
+
 		.link {
 			margin: 85px 0 65px;
 		}
@@ -10,12 +10,12 @@
 
 @media (max-width: $screen-sm) {
 
-    .question-list {
-        display: none;
-    }
+	.question-list {
+		display: none;
+	}
 
-    .download-modal {
-	
+	.download-modal {
+
 		.link {
 			font-size: 18px;
 			margin: 25px 0 25px;
@@ -27,6 +27,22 @@
 		p {
 			font-size: 18px;
 			margin-bottom: 20px;
+		}
+	}
+	.question-section {
+
+		.chart-wrap {
+			.bar-row {
+				width: calc(50% + 150px);
+			}
+			.answer {
+				width: 100%;
+				text-align: center;
+				padding-bottom: 5px;
+			}
+			li {
+				flex-direction: column;
+			}
 		}
 	}
 }
