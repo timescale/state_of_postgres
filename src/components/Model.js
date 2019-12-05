@@ -409,7 +409,7 @@ class Swimming extends AnimationModel {
     }
     animate = () => {
         this.new_mesh = this.scene.children[0].children[0].children[1];
-        if (-0.1 < this.new_mesh.position.x && this.new_mesh.position.x < 0.04) {
+        if (-0.2 < this.new_mesh.position.x && this.new_mesh.position.x < 0.04) {
             this.new_mesh.position.x -= 0.0001
         }
         this.time = performance.now() * 0.001;
@@ -426,13 +426,14 @@ class Flame extends AnimationModel {
 
     get_camera() {
         super.get_camera();
-        this.camera.position.z = 0.0005;
-        this.camera.parent.children[1].rotation.y = 0.05;
+        this.camera.position.x = -0.0006636847423971632;
+        this.camera.position.y = -0.0006550050273071975;
+        window.g = this.camera;
     }
 }
 
 class Tail extends AnimationModel {
-    file = '/objects/tailwag/tail_wag.glb'
+    file = '/objects/tailwag/tail_wag.glb';
 
     get_dimention() {
         super.get_dimention();

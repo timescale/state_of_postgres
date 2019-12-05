@@ -123,12 +123,12 @@ canvas {
 .white {
 	background-color: initial;
 	.info, .text.quote, .name, a:not(.active) {
-		color: initial;
+		color: $bg-gray;
 	}
 }
 
 .blue {
-	background-color: $color-primary!important;
+	background-color: $color-primary;
 	.info, .text.quote, .name, a:not(.active) {
 		color: #142933 !important;
 	}
@@ -139,6 +139,10 @@ canvas {
 			border-bottom: 1px solid $bg-gray !important;
 		}
 	}
+}
+
+.black .blue {
+	background-color: #F4F0E3!important;
 }
 
 .black {

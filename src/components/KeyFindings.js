@@ -140,7 +140,7 @@ class KeyFindings extends Component {
                                 </div>
                             </section>
                             {/* Technology - End */}
-                            <div className="blue">
+                            <div className="blue transition">
                                 <WaterSection
                                     info={'The most common way to deploy Postgres (46%) is in a self-managed data center.'}
                                     model="Swimming" />
@@ -166,7 +166,7 @@ class KeyFindings extends Component {
                         <VisibilitySensor minTopValue={400} partialVisibility={true} scrollCheck={true}
                                           onChange={this.change_background_black}>
                             <div>
-                                <section className="section text-section">
+                                <section className="section text-section blue transition">
                                     <div className="container">
 
                                         <div className="text-wrap">
