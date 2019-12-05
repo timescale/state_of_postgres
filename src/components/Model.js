@@ -16,6 +16,7 @@ class Model extends Component {
     };
     in_viewport = false;
     initial_visible = false;
+
     constructor(props) {
         super(props);
         this.el = React.createRef();
@@ -47,11 +48,6 @@ class Model extends Component {
         this.percentage = percentage
     };
 
-    // componentWillUnmount() {
-    //      window.removeEventListener( 'resize', this.onWindowResize, false);
-    //      window.removeEventListener( 'orientationchange', this.onWindowResize, false);
-    // }
-
     componentDidMount() {
         this.loader = new GLTFLoader();
         if (!this.props) {
@@ -63,7 +59,7 @@ class Model extends Component {
                 return
             }
             this.loader.load(this.file, (gltf) => {
-                queue.next();
+                document.querySelector('.scroll_container__body').style.animationPlayState = "paused";
                 this.gltf = gltf;
                 this.clock = new THREE.Clock();
                 this.get_scene();
@@ -76,6 +72,8 @@ class Model extends Component {
 
                 window.addEventListener( 'resize', this.onWindowResize, false);
                 window.addEventListener( 'orientationchange', this.onWindowResize, false);
+                queue.next();
+                document.querySelector('.scroll_container__body').style.animationPlayState = "running";
             }, xhr => {
                 let percentage = Math.round(xhr.loaded / (xhr.total || xhr.loaded) * 100);
                 this.setState({now: percentage});
@@ -120,20 +118,20 @@ class Model extends Component {
     get_render() {
         this.renderer = new THREE.WebGLRenderer({
             canvas: this.el,
-            powerPreference: "high-performance",
+            powerPreference: "low-power",
             alpha: true
         });
 
         this.get_dimention();
         this.renderer.setSize(this.width, this.height, true);
-        this.renderer.setPixelRatio(2.5);
+        this.renderer.setPixelRatio(1.8);
         this.renderer.gammaOutput = true;
-        this.renderer.gammaFactor = 2.2;
+        this.renderer.gammaFactor = 2;
         this.camera.aspect = this.get_aspect();
         this.camera.updateProjectionMatrix();
         this.scene.visible = this.initial_visible;
         this.renderer.render(this.scene, this.camera);
-        if (this.in_viewport || this.initial_visible) {
+        if (this.in_viewport) {
             this.animate()
         }
     };

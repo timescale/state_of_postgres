@@ -59,7 +59,6 @@ class KeyFindings extends Component {
         } else {
             this.change_color_section.current.classList.remove(color);
         }
-        console.log(color);
         let classes = this.change_color_section.current.classList.toString().replace('container-fluid');
         this.props.change_nav_background(classes);
     };
