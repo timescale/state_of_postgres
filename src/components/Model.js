@@ -198,11 +198,15 @@ class Model extends Component {
 class AnimationModel extends Model {
     loop = true;
 
+    get_mesh_animator() {
+        return this.scene
+    }
+
     get_mixer() {
         if (this.gltf.animations.length === 0) {
             return
         }
-        this.mixer = new THREE.AnimationMixer(this.scene);
+        this.mixer = new THREE.AnimationMixer(this.get_mesh_animator());
         this.action = this.mixer.clipAction(this.gltf.animations[0]);
 
         if (!this.loop) {
@@ -328,19 +332,57 @@ class Flowers extends AnimationModel {
 
 class Teamwork extends AnimationModel {
     loop = false;
-    file = '/objects/teamwork.glb';
+    file = '/objects/team.glb';
     initial_visible = true;
-
-    get_light() {
-        this.light = new THREE.DirectionalLight( 0xffffff, 0.5);
-        this.scene.add( this.light );
-    }
 
     get_camera() {
         super.get_camera();
-        this.camera.position.x -= 2.5;
-        this.camera.position.y += 2.5;
-        window.c = this.camera
+        this.camera.position.set(-0.01500424301624303, 0.012377048023045067, 0);
+    }
+    get_mesh_animator() {
+        return this.group
+    }
+    get_mixer() {
+        if (this.gltf.animations.length === 0) {
+            return
+        }
+        this.mixer = new THREE.AnimationMixer(this.group);
+        this.action = this.mixer.clipAction(this.gltf.animations[0]);
+
+        if (!this.loop) {
+            this.action.setLoop(THREE.LoopOnce);
+        }
+
+        this.action.clampWhenFinished = true;
+        this.action.play();
+    };
+
+    get_scene() {
+        super.get_scene();
+        this.mesh = this.scene.children[0].children[0].children[1];
+        this.mesh.position.set(0.000417, 0, -0.000247);
+
+        let mesh2 = this.mesh.clone();
+        let mesh3 = this.mesh.clone();
+        let mesh4 = this.mesh.clone();
+        let mesh5 = this.mesh.clone();
+        let mesh6 = this.mesh.clone();
+
+        this.mesh.rotation.y = Math.PI * 2 / 6;
+        mesh2.rotation.y = Math.PI * 2 / 6 * 2;
+        mesh3.rotation.y = Math.PI * 2 / 6 * 3;
+        mesh4.rotation.y = Math.PI * 2 / 6 * 4;
+        mesh5.rotation.y = Math.PI * 2 / 6 * 5;
+        mesh6.rotation.y = Math.PI * 2 / 6 * 6;
+
+        this.mesh.parent.add(mesh2);
+        this.mesh.parent.add(mesh3);
+        this.mesh.parent.add(mesh4);
+        this.mesh.parent.add(mesh5);
+        this.mesh.parent.add(mesh6);
+
+
+        this.group = new THREE.AnimationObjectGroup(this.mesh, mesh2, mesh3, mesh4, mesh5, mesh6);
     }
 }
 
@@ -377,7 +419,7 @@ class Swimming extends AnimationModel {
         this.light = new THREE.DirectionalLight( 0xffffff, 1 );
         this.light.position.z = 3;
         this.scene.add( this.light );
-        window.c = this.camera;
+
         let waterGeometry = new THREE.PlaneBufferGeometry( 100, 100 );
         this.water = new Water(
             waterGeometry,
