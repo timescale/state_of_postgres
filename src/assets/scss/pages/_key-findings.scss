@@ -19,6 +19,7 @@
 	}
 
 	h1 {
+		color: $color-text;
 
 		span {
 			font-size: 54px;
@@ -34,6 +35,7 @@
 		line-height: 146%;
 		max-width: 715px;
 		font-weight: 300;
+		color: $color-text;
 	}
 
 	.scroll-text {
@@ -79,6 +81,7 @@
 		line-height: 127%;
 		font-family: $font-secondary;
 		margin-bottom: 16px;
+		color: $color-text;
 	}
 
 	.description {
