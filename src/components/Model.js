@@ -87,6 +87,7 @@ class Model extends Component {
     get_mesh() {
         this.mesh = this.scene.children[0].children[0];
     }
+
     get_light() {}
 
     activate_animation = (isVisible) => {
@@ -141,11 +142,6 @@ class Model extends Component {
         } else {
             this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         }
-
-        // let controls = new OrbitControls(this.camera, this.el );
-        // controls.maxPolarAngle = Math.PI * 0.9;
-        //
-        // controls.update();
     }
     animate() {
         if (this.gltf === undefined) {
@@ -236,10 +232,10 @@ class Drone extends AnimationModel {
 
     get_camera() {
         super.get_camera();
-        this.camera.position.z = 0.038;
+        this.camera.position.z = 0.028;
     }
 
-        animate() {
+    animate() {
         if (this.gltf === undefined) {
             return;
         }
@@ -263,7 +259,7 @@ class Phone extends AnimationModel {
 
     get_camera() {
         super.get_camera();
-        this.camera.position.z = 4.8
+        this.camera.position.z = 3.8
     }
 }
 
@@ -295,7 +291,7 @@ class Flowers extends AnimationModel {
 
     get_camera() {
         super.get_camera();
-        this.camera.position.x = -0.02;
+        this.camera.position.x = -0.015;
     }
 }
 
@@ -445,7 +441,7 @@ class Tail extends AnimationModel {
 
     get_camera() {
         super.get_camera();
-        this.camera.position.set(-0.007, 0.007386929847300051,  -0.0838123016059399);
+        this.camera.position.set(-0.006, 0.007386929847300051,  -0.0738123016059399);
         this.camera.parent.children[1].rotation.y = 0.08;
     }
 }
@@ -458,7 +454,7 @@ class Circuit extends Model {
     }
     get_camera() {
         super.get_camera();
-        this.camera.position.set(0.0040,0.00021507726341951638, 0.05924616245925429);
+        this.camera.position.set(0.0040,0.00021507726341951638, 0.04924616245925429);
         this.camera.parent.children[2].rotation.y += 0.18;
         this.camera.parent.children[1].rotation.y += 0.18;
     }
