@@ -9,15 +9,6 @@ import NavLink from './components/NavLink';
 import SmoothScroll from './components/SmoothScroll';
 import { TimescaleEmail } from './components/Forms';
 
-function ScrollToTop() {
-	const { pathname } = useLocation();
-
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, [pathname]);
-
-	return null;
-}
 
 class App extends Component {
 	state = {
@@ -156,7 +147,6 @@ class App extends Component {
 		const { mobileMenuVisible } = this.state;
 		return (
 			<div className={'main-wrap' + (mobileMenuVisible ? ' translated' : '')}>
-				<ScrollToTop />
 				<div className='scroll_container'>
 					<div className='scroll_container__body'>
 						<header
