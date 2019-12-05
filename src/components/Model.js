@@ -16,6 +16,8 @@ class Model extends Component {
     };
     in_viewport = false;
     initial_visible = true;
+    minTopValue = 0;
+    color = "#FBFBFB";
 
     constructor(props) {
         super(props);
@@ -100,6 +102,7 @@ class Model extends Component {
     get_scene() {
         this.scene = new THREE.Scene();
         this.scene.add(this.gltf.scene)
+        this.scene.background = new THREE.Color( this.color );
     };
 
     get_dimention() {
@@ -114,8 +117,7 @@ class Model extends Component {
     get_render() {
         this.renderer = new THREE.WebGLRenderer({
             canvas: this.el,
-            powerPreference: "high-performance",
-            alpha: true
+            powerPreference: "high-performance"
         });
 
         this.get_dimention();
@@ -141,6 +143,7 @@ class Model extends Component {
         } else {
             this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         }
+        this.camera.far = 0.1;
     }
     animate() {
         if (this.gltf === undefined) {
@@ -175,7 +178,7 @@ class Model extends Component {
 
     render() {
         return (
-            <VisibilitySensor partialVisibility={true} onChange={this.activate_animation} minTopValue={this.minTopValue || 100}>
+            <VisibilitySensor partialVisibility={true} onChange={this.activate_animation} minTopValue={this.minTopValue}>
                 <div>
                     <div className="progress-bar-div" hidden={!this.file || this.state.now === 100} >
                         <ProgressBar now={this.state.now}/>
@@ -258,6 +261,7 @@ class Phone extends AnimationModel {
 
     get_camera() {
         super.get_camera();
+        this.camera.far = 4;
         this.camera.position.z = 3.8
     }
 }
@@ -279,7 +283,6 @@ class Circuit extends Model {
 class Flowers extends AnimationModel {
     loop = false;
     file = '/objects/flower.glb';
-    minTopValue = window.innerHeight*0.7;
 
     get_camera() {
         super.get_camera();
@@ -345,16 +348,41 @@ class Teamwork extends AnimationModel {
 
 class Swimming extends AnimationModel {
     file = '/objects/swim.glb';
-    minTopValue = 0;
     initial_visible = true;
     start_one_time_animation = false;
+    color = "#469fcb";
 
     get_render() {
-        super.get_render();
+        this.renderer = new THREE.WebGLRenderer({
+            canvas: this.el,
+            powerPreference: "high-performance",
+            alpha: true
+        });
+
+        this.get_dimention();
+        this.renderer.setSize(this.width, this.height, true);
+        this.renderer.setPixelRatio(2.3);
+        this.renderer.gammaOutput = true;
+        this.renderer.gammaFactor = 2.2;
+        this.camera.aspect = this.get_aspect();
+        this.camera.updateProjectionMatrix();
+        this.scene.visible = this.initial_visible;
         this.renderer.antialias = true;
         this.renderer.autoClear = false;
         this.add_water();
-    }
+        this.renderer.render(this.scene, this.camera);
+
+        if (this.in_viewport) {
+            this.animate()
+        }
+
+    };
+
+    get_scene() {
+        this.scene = new THREE.Scene();
+        this.scene.add(this.gltf.scene)
+        this.scene.matrixAutoUpdate = false;
+    };
 
     get_camera() {
         this.flip = new THREE.Matrix4().makeScale(-1,-1,1);
@@ -369,10 +397,6 @@ class Swimming extends AnimationModel {
         this.mesh.scale.set(0.8, 0.8, 0.8)
 
     };
-    get_scene() {
-        super.get_scene();
-        this.scene.matrixAutoUpdate = false;
-    }
 
     get_mesh() {
         this.mesh = this.scene.children[0].children[0].children[1];
@@ -432,6 +456,7 @@ class Swimming extends AnimationModel {
 
 class Flame extends AnimationModel {
     file = '/objects/flame.glb';
+    color = "#F4F0E3";
 
     get_camera() {
         super.get_camera();
@@ -443,6 +468,7 @@ class Flame extends AnimationModel {
 
 class Tail extends AnimationModel {
     file = '/objects/tailwag/tail_wag.glb';
+    color = "#F4F0E3";
 
     get_camera() {
         super.get_camera();
@@ -454,6 +480,7 @@ class Tail extends AnimationModel {
 class Toyball extends AnimationModel {
     loop = false;
     file = '/objects/toy_ball.glb';
+    color = "#F4F0E3";
 
     get_camera() {
         super.get_camera();
