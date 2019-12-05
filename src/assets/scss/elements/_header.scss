@@ -46,6 +46,7 @@
 			letter-spacing: 0.02em;
 			text-transform: uppercase;
 			color: $color-text;
+			font-weight: 300;
 
 			&.active {
 				border-bottom: 1px solid $color-text;

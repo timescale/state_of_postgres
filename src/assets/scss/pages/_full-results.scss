@@ -36,6 +36,7 @@
 		display: inline;
 		position: relative;
 		padding-top: 20px;
+		color: $color-text;
 	}
 
 	.question-number {
@@ -52,6 +53,7 @@
 		margin-top: 10px;
 		font-size: $font-size-sm;
 		font-style: italic;
+		color: $color-text;
 	}
 
 	.chart-wrap {
@@ -72,6 +74,7 @@
 			padding-right: 30px;
 			text-align: right;
 			font-size: $font-size-sm;
+			color: $color-text;
 		}
 
 		.bar-row {
@@ -95,6 +98,7 @@
 
 		.percentage {
 			font-size: $font-size-sm;
+			color: $color-text;
 		}
 	}
 
@@ -137,7 +141,7 @@
 
 		.percentage {
 			font-size: 16px;
-			font-weight: $fw-700;
+			font-weight: 700;
 			color: $color-secondary;
 			text-align: right;
 		}
@@ -406,12 +410,14 @@
 		font-size: 38px;
 		line-height: 146%;
 		padding-bottom: 10px;
+		color: $color-text;
 	}
 
 	div:nth-child(2) {
 		font-size: 23px;
 		line-height: 146%;
 		font-weight: 300;
+		color: $color-text;
 
 		a {
 			color: $color-primary;
