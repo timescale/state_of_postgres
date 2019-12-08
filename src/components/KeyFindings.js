@@ -171,6 +171,7 @@ class KeyFindings extends Component {
                                         <div className="text-wrap">
                                             <Fade bottom>
                                                 <p className="info info-title">What do folks think about NoSQL?</p>
+                                                <p className="subhead">(These are just a few particularly strong opinions. Download the <a href="https://stateofpostgres.com/files/state_of_postgres_2019.xlsx">raw data</a> for the full picture.)</p>
                                             </Fade>
                                         </div>
 

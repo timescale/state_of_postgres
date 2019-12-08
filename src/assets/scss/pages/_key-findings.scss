@@ -104,6 +104,16 @@
 		font-family: $font-primary;
 		margin-top: 35px;
 	}
+
+	.subhead {
+		font-size: 20px;
+		line-height: 153.22%;
+		text-align: center;
+
+		a {
+			text-decoration: underline;
+		}
+	}
 }
 
 .ecosystem-tools {
