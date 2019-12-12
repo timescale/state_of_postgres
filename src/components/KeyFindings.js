@@ -170,7 +170,7 @@ class KeyFindings extends Component {
 
                                         <div className="text-wrap">
                                             <Fade bottom>
-                                                <p className="info info-title">What do folks think about NoSQL?</p>
+                                                <p className="info info-title">Why Postgres over other solutions?</p>
                                                 <p className="subhead">(These are just a few particularly strong opinions. Download the <a href="https://stateofpostgres.com/files/state_of_postgres_2019.xlsx">raw data</a> for the full picture.)</p>
                                             </Fade>
                                         </div>
@@ -178,15 +178,20 @@ class KeyFindings extends Component {
                                     </div>
                                 </section>
 
-                                <QuoteSection number={9} text={'If a project was using a NoSQL database, I would fire the entire team, burn the code base, and start over.'}
+                                <QuoteSection text={'In a previous position I was in [we] moved from MongoDB to Postgres. The reason was quite frankly that someone [initially] choose MongoDB as it was the hot tech at the time, but it turned out to not meet the requirements or expectations.'}
                                               name={'— Anonymous'} reverse={false}
                                               model="Flame"/>
 
-                                <QuoteSection number={10} text={'I never used it because I was smart enough to smell the NoSQL bullsh*t early on.'}
+                                <QuoteSection text={'The fact that there are no limitations on how I can use it and how many instances I can deploy is the largest plus for the company. Personally the sheer amount of "stuff", nearly every problem I\'ve run into has been solved in a reliable way or at least documented leading me into a good direction to solve my issues.'}
+                                              name={'— Anonymous'} reverse={false}/>
+
+                                <QuoteSection text={'I never used it because I was smart enough to smell the NoSQL bullsh*t early on.'}
                                               name={'— Anonymous'} reverse={true}
                                               model="Tail"/>
 
-                                <QuoteSection number={11} text={'I used to work with a guy who liked to say MySQL is a TOY database. I concur; probably throw MongoDB in there.'}
+                                <QuoteSection text={'Extensibility. We have written several of our own plugins over the years extending the base functionality which is unheard of for most products like it.'}
+                                              name={'— Anonymous'} reverse={false}/>
+                                <QuoteSection text={'I used to work with a guy who liked to say MySQL is a TOY database. I concur; probably throw MongoDB in there.'}
                                               name={'— Anonymous'} reverse={false}
                                               model="Toyball" />
 

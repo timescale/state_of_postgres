@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import VisibilitySensor from 'react-visibility-sensor'
 
 
-import {Model, Drone, Phone, Flowers, Teamwork, Swimming, Flame, Tail, Circuit, Toyball} from "./Model";
+import {Drone, Phone, Flowers, Teamwork, Swimming, Flame, Tail, Circuit, Toyball} from "./Model";
 import {Row, Col} from 'react-bootstrap'
 
 function GetModel(props) {
@@ -26,7 +26,7 @@ function GetModel(props) {
     } else if (model === 'Toyball') {
         return <Toyball/>;
     }
-    return <Model />;
+    return <div/>;
 }
 
 class Section extends Component {
@@ -103,17 +103,21 @@ class QuoteSection extends Section {
     render() {
         return (
             <Row ref={this.row} className="quote-section transition">
-                <Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 2 : 1 }}
+                <Col sm={{span: this.props.model ? 12 : 0}} md={{ span: this.props.model ? 6 : 0, order: this.props.reverse ? 2 : 1 }}
                      className="d-flex justify-content-center model align-items-center">
-                    <GetModel model={this.props.model} black={this.props.black}/>
+                    <GetModel model={this.props.model}/>
                 </Col>
-                <Col sm={{span: 12}} md={{ span: 6, order: this.props.reverse ? 1 : 2 }}
+                <Col sm={{span: 12}} md={{
+                    span: this.props.model ? 6 : 10,
+                    order: this.props.reverse ? 1 : 2,
+                    offset: this.props.model ? 0 : 1,
+                }}
                      className="d-flex justify-content-center align-items-center quote-text">
                     <VisibilitySensor onChange={this.fade}>
                         <div ref={this.text} className='text quote animated' style={{animationDuration: "1s", opacity: 0 }}>
                             <div>
                                 <div className="curly-quotes-wrapper">
-                                    <div className="curly-quotes">
+                                    <div className={this.props.model ? 'curly-quotes ' :  'bigger curly-quotes'}>
                                         <p className="info">{ this.props.text }</p>
                                     </div>
                                 </div>

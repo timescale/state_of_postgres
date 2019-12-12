@@ -104,7 +104,8 @@ canvas {
 .curly-quotes-wrapper {
 	position: relative;
 }
-.curly-quotes:before {
+
+.curly-quotes:before, .curly-quotes:after {
 	position: absolute;
 	display: inline-block;
 	vertical-align: top;
@@ -118,6 +119,22 @@ canvas {
 	content: '\201C';
 	top: -50px;
 	left: -5px;
+}
+
+.curly-quotes.bigger:after {
+	content: '\201D';
+	bottom: -50px;
+	right: 0;
+}
+
+.bigger:before, .bigger:after  {
+	font-weight: bold;
+	font-size: 210px;
+}
+
+.curly-quotes.bigger:before {
+    top: 10px;
+    left: -150px;
 }
 
 .quote-by {
