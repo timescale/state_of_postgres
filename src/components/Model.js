@@ -31,9 +31,10 @@ class Model extends Component {
 
     onWindowResize() {
         if (this.el && this.camera && this.renderer) {
-            this.camera.aspect = this.el.parentElement.parentElement.offsetWidth / this.el.parentElement.parentElement.offsetHeight;
+            this.get_dimension();
+            this.camera.aspect = this.get_aspect();
             this.camera.updateProjectionMatrix();
-            this.renderer.setSize(this.el.parentElement.parentElement.offsetWidth, this.el.parentElement.parentElement.offsetHeight, true);
+            this.renderer.setSize(this.width, this.height, true);
         }
     }
 
@@ -103,13 +104,16 @@ class Model extends Component {
 
     get_scene() {
         this.scene = new THREE.Scene();
-        this.scene.add(this.gltf.scene)
+        this.scene.add(this.gltf.scene);
         this.scene.background = new THREE.Color( this.color );
     };
 
-    get_dimention() {
-        this.width = this.el.parentElement.offsetWidth;
-        this.height = this.el.parentElement.offsetHeight;
+    get_dimension() {
+        this.width = this.el.parentElement.parentElement.offsetWidth;
+        this.height = this.el.parentElement.parentElement.offsetHeight;
+        if (window.innerWidth > 640 && window.innerWidth < 1485){
+            this.height /= 2;
+        }
     }
 
     get_aspect(){
@@ -122,7 +126,7 @@ class Model extends Component {
             powerPreference: "high-performance"
         });
 
-        this.get_dimention();
+        this.get_dimension();
         this.renderer.setSize(this.width, this.height, true);
         this.renderer.setPixelRatio(2.3);
         this.renderer.gammaOutput = true;
@@ -345,7 +349,7 @@ class Swimming extends AnimationModel {
             alpha: true
         });
 
-        this.get_dimention();
+        this.get_dimension();
         this.renderer.setSize(this.width, this.height, true);
         this.renderer.setPixelRatio(2.3);
         this.renderer.gammaOutput = true;
