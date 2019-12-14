@@ -178,9 +178,9 @@ class KeyFindings extends Component {
                                     </div>
                                 </section>
 
-                                <QuoteSection text={'In a previous position I was in [we] moved from MongoDB to Postgres. The reason was quite frankly that someone [initially] choose MongoDB as it was the hot tech at the time, but it turned out to not meet the requirements or expectations.'}
-                                              name={'— Anonymous'} reverse={false}
-                                              model="Flame"/>
+                                {/*<QuoteSection text={'In a previous position I was in [we] moved from MongoDB to Postgres. The reason was quite frankly that someone [initially] choose MongoDB as it was the hot tech at the time, but it turned out to not meet the requirements or expectations.'}*/}
+                                {/*              name={'— Anonymous'} reverse={false}*/}
+                                {/*              model="Flame"/>*/}
 
                                 <QuoteSection text={'The fact that there are no limitations on how I can use it and how many instances I can deploy is the largest plus for the company. Personally the sheer amount of "stuff", nearly every problem I\'ve run into has been solved in a reliable way or at least documented leading me into a good direction to solve my issues.'}
                                               name={'— Anonymous'} reverse={false}/>
@@ -191,7 +191,7 @@ class KeyFindings extends Component {
 
                                 <QuoteSection text={'Extensibility. We have written several of our own plugins over the years extending the base functionality which is unheard of for most products like it.'}
                                               name={'— Anonymous'} reverse={false}/>
-                                <QuoteSection text={'I used to work with a guy who liked to say MySQL is a TOY database. I concur; probably throw MongoDB in there.'}
+                                <QuoteSection text={'I used to work with a guy who liked to say MySQL is a TOY database.'}
                                               name={'— Anonymous'} reverse={false}
                                               model="Toyball" />
 
