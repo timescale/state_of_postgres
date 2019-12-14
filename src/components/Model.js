@@ -3,6 +3,7 @@ import {ProgressBar} from 'react-bootstrap'
 import VisibilitySensor from 'react-visibility-sensor'
 import * as THREE from 'three'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 
 import {Water} from './models/Water.js';
 import water_texture from './models/waternormals.jpg'
@@ -46,12 +47,14 @@ class Model extends Component {
         } else if (percentage < 0) {
             percentage = 0
         }
-        console.log(percentage);
         this.percentage = percentage
     };
 
     componentDidMount() {
         this.loader = new GLTFLoader();
+        const dracoLoader  = new DRACOLoader();
+        dracoLoader.setDecoderPath( 'https://stateofpostgres.com/decoder/' );
+        this.loader.setDRACOLoader( dracoLoader );
         if (!this.props) {
             return
         }
@@ -70,8 +73,7 @@ class Model extends Component {
 
                 window.addEventListener( 'resize', this.onWindowResize, false);
                 window.addEventListener( 'orientationchange', this.onWindowResize, false);
-                setTimeout(function () {queue.next()},1000);
-                document.querySelector('.scroll_container__body').style.animationPlayState = "running";
+                queue.next();
             }, xhr => {
                 let percentage = Math.round(xhr.loaded / (xhr.total || xhr.loaded) * 100);
                 this.setState({now: percentage});
@@ -230,34 +232,18 @@ class AnimationModel extends Model {
 }
 
 class Drone extends AnimationModel {
-    file = '/objects/drone.glb';
+    file = '/objects/drone-processed.glb';
 
     get_camera() {
         super.get_camera();
         this.camera.position.z = 0.028;
     }
 
-    animate() {
-        if (this.gltf === undefined) {
-            return;
-        }
-        if (this.renderer === undefined) {
-            return;
-        }
-        this.animation_id = requestAnimationFrame(()=>this.animate());
-
-        if (this.mixer) {
-            this.mixer.update(this.clock.getDelta() / 2);
-        }
-
-        this.renderer.render(this.scene, this.camera);
-    };
-
 }
 
 class Phone extends AnimationModel {
     loop = false;
-    file = '/objects/phone.glb';
+    file = '/objects/phone-processed.glb';
 
     get_camera() {
         super.get_camera();
@@ -270,7 +256,7 @@ class Circuit extends Model {
 
     constructor(props) {
         super(props);
-        this.file = '/objects/circuit.glb'
+        this.file = '/objects/circuit-processed.glb'
     }
     get_camera() {
         super.get_camera();
@@ -282,7 +268,7 @@ class Circuit extends Model {
 
 class Flowers extends AnimationModel {
     loop = false;
-    file = '/objects/flower.glb';
+    file = '/objects/flower-processed.glb';
 
     get_camera() {
         super.get_camera();
@@ -292,7 +278,7 @@ class Flowers extends AnimationModel {
 
 class Teamwork extends AnimationModel {
     loop = false;
-    file = '/objects/team.glb';
+    file = '/objects/team-processed.glb';
     initial_visible = true;
 
     get_camera() {
@@ -347,7 +333,7 @@ class Teamwork extends AnimationModel {
 }
 
 class Swimming extends AnimationModel {
-    file = '/objects/swim.glb';
+    file = '/objects/swim-processed.glb';
     initial_visible = true;
     start_one_time_animation = false;
     color = "#469fcb";
@@ -455,7 +441,7 @@ class Swimming extends AnimationModel {
 }
 
 class Flame extends AnimationModel {
-    file = '/objects/flame.glb';
+    file = '/objects/flame-processed.glb';
     color = "#F4F0E3";
 
     get_camera() {
@@ -467,7 +453,7 @@ class Flame extends AnimationModel {
 }
 
 class Tail extends AnimationModel {
-    file = '/objects/tailwag/tail_wag.glb';
+    file = '/objects/tailwag/tail_wag-processed.glb';
     color = "#F4F0E3";
 
     get_camera() {
@@ -479,7 +465,7 @@ class Tail extends AnimationModel {
 
 class Toyball extends AnimationModel {
     loop = false;
-    file = '/objects/toy_ball.glb';
+    file = '/objects/toy_ball-processed.glb';
     color = "#F4F0E3";
 
     get_camera() {
