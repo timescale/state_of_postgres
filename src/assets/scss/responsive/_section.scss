@@ -1,3 +1,26 @@
+@media (max-width: 1453px) {
+	canvas {
+		height: 600px !important;
+	}
+	.row_section {
+		height: 500px;
+	}
+}
+
+@media (max-width: 1100px) {
+	canvas {
+		height: 500px !important;
+	}
+
+}
+
+@media (max-width: 900px) {
+	canvas {
+		height: 500px !important;
+	}
+}
+
+
 @media (max-width: $screen-md) {
 
 	#water-texts {
@@ -55,12 +78,6 @@
 		margin: 0 25px 0 25px;
 		button {
 			height: 60px;
-		}
-	}
-
-	.quote-section {
-		.model > div {
-			height: 250px;
 		}
 	}
 }

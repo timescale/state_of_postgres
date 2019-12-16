@@ -1,5 +1,6 @@
 .row_section {
 	height: 850px;
+	align-items: center;
 }
 
 .scroll_container {
@@ -7,7 +8,8 @@
 }
 
 canvas {
-	//width: 100% !important;
+	width: 100% !important;
+	height: 800px!important;
 }
 
 .number {
@@ -30,7 +32,6 @@ canvas {
 }
 
 .model > div {
-	height: 650px;
 	width: 100%;
 	display: flex;
 	justify-content: center;
@@ -66,14 +67,6 @@ canvas {
 	line-height: 127.5%;
 	letter-spacing: 0.01em;
 	color: $color-primary;
-}
-
-.quote-section {
-	height: 650px;
-
-	.model > div {
-		height: 550px;
-	}
 }
 
 .quote-text {
@@ -224,6 +217,7 @@ canvas {
 		text-align: center;
 
 		.percentage {
+			min-width: 220px;
 			display: flex;
 			justify-content: center;
 		}

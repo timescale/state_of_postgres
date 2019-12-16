@@ -34,7 +34,6 @@ class Model extends Component {
             this.get_dimension();
             this.camera.aspect = this.get_aspect();
             this.camera.updateProjectionMatrix();
-            this.renderer.setSize(this.width, this.height, true);
         }
     }
 
@@ -109,11 +108,8 @@ class Model extends Component {
     };
 
     get_dimension() {
-        this.width = this.el.parentElement.parentElement.offsetWidth;
-        this.height = this.el.parentElement.parentElement.offsetHeight;
-        if (window.innerWidth > 640 && window.innerWidth < 1485){
-            this.height /= 2;
-        }
+        this.width = this.el.offsetWidth;
+        this.height = this.el.offsetHeight;
     }
 
     get_aspect(){
@@ -235,51 +231,6 @@ class AnimationModel extends Model {
     };
 }
 
-class Drone extends AnimationModel {
-    file = '/objects/drone-processed.glb';
-
-    get_camera() {
-        super.get_camera();
-        this.camera.position.z = 0.028;
-    }
-
-}
-
-class Phone extends AnimationModel {
-    loop = false;
-    file = '/objects/phone-processed.glb';
-
-    get_camera() {
-        super.get_camera();
-        this.camera.far = 4;
-        this.camera.position.z = 3.8
-    }
-}
-
-class Circuit extends Model {
-
-    constructor(props) {
-        super(props);
-        this.file = '/objects/circuit-processed.glb'
-    }
-    get_camera() {
-        super.get_camera();
-        this.camera.position.set(0.0040,0.00021507726341951638, 0.04924616245925429);
-        this.camera.parent.children[2].rotation.y += 0.18;
-        this.camera.parent.children[1].rotation.y += 0.18;
-    }
-}
-
-class Flowers extends AnimationModel {
-    loop = false;
-    file = '/objects/flower-processed.glb';
-
-    get_camera() {
-        super.get_camera();
-        this.camera.position.x = -0.015;
-    }
-}
-
 class Teamwork extends AnimationModel {
     loop = false;
     file = '/objects/team-processed.glb';
@@ -287,7 +238,7 @@ class Teamwork extends AnimationModel {
 
     get_camera() {
         super.get_camera();
-        this.camera.position.set(-0.01500424301624303, 0.012377048023045067, 0);
+        this.camera.position.set(-0.01400424301624303, 0.012377048023045067, 0);
     }
     get_mesh_animator() {
         return this.group
@@ -335,6 +286,46 @@ class Teamwork extends AnimationModel {
         this.group = new THREE.AnimationObjectGroup(this.mesh, mesh2, mesh3, mesh4, mesh5, mesh6);
     }
 }
+
+class Drone extends AnimationModel {
+    file = '/objects/drone-processed.glb';
+}
+
+class Phone extends AnimationModel {
+    loop = false;
+    file = '/objects/phone-processed.glb';
+
+    get_camera() {
+        super.get_camera();
+        this.camera.far = 4;
+        this.camera.position.z = 3.8
+    }
+}
+
+class Circuit extends Model {
+
+    constructor(props) {
+        super(props);
+        this.file = '/objects/circuit-processed.glb'
+    }
+    get_camera() {
+        super.get_camera();
+        this.camera.position.set(0.0040,0.00021507726341951638, 0.04924616245925429);
+        this.camera.parent.children[2].rotation.y += 0.18;
+        this.camera.parent.children[1].rotation.y += 0.18;
+    }
+}
+
+class Flowers extends AnimationModel {
+    loop = false;
+    file = '/objects/flower-processed.glb';
+
+    get_camera() {
+        super.get_camera();
+        this.camera.position.x = -0.015;
+    }
+}
+
 
 class Swimming extends AnimationModel {
     file = '/objects/swim-processed.glb';
@@ -452,29 +443,18 @@ class Flame extends AnimationModel {
         super.get_camera();
         this.camera.position.x = -0.0006636847423971632;
         this.camera.position.y = -0.0006550050273071975;
-        window.g = this.camera;
     }
 }
 
 class Tail extends AnimationModel {
     file = '/objects/tailwag/tail_wag-processed.glb';
     color = "#F4F0E3";
-
-    get_camera() {
-        super.get_camera();
-        this.camera.position.set(-0.006, 0.007386929847300051,  -0.0738123016059399);
-        this.camera.parent.children[1].rotation.y = 0.08;
-    }
 }
 
 class Toyball extends AnimationModel {
     loop = false;
     file = '/objects/toy_ball-processed.glb';
     color = "#F4F0E3";
-
-    get_camera() {
-        super.get_camera();
-    }
 }
 
 

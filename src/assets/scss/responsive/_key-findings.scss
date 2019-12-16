@@ -1,7 +1,7 @@
 @media (max-width: 1650px) {
 
 	.quote-section {
-		
+
 		.img-wrap {
 			left: 160px;
 		}
@@ -28,24 +28,24 @@
 			}
 		}
 	}
-	
+
 	.ecosystem-tools {
 		min-height: 1px;
 
 		.img-wrap {
 
-			div {		
+			div {
 				height: 45vw;
 			}
-		}	
+		}
 	}
 
 	.quote-section {
 
 		.img-wrap {
 			max-width: 80%;
-		    left: auto;
-		    right: 0;
+			left: auto;
+			right: 0;
 		}
 
 		.text-wrap {
@@ -159,7 +159,7 @@
 	.quote-section {
 		padding-bottom: 0;
 
-		.container {	
+		.container {
 			display: flex;
 			flex-direction: column;
 		}
@@ -186,14 +186,22 @@
 
 		&-dark {
 
-			.container {	
-				flex-direction: column-reverse;	
+			.container {
+				flex-direction: column-reverse;
+			}
+		}
+		.curly-quotes {
+			&.bigger:before {
+				top: -20px;
+			}
+			&.bigger:before, &.bigger:after {
+				font-size: 125px;
 			}
 		}
 	}
 
 	.text-section {
-		
+
 		.text-wrap {
 			text-align: center;
 		}
@@ -291,7 +299,7 @@
 
 		.container {
 			display: flex;
-			flex-direction: column-reverse;	
+			flex-direction: column-reverse;
 		}
 
 		.img-wrap {
@@ -310,16 +318,16 @@
 	.ecosystem-tools {
 		padding-bottom: 0;
 
-   		&-content {
-   			flex-direction: column-reverse;
+		&-content {
+			flex-direction: column-reverse;
 			max-width: 598px;
-	   		padding: 0 15px;
-	   		margin: 0 auto;
-   		}
+			padding: 0 15px;
+			margin: 0 auto;
+		}
 
 		.img-wrap {
 
-			div {		
+			div {
 				height: auto;
 			}
 
@@ -340,7 +348,7 @@
 			}
 		}
 	}
-	
+
 	.row_section {
 		flex-direction: column;
 		height: auto;
@@ -353,10 +361,6 @@
 	.text-section {
 		min-height: 1px;
 		padding: 15px 40px 15px;
-	}
-
-	.model > div {
-		height: 300px;
 	}
 
 	.info {
@@ -395,14 +399,20 @@
 	}
 
 	.curly-quotes {
-
 		&:before {
 			top: -32px;
 			left: -2px;
-		    height: 30px;
-		    line-height: 50px;
-		    font-size: 50px;
-		    color: $color-primary;
+			height: 30px;
+			line-height: 50px;
+			font-size: 50px;
+		}
+		&.bigger:before {
+			left: inherit;
+			top: -50px;
+		}
+		&.bigger:before, &.bigger:after {
+			line-height: 50px;
+			font-size: 80px;
 		}
 	}
 
