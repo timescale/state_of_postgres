@@ -26,6 +26,23 @@ class KeyFindings extends Component {
     }
 
     componentDidMount() {
+        this.moveAbsoluteDiv();
+        this.fixScrollActive();
+        this.fixClickActive();
+    }
+
+    fixClickActive() {
+        document.querySelectorAll('.question-list a').forEach(element => {
+            element.addEventListener('click', (event) => {
+                document.querySelectorAll('.question-list a').forEach(element => {
+                    element.classList.remove('active')
+                });
+                event.target.classList.add('active');
+            });
+        })
+    }
+
+    moveAbsoluteDiv() {
         // move question-list because it doesn't work with the smooth scrolling
         this.navBarNode = document.querySelector('.question-list');
         let bodyNode = document.querySelector('body');
@@ -38,16 +55,25 @@ class KeyFindings extends Component {
         if (!has_node) {
             bodyNode.appendChild(this.navBarNode);
         }
-        // fix active class
-        document.querySelectorAll('.question-list a').forEach(element => {
-            element.addEventListener('click', (event) => {
-                document.querySelectorAll('.question-list a').forEach(element => {
-                    element.classList.remove('active')
-                });
-                event.target.classList.add('active');
-            });
-        })
+    }
 
+    fixScrollActive() {
+        let updateSpy = () => {
+            scrollSpy.update();
+            this.setIntervalTimes += 1;
+            if (this.setIntervalTimes > 20) {
+                clearInterval(this.setIntervalId);
+                this.setIntervalTimes = 0;
+                this.setIntervalId = null;
+            }
+        };
+        this.setIntervalTimes = 0;
+        window.addEventListener('scroll', () => {
+            clearInterval(this.setIntervalId);
+            this.setIntervalTimes = 0;
+            this.setIntervalId = null;
+            this.setIntervalId = setInterval(() => updateSpy(), 100);
+        });
     }
 
     componentWillUnmount() {
@@ -63,7 +89,7 @@ class KeyFindings extends Component {
     openMethodologyModal() {
         this.setState({ methodologyModalOpened: true });
     }
-     
+
     closeMethodologyModal() {
         this.setState({ methodologyModalOpened: false });
     }
@@ -71,7 +97,7 @@ class KeyFindings extends Component {
     openDownloadModal() {
         this.setState({ downloadModalOpened: true });
     }
-     
+
     closeDownloadModal() {
         this.setState({ downloadModalOpened: false });
     }
@@ -87,8 +113,8 @@ class KeyFindings extends Component {
                 </div>
 
                 <ModalComponent
-                  open={downloadModalOpened}
-                  onClose={this.closeDownloadModal}
+                    open={downloadModalOpened}
+                    onClose={this.closeDownloadModal}
                 >
                     <div className="download-modal">
                         <h2 className="modal-title">2019 State of Postgres Survey Results</h2>
@@ -97,8 +123,8 @@ class KeyFindings extends Component {
                 </ModalComponent>
 
                 <ModalComponent
-                  open={methodologyModalOpened}
-                  onClose={this.closeMethodologyModal}
+                    open={methodologyModalOpened}
+                    onClose={this.closeMethodologyModal}
                 >
                     <div className="methodology-modal">
                         <h2 className="modal-title">Survey Methodology</h2>
@@ -113,9 +139,9 @@ class KeyFindings extends Component {
                     {
                         this.questions.map((question, index) => {
                             return (
-                                <section className="question-section" key={question.id} name={'question' + question.id}>
+                                <section className="question-section">
 
-                                    <div className="container">
+                                    <div className="container"  key={question.id} name={'question' + question.id}>
 
                                         <Fade>
                                             <div className="text-wrap">
@@ -228,8 +254,10 @@ class KeyFindings extends Component {
                                             <Link
                                                 to={'question' + question.id}
                                                 activeClass="active"
-                                                offset={30}
-                                                duration={500}>
+                                                spy={true}
+                                                offset={-150}
+                                                duration={10000}
+                                            >
                                                 {question.name}
                                             </Link>
                                         </li>
