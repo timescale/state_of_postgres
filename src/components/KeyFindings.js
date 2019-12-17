@@ -25,7 +25,7 @@ class KeyFindings extends Component {
     }
 
     componentDidMount() {
-
+        this.scroll_direction()
     }
 
     componentWillUnmount() {
@@ -33,16 +33,15 @@ class KeyFindings extends Component {
     }
 
     scroll_direction() {
-        var lastScrollTop = 0;
-// element should be replaced with the actual target element on which you have applied scroll, use window in case of no target element.
+        let lastScrollTop = 0;
         window.addEventListener("scroll", function(){ // or window.addEventListener("scroll"....
-            var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+            var st = window.pageYOffset || document.documentElement.scrollTop;
             if (st > lastScrollTop){
-                this.scroll_direction = 'down'
+                window.scroll_direction = 'down'
             } else {
-                this.scroll_direction = 'up'
+                window.scroll_direction = 'up'
             }
-            lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+            lastScrollTop = st <= 0 ? 0 : st;
         }, false);
     }
 

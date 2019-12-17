@@ -302,17 +302,32 @@ class Phone extends AnimationModel {
     }
 }
 
-class Circuit extends Model {
+class Circuit extends AnimationModel {
+    file = '/objects/circuit-processed.glb';
 
-    constructor(props) {
-        super(props);
-        this.file = '/objects/circuit-processed.glb'
-    }
     get_camera() {
         super.get_camera();
         this.camera.position.set(0.0040,0.00021507726341951638, 0.04924616245925429);
         this.camera.parent.children[2].rotation.y += 0.18;
         this.camera.parent.children[1].rotation.y += 0.18;
+    }
+
+
+    get_mesh() {
+        this.mesh1 = this.scene.children[0].children[0].children[1];
+        this.mesh2 = this.scene.children[0].children[0].children[2];
+    }
+
+    animate = () => {
+        if (this.mesh1.position.x < 0.008149999999999836 && window.scroll_direction === 'down') {
+            this.mesh1.position.x += 0.00003;
+            this.mesh2.position.x += 0.00003;
+        } else if (this.mesh1.position.x > 0 && window.scroll_direction === 'up')  {
+            this.mesh1.position.x -= 0.00003;
+            this.mesh2.position.x -= 0.00003;
+        }
+
+        super.animate();
     }
 }
 
@@ -371,7 +386,6 @@ class Swimming extends AnimationModel {
         this.camera.rotation.set(-0.261, 0,3.141592653589793);
 
         this.camera.position.set(0.0003959743189625442, 0.009, 0.019);
-        window.j = this.camera;
         this.mesh = this.scene.children[0].children[0].children[1];
         this.mesh.applyMatrix(this.flip);
         this.mesh.position.set(0.030,0.0115, -0.007034149952232838);
