@@ -73,7 +73,7 @@ class Model extends Component {
 
                 window.addEventListener( 'resize', this.onWindowResize, false);
                 window.addEventListener( 'orientationchange', this.onWindowResize, false);
-                queue.next();
+                setTimeout(function () {queue.next()},1000);
             }, xhr => {
                 let percentage = Math.round(xhr.loaded / (xhr.total || xhr.loaded) * 100);
                 this.setState({now: percentage});
@@ -119,7 +119,7 @@ class Model extends Component {
     get_render() {
         this.renderer = new THREE.WebGLRenderer({
             canvas: this.el,
-            powerPreference: "high-performance"
+            powerPreference: "low-power"
         });
 
         this.get_dimension();
@@ -316,13 +316,13 @@ class Circuit extends AnimationModel {
     get_mesh() {
         this.mesh1 = this.scene.children[0].children[0].children[1];
         this.mesh2 = this.scene.children[0].children[0].children[2];
+        this.mesh1.position.x = 0.008149999999999836;
+        this.mesh2.position.x = 0.008149999999999836;
+
     }
 
     animate = () => {
-        if (this.mesh1.position.x < 0.008149999999999836 && window.scroll_direction === 'down') {
-            this.mesh1.position.x += 0.00003;
-            this.mesh2.position.x += 0.00003;
-        } else if (this.mesh1.position.x > 0 && window.scroll_direction === 'up')  {
+        if (this.mesh1.position.x > 0)  {
             this.mesh1.position.x -= 0.00003;
             this.mesh2.position.x -= 0.00003;
         }

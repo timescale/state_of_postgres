@@ -25,7 +25,7 @@ class KeyFindings extends Component {
     }
 
     componentDidMount() {
-        this.scroll_direction()
+        // this.scroll_direction()
     }
 
     componentWillUnmount() {
@@ -34,7 +34,7 @@ class KeyFindings extends Component {
 
     scroll_direction() {
         let lastScrollTop = 0;
-        window.addEventListener("scroll", function(){ // or window.addEventListener("scroll"....
+        window.addEventListener("scroll", function(){
             var st = window.pageYOffset || document.documentElement.scrollTop;
             if (st > lastScrollTop){
                 window.scroll_direction = 'down'

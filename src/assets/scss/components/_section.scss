@@ -1,5 +1,5 @@
 .row_section {
-	height: 850px;
+	height: calc(100vh);
 	align-items: center;
 }
 
@@ -9,7 +9,7 @@
 
 canvas {
 	width: 100% !important;
-	height: 800px!important;
+	height: 700px!important;
 }
 
 .number {
