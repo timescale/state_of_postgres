@@ -304,6 +304,8 @@ class Phone extends AnimationModel {
 
 class Circuit extends AnimationModel {
     file = '/objects/circuit-processed.glb';
+    motion = 0.00002;
+    acceleration = 1;
 
     get_camera() {
         super.get_camera();
@@ -322,9 +324,18 @@ class Circuit extends AnimationModel {
     }
 
     animate = () => {
+        this.is_corner = this.mesh1.position.x > 0.0080 || this.mesh1.position.x < 0.0035;
+        this.acceleration_sign = this.mesh1.position.x < 0.008 / 2;
         if (this.mesh1.position.x > 0)  {
-            this.mesh1.position.x -= 0.00003;
-            this.mesh2.position.x -= 0.00003;
+            if (this.is_corner) {
+                this.acceleration_value = 1.05
+            } else {
+                this.acceleration_value = 1.03
+            }
+            this.acceleration *= this.acceleration_sign ? 1/this.acceleration_value : this.acceleration_value;
+            this.mesh1.position.x -= this.motion * this.acceleration;
+            this.mesh2.position.x -= this.motion * this.acceleration;
+
         }
 
         super.animate();
