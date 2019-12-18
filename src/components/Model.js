@@ -23,9 +23,6 @@ class Model extends Component {
     constructor(props) {
         super(props);
         this.el = React.createRef();
-        this.number = React.createRef();
-        this.info = React.createRef();
-        this.description = React.createRef();
         this.onWindowResize = this.onWindowResize.bind(this)
     }
 
@@ -69,7 +66,9 @@ class Model extends Component {
                 this.get_light();
                 this.get_mixer();
 
-                this.get_render();
+                if (this.in_viewport) {
+                    this.get_render()
+                }
 
                 window.addEventListener( 'resize', this.onWindowResize, false);
                 window.addEventListener( 'orientationchange', this.onWindowResize, false);
@@ -93,6 +92,9 @@ class Model extends Component {
         this.in_viewport = isVisible;
         if (!this.scene) {
             return
+        }
+        if (!this.renderer) {
+            this.get_render();
         }
         if (isVisible) {
             this.show_mesh()
@@ -314,19 +316,19 @@ class Circuit extends AnimationModel {
         this.camera.parent.children[1].rotation.y += 0.18;
     }
 
-
     get_mesh() {
+        this.start_position_x = 0.008149999999999836;
+        this.end_position_x = 0;
         this.mesh1 = this.scene.children[0].children[0].children[1];
         this.mesh2 = this.scene.children[0].children[0].children[2];
-        this.mesh1.position.x = 0.008149999999999836;
-        this.mesh2.position.x = 0.008149999999999836;
-
+        this.mesh1.position.x = this.start_position_x;
+        this.mesh2.position.x = this.start_position_x;
     }
 
     animate = () => {
-        this.is_corner = this.mesh1.position.x > 0.0080 || this.mesh1.position.x < 0.0035;
-        this.acceleration_sign = this.mesh1.position.x < 0.008 / 2;
-        if (this.mesh1.position.x > 0)  {
+        this.is_corner = this.mesh1.position.x > 0.008 || this.mesh1.position.x < 0.0035;
+        this.acceleration_sign = this.mesh1.position.x < this.start_position_x / 2;
+        if (this.mesh1.position.x > this.end_position_x)  {
             if (this.is_corner) {
                 this.acceleration_value = 1.05
             } else {
@@ -335,7 +337,6 @@ class Circuit extends AnimationModel {
             this.acceleration *= this.acceleration_sign ? 1/this.acceleration_value : this.acceleration_value;
             this.mesh1.position.x -= this.motion * this.acceleration;
             this.mesh2.position.x -= this.motion * this.acceleration;
-
         }
 
         super.animate();
@@ -351,7 +352,6 @@ class Flowers extends AnimationModel {
         this.camera.position.x = -0.015;
     }
 }
-
 
 class Swimming extends AnimationModel {
     file = '/objects/swim-processed.glb';
@@ -456,8 +456,12 @@ class Swimming extends AnimationModel {
             this.water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
         }
         super.animate();
-    }
+    };
 
+    get_mixer() {
+        this.get_render();
+        return super.get_mixer();
+    }
 }
 
 class Flame extends AnimationModel {
