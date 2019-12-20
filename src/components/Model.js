@@ -4,6 +4,7 @@ import VisibilitySensor from 'react-visibility-sensor'
 import * as THREE from 'three'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 import {Water} from './models/Water.js';
 import water_texture from './models/waternormals.jpg'
@@ -78,7 +79,7 @@ class Model extends Component {
                 this.setState({now: percentage});
             }, error => {
                 queue.next();
-                console.log( 'An error happened' );
+                console.log( 'An error happened:' + error );
             })
         });
     }
@@ -393,20 +394,23 @@ class Swimming extends AnimationModel {
     };
 
     get_camera() {
-        this.flip = new THREE.Matrix4().makeScale(-1,-1,1);
-        this.camera = this.scene.children[0].children[0].children[0];
-        this.camera.rotation.set(-0.261, 0,3.141592653589793);
-
-        this.camera.position.set(0.0003959743189625442, 0.009, 0.019);
-        this.mesh = this.scene.children[0].children[0].children[1];
-        this.mesh.applyMatrix(this.flip);
-        this.mesh.position.set(0.030,0.0115, -0.007034149952232838);
-        this.mesh.scale.set(0.8, 0.8, 0.8)
+        this.camera = this.scene.children[0].children[0].children[0].children[0];
+        this.camera.position.y = 0.0003;
+        // this.camera.rotation.set(-0.261, 0,3.141592653589793);
+        //
+        // this.camera.position.set(0.0003959743189625442, 0.009, 0.019);
+        this.mesh = this.scene.children[0].children[0].children[0].children[1];
+        this.mesh.position.x = -0.015;
+        // this.mesh.applyMatrix(this.flip);
+        // this.mesh.position.set(0.030,0.0115, -0.007034149952232838);
+        // this.mesh.scale.set(0.8, 0.8, 0.8)
+        window.c = this.camera;
+        window.w = this.mesh;
 
     };
 
     get_mesh() {
-        this.mesh = this.scene.children[0].children[0].children[1];
+        this.mesh = this.scene.children[0].children[0].children[0].children[1];
     }
 
 
@@ -417,21 +421,21 @@ class Swimming extends AnimationModel {
     }
 
     add_water() {
-        this.light = new THREE.DirectionalLight( 0xffffff, 1 );
-        this.light.position.z = 3;
-        this.scene.add( this.light );
+        // this.light = new THREE.DirectionalLight( 0xffffff, 1 );
+        // this.light.position.z = 3;
+        // this.scene.add( this.light );
 
-        let waterGeometry = new THREE.PlaneBufferGeometry( 100, 100 );
+        let waterGeometry = new THREE.PlaneBufferGeometry( 5000, 5000 );
         this.water = new Water(
             waterGeometry,
             {
-                textureWidth: 5000,
-                textureHeight: 5000,
+                textureWidth: 1000,
+                textureHeight: 1000,
                 waterNormals: new THREE.TextureLoader().load( water_texture, function ( texture ) {
                     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
                 } ),
                 alpha: 0.3,
-                sunDirection: this.light.position.clone().normalize(),
+                // sunDirection: this.light.position.clone().normalize(),
                 sunColor: 0xfdeca6,
                 waterColor: 0x72bedc,
                 distortionScale: 20,
@@ -450,7 +454,7 @@ class Swimming extends AnimationModel {
 
     animate = () => {
         if (this.is_swimming_position() && this.start_one_time_animation) {
-            this.mesh.position.x -= 0.00007;
+            this.mesh.position.x += 0.00003;
         }
         this.time = performance.now() * 0.001;
         if (this.water) {
@@ -479,18 +483,18 @@ class Tail extends AnimationModel {
     file = '/objects/tailwag/tail_wag-processed.glb';
     color = "#F4F0E3";
 
-    animate() {
-        if (window.animation_stopped) {
-            return super.animate();
-        }
-        if (window.scroll_direction === "up" && this.mesh.children[1].rotation.x > -0.4) {
-            this.mesh.children[1].rotation.x -= window.scroll_stopped ? 0.0001 : 0.005;
-        } else if (window.scroll_direction === "down" && this.mesh.children[1].rotation.x < 0.4) {
-            this.mesh.children[1].rotation.x += window.scroll_stopped ? 0.0001 : 0.005;
-        }
-        console.log(this.mesh.children[1].rotation.x);
-        return super.animate();
-    }
+    // animate() {
+    //     if (window.animation_stopped) {
+    //         return super.animate();
+    //     }
+    //     if (window.scroll_direction === "up" && this.mesh.children[1].rotation.x > -0.4) {
+    //         this.mesh.children[1].rotation.x -= window.scroll_stopped ? 0.0001 : 0.005;
+    //     } else if (window.scroll_direction === "down" && this.mesh.children[1].rotation.x < 0.4) {
+    //         this.mesh.children[1].rotation.x += window.scroll_stopped ? 0.0001 : 0.005;
+    //     }
+    //     console.log(this.mesh.children[1].rotation.x);
+    //     return super.animate();
+    // }
 }
 
 class Toyball extends AnimationModel {
