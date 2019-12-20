@@ -25,7 +25,7 @@ class KeyFindings extends Component {
     }
 
     componentDidMount() {
-        // this.scroll_direction()
+        this.scroll_direction()
     }
 
     componentWillUnmount() {
@@ -34,6 +34,11 @@ class KeyFindings extends Component {
 
     scroll_direction() {
         let lastScrollTop = 0;
+        let timer;
+
+        document.querySelector('.scroll_container__body').addEventListener('transitionend', () => {
+           window.animation_stopped = true;
+        });
         window.addEventListener("scroll", function(){
             var st = window.pageYOffset || document.documentElement.scrollTop;
             if (st > lastScrollTop){
@@ -42,6 +47,16 @@ class KeyFindings extends Component {
                 window.scroll_direction = 'up'
             }
             lastScrollTop = st <= 0 ? 0 : st;
+
+            //check if still scrolling
+            window.animation_stopped = false;
+            if(timer !== null) {
+                window.scroll_stopped = false;
+                clearTimeout(timer);
+            }
+            timer = setTimeout(function() {
+                window.scroll_stopped = true;
+            }, 100);
         }, false);
     }
 
@@ -101,6 +116,10 @@ class KeyFindings extends Component {
                                     </Container>
                                 </section>
                                 {/* Intro - End */}
+
+                                <QuoteSection text={'I never used it because I was smart enough to smell the NoSQL bullsh*t early on.'}
+                                              name={'— Anonymous'} reverse={true}
+                                              model="Tail"/>
 
                                 <Section info={'26% of respondents have been using Postgres for more than 10 years.'}
                                          description={'The Postgres community is committed.'} reverse={true}

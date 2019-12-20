@@ -291,6 +291,7 @@ class Teamwork extends AnimationModel {
 
 class Drone extends AnimationModel {
     file = '/objects/drone-processed.glb';
+
 }
 
 class Phone extends AnimationModel {
@@ -477,6 +478,19 @@ class Spinner extends AnimationModel {
 class Tail extends AnimationModel {
     file = '/objects/tailwag/tail_wag-processed.glb';
     color = "#F4F0E3";
+
+    animate() {
+        if (window.animation_stopped) {
+            return super.animate();
+        }
+        if (window.scroll_direction === "up" && this.mesh.children[1].rotation.x > -0.4) {
+            this.mesh.children[1].rotation.x -= window.scroll_stopped ? 0.0001 : 0.005;
+        } else if (window.scroll_direction === "down" && this.mesh.children[1].rotation.x < 0.4) {
+            this.mesh.children[1].rotation.x += window.scroll_stopped ? 0.0001 : 0.005;
+        }
+        console.log(this.mesh.children[1].rotation.x);
+        return super.animate();
+    }
 }
 
 class Toyball extends AnimationModel {
