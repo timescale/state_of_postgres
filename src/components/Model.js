@@ -449,7 +449,7 @@ class Swimming extends AnimationModel {
 
     animate = () => {
         if (this.is_swimming_position() && this.start_one_time_animation) {
-            this.mesh.position.x -= 0.0001;
+            this.mesh.position.x -= 0.00007;
         }
         this.time = performance.now() * 0.001;
         if (this.water) {
@@ -464,14 +464,13 @@ class Swimming extends AnimationModel {
     }
 }
 
-class Flame extends AnimationModel {
-    file = '/objects/flame-processed.glb';
+class Spinner extends AnimationModel {
+    file = '/objects/spinner-processed.glb';
     color = "#F4F0E3";
+    loop = false;
 
     get_camera() {
-        super.get_camera();
-        this.camera.position.x = -0.0006636847423971632;
-        this.camera.position.y = -0.0006550050273071975;
+        this.camera = this.scene.children[0].children[0].children[0];
     }
 }
 
@@ -487,4 +486,4 @@ class Toyball extends AnimationModel {
 }
 
 
-export {Model, Drone, Phone, Flowers, Teamwork, Swimming, Flame, Tail, Circuit, Toyball};
+export {Model, Drone, Phone, Flowers, Teamwork, Swimming, Spinner, Tail, Circuit, Toyball};
