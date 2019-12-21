@@ -4,7 +4,6 @@ import VisibilitySensor from 'react-visibility-sensor'
 import * as THREE from 'three'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 import {Water} from './models/Water.js';
 import water_texture from './models/waternormals.jpg'
@@ -364,7 +363,7 @@ class Swimming extends AnimationModel {
     get_render() {
         this.renderer = new THREE.WebGLRenderer({
             canvas: this.el,
-            powerPreference: "high-performance",
+            powerPreference: "low-power",
             alpha: true
         });
 
@@ -389,24 +388,16 @@ class Swimming extends AnimationModel {
 
     get_scene() {
         this.scene = new THREE.Scene();
-        this.scene.add(this.gltf.scene)
+        this.scene.add(this.gltf.scene);
         this.scene.matrixAutoUpdate = false;
     };
 
     get_camera() {
         this.camera = this.scene.children[0].children[0].children[0].children[0];
-        this.camera.position.y = 0.0003;
-        // this.camera.rotation.set(-0.261, 0,3.141592653589793);
-        //
-        // this.camera.position.set(0.0003959743189625442, 0.009, 0.019);
+        this.camera.position.set(0, 0, 0.1);
+        this.camera.zoom = 8;
         this.mesh = this.scene.children[0].children[0].children[0].children[1];
-        this.mesh.position.x = -0.015;
-        // this.mesh.applyMatrix(this.flip);
-        // this.mesh.position.set(0.030,0.0115, -0.007034149952232838);
-        // this.mesh.scale.set(0.8, 0.8, 0.8)
-        window.c = this.camera;
-        window.w = this.mesh;
-
+        this.mesh.position.x = -0.045;
     };
 
     get_mesh() {
