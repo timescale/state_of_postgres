@@ -38,13 +38,9 @@ class Model extends Component {
         let values = this.el.getBoundingClientRect();
         let perc_100 = window.innerHeight;
         let position = (values.height / 2) - values.y;
-        let percentage = Math.round(position/perc_100 *100) / 100;
-        if (percentage > 1) {
-            percentage = 1
-        } else if (percentage < 0) {
-            percentage = 0
-        }
-        this.percentage = percentage
+        let percentage = Math.round(position / perc_100 * 100) / 100;
+
+        return percentage - 0.5
     };
 
     componentDidMount() {
@@ -148,6 +144,10 @@ class Model extends Component {
             this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         }
         this.camera.far = 0.1;
+        this.starting_position = this.camera.position.y;
+        if (this.offset) {
+            this.camera.position.y += this.offset
+        }
     }
     animate() {
         if (this.gltf === undefined) {
@@ -160,6 +160,10 @@ class Model extends Component {
 
         if (this.mixer) {
             this.mixer.update(this.clock.getDelta());
+        }
+        if (this.offset) {
+            this.percentage = this.center_of_canvas();
+            this.camera.position.y = this.starting_position - this.offset * this.percentage;
         }
 
         this.renderer.render(this.scene, this.camera);
@@ -291,24 +295,13 @@ class Teamwork extends AnimationModel {
 
 class Drone extends AnimationModel {
     file = '/objects/drone-processed.glb';
-
+    offset = 0.015;
 }
-
-class Phone extends AnimationModel {
-    loop = false;
-    file = '/objects/phone-processed.glb';
-
-    get_camera() {
-        super.get_camera();
-        this.camera.far = 4;
-        this.camera.position.z = 3.8
-    }
-}
-
 class Circuit extends AnimationModel {
     file = '/objects/circuit-processed.glb';
     motion = 0.00002;
     acceleration = 1;
+    offset = 0.02;
 
     get_camera() {
         super.get_camera();
@@ -341,6 +334,18 @@ class Circuit extends AnimationModel {
         }
 
         super.animate();
+    }
+}
+
+class Phone extends AnimationModel {
+    loop = false;
+    file = '/objects/phone-processed.glb';
+    offset = 1.4;
+
+    get_camera() {
+        super.get_camera();
+        this.camera.far = 4;
+        this.camera.position.z = 3.8
     }
 }
 
@@ -473,19 +478,6 @@ class Spinner extends AnimationModel {
 class Tail extends AnimationModel {
     file = '/objects/tailwag/tail_wag-processed.glb';
     color = "#F4F0E3";
-
-    // animate() {
-    //     if (window.animation_stopped) {
-    //         return super.animate();
-    //     }
-    //     if (window.scroll_direction === "up" && this.mesh.children[1].rotation.x > -0.4) {
-    //         this.mesh.children[1].rotation.x -= window.scroll_stopped ? 0.0001 : 0.005;
-    //     } else if (window.scroll_direction === "down" && this.mesh.children[1].rotation.x < 0.4) {
-    //         this.mesh.children[1].rotation.x += window.scroll_stopped ? 0.0001 : 0.005;
-    //     }
-    //     console.log(this.mesh.children[1].rotation.x);
-    //     return super.animate();
-    // }
 }
 
 class Toyball extends AnimationModel {
