@@ -136,7 +136,8 @@ class KeyFindings extends Component {
                                          model="Phone"/>
 
                                 <Section info={'Only 9% have contributed code to Postgres...'}
-                                         description={'Which is actually an impressive number. Many open source projects fail to generate enough interest to remain sustainable.'} reverse={true} minTopValue={200} partialVisibility={true} show_info={true}
+                                         description={'Which is actually an impressive number. Many open source projects fail to generate enough interest to remain sustainable.'}
+                                         reverse={true} minTopValue={200} partialVisibility={true} show_info={true}
                                          model="Flowers"/>
                             </div>
                         </VisibilitySensor>

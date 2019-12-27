@@ -19,6 +19,7 @@ class Model extends Component {
     initial_visible = true;
     minTopValue = 0;
     color = "#FBFBFB";
+    trigger;
 
     constructor(props) {
         super(props);
@@ -39,8 +40,8 @@ class Model extends Component {
         let perc_100 = window.innerHeight;
         let position = (values.height / 2) - values.y;
         let percentage = Math.round(position / perc_100 * 100) / 100;
-
-        return percentage - 0.5
+        let result = percentage - 0.5;
+        return result
     };
 
     componentDidMount() {
@@ -157,12 +158,11 @@ class Model extends Component {
             return;
         }
         this.animation_id = requestAnimationFrame(()=>this.animate());
-
-        if (this.mixer) {
+        this.percentage = this.center_of_canvas();
+        if (this.mixer && this.loop === false && this.percentage > this.trigger) {
             this.mixer.update(this.clock.getDelta());
         }
         if (this.offset) {
-            this.percentage = this.center_of_canvas();
             this.camera.position.y = this.starting_position - this.offset * this.percentage;
         }
 
@@ -352,6 +352,7 @@ class Phone extends AnimationModel {
 class Flowers extends AnimationModel {
     loop = false;
     file = '/objects/flower-processed.glb';
+    trigger = -0.13;
 
     get_camera() {
         super.get_camera();
@@ -469,6 +470,7 @@ class Spinner extends AnimationModel {
     file = '/objects/spinner-processed.glb';
     color = "#F4F0E3";
     loop = false;
+    trigger = -0.13;
 
     get_camera() {
         this.camera = this.scene.children[0].children[0].children[0];
