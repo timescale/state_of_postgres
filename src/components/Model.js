@@ -159,8 +159,12 @@ class Model extends Component {
         }
         this.animation_id = requestAnimationFrame(()=>this.animate());
         this.percentage = this.center_of_canvas();
-        if (this.mixer && this.loop === false && this.percentage > this.trigger) {
-            this.mixer.update(this.clock.getDelta());
+        if (this.mixer) {
+            if (this.trigger && this.percentage > this.trigger) {
+                this.mixer.update(this.clock.getDelta());
+            } else if (!this.trigger) {
+                this.mixer.update(this.clock.getDelta());
+            }
         }
         if (this.offset) {
             this.camera.position.y = this.starting_position - this.offset * this.percentage;
