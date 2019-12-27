@@ -185,8 +185,10 @@ class KeyFindings extends Component {
 
                                         <div className="text-wrap">
                                             <Fade bottom>
-                                                <p className="info info-title">Why Postgres over other solutions?</p>
-                                                <p className="subhead">(These are just a few particularly strong opinions. Download the <a href="https://stateofpostgres.com/files/state_of_postgres_2019.xlsx">raw data</a> for the full picture.)</p>
+                                                <p className="info info-title">Why Postgres over other solutions?<br/>
+                                                    <span className="subhead">(Some of these are particularly strong opinions. Download the <a href="https://stateofpostgres.com/files/state_of_postgres_2019.xlsx">raw data</a> for the full picture.)</span>
+                                                </p>
+
                                             </Fade>
                                         </div>
 

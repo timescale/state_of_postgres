@@ -81,7 +81,7 @@
 		line-height: 127%;
 		margin-bottom: 16px;
 		color: $color-text;
-		font-family: $font-secondary;
+		font-family: $font-primary;
 	}
 
 	.description {
@@ -106,9 +106,11 @@
 	}
 
 	.subhead {
-		font-size: 20px;
+		font-size: 24px;
 		line-height: 153.22%;
 		text-align: center;
+		font-weight: normal;
+		width: 870px;
 
 		a {
 			text-decoration: underline;
@@ -143,9 +145,8 @@
 }
 
 .text-section {
-
 	.text-wrap {
-		max-width: 850px;
+		max-width: 1060px;
 		margin: 0 auto;
 	}
 }
@@ -230,7 +231,7 @@
 }
 
 .info-title {
-	font-size: 80px !important;
-	line-height: 102px !important;
+	font-size: 96px !important;
+	line-height: 123.72% !important;
 	text-align: center !important;
 }
