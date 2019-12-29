@@ -98,7 +98,9 @@
 }
 
 @media (max-width: $screen-md) {
-
+	.text-section {
+		padding: 0 30px;
+	}
 	.intro {
 
 		&-content {
@@ -134,14 +136,17 @@
 
 		.info {
 			font-size: 26px;
-			line-height: 34px;
+			line-height: 119.5%;
+			font-weight: 600;
+			letter-spacing: 0.008em;
 			margin-bottom: 10px;
 		}
 
 		.description {
 			font-size: 16px;
-			line-height: 22px;
 			margin-bottom: 10px;
+			line-height: 130.5%;
+			letter-spacing: 0.04em;
 		}
 
 		.quote {
@@ -217,9 +222,11 @@
 
 }
 
-
 @media (max-width: $screen-sm) {
 
+	.model {
+		min-height: 300px;
+	}
 	.intro {
 
 		&-content {
@@ -263,6 +270,11 @@
 	.text-wrap {
 		max-width: 100% !important;
 		text-align: center;
+
+		.subhead {
+			font-size: 15px;
+			line-height: 22px;
+		}
 
 		.info {
 			font-size: 22px;
@@ -355,12 +367,16 @@
 	}
 
 	canvas {
-		height: 506px;
+		height: 300px !important;
 	}
 
-	.text-section {
+	#water canvas {
+		height: 400px !important;
+	}
+
+	#water .text-section {
 		min-height: 1px;
-		padding: 15px 40px 15px;
+		padding: 110px 40px 110px;
 	}
 
 	.info {
@@ -374,11 +390,23 @@
 		font-weight: normal;
 		letter-spacing: 0.04em;
 	}
+	.no-model {
+		height: 300px;
+	}
 	.quote-section {
 		height: auto;
 
 		.quote-text {
 			padding: 0 40px 0px;
+		}
+		.curly-quotes {
+			&.bigger:before {
+				top: -40px;
+			}
+			&.bigger:before, &.bigger:after{
+				font-size: 50px;
+				line-height: 65px;
+			}
 		}
 
 		.text.quote {
@@ -399,6 +427,7 @@
 	}
 
 	.curly-quotes {
+
 		&:before {
 			top: -32px;
 			left: -2px;
@@ -440,7 +469,12 @@
 	}
 
 	#quote {
-		padding: 210px 25px;
+		padding: 55px 25px;
+		min-height: 320px;
+	}
+
+	.text-section {
+
 	}
 
 }

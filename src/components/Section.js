@@ -111,8 +111,8 @@ class QuoteSection extends Section {
                     span: this.props.model ? 6 : 10,
                     order: this.props.reverse ? 1 : 2,
                     offset: this.props.model ? 0 : 1,
-                }}  style={{height: this.props.model ? '' : '400px'}}
-                     className="d-flex justify-content-center align-items-center quote-text">
+                }}
+                     className={"d-flex justify-content-center align-items-center quote-text " + (this.props.model ? '' : 'no-model')}>
                     <VisibilitySensor onChange={this.fade}>
                         <div ref={this.text} className='text quote animated' style={{animationDuration: "1s", opacity: 0 }}>
                             <div>

@@ -165,7 +165,7 @@ class Model extends Component {
             } else if (!this.trigger) {
                 this.mixer.update(this.clock.getDelta());
             }
-            if (!this.action.isRunning()) {
+            if (!this.action.isRunning() && !this.in_viewport) {
                 cancelAnimationFrame( this.animation_id );
             }
         }
@@ -294,7 +294,6 @@ class Teamwork extends AnimationModel {
         this.mesh.parent.add(mesh4);
         this.mesh.parent.add(mesh5);
         this.mesh.parent.add(mesh6);
-
 
         this.group = new THREE.AnimationObjectGroup(this.mesh, mesh2, mesh3, mesh4, mesh5, mesh6);
     }
