@@ -145,10 +145,10 @@ class Model extends Component {
             this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         }
         this.camera.far = 0.1;
-        this.starting_position = this.camera.position.y;
-        if (this.offset) {
-            this.camera.position.y += this.offset
-        }
+        // this.starting_position = this.camera.rotation.x;
+        // if (this.offset) {
+        //     this.camera.position.y += this.offset
+        // }
     }
     animate() {
         if (this.gltf === undefined) {
@@ -166,9 +166,9 @@ class Model extends Component {
                 this.mixer.update(this.clock.getDelta());
             }
         }
-        if (this.offset) {
-            this.camera.position.y = this.starting_position - this.offset * this.percentage;
-        }
+
+        // this.camera.rotation.x = this.starting_position - this.offset * this.percentage;
+        // console.log(this.camera.rotation.x)
 
         this.renderer.render(this.scene, this.camera);
     };
@@ -231,14 +231,7 @@ class AnimationModel extends Model {
             this.animate()
         }
     };
-    hide_mesh() {
-        if (this.animation_id && this.loop) {
-            cancelAnimationFrame( this.animation_id );
-            this.animation_id = null;
-        }
-        this.scene.visible = false;
-        this.renderer.render(this.scene, this.camera)
-    };
+
 }
 
 class Teamwork extends AnimationModel {
@@ -299,13 +292,12 @@ class Teamwork extends AnimationModel {
 
 class Drone extends AnimationModel {
     file = '/objects/drone-processed.glb';
-    offset = 0.015;
+    offset = 1
 }
 class Circuit extends AnimationModel {
     file = '/objects/circuit-processed.glb';
     motion = 0.00002;
     acceleration = 1;
-    offset = 0.02;
 
     get_camera() {
         super.get_camera();
@@ -344,7 +336,6 @@ class Circuit extends AnimationModel {
 class Phone extends AnimationModel {
     loop = false;
     file = '/objects/phone-processed.glb';
-    offset = 1.4;
 
     get_camera() {
         super.get_camera();
