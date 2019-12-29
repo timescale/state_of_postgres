@@ -102,7 +102,7 @@ class QuoteSection extends Section {
     };
     render() {
         return (
-            <Row ref={this.row} className='quote-section transition'>
+            <Row ref={this.row} className='quote-section blue transition'>
                 <Col sm={{span: this.props.model ? 12 : 0}} md={{ span: this.props.model ? 6 : 0, order: this.props.reverse ? 2 : 1 }}
                      className="d-flex justify-content-center model align-items-center">
                     <GetModel model={this.props.model}/>

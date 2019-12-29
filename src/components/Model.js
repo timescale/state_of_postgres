@@ -165,6 +165,9 @@ class Model extends Component {
             } else if (!this.trigger) {
                 this.mixer.update(this.clock.getDelta());
             }
+            if (!this.action.isRunning()) {
+                cancelAnimationFrame( this.animation_id );
+            }
         }
 
         // this.camera.rotation.x = this.starting_position - this.offset * this.percentage;
@@ -231,7 +234,14 @@ class AnimationModel extends Model {
             this.animate()
         }
     };
-
+    hide_mesh() {
+        if (this.animation_id && !this.loop) {
+            cancelAnimationFrame( this.animation_id );
+            this.animation_id = null;
+        }
+        this.scene.visible = false;
+        this.renderer.render(this.scene, this.camera)
+    };
 }
 
 class Teamwork extends AnimationModel {
@@ -470,6 +480,31 @@ class Spinner extends AnimationModel {
     get_camera() {
         this.camera = this.scene.children[0].children[0].children[0];
     }
+    get_scene() {
+        this.scene = new THREE.Scene();
+        this.scene.add(this.gltf.scene);
+    };
+
+    get_render() {
+        this.renderer = new THREE.WebGLRenderer({
+            canvas: this.el,
+            powerPreference: "low-power",
+            alpha: true
+        });
+
+        this.get_dimension();
+        this.renderer.setSize(this.width, this.height, true);
+        this.renderer.setPixelRatio(2.3);
+        this.renderer.gammaOutput = true;
+        this.renderer.gammaFactor = 2.2;
+        this.camera.aspect = this.get_aspect();
+        this.camera.updateProjectionMatrix();
+        this.scene.visible = this.initial_visible;
+        this.renderer.render(this.scene, this.camera);
+        if (this.in_viewport) {
+            this.animate()
+        }
+    };
 }
 
 class Tail extends AnimationModel {
