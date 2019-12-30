@@ -405,7 +405,7 @@ class Swimming extends AnimationModel {
     get_camera() {
         this.camera = this.scene.children[0].children[0].children[0].children[0];
         this.camera.position.set(0, 0, 0.1);
-        this.camera.zoom = 8;
+        this.camera.zoom = 12;
         this.mesh = this.scene.children[0].children[0].children[0].children[1];
         this.mesh.position.x = -0.045;
     };
