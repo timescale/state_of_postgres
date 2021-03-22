@@ -478,3 +478,41 @@
 	}
 
 }
+
+.section.intro .cta {
+  max-width: 500px;
+  height: 72px;
+  background-color: #469FCB;
+  position: absolute;
+  top: 15px;
+  margin: 15px;
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  padding-right: 65px;
+  padding-left: 65px;
+  box-shadow: -5px 5px 9px rgba(0, 0, 0, 0.06);
+  
+  & > span {
+    font-weight: bold;
+    display: flex;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
+    & > .elephant {
+      font-size: 32px;
+      margin-right: 5px;
+    }
+  }
+
+  @media (max-width: 968px) {
+    right: 0;
+  }
+    @media (max-width: 595px) {
+    top: 60px;
+  }
+
+}

@@ -45,6 +45,7 @@ const TimescaleEmail = () => {
             <div className="trigger d-flex" onClick={() => { setOpen(!open); }}>
                 <img  alt="Timescale logo" src="img/timescale.svg"/><FontAwesomeIcon icon={open ? faChevronDown : faChevronUp}/>
             </div>
+            
             <div className="content" style={{ display: (open ? 'block' : 'none') }}>
                 <p className="head">Stay connected!</p>
                 <p className="subhead">Sign up for the Timescale Newsletter to get new technical content, SQL tips, and more.</p>
