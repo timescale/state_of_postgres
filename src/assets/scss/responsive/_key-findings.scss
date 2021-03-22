@@ -479,8 +479,12 @@
 
 }
 
-.section.intro .cta {
-  max-width: 500px;
+.section.intro {
+  @media (max-width: 998px) {
+    justify-content: center !important;
+  }
+  .cta {
+  max-width: 545px;
   height: 72px;
   background-color: #469FCB;
   position: absolute;
@@ -495,24 +499,28 @@
   padding-right: 65px;
   padding-left: 65px;
   box-shadow: -5px 5px 9px rgba(0, 0, 0, 0.06);
-  
+
   & > span {
     font-weight: bold;
     display: flex;
     vertical-align: middle;
     justify-content: center;
     align-items: center;
+    font-size: 18px;
     & > .elephant {
       font-size: 32px;
       margin-right: 5px;
     }
   }
-
-  @media (max-width: 968px) {
-    right: 0;
-  }
-    @media (max-width: 595px) {
+  
+    @media (max-width: 695px) {
     top: 60px;
   }
+}
+
+
+
+  
+  
 
 }
